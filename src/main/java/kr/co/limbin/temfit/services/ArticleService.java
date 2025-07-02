@@ -5,6 +5,7 @@ import kr.co.limbin.temfit.entities.ArticleEntity;
 import kr.co.limbin.temfit.entities.ReviewEntity;
 import kr.co.limbin.temfit.entities.UserEntity;
 import kr.co.limbin.temfit.mappers.ArticleMapper;
+import kr.co.limbin.temfit.mappers.ReviewMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.vos.ArticleVo;
@@ -28,6 +29,7 @@ public class ArticleService {
     }
 
     private final ArticleMapper articleMapper;
+    private final ReviewMapper reviewMapper;
 
     public Pair<ArticleVo[], PageVo> getBySearch(SearchVo searchVo, int page) {
         if (page < 1) {
@@ -148,25 +150,23 @@ public class ArticleService {
         return this.articleMapper.insertCover(cover) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-//    public Result reviewWrite(UserEntity user, ReviewEntity review) {
-//        if (user == null || user.isDeleted() || user.isSuspended()) {
-//            return CommonResult.FAILURE_SESSION_EXPIRED;
-//        }
-//
-//        if (review == null
-//                || !ArticleService.isTitletValid(article.getTitle())
-//                || !ArticleService.isContentValid(article.getContent())) {
-//            return CommonResult.FAILURE;
-//        }
-//
-//        article.setUserEmail(user.getEmail());
-//        article.setView(0);
-//        article.setCreatedAt(LocalDateTime.now());
-//        article.setModifiedAt(null);
-//        article.setDeleted(false);
-//
-//        return this.articleMapper.insert(article) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
-//    }
+    public Result reviewWrite(UserEntity user, ReviewEntity review) {
+        if (user == null || user.isDeleted() || user.isSuspended()) {
+            return CommonResult.FAILURE_SESSION_EXPIRED;
+        }
+
+        if (review == null
+                || !ArticleService.isContentValid(review.getContent())) {
+            return CommonResult.FAILURE;
+        }
+
+        review.setUserEmail(user.getEmail());
+        review.setCreatedAt(LocalDateTime.now());
+        review.setModifiedAt(null);
+        review.setDeleted(false);
+
+        return this.reviewMapper.insert(review) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
 
 
 }

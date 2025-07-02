@@ -42,21 +42,21 @@ public class ArticleController {
         return "article/index";
     }
 
-//    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public String postIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ArticleEntity article, ArticleCoverEntity cover) {
-//        Result result = this.articleService.write(signedUser, article);
-//        JSONObject response = new JSONObject();
-//        response.put("result", result.toStringLower());
-//        if (result == CommonResult.SUCCESS) {
-//            response.put("id", article.getId());
-//            Result coverResult = this.articleService.coverWrite(article.getId(), cover);
-//            if (coverResult == CommonResult.FAILURE) {
-//                response.put("coverResult", coverResult.toStringLower());
-//            }
-//        }
-//        return response.toString();
-//    }
+    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ArticleEntity article, ArticleCoverEntity cover) {
+        Result result = this.articleService.write(signedUser, article);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        if (result == CommonResult.SUCCESS) {
+            response.put("id", article.getId());
+            Result coverResult = this.articleService.coverWrite(article.getId(), cover);
+            if (coverResult == CommonResult.FAILURE) {
+                response.put("coverResult", coverResult.toStringLower());
+            }
+        }
+        return response.toString();
+    }
 
     @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getReview(){
@@ -106,6 +106,4 @@ public class ArticleController {
     public String getWrite() {
         return "article/write";
     }
-
-
 }
