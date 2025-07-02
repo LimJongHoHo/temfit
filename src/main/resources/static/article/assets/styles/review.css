@@ -1,0 +1,594 @@
+#main {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-start;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.625rem;
+  background-color: #ffffff;
+}
+#main > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+#main > .page-container > .page > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .img {
+  max-width: 40rem;
+  border-radius: 1rem;
+}
+#main > .page-container > .page > .brand {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+#main > .page-container > .page > .brand > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .brand > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .brand > .img {
+  width: 2.45rem;
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
+#main > .page-container > .page > .brand > .title {
+  color: #7a7c7e;
+}
+#main > .page-container > .page > .caption {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .page > .caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .caption > .cosmetic-sub-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #757575;
+}
+#main > .page-container > .page > .caption > .cosmetic-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+#main > .page-container > .page > .caption > .score {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6c6e70;
+}
+#main > .page-container > .page > .star-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .page > .star-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .star-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .star-container > .star-scope {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .page > .star-container > .star-scope > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .star-container > .star-scope > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .star-container > .star-scope > .starImg {
+  width: 0.875rem;
+}
+#main > .page-container > .page > .star-container > .star-scope > .score {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7a7c7e;
+}
+#main > .page-container > .page > .star-container > .star-scope > .number {
+  font-size: 0.7rem;
+  color: #a2a4a6;
+}
+#main > .page-container > .page > .product-container > .item-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+  border: 0.0625rem solid #eaecee;
+  border-radius: 0.625rem;
+  padding: 1rem;
+}
+#main > .page-container > .page > .product-container > .item-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .product-container > .item-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .product-container > .item-box > .item {
+  width: 3rem;
+}
+#main > .page-container > .page > .product-container > .item-box > .container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+}
+#main > .page-container > .page > .product-container > .item-box > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .product-container > .item-box > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .product-container > .item-box > .container > .option-container > .option {
+  font-size: 0.8rem;
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#main > .page-container > .page > .product-container > .item-box > .container > .caption-container > .caption {
+  font-weight: 500;
+}
+#main > .page-container > .page > .product-container > .item-box > .button {
+  cursor: pointer;
+}
+#main > .page-container > .page > .product-container > .item-box > .button > .sortDown {
+  width: 1.45rem;
+}
+#main > .page-container > .page > .sell-container > .title {
+  margin-top: 0.5rem;
+  margin-bottom: -1rem;
+  font-weight: 500;
+}
+#main > .page-container > .page > .sell-container > .price-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+#main > .page-container > .page > .sell-container > .price-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .sell-container > .price-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .sell-container > .price-container > .percent {
+  color: #fc7899;
+}
+#main > .page-container > .page > .point-container {
+  border: 0.0875rem solid #1d1d1e;
+  border-radius: 0.625rem;
+  padding: 0 0.875rem;
+}
+#main > .page-container > .page > .point-container > .max-point {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .page > .point-container > .max-point > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .point-container > .max-point > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .point-container > .max-point > .point-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+#main > .page-container > .page > .point-container > .max-point > .point {
+  font-size: 1rem;
+  font-weight: 900;
+  border-bottom: 0.5rem solid #fdfd77;
+}
+#main > .page-container > .page > .point-container > .underline {
+  border-top: 0.0625rem solid #e0e0e0;
+}
+#main > .page-container > .page > .point-container > .caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  cursor: pointer;
+}
+#main > .page-container > .page > .point-container > .caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .page > .point-container > .caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .page > .point-container > .caption > .watch {
+  padding: 0.425rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+#main > .page-container > .page > .point-container > .caption > .img {
+  margin-left: -1rem;
+  width: 1.15rem;
+}
+#main > .page-container > .underline {
+  margin: 1rem 0;
+  border: 0.25rem solid #fafcfe;
+}
+#main > .page-container > .caption-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-start;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.625rem;
+}
+#main > .page-container > .caption-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .caption-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .caption-container > .row {
+  padding: 0.875rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: dimgray;
+}
+#main > .page-container > .caption-container > .row > .caption {
+  display: inline-block;
+  width: 5rem;
+}
+#main > .page-container > .caption-container > .row > .content {
+  color: #000000;
+}
+#main > .page-container > .caption-container > .delivery-row {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.15rem;
+  justify-content: flex-start;
+  padding: 0.875rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: dimgray;
+}
+#main > .page-container > .caption-container > .delivery-row > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .caption-container > .delivery-row > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .caption-container > .delivery-row > .caption {
+  display: inline-block;
+  width: 5rem;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container > .main-content {
+  color: #48C9b0;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container > .link-content {
+  color: #a2a4a6;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-container > .content {
+  color: #000000;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-caption {
+  margin-top: 0.625rem;
+}
+#main > .page-container > .caption-container > .delivery-row > .delivery-box > .delivery-caption > .caption {
+  font-size: 0.785rem;
+  color: #a2a4a6;
+}
+#main > .page-container > .underline {
+  margin: 1rem 0;
+  border: 0.25rem solid #fafcfe;
+}
+#main > .page-container > .information-review > .two-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#main > .page-container > .information-review > .two-container > .container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+#main > .page-container > .information-review > .two-container > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .two-container > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .two-container > .container > .content {
+  font-size: 1rem;
+  font-weight: 500;
+}
+#main > .page-container > .information-review > .two-container > .container > .information {
+  border-bottom: 0.15rem solid #1d1d1e;
+}
+#main > .review-container > .review-total {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 2rem 0;
+}
+#main > .review-container > .review-total > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .review-container > .review-total > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .review-container > .review-total > .review-count {
+  color: #fc7899;
+}
+#main > .review-container > .review-caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+#main > .review-container > .review-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .review-container > .review-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .review-container > .review-caption > .review-user-container > .review-user {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-start;
+}
+#main > .review-container > .review-caption > .review-user-container > .review-user > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .review-container > .review-caption > .review-user-container > .review-user > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .review-container > .review-caption > .review-user-container > .review-user > .nickname {
+  font-weight: 600;
+}
+#main > .review-container > .review-caption > .review-user-container > .review-user > .view {
+  font-size: 0.875rem;
+  color: #7a7c7e;
+}
+#main > .review-container > .review-caption > .review-user-container > .date-caption {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+}
+#main > .review-container > .review-caption > .review-user-container > .date-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .review-container > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .review-container > .review-caption > .review-user-container > .date-caption > .date {
+  margin-top: -0.6rem;
+  font-size: 0.75rem;
+  color: #a2a4a6;
+}
+#main > .review-container > .content-container > .review-img {
+  padding: 2rem 0;
+}
+#main > .review-container > .content-container > .content-caption {
+  padding: 2rem 0;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
+#main > .review-container > .content-container > .content-caption > .content {
+  font-weight: 400;
+}
+#main > .review-container > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: stretch;
+  padding: 1rem 0;
+}
+#main > .review-container > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .review-container > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .review-container > .button-container > .--object-button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1.3rem 0;
+}
+#main > .underline {
+  margin: 1rem 0;
+  border: 0.25rem solid #fafcfe;
+}
+#main > .ingredient-container > .title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+#main > .ingredient-container > .ingredient-composition {
+  border-bottom: 0.0625rem solid #e0e0e0;
+  padding: 2rem 0;
+}
+#main > .ingredient-container > .ingredient-composition > .title {
+  padding: 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: flex-start;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.45rem;
+  justify-content: flex-start;
+  font-size: 0.75rem;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .img {
+  width: 0.875rem;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num1 {
+  color: #FC7899;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num2 {
+  color: #FCD778;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num3 {
+  color: #FF312B;
+}
+#main > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .caption {
+  color: #a2a4a6;
+}
+#main > .ingredient-container > .ingredient-composition > .bar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: stretch;
+  padding: 0.3rem;
+  border-radius: 0.875rem;
+  background-color: #fc7899;
+  width: 91%;
+}
+#main > .ingredient-container > .ingredient-composition > .bar > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .ingredient-container > .ingredient-composition > .bar > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+/*# sourceMappingURL=review.css.map */

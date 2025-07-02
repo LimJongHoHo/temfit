@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Temfit - " 당신의 아름다움에 핏하다 " - 로그인</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" href="/user/assets/styles/login.min.css">
+    <script src="/assets/scripts/common.js"></script>
+    <script defer src="/user/assets/scripts/login.js"></script>
+</head>
+<body>
+<th:block th:replace="~{/fragments/header :: header}"></th:block>
+<div class="--dialog"></div>
+<div id="container">
+    <form novalidate id="loginForm">
+        <div class="login">
+            <h1 class="title">Temfit</h1>
+            <h2 class="sub-title">" 당신의 아름다움에 핏하다 "</h2>
+        </div>
+        <label class="--object-label">
+            <img class="login-icon" src="/assets/images/email.png" alt="">
+            <span class="---caption">이메일</span>
+            <input autofocus required autocomplete="email" class="--object-field ---field" maxlength="50" minlength="8"
+                   name="email" spellcheck="false" type="email">
+            <span class="---warning">이메일을 입력해 주세요.</span>
+        </label>
+        <label class="--object-label">
+            <img class="login-icon" src="/assets/images/password.png" alt="">
+            <span class="---caption">비밀번호</span>
+            <input autofocus required autocomplete="off" class="--object-field ---field" maxlength="50" minlength="6"
+                   name="password" spellcheck="false" type="password">
+            <span class="---warning">비밀번호를 입력해 주세요.</span>
+        </label>
+        <label class="--object-check">
+            <input class="---input" name="remember" type="checkbox">
+            <span class="---box"></span>
+            <span class="---caption">이메일을 기억할까요?</span>
+        </label>
+        <button class="--object-button -color-signature" type="submit">
+            <span class="---caption">로그인</span>
+        </button>
+        <ul class="menu">
+            <li class="item">
+                <span class="caption">아직 계정이 없으신가요?</span>
+                <a class="link" href="/user/register">회원가입</a>
+            </li>
+            <li class="item">
+                <span class="caption">계정 정보를 분실하셨나요?</span>
+                <a class="link" href="/user/recover">계정복구</a>
+            </li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

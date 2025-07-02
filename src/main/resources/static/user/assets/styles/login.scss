@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+@import "../../../assets/styles/_def";
+
+#loginForm {
+  @include flex(column, stretch, flex-start, 0.75rem);
+  max-width: 40rem;
+  padding-top: 7rem;
+  margin: 0 auto;
+  width: 17.5rem;
+  background-color: #ffffff;
+
+  > .login {
+    @include flex(column, center, center);
+
+    > .title {
+      color: #1d1d1e;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      font-size: 2.875rem;
+      text-align: center;
+    }
+
+    > .sub-title {
+      margin-bottom: 0.875rem;
+      color: #808080;
+    }
+  }
+
+
+  > .--object-label {
+    position: relative;
+
+    > .login-icon {
+      width: 2rem;
+      top: 1rem;
+      left: -2.5rem;
+      position: absolute;
+    }
+  }
+
+  > .menu {
+    @include flex(column, stretch, flex-start, 0.25rem);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+
+    > .item {
+      @include flex(row, stretch, flex-start, 0.25rem);
+
+      > .link {
+        color: #ee3f74;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

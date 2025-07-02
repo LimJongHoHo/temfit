@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.limbin.temfit.mappers.ImageMapper">
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`images` (`name`, `content_type`, `data`, `created_at`)
+        VALUES (#{image.name}, #{image.contentType}, #{image.data}, #{image.createdAt})
+    </insert>
+    <select id="selectById" resultType="kr.co.limbin.temfit.entities.ImageEntity">
+        SELECT `id`           AS `id`,
+               `name`         AS `name`,
+               `content_type` AS `contentType`,
+               `data`         AS `data`,
+               `created_at`   AS `createdAt`
+        FROM `temfit`.`images`
+        WHERE `id` = #{id}
+    </select>
+</mapper>

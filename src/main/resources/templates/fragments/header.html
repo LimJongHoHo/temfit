@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header id="header" th:fragment="header">
+    <!--    <a class="logo" href="#">-->
+    <!--        <img alt="temfit" class="icon" src="/assets/images/temfit_icon.png">-->
+    <!--    </a>-->
+    <!--    <span class="-flex-stretch"></span>-->
+    <!--    <ul class="menu" th:if="${session.signedUser == null}">-->
+    <!--        <li class="item">-->
+    <!--            <a class="link" th:href="@{/user/register}">회원가입</a>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--            <span>|</span>-->
+    <!--        </li>-->
+    <!--        <li class="item">-->
+    <!--            <a class="link" th:href="@{/user/login}">로그인</a>-->
+    <!--        </li>-->
+    <!--    </ul>-->
+    <!--    <ul class="menu" th:if="${session.signedUser != null}">-->
+    <!--        <li class="item">-->
+    <!--            <a class="link" th:href="@{/user/my}">마이페이지</a>-->
+    <!--        </li>-->
+    <!--        <li class="item">-->
+    <!--            <a class="link" th:href="@{/user/logout}">로그아웃</a>-->
+    <!--        </li>-->
+    <!--    </ul>-->
+    <div class="top">
+        <img class="temfit-icon" src="/assets/images/temfit_icon.png" alt="icon">
+        <a class="title" href="/main">Temfit</a>
+        <a class="sub-title" href="/main">" 당신의 아름다움을 핏하다 "</a>
+        <div class="-flex-stretch"></div>
+        <a class="cart" href="/cart">
+            <img class="shopping-bag" src="/assets/images/shopping-bag.png" alt="shopping-bag">
+        </a>
+    </div>
+    <div class="search-container">
+        <a href="/index_search" class="search -flex-stretch">
+            <span class="search-placeholder">궁금한 제품을 검색해 보세요</span>
+            <img class="search-icon" src="/assets/images/search-icon.png" alt="search-icon">
+        </a>
+    </div>
+</header>
+</html>

@@ -1,0 +1,412 @@
+#main {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-start;
+  max-width: 40rem;
+  padding: 0 1.625rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+#main > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .a-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 1.625rem;
+  justify-content: flex-start;
+  font-size: 0.895rem;
+  margin-bottom: 0.75rem;
+}
+#main > .a-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .a-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .a-container > .home {
+  font-weight: 800;
+}
+#main > .b-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  border-top: 0.0625rem solid #e0e0e0;
+  padding: 1.425rem;
+}
+#main > .b-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .b-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .b-container > .representImg {
+  max-width: 40rem;
+  border-radius: 1rem;
+}
+#main > .date {
+  margin-top: 4rem;
+  font-size: 0.875rem;
+  color: #757575;
+}
+#main > .rank-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-start;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+#main > .rank-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .rank-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .rank-container > .up-title {
+  color: #ee3f74;
+}
+#main > .rank-container > .rightArrow {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-end;
+}
+#main > .rank-container > .rightArrow > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .rank-container > .rightArrow > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .rank-container > .rightArrow > .rightArrowImg {
+  width: 1.45rem;
+}
+#main #layout-content > .box {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 1.875rem;
+  justify-content: flex-start;
+  position: relative;
+}
+#main #layout-content > .box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main #layout-content > .box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main #layout-content > .box > .controller {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: center;
+  top: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 30rem;
+  position: absolute;
+}
+#main #layout-content > .box > .controller > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main #layout-content > .box > .controller > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main #layout-content > .box > .controller > .knob {
+  margin-right: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: 0.0625rem solid #a2a4a6;
+  border-radius: 50%;
+}
+#main #layout-content > .box > .controller > .knob.-selected {
+  background-color: #000000;
+}
+#main #layout-content > .box > .controller > .checkbox-container > input {
+  display: none;
+}
+#main #layout-content > .box > .controller > .checkbox-container > .icon {
+  display: none;
+  cursor: pointer;
+  width: 1.2rem;
+}
+#main #layout-content > .box > .controller > .checkbox-container > .icon.-selected {
+  display: inline-block;
+}
+#main #layout-content > .box > .page-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+  width: 100%;
+  overflow: auto hidden;
+  position: relative;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+#main #layout-content > .box > .page-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main #layout-content > .box > .page-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main #layout-content > .box > .page-container > .page {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: stretch;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  scroll-snap-align: start;
+}
+#main #layout-content > .box > .page-container > .page > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main #layout-content > .box > .page-container > .page > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main #layout-content > .box > .page-container > .page > .rank,
+#main #layout-content > .box > .page-container > .page > .medal {
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+  width: 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+#main #layout-content > .box > .page-container > .page > .rankingImg {
+  align-self: center;
+  width: 50%;
+}
+#main #layout-content > .box > .page-container > .page > .caption {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  justify-content: flex-start;
+}
+#main #layout-content > .box > .page-container > .page > .caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main #layout-content > .box > .page-container > .page > .caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main #layout-content > .box > .page-container > .page > .caption > .cosmetic-sub-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #757575;
+}
+#main #layout-content > .box > .page-container > .page > .caption > .cosmetic-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+#main #layout-content > .box > .page-container > .page > .caption > .score {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6c6e70;
+}
+#main > .A-container > .title-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-start;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 3rem;
+}
+#main > .A-container > .title-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .title-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .title-container > .rank-title {
+  color: #ee3f74;
+}
+#main > .A-container > .title-container > .rightArrow {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-end;
+}
+#main > .A-container > .title-container > .rightArrow > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .title-container > .rightArrow > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .title-container > .rightArrow > .rightArrowImg {
+  width: 1.45rem;
+}
+#main > .A-container > .item-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+  padding: 3rem 0;
+}
+#main > .A-container > .item-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+  padding: 0.675rem 0;
+  font-weight: 500;
+}
+#main > .A-container > .item-container > .item-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .item-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box > .medal {
+  width: 2rem;
+}
+#main > .A-container > .item-container > .item-box > .item {
+  width: 5rem;
+}
+#main > .A-container > .item-container > .item-box > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#main > .A-container > .item-container > .item-box > .container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .item-box > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .item-box > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box > .container > .brand-container > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .starImg {
+  width: 0.75rem;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .score {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: #2d2d2d;
+}
+#main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .number {
+  font-size: 0.6rem;
+  color: #a2a4a6;
+}
+#main > .A-container > .button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: stretch;
+  padding: 0.725rem;
+  font-size: 0.9875rem;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e0e0e0;
+}
+#main > .A-container > .button > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .button > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .button:hover {
+  background-color: #fafcfe;
+}
+
+/*# sourceMappingURL=index.css.map */

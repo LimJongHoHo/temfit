@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>템핏-장바구니</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" href="/main/assets/styles/cart.min.css">
+</head>
+<body>
+<div class="--dialog"></div>
+<div class="container">
+    <th:block th:replace="~{/fragments/header :: header}"></th:block>
+    <main id="main">
+        <div class="empty-cart-container">
+            <img src="/assets/images/cart-warning.png" alt="">
+            <h1 class="caption">장바구니에 담은 삼품이 없어요</h1>
+            <h2 class="sub-caption">마음에 드는 상품을 담아보세요</h2>
+            <button class="--object-button -color-pink">
+                <a class="button" href="/main">상품 보러 가기</a>
+            </button>
+        </div>
+
+        <div class="cart-container">
+            <div class="top-container">
+                <img class="img" src="/assets/images/cart-warning.png" alt="">
+                <p class="caption">장바구니에 담은 상품은 최대 30일간 저장돼요</p>
+            </div>
+        </div>
+
+
+    </main>
+    <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+</div>
+</body>
+</html>

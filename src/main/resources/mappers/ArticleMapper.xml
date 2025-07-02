@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.limbin.temfit.mappers.ArticleMapper">
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`articles` (`user_email`, `title`, `content`, `view`, `created_at`, `modified_at`,
+                                            `is_deleted`)
+        VALUES (#{article.userEmail}, #{article.title}, #{article.content}, #{article.view},
+                #{article.createdAt}, #{article.modifiedAt}, #{article.isDeleted})
+    </insert>
+
+    <insert id="insertCover">
+        INSERT INTO `temfit`.`article_covers` (article_id, cover_Url_1, cover_Url_2, cover_Url_3, cover_Url_4,
+                                               cover_Url_5, cover_Url_6, cover_Url_7, cover_Url_8, created_at)
+        VALUES (#{cover.articleId}, #{cover.coverUrl1}, #{cover.coverUrl2}, #{cover.coverUrl3}, #{cover.coverUrl4},
+                #{cover.coverUrl5}, #{cover.coverUrl6}, #{cover.coverUrl7}, #{cover.coverUrl8}, #{cover.createdAt})
+    </insert>
+
+    <select id="selectBySearch" resultType="kr.co.limbin.temfit.vos.ArticleVo">
+        SELECT `t0`.`id`          AS `id`,
+               `t0`.`user_email`  AS `userEmail`,
+               `t0`.`title`       AS `title`,
+               `t0`.`content`     AS `content`,
+               `t0`.`view`        AS `view`,
+               `t0`.`created_at`  AS `createdAt`,
+               `t0`.`modified_at` AS `modifiedAt`,
+               `t0`.`is_deleted`  AS `isDeleted`,
+               `t1`.`nickname`    AS `userNickname`
+        FROM `temfit`.`articles` AS `t0`
+                 LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
+        WHERE IF(#{searchVo.by} = 'title', `t0`.`title` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+          AND IF(#{searchVo.by} = 'content', `t0`.`title` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR
+                                             `t0`.`content` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+          AND IF(#{searchVo.by} = 'writer', `t1`.`nickname` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+        ORDER BY `id` DESC
+        LIMIT #{pageVo.rowCount} OFFSET #{pageVo.dbOffset}
+    </select>
+
+    <select id="selectById" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
+        SELECT `id`          AS `id`,
+               `user_email`  AS `userEmail`,
+               `title`       AS `title`,
+               `content`     AS `content`,
+               `view`        AS `view`,
+               `created_at`  AS `createdAt`,
+               `modified_at` AS `modifiedAt`,
+               `is_deleted`  AS `isDeleted`
+        FROM `temfit`.`articles`
+        WHERE `id` = #{id}
+        LIMIT 1
+    </select>
+
+    <select id="selectPrevious" resultType="kr.co.limbin.temfit.entities.ArticleEntity"><![CDATA[
+        SELECT `id`          AS `id`,
+               `user_email`  AS `userEmail`,
+               `title`       AS `title`,
+               `content`     AS `content`,
+               `view`        AS `view`,
+               `created_at`  AS `createdAt`,
+               `modified_at` AS `modifiedAt`,
+               `is_deleted`  AS `isDeleted`
+        FROM `temfit`.`articles`
+        WHERE `id` < #{id}
+          AND `is_deleted` = FALSE
+        ORDER BY `id` DESC
+        LIMIT 1
+        ]]></select>
+
+    <select id="selectNext" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
+        SELECT `id`          AS `id`,
+               `user_email`  AS `userEmail`,
+               `title`       AS `title`,
+               `content`     AS `content`,
+               `view`        AS `view`,
+               `created_at`  AS `createdAt`,
+               `modified_at` AS `modifiedAt`,
+               `is_deleted`  AS `isDeleted`
+        FROM `temfit`.`articles`
+        WHERE `id` > #{id}
+          AND `is_deleted` = FALSE
+        ORDER BY `id`
+        LIMIT 1
+    </select>
+
+    <select id="selectCountBySearch" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM `temfit`.`articles` AS `t0`
+                 LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
+        WHERE IF(#{searchVo.by} = 'title', `t0`.`title` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+          AND IF(#{searchVo.by} = 'content', `t0`.`title` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR
+                                             `t0`.`content` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+          AND IF(#{searchVo.by} = 'writer', `t1`.`nickname` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
+    </select>
+
+    <update id="update">
+        UPDATE `temfit`.`articles`
+        SET `user_email`  = #{article.userEmail},
+            `title`       = #{article.title},
+            `content`     = #{article.content},
+            `view`        = #{article.view},
+            `created_at`  = #{article.createdAt},
+            `modified_at` = #{article.modifiedAt},
+            `is_deleted`  = #{article.isDeleted}
+        WHERE `id` = #{article.id}
+    </update>
+</mapper>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>급상숭 중인 제품의 추천 랭킹</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" href="/main/assets/styles/rank.min.css">
+</head>
+<body>
+<th:block th:replace="~{/fragments/header :: header}"></th:block>
+<div class="--dialog"></div>
+<main id="rank">
+    <div class="a-container">
+        <a href="/main">홈</a>
+        <a class="ranking" href="/rank">랭킹</a>
+        <span class="line"></span>
+    </div>
+    <div class="b-container">
+        <div class="label-container">
+            <label class="label" tabindex="0">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">급상승</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">카테고리별</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">피부별</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">연령대별</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">브랜드</span>
+            </label>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <div class="c-container">
+        <label class="title-box">
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">건성</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">지성</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">중성</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">복합성</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">민감성</span>
+            </label>
+            <label class="label">
+                <input checked class="radio" type="radio" value="recent" name="keyword">
+                <span class="caption">여드름</span>
+            </label>
+        </label>
+        <div class="line">
+            <div class="item-box">
+                <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+            <div class="item-box">
+                <img class="medal" src="/assets/images/2nd-medal.png" alt="1st-medal">
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+            <div class="item-box">
+                <img class="medal" src="/assets/images/3rd-medal.png" alt="1st-medal">
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+            <div class="item-box">
+                <div class="rank">4</div>
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+            <div class="item-box">
+                <div class="rank">5</div>
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+            <div class="item-box">
+                <div class="rank">6</div>
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <a class="title" href="#">토리든 </a>
+                <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+</body>
+</html>

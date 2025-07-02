@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Temfit - " 당신의 아름다움에 핏하다 "</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" href="/main/assets/styles/index.min.css">
+    <script src="/assets/scripts/common.js" type="module"></script>
+    <script defer src="/main/assets/scripts/index.js" type="module"></script>
+
+</head>
+<body>
+<div class="--dialog"></div>
+<div class="container">
+    <th:block th:replace="~{/fragments/header :: header}"></th:block>
+    <main id="main">
+        <div class="a-container">
+            <a class="home" href="/main">홈</a>
+            <a href="/rank">랭킹</a>
+        </div>
+        <div class="b-container">
+            <img class="representImg"
+                 src="https://img.hwahae.co.kr/commerce/deal_events/exposures/20250623/20250623152156396_ef537898-5558-4aeb-904e-d4016e25b2c6.png" alt="">
+        </div>
+        <div class="date">0월 00일 0요일</div>
+        <div class="rank-container">
+            <a class="up-title" href="/rank">급상승</a>
+            <a class="rank-title" href="/rank">랭킹</a>
+            <div class="-flex-stretch"></div>
+            <a class="rightArrow" href="/rank">
+                <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
+            </a>
+        </div>
+        <div id="layout-content">
+            <div class="box">
+                <div class="controller">
+                    <a class="knob -selected" id="product1" href="#productImage1"></a>
+                    <a class="knob" id="product2" href="#productImage2"></a>
+                    <a class="knob" id="product3" href="#productImage3"></a>
+                    <a class="knob" id="product4" href="#productImage4"></a>
+                    <a class="knob" id="product5" href="#productImage5"></a>
+                    <span class="-flex-stretch" role="none"></span>
+                    <label class="checkbox-container">
+                        <input type="checkbox">
+                        <img alt="start" class="icon start" src="/assets/images/start.png">
+                        <img alt="pause" class="icon pause -selected" src="/assets/images/stop.png">
+                    </label>
+                </div>
+                <div class="page-container" id="imageTable">
+                    <div class="page" id="productImage1">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                        <img class="rankingImg"
+                             src="https://img.hwahae.co.kr/products/2016363/2016363_20230110094309.jpg?format=webp&size=300x300"
+                             alt="representImg">
+                        <ul class="caption">
+                            <li class="text cosmetic-sub-title">프리비츠</li>
+                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
+                            <li class="text score">4.24(258)</li>
+                        </ul>
+                    </div>
+                    <div class="page" id="productImage2">
+                        <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                        <img class="rankingImg"
+                             src="https://img.hwahae.co.kr/products/2024322/2024322_20250219100734.jpg?format=webp&size=300x300"
+                             alt="representImg">
+                        <ul class="caption">
+                            <li class="text cosmetic-sub-title">프리비츠</li>
+                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
+                            <li class="text score">4.24(258)</li>
+                        </ul>
+                    </div>
+                    <div class="page" id="productImage3">
+                        <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                        <img class="rankingImg"
+                             src="https://img.hwahae.co.kr/products/2134730/2134730_20250414162054.jpg?format=webp&size=300x300"
+                             alt="representImg">
+                        <ul class="caption">
+                            <li class="text cosmetic-sub-title">프리비츠</li>
+                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
+                            <li class="text score">4.24(258)</li>
+                        </ul>
+                    </div>
+                    <div class="page" id="productImage4">
+                        <span class="rank">4</span>
+                        <img class="rankingImg"
+                             src="https://img.hwahae.co.kr/products/2087347/2087347_20240227170323.jpg?format=webp&size=300x300"
+                             alt="representImg">
+                        <ul class="caption">
+                            <li class="text cosmetic-sub-title">프리비츠</li>
+                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
+                            <li class="text score">4.24(258)</li>
+                        </ul>
+                    </div>
+                    <div class="page" id="productImage5">
+                        <span class="rank">5</span>
+                        <img class="rankingImg"
+                             src="https://img.hwahae.co.kr/products/2032189/2032189_20230404132558.jpg?format=webp&size=300x300"
+                             alt="representImg">
+                        <ul class="caption">
+                            <li class="text cosmetic-sub-title">프리비츠</li>
+                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
+                            <li class="text score">4.24(258)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="A-container">
+            <div class="title-container">
+                <a href="#">화해 고객들이 직접</a>
+                <a class="rank-title" href="#">선택한 랭킹</a>
+                <div class="-flex-stretch"></div>
+                <a class="rightArrow" href="#">
+                    <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
+                </a>
+            </div>
+            <div class="item-container">
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="button" href="#">카테고리 전체보기></a>
+        </div>
+        <div class="A-container">
+            <div class="title-container">
+                <a href="#">내 피부에 꼭 맞는 제품 랭킹</a>
+                <div class="-flex-stretch"></div>
+                <a class="rightArrow" href="#">
+                    <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
+                </a>
+            </div>
+            <div class="item-container">
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="button" href="#">건성 전체보기 ></a>
+        </div>
+        <div class="A-container">
+            <div class="title-container">
+                <a href="#">나이대별 추천</a>
+                <div class="-flex-stretch"></div>
+                <a class="rightArrow" href="#">
+                    <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
+                </a>
+            </div>
+            <div class="item-container">
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="button" href="#">10대 전체보기 ></a>
+        </div>
+        <div class="A-container">
+            <div class="title-container">
+                <a href="#">요즘 뜨는 브랜드</a>
+                <div class="-flex-stretch"></div>
+                <a class="rightArrow" href="#">
+                    <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
+                </a>
+            </div>
+            <div class="item-container">
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-box">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                    <img class="item"
+                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                         alt="item">
+                    <div class="container">
+                        <div class="brand-container">
+                            <a class="title" href="#">토리든 </a>
+                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        </div>
+                        <div class="star-container">
+                            <div class="star-scope">
+                                <img class="starImg" src="/assets/images/star.png" alt="">
+                                <h2 class="score">4.59</h2>
+                                <h3 class="number">(60,970)</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="button" href="#">브랜드 전체보기 ></a>
+        </div>
+    </main>
+    <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+</div>
+</body>
+</html>

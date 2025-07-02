@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+@use "sass:color";
+@import "../_def";
+
+.--object-check {
+  @include flex(row, center, flex-start, 0.25rem);
+  cursor: pointer;
+  user-select: none;
+
+  > .---input {
+    display: none;
+
+    &:checked + .---box {
+      background-color: #ee3f74;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAABXklEQVR4nO3UvUoDQRAH8NVKFPyC6JNYCNooNiJWPoAP4CsIdmITUDvttNOHsLGyFBEUQRCCiiG5+cjNoCYjSVDvK3CJG7DIH66bu9/O7ew6N8h/CLBsIusBIhb6h4ThPJB8IqsB6yuwrnlHSmajyHLXRL4fIBEzG/YKIct+FGl3JWd+EQwXgKQeR/SNiGa9Ic9mY8j6kOwGUTeczwDpUQphPfWKBCQrQNKID4CWgsCmvSGVik0A6VN6AHQ1/0oDmwKS3ea56FSDpCcphPQ4N1Kt2iSSXLVeJqkRyXKyBmq6ntoX0sdy2cZzQ8B6Ef9AC1v66QSxAKwviYPZiNbkhS7Tq/3FgOU8Y8oOXbchohlgucnCkKWYRuS+ef24XtL+PXKdsfLE5ksdMVzsCekGA5K9PyF5MGC5NbMRL1AnDEg+gtr7nPOd5IAAyY53JHrlIOt2QLJlZkN9gwZxGfkC3hhNeuPi1R8AAAAASUVORK5CYII=");
+      border-color: #ee3f74;
+    }
+  }
+
+  > .---box {
+    width: 0.9375rem;
+    height: 0.9375rem;
+    background-color: #ffffff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    border-radius: 0.25rem;
+    border: 0.0625rem solid #c5c9cc;
+    transition-duration: 175ms;
+    transition-property: background-color, border-color;
+  }
+
+  > .---caption {
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: justify;
+  }
+}
