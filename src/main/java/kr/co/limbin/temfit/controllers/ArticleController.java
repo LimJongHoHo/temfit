@@ -28,17 +28,16 @@ public class ArticleController {
     private final ImageService imageService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndex(){
-//    public String getIndex(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
-//        ArticleEntity article = this.articleService.getById(id);
-//        model.addAttribute("article", article);
-//        model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
-//
-//        if (article != null) {
-//            this.articleService.incrementView(article);
-//            model.addAttribute("previousArticle", this.articleService.getPrevious(id));
-//            model.addAttribute("nextArticle", this.articleService.getNext(id));
-//        }
+    public String getIndex(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
+        ArticleEntity article = this.articleService.getById(id);
+        model.addAttribute("article", article);
+        model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
+
+        if (article != null) {
+            this.articleService.incrementView(article);
+            model.addAttribute("previousArticle", this.articleService.getPrevious(id));
+            model.addAttribute("nextArticle", this.articleService.getNext(id));
+        }
         return "article/index";
     }
 
