@@ -1,9 +1,6 @@
 package kr.co.limbin.temfit.controllers;
 
-import kr.co.limbin.temfit.entities.ArticleCoverEntity;
-import kr.co.limbin.temfit.entities.ArticleEntity;
-import kr.co.limbin.temfit.entities.ImageEntity;
-import kr.co.limbin.temfit.entities.UserEntity;
+import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ArticleService;
@@ -60,6 +57,18 @@ public class ArticleController {
     @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getReview(){
         return "article/review";
+    }
+
+    @RequestMapping(value = "/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postReview(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewEntity review) {
+        Result result = this.articleService.reviewWrite(signedUser, review);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        if (result == CommonResult.SUCCESS) {
+            response.put("id", review.getId());
+        }
+        return response.toString();
     }
 
     @RequestMapping(value = "/image", method = RequestMethod.GET)

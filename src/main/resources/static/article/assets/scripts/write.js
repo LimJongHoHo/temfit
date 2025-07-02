@@ -4,6 +4,7 @@ const contentRegex = new RegExp('^(.{1,100000})$');
 const $coverContainer = $writeForm.querySelector(':scope > .cover-container');
 const $coverAddButton = $coverContainer.querySelector(':scope > .add');
 
+
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget;
     $coverLabel.parentNode.remove();
