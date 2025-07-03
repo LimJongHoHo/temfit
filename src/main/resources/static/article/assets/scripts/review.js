@@ -50,6 +50,6 @@ $reviewForm.onsubmit = (e) => {
                 dialog.showSimpleOk('리뷰 작성', '알 수 없는 이유로 게시글을 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
         }
     };
-    xhr.open('POST', '/article/review');
+    xhr.open('POST', '/review');
     xhr.send(formData);
 }

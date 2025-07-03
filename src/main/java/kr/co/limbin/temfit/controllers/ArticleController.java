@@ -72,27 +72,6 @@ public class ArticleController {
         return response.toString();
     }
 
-    @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getReview(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model){
-        ReviewEntity review = this.articleService.getByReviewId(id);
-        model.addAttribute("review", review);
-        model.addAttribute("allowed", review != null && signedUser != null && (review.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
-
-        return "main/review";
-    }
-
-    @RequestMapping(value = "/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String postReview(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewEntity review) {
-        Result result = this.articleService.reviewWrite(signedUser, review);
-        JSONObject response = new JSONObject();
-        response.put("result", result.toStringLower());
-        if (result == CommonResult.SUCCESS) {
-            response.put("id", review.getId());
-        }
-        return response.toString();
-    }
-
     @RequestMapping(value = "/image", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImage(@RequestParam(value = "id", required = false) int id) {
         ImageEntity image = this.imageService.getById(id);
@@ -149,5 +128,10 @@ public class ArticleController {
     @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getWrite() {
         return "article/write";
+    }
+
+    @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getReview() {
+        return "article/review";
     }
 }
