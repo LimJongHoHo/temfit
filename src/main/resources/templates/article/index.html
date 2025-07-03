@@ -9,6 +9,7 @@
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
     <link rel="stylesheet" type="text/css" href="/article/assets/styles/index.min.css">
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
     <script defer src="/article/assets/scripts/index.js"></script>
 </head>
 <body>
@@ -111,15 +112,15 @@
             <div class="underline"></div>
             <div class="information-review">
                 <div class="two-container">
-                        <button class="content information" type="button">상품정보</button>
+                        <button class="content information -selected" type="button">상품정보</button>
                         <button class="content review" type="button">리뷰/성분</button>
                 </div>
-                <div class="information-page">
+                <div class="information-page -selected">
                     <span th:utext="${article.getContent()}"></span>
                 </div>
                 <div class="underline"></div>
 
-                <div class="review-container -selected">
+                <div class="review-container">
                     <div class="review-total">
                         <h1 class="title">리뷰</h1>
                         <h2 class="review-count">13,645</h2>

@@ -393,8 +393,15 @@
   font-size: 1rem;
   font-weight: 500;
   text-align: center;
+  padding-bottom: 1rem;
+}
+#main > .page-container > .information-review > .two-container > .content.-selected {
+  border-bottom: 0.15rem solid #1d1d1e;
 }
 #main > .page-container > .information-review > .information-page {
+  display: none;
+}
+#main > .page-container > .information-review > .information-page.-selected {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -402,19 +409,25 @@
   justify-content: center;
   margin-top: 2rem;
 }
-#main > .page-container > .information-review > .information-page > * {
+#main > .page-container > .information-review > .information-page.-selected > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .information-page > .-flex-stretch {
+#main > .page-container > .information-review > .information-page.-selected > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .information-page > .img {
+#main > .page-container > .information-review > .information-page.-selected > .img {
   margin-top: -1rem;
   max-width: 40rem;
 }
-#main > .page-container > .information-review > .review-container > .review-total {
+#main > .page-container > .information-review > .review-container {
+  display: none;
+}
+#main > .page-container > .information-review > .review-container.-selected {
+  display: block;
+}
+#main > .page-container > .information-review > .review-container.-selected > .review-total {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
@@ -424,18 +437,18 @@
   font-weight: 800;
   padding: 2rem 0;
 }
-#main > .page-container > .information-review > .review-container > .review-total > * {
+#main > .page-container > .information-review > .review-container.-selected > .review-total > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .review-container > .review-total > .-flex-stretch {
+#main > .page-container > .information-review > .review-container.-selected > .review-total > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .review-container > .review-total > .review-count {
+#main > .page-container > .information-review > .review-container.-selected > .review-total > .review-count {
   color: #fc7899;
 }
-#main > .page-container > .information-review > .review-container > .review-caption {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -443,67 +456,67 @@
   justify-content: flex-start;
   margin-top: 1rem;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > * {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .-flex-stretch {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
   justify-content: flex-start;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > * {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .-flex-stretch {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .nickname {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .nickname {
   font-weight: 600;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .view {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .view {
   font-size: 0.875rem;
   color: #7a7c7e;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0;
   justify-content: flex-start;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > * {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > .date {
+#main > .page-container > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > .date {
   margin-top: -0.6rem;
   font-size: 0.75rem;
   color: #a2a4a6;
 }
-#main > .page-container > .information-review > .review-container > .content-container > .review-img {
+#main > .page-container > .information-review > .review-container.-selected > .content-container > .review-img {
   padding: 2rem 0;
 }
-#main > .page-container > .information-review > .review-container > .content-container > .content-caption {
+#main > .page-container > .information-review > .review-container.-selected > .content-container > .content-caption {
   padding: 2rem 0;
   border-bottom: 0.0625rem solid #e0e0e0;
 }
-#main > .page-container > .information-review > .review-container > .content-container > .content-caption > .content {
+#main > .page-container > .information-review > .review-container.-selected > .content-container > .content-caption > .content {
   font-weight: 400;
 }
-#main > .page-container > .information-review > .review-container > .button-container {
+#main > .page-container > .information-review > .review-container.-selected > .button-container {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -511,15 +524,15 @@
   justify-content: stretch;
   padding: 1rem 0;
 }
-#main > .page-container > .information-review > .review-container > .button-container > * {
+#main > .page-container > .information-review > .review-container.-selected > .button-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .review-container > .button-container > .-flex-stretch {
+#main > .page-container > .information-review > .review-container.-selected > .button-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .review-container > .button-container > .--object-button {
+#main > .page-container > .information-review > .review-container.-selected > .button-container > .--object-button {
   font-size: 1rem;
   font-weight: 500;
   padding: 1.3rem 0;
