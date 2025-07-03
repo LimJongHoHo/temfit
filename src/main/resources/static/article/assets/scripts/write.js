@@ -3,11 +3,15 @@ const titleRegex = new RegExp('^(.{1,100})$');
 const contentRegex = new RegExp('^(.{1,100000})$');
 const $coverContainer = $writeForm.querySelector(':scope > .cover-container');
 const $coverAddButton = $coverContainer.querySelector(':scope > .add');
-
+const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basic > input');
 
 const coverLabelRemove = (e) => {
-    const $coverLabel = e.currentTarget;
-    $coverLabel.parentNode.remove();
+    const $coverLabel = e.currentTarget.parentNode;
+    if ($coverLabel.classList.contains('basic')) {
+        $coverLabel.setValid(false, '최소 하나의 이미지는 존재하여야 합니다.');
+        return;
+    }
+    $coverLabel.remove();
 }
 
 const coverLabelOnFocusout = (e) => {
@@ -79,12 +83,20 @@ $writeForm.onsubmit = (e) => {
         });
         return;
     }
+    if ($basicLabel.value === '') {
+        dialog.showSimpleOk('게시글 작성', '커버 이미지 주소를 입력해주세요');
+        return;
+    }
+    if (!$basicLabel.value.startsWith('http://') && !$basicLabel.value.startsWith('https://')) {
+        dialog.showSimpleOk('게시글 작성', '올바른 이미지 주소를 입력해 주세요. 이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
+        return;
+    }
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     let i = 1;
     $coverContainer.querySelectorAll(':scope > .--object-label > input').forEach(($coverUrl) => {
-       formData.append('coverUrl' + i, $coverUrl.value);
-       i++;
+        formData.append('coverUrl' + i, $coverUrl.value);
+        i++;
     });
     formData.append('title', $writeForm['title'].value);
     formData.append('content', editor.getData());
