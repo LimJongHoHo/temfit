@@ -374,30 +374,25 @@
   border: 0.25rem solid #fafcfe;
 }
 #main > .page-container > .information-review > .two-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-#main > .page-container > .information-review > .two-container > .container {
-  align-items: center;
+  align-items: stretch;
   display: flex;
   flex-direction: row;
   gap: 1rem;
   justify-content: center;
 }
-#main > .page-container > .information-review > .two-container > .container > * {
+#main > .page-container > .information-review > .two-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .page-container > .information-review > .two-container > .container > .-flex-stretch {
+#main > .page-container > .information-review > .two-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .information-review > .two-container > .container > .content {
+#main > .page-container > .information-review > .two-container > .content {
+  width: 16rem;
   font-size: 1rem;
   font-weight: 500;
-}
-#main > .page-container > .information-review > .two-container > .container > .information {
-  border-bottom: 0.15rem solid #1d1d1e;
+  text-align: center;
 }
 #main > .page-container > .information-review > .information-page {
   align-items: stretch;
@@ -418,6 +413,194 @@
 #main > .page-container > .information-review > .information-page > .img {
   margin-top: -1rem;
   max-width: 40rem;
+}
+#main > .page-container > .information-review > .review-container > .review-total {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 2rem 0;
+}
+#main > .page-container > .information-review > .review-container > .review-total > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .review-container > .review-total > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .review-container > .review-total > .review-count {
+  color: #fc7899;
+}
+#main > .page-container > .information-review > .review-container > .review-caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .nickname {
+  font-weight: 600;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .review-user > .view {
+  font-size: 0.875rem;
+  color: #7a7c7e;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .review-container > .review-caption > .review-user-container > .date-caption > .date {
+  margin-top: -0.6rem;
+  font-size: 0.75rem;
+  color: #a2a4a6;
+}
+#main > .page-container > .information-review > .review-container > .content-container > .review-img {
+  padding: 2rem 0;
+}
+#main > .page-container > .information-review > .review-container > .content-container > .content-caption {
+  padding: 2rem 0;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
+#main > .page-container > .information-review > .review-container > .content-container > .content-caption > .content {
+  font-weight: 400;
+}
+#main > .page-container > .information-review > .review-container > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: stretch;
+  padding: 1rem 0;
+}
+#main > .page-container > .information-review > .review-container > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .review-container > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .review-container > .button-container > .--object-button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1.3rem 0;
+}
+#main > .page-container > .information-review > .ingredient-container > .title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition {
+  border-bottom: 0.0625rem solid #e0e0e0;
+  padding: 2rem 0;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .title {
+  padding: 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.45rem;
+  justify-content: flex-start;
+  font-size: 0.75rem;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .img {
+  width: 0.875rem;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num1 {
+  color: #FC7899;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num2 {
+  color: #FCD778;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .num3 {
+  color: #FF312B;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .ingredient-caption > .low-warning > .caption {
+  color: #a2a4a6;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .bar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: stretch;
+  padding: 0.3rem;
+  border-radius: 0.875rem;
+  background-color: #fc7899;
+  width: 91%;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .bar > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .information-review > .ingredient-container > .ingredient-composition > .bar > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 #main > .title {
   font-size: 1.75rem;

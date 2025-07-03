@@ -258,21 +258,18 @@
 
     > .information-review {
       > .two-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-
-        > .container {
-          @include flex(row, center, center, 1rem);
+        @include flex(row, stretch, center, 1rem);
 
           > .content {
+            width: 16rem;
             font-size: 1rem;
             font-weight: 500;
+            text-align: center;
           }
 
-          > .information{
-            border-bottom: 0.15rem solid #1d1d1e;
-          }
-        }
+          //> .information{
+          //  border-bottom: 0.15rem solid #1d1d1e;
+          //}
       }
 
       > .information-page {
@@ -282,6 +279,135 @@
         > .img {
           margin-top: -1rem;
           max-width: 40rem;
+        }
+      }
+
+      > .review-container {
+
+        > .review-total {
+          @include flex(row, flex-start, flex-start, 0.625rem);
+          font-size: 1.25rem;
+          font-weight: 800;
+          padding: 2rem 0;
+
+          > .review-count {
+            color: #fc7899;
+          }
+        }
+
+        > .review-caption {
+          @include flex(row, center, flex-start, 1rem);
+          margin-top: 1rem;
+
+          > .review-user-container {
+
+            > .review-user {
+              @include flex(row, center, flex-start, 0.75rem);
+
+              > .nickname {
+                font-weight: 600;
+              }
+
+              > .view {
+                font-size: 0.875rem;
+                color: #7a7c7e;
+              }
+            }
+
+            > .date-caption {
+              @include flex(column, flex-start, flex-start);
+
+              > .date {
+                margin-top: -0.6rem;
+                font-size: 0.75rem;
+                color: #a2a4a6;
+              }
+
+            }
+          }
+        }
+
+        > .content-container {
+
+          > .review-img {
+            padding: 2rem 0;
+          }
+
+          > .content-caption {
+            padding: 2rem 0;
+            border-bottom: 0.0625rem solid #e0e0e0;
+
+            > .content {
+              font-weight: 400;
+            }
+          }
+        }
+
+        > .button-container {
+          @include flex(column, stretch, stretch, 1rem);
+          padding: 1rem 0;
+
+          > .--object-button {
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 1.3rem 0;
+          }
+        }
+      }
+
+      > .ingredient-container {
+
+        > .title {
+          font-size: 1.3rem;
+          font-weight: 700;
+        }
+
+        > .ingredient-composition {
+          border-bottom: 0.0625rem solid #e0e0e0;
+          padding: 2rem 0;
+
+          > .title {
+            padding: 1rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+          }
+
+          > .ingredient-caption {
+            @include flex(row, center, flex-start, 2rem);
+
+            > .low-warning {
+              @include flex(row, center, flex-start, 0.45rem);
+              font-size: 0.75rem;
+
+              > .img {
+                width: 0.875rem;
+              }
+
+              > .num1 {
+                color: #FC7899;
+              }
+
+              > .num2 {
+                color: #FCD778;
+              }
+
+              > .num3 {
+                color: #FF312B;
+              }
+
+              > .caption {
+                color: #a2a4a6;
+              }
+            }
+          }
+
+          > .bar {
+            @include flex(column, center, stretch, 1rem);
+            padding: 0.3rem;
+            border-radius: 0.875rem;
+            background-color: #fc7899;
+            width: calc(91%);
+          }
         }
       }
     }

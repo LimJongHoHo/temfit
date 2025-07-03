@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="--dialog"></div>
-<div class="container">
+<div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
         <div class="page-container">
@@ -110,15 +110,74 @@
             <div class="underline"></div>
             <div class="information-review">
                 <div class="two-container">
-                    <div class="container">
-                        <a href="#" class="content information">상품정보</a>
-                    </div>
-                    <div class="container">
-                        <a href="/article/review" class="content">리뷰/성분</a>
-                    </div>
+                        <button class="content information" type="button">상품정보</button>
+                        <button class="content review" type="button">리뷰/성분</button>
                 </div>
                 <div class="information-page">
                     <span th:utext="${article.getContent()}"></span>
+                </div>
+                <div class="underline"></div>
+
+                <div class="review-container -selected">
+                    <div class="review-total">
+                        <h1 class="title">리뷰</h1>
+                        <h2 class="review-count">13,645</h2>
+                    </div>
+                    <div class="review-caption">
+                        <div class="review-user-image">
+                            <img class="img" src="/assets/images/userImg.svg" alt="">
+                        </div>
+                        <div class="review-user-container">
+                            <div class="review-user">
+                                <p class="nickname" th:text="${user.getNickname()}"></p>
+                            </div>
+                            <div class="date-caption">
+                                <p class="date" th:text="${review.getCreatedAt()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-container">
+                        <div class="review-img">
+
+                        </div>
+                        <div class="content-caption">
+<!--                            <span th:utext="${review.getContent()}"></span>-->
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <a class="--object-button -color-pink" type="submit" href="">전체 리뷰보기 ></a>
+                    </div>
+                </div>
+                <div class="underline"></div>
+                <div class="ingredient-container">
+                    <h1 class="title">성분</h1>
+                    <div class="ingredient-composition">
+                        <h2 class="title">성분 구성</h2>
+                        <div class="ingredient-caption">
+                            <div class="low-warning">
+                                <img class="img" src="/assets/images/circle-pink.png" alt="">
+                                <p class="num1">1-2</p>
+                                <p class="caption">낮은 위험</p>
+                            </div>
+                            <div class="low-warning">
+                                <img class="img" src="/assets/images/circle-yellow.png" alt="">
+                                <p class="num2">3-6</p>
+                                <p class="caption">중간 위험</p>
+                            </div>
+                            <div class="low-warning">
+                                <img class="img" src="/assets/images/circle-red.png" alt="">
+                                <p class="num3">7-10</p>
+                                <p class="caption">높은 위험</p>
+                            </div>
+                            <div class="low-warning">
+                                <img class="img" src="/assets/images/circle-gray.png" alt="">
+                                <p class="caption">등급 미정</p>
+                            </div>
+                        </div>
+                        <div class="bar"></div>
+                    </div>
+
                 </div>
             </div>
         </div>

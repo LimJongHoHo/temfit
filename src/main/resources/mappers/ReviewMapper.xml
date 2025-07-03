@@ -7,8 +7,20 @@
             keyProperty="id">
         INSERT INTO `temfit`.`reviews` (`article_id`, `user_email`, `content`, `created_at`, `modified_at`,
                                          `is_deleted`)
-        VALUES (#{article.articleId}, #{article.userEmail}, #{article.content},
-                #{article.createdAt}, #{article.modifiedAt}, #{article.isDeleted})
+        VALUES (#{review.articleId}, #{review.userEmail}, #{review.content},
+                #{review.createdAt}, #{review.modifiedAt}, #{review.isDeleted})
     </insert>
+    <select id="selectById" resultType="kr.co.limbin.temfit.entities.ReviewEntity">
+        SELECT `id`          AS `id`,
+               `article_id`  AS `articleId`,
+               `user_email`  AS `userEmail`,
+               `content`     AS `content`,
+               `created_at`  AS `createdAt`,
+               `modified_at` AS `modifiedAt`,
+               `is_deleted`  AS `isDeleted`
+        FROM `temfit`.`reviews`
+        WHERE `article_id` = #{articleId}
+        LIMIT 1
+    </select>
 
 </mapper>

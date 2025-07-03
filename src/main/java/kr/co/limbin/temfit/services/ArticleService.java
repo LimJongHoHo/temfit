@@ -49,6 +49,13 @@ public class ArticleService {
         return this.articleMapper.selectById(id);
     }
 
+    public ReviewEntity getByReviewId(int id) {
+        if (id < 1) {
+            return null;
+        }
+        return this.reviewMapper.selectById(id);
+    }
+
     public ArticleCoverEntity getByIdCover(int id) {
         if (id < 1) {
             return null;
@@ -183,6 +190,7 @@ public class ArticleService {
             return CommonResult.FAILURE;
         }
 
+        review.setArticleId(1); //하드코딩
         review.setUserEmail(user.getEmail());
         review.setCreatedAt(LocalDateTime.now());
         review.setModifiedAt(null);

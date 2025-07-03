@@ -26,8 +26,13 @@ public class ArticleController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndex(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
+
         ArticleEntity article = this.articleService.getById(id);
+        ReviewEntity review = this.articleService.getByReviewId(id);
+        System.out.println(review.getContent());
         model.addAttribute("article", article);
+        model.addAttribute("review", review);
+        model.addAttribute("user", signedUser);
         model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
 
         if (article != null) {
@@ -68,8 +73,12 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getReview(){
-        return "article/review";
+    public String getReview(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model){
+        ReviewEntity review = this.articleService.getByReviewId(id);
+        model.addAttribute("review", review);
+        model.addAttribute("allowed", review != null && signedUser != null && (review.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
+
+        return "main/review";
     }
 
     @RequestMapping(value = "/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,13 +1,17 @@
 package kr.co.limbin.temfit.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import kr.co.limbin.temfit.entities.ReviewEntity;
 import kr.co.limbin.temfit.entities.UserEntity;
+import kr.co.limbin.temfit.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Slf4j
@@ -15,9 +19,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @RequestMapping(value = "/")
 @RequiredArgsConstructor
 public class MainController {
+
     @RequestMapping(value = "/main", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser,
-                           HttpServletRequest request) {
+    public String getIndex(@SessionAttribute(value = "signedUser", required = false)  UserEntity signedUser ,HttpServletRequest request) {
         if (signedUser == null) {
             System.out.println("로그인 안 됨");
         } else {
