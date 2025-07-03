@@ -1,0 +1,95 @@
+CREATE SCHEMA `temfit`;
+
+CREATE TABLE `temfit`.`email_tokens`
+(
+    `email`      VARCHAR(50)  NOT NULL,
+    `code`       VARCHAR(6)   NOT NULL COMMENT '인증 번호 6자리',
+    `salt`       VARCHAR(128) NOT NULL COMMENT '요청자 검증 키',
+    `user_agent` VARCHAR(512) NOT NULL COMMENT '요청자 브라우저/운영체제 정보',
+    `is_used`    BOOLEAN      NOT NULL DEFAULT FALSE COMMENT '토큰(은증 정보) 사용 여부',
+    `created_at` DATETIME     NOT NULL DEFAULT NOW() COMMENT '생성일자',
+    `expired_at` DATETIME     NOT NULL COMMENT '토큰(인증 정보) 만료 일시',
+    CONSTRAINT PRIMARY KEY (`email`, `code`, `salt`)
+);
+
+CREATE TABLE `temfit`.`contact_mvnos`
+(
+    `code`         VARCHAR(3)  NOT NULL,
+    `display_text` VARCHAR(25) NOT NULL,
+    CONSTRAINT PRIMARY KEY (`code`)
+); /* 연락처 통신사를 담기 위한 테이블 */
+
+
+CREATE TABLE `temfit`.`users`
+(
+    `email`             VARCHAR(50)     NOT NULL,
+    `password`          VARCHAR(128)    NOT NULL,
+    `nickname`          VARCHAR(10)     NOT NULL,
+    `name`              VARCHAR(5)      NOT NULL COMMENT '실명',
+    `birth`             DATE            NOT NULL COMMENT '생년월일',
+    `gender`            ENUM ('F', 'M') NOT NULL COMMENT '성별 코드 F|M',
+    `contact_mvno_code` VARCHAR(3)      NOT NULL COMMENT '연락처 통신사 코드 FK',
+    `contact_first`     VARCHAR(4)      NOT NULL COMMENT '연락처 앞',
+    `contact_second`    VARCHAR(4)      NOT NULL COMMENT '연락처 중간',
+    `contact_third`     VARCHAR(4)      NOT NULL COMMENT '연락처 뒤',
+    `address_postal`    VARCHAR(5)      NOT NULL COMMENT '주소 우편 번호',
+    `address_primary`   VARCHAR(100)    NOT NULL COMMENT '주소 기본',
+    `address_secondary` VARCHAR(100)    NOT NULL COMMENT '주소 상세',
+    `is_admin`          BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '관리자 여부',
+    `is_seller`         BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '판매자 여부',
+    `is_deleted`        BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '탈퇴 여부',
+    `is_suspended`      BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '정지 여부',
+    `created_at`        DATETIME        NOT NULL DEFAULT NOW() COMMENT '가입 일시',
+    `modified_at`       DATETIME        NOT NULL DEFAULT NOW() COMMENT '최종 수정 일시',
+    CONSTRAINT PRIMARY KEY (`email`),
+    CONSTRAINT UNIQUE (`nickname`),
+    CONSTRAINT UNIQUE (`contact_first`, `contact_second`, `contact_third`),
+    CONSTRAINT FOREIGN KEY (`contact_mvno_code`) REFERENCES `temfit`.`contact_mvnos` (`code`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+CREATE TABLE `temfit`.`articles`
+(
+    `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `user_email`  VARCHAR(50)  NOT NULL,
+    `title`       VARCHAR(100) NOT NULL,
+    `content`     LONGTEXT     NOT NULL,
+    `view`        INT UNSIGNED NOT NULL DEFAULT 0,
+    `created_at`  DATETIME     NOT NULL DEFAULT NOW(),
+    `modified_at` DATETIME     NULL     DEFAULT NULL,
+    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE,
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `temfit`.`article_covers`
+(
+    `article_id`  INT UNSIGNED   NOT NULL,
+    `cover_Url_1` VARCHAR(1000) NOT NULL,
+    `cover_Url_2` VARCHAR(1000) NULL,
+    `cover_Url_3` VARCHAR(1000) NULL,
+    `cover_Url_4` VARCHAR(1000) NULL,
+    `cover_Url_5` VARCHAR(1000) NULL,
+    `cover_Url_6` VARCHAR(1000) NULL,
+    `cover_Url_7` VARCHAR(1000) NULL,
+    `cover_Url_8` VARCHAR(1000) NULL,
+    `created_at`  DATETIME       NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (`article_id`),
+    CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `temfit`.`images`
+(
+    `id`           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`         VARCHAR(255) NOT NULL,
+    `content_type` VARCHAR(50)  NOT NULL,
+    `data`         LONGBLOB     NOT NULL,
+    `created_at`   DATETIME     NOT NULL DEFAULT NOW(),
+    CONSTRAINT PRIMARY KEY (`id`)
+);
