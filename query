@@ -96,18 +96,18 @@ CREATE TABLE `temfit`.`images`
 
 CREATE TABLE `temfit`.`review`
 (
-        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-        `article_id` INT UNSIGNED NOT NULL,
-        `user_email` VARCHAR(50)  NOT NULL,
-        `content` LONGTEXT     NOT NULL,
-        `created_at` DATETIME     NOT NULL DEFAULT NOW(),
-        `modified_at` DATETIME     NULL     DEFAULT NULL,
-        `is_deleted` BOOLEAN      NOT NULL DEFAULT FALSE,
-        CONSTRAINT PRIMARY KEY (`id`),
-        CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
+    `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `article_id`  INT UNSIGNED NOT NULL,
+    `user_email`  VARCHAR(50)  NOT NULL,
+    `content`     LONGTEXT     NOT NULL,
+    `created_at`  DATETIME     NOT NULL DEFAULT NOW(),
+    `modified_at` DATETIME     NULL     DEFAULT NULL,
+    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE,
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
