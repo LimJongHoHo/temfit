@@ -48,4 +48,9 @@ public class MainController {
     public String getCart() {
         return "main/cart";
     }
+
+    @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getReview(){
+        return "main/review";
+    }
 }
