@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+@import "../../../assets/styles/_def";
+
+#modifyForm {
+  @include flex(column, stretch, flex-start, 0.75rem);
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 0 2rem;
+
+  > .title {
+    align-self: center;
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  > .cover-container {
+    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    > .add {
+      align-self: center;
+    }
+  }
+
+  @media screen and (max-width: 40rem) {
+    > .cover-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 20rem) {
+    > .cover-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  > .cover-container > .--object-label {
+    max-width: 7rem;
+
+    > .image {
+      aspect-ratio: 1;
+      border: 0.0625rem solid #aaaaaa;
+      border-radius: 0.25rem;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  > .button-container {
+    @include flex(row, stretch, flex-end, 0.5rem);
+  }
+
+  > .--object-label:has(textarea) * {
+    font: revert;
+    line-height: 1.5;
+    list-style-type: revert;
+    margin-block: revert;
+    margin-inline: revert;
+  }
+}

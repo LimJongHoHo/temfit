@@ -32,10 +32,23 @@ public class ArticleController {
 
         if (article != null) {
             this.articleService.incrementView(article);
-            model.addAttribute("previousArticle", this.articleService.getPrevious(id));
-            model.addAttribute("nextArticle", this.articleService.getNext(id));
         }
         return "article/index";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ArticleEntity article, ArticleCoverEntity cover) {
+        Result result = this.articleService.modify(signedUser, article);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        if (result == CommonResult.SUCCESS) {
+            Result coverResult = this.articleService.coverModify(article.getId(), cover);
+            if (coverResult == CommonResult.FAILURE) {
+                response.put("coverResult", coverResult.toStringLower());
+            }
+        }
+        return response.toString();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -108,6 +121,20 @@ public class ArticleController {
         }
 
         return response.toString();
+    }
+
+    @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
+        ArticleEntity article = this.articleService.getById(id);
+        ArticleCoverEntity cover = this.articleService.getByIdCover(id);
+
+        if (article != null && (signedUser == null || !article.getUserEmail().equals(signedUser.getEmail()) && signedUser.isAdmin())) {
+            article = null;
+        }
+        model.addAttribute("article", article);
+        model.addAttribute("cover", cover);
+
+        return "article/modify";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

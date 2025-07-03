@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시글 수정</title>
+    <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" type="text/css" href="/article/assets/styles/modify.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/libraries/ckeditor5/ckeditor5.css">
+    <link rel="stylesheet" type="text/css" href="/assets/libraries/ckeditor5/ckeditor5-custom.css">
+    <script src="/assets/libraries/ckeditor5/ckeditor5.js" type="module"></script>
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "/assets/libraries/ckeditor5/ckeditor5.js",
+                "ckeditor5/": "/assets/libraries/ckeditor5/"
+            }
+        }
+    </script>
+    <script defer src="/article/assets/scripts/modify-ckeditor.js" type="module"></script>
+    <script defer src="/article/assets/scripts/modify.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="--loading" id="loading">
+    <img alt="" class="---icon" src="/assets/images/loading.png">
+    <span class="---caption">잠시만 기다려 주세요.</span>
+</div>
+<div class="--dialog"></div>
+<div id="container">
+    <form id="modifyForm">
+        <h1 class="title">게시글 수정</h1>
+        <input hidden name="id" type="hidden" th:value="${article.getId()}">
+        <div class="cover-container">
+            <label class="--object-label basic">
+                <img alt="" class="image" th:src="${cover.getCoverUrl1()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl1()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl2()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl2()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl2()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl3()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl3()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl3()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl4()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl4()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl4()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl5()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl5()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl5()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl6()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl6()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl6()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl7()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl7()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl7()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <label class="--object-label" th:if="${cover.getCoverUrl8()}">
+                <img alt="" class="image" th:src="${cover.getCoverUrl8()}">
+                <span class="---caption">커버 이미지</span>
+                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
+                       name="coverUrl"
+                       placeholder="커버 주소입력" spellcheck="false" type="text" th:value="${cover.getCoverUrl8()}">
+                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </label>
+            <button class="--object-button -color-blue add" type="button">추가</button>
+        </div>
+        <label class="--object-label">
+            <span class="---caption">제목</span>
+            <input autocomplete="off" class="--object-field ---field" maxlength="100" minlength="1"
+                   name="title" type="text" th:value="${article.getTitle()}">
+        </label>
+        <label class="--object-label">
+            <span class="---caption">내용</span>
+            <textarea autocomplete="off" name="content" th:text="${article.getContent()}"></textarea>
+        </label>
+        <div class="button-container">
+            <button class="--object-button -color-gray" name="cancel" type="button">돌아가기</button>
+            <button class="--object-button -color-signature" type="submit">작성</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

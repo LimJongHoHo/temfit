@@ -95,7 +95,11 @@ $writeForm.onsubmit = (e) => {
     const formData = new FormData();
     let i = 1;
     $coverContainer.querySelectorAll(':scope > .--object-label > input').forEach(($coverUrl) => {
-        formData.append('coverUrl' + i, $coverUrl.value);
+        if ($coverUrl.value === '' || $coverUrl.value === null) {
+            formData.append('coverUrl' + i, null);
+        } else {
+            formData.append('coverUrl' + i, $coverUrl.value);
+        }
         i++;
     });
     formData.append('title', $writeForm['title'].value);

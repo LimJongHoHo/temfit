@@ -20,9 +20,9 @@ public interface ArticleMapper {
 
     ArticleEntity selectById(@Param(value = "id") int id);
 
-    ArticleEntity selectPrevious(@Param(value = "id") int id);
-
-    ArticleEntity selectNext(@Param(value = "id") int id);
+    ArticleCoverEntity selectByIdCover(@Param(value = "id") int id);
 
     int update(@Param(value = "article") ArticleEntity article);
+
+    int updateCover(@Param(value = "cover") ArticleCoverEntity cover);
 }

@@ -52,36 +52,19 @@
         LIMIT 1
     </select>
 
-    <select id="selectPrevious" resultType="kr.co.limbin.temfit.entities.ArticleEntity"><![CDATA[
-        SELECT `id`          AS `id`,
-               `user_email`  AS `userEmail`,
-               `title`       AS `title`,
-               `content`     AS `content`,
-               `view`        AS `view`,
-               `created_at`  AS `createdAt`,
-               `modified_at` AS `modifiedAt`,
-               `is_deleted`  AS `isDeleted`
-        FROM `temfit`.`articles`
-        WHERE `id` < #{id}
-          AND `is_deleted` = FALSE
-        ORDER BY `id` DESC
-        LIMIT 1
-        ]]></select>
-
-    <select id="selectNext" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
-        SELECT `id`          AS `id`,
-               `user_email`  AS `userEmail`,
-               `title`       AS `title`,
-               `content`     AS `content`,
-               `view`        AS `view`,
-               `created_at`  AS `createdAt`,
-               `modified_at` AS `modifiedAt`,
-               `is_deleted`  AS `isDeleted`
-        FROM `temfit`.`articles`
-        WHERE `id` > #{id}
-          AND `is_deleted` = FALSE
-        ORDER BY `id`
-        LIMIT 1
+    <select id="selectByIdCover" resultType="kr.co.limbin.temfit.entities.ArticleCoverEntity">
+        SELECT `article_id`  AS `articleId`,
+               `cover_Url_1` AS `coverUrl1`,
+               `cover_Url_2` AS `coverUrl2`,
+               `cover_Url_3` AS `coverUrl3`,
+               `cover_Url_4` AS `coverUrl4`,
+               `cover_Url_5` AS `coverUrl5`,
+               `cover_Url_6` AS `coverUrl6`,
+               `cover_Url_7` AS `coverUrl7`,
+               `cover_Url_8` AS `coverUrl8`,
+               `created_at`  AS `createdAt`
+        FROM `temfit`.`article_covers`
+        WHERE `article_id` = #{id}
     </select>
 
     <select id="selectCountBySearch" resultType="java.lang.Integer">
@@ -104,5 +87,19 @@
             `modified_at` = #{article.modifiedAt},
             `is_deleted`  = #{article.isDeleted}
         WHERE `id` = #{article.id}
+    </update>
+
+    <update id="updateCover">
+        UPDATE `temfit`.`article_covers`
+        SET `cover_Url_1` = #{cover.coverUrl1},
+            `cover_Url_2` = #{cover.coverUrl2},
+            `cover_Url_3` = #{cover.coverUrl3},
+            `cover_Url_4` = #{cover.coverUrl4},
+            `cover_Url_5` = #{cover.coverUrl5},
+            `cover_Url_6` = #{cover.coverUrl6},
+            `cover_Url_7` = #{cover.coverUrl7},
+            `cover_Url_8` = #{cover.coverUrl8},
+            `created_at`  = #{cover.createdAt}
+        WHERE `article_id` = #{cover.articleId}
     </update>
 </mapper>

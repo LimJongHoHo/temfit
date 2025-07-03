@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -118,10 +118,7 @@
                     </div>
                 </div>
                 <div class="information-page">
-                    <img class="img"
-                         src="https://img.hwahae.co.kr/commerce/notice/20250630/20250630101929310_0620_%ED%99%94%ED%95%B4%EC%9C%84%ED%81%AC_%EA%B3%B5%EC%A7%80%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg"
-                         alt="">
-                    <img class="img" src="https://img.hwahae.co.kr/commerce/goods/20230702_155613_1.jpg" alt="">
+                    <span th:utext="${article.getContent()}"></span>
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@ public class ArticleService {
         return input != null && input.matches("^(.{1,100000})$");
     }
 
-    public static boolean isTitletValid(String input) {
+    public static boolean isTitleValid(String input) {
         return input != null && input.matches("^(.{1,100})$");
     }
 
@@ -49,18 +49,11 @@ public class ArticleService {
         return this.articleMapper.selectById(id);
     }
 
-    public ArticleEntity getNext(int id) {
+    public ArticleCoverEntity getByIdCover(int id) {
         if (id < 1) {
             return null;
         }
-        return this.articleMapper.selectNext(id);
-    }
-
-    public ArticleEntity getPrevious(int id) {
-        if (id < 1) {
-            return null;
-        }
-        return this.articleMapper.selectPrevious(id);
+        return this.articleMapper.selectByIdCover(id);
     }
 
     public Result delete(UserEntity user, int id) {
@@ -96,7 +89,7 @@ public class ArticleService {
 
         if (article == null
                 || article.getId() < 1
-                || !ArticleService.isTitletValid(article.getTitle())
+                || !ArticleService.isTitleValid(article.getTitle())
                 || !ArticleService.isContentValid(article.getContent())) {
             return CommonResult.FAILURE;
         }
@@ -104,10 +97,12 @@ public class ArticleService {
         ArticleEntity dbArticle = this.articleMapper.selectById(article.getId());
 
         if (dbArticle == null || dbArticle.isDeleted()) {
+            System.out.println(3);
             return CommonResult.FAILURE_ABSENT;
         }
 
         if (!dbArticle.getUserEmail().equals(user.getEmail()) && !user.isAdmin()) {
+            System.out.println(4);
             return CommonResult.FAILURE_SESSION_EXPIRED;
         }
 
@@ -124,7 +119,7 @@ public class ArticleService {
         }
 
         if (article == null
-                || !ArticleService.isTitletValid(article.getTitle())
+                || !ArticleService.isTitleValid(article.getTitle())
                 || !ArticleService.isContentValid(article.getContent())) {
             return CommonResult.FAILURE;
         }
@@ -136,6 +131,34 @@ public class ArticleService {
         article.setDeleted(false);
 
         return this.articleMapper.insert(article) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Result coverModify(int id, ArticleCoverEntity cover) {
+        if (id < 1) {
+            System.out.println(1);
+            return CommonResult.FAILURE;
+        }
+        if (cover == null || cover.getCoverUrl1() == null) {
+            System.out.println(2);
+            return CommonResult.FAILURE;
+        }
+        ArticleCoverEntity dbCover = this.articleMapper.selectByIdCover(id);
+
+        if (dbCover == null || dbCover.getArticleId() < 1 || dbCover.getCoverUrl1() == null) {
+            return CommonResult.FAILURE;
+
+        }
+        dbCover.setCoverUrl1(cover.getCoverUrl1());
+        dbCover.setCoverUrl2(cover.getCoverUrl2());
+        dbCover.setCoverUrl3(cover.getCoverUrl3());
+        dbCover.setCoverUrl4(cover.getCoverUrl4());
+        dbCover.setCoverUrl5(cover.getCoverUrl5());
+        dbCover.setCoverUrl6(cover.getCoverUrl6());
+        dbCover.setCoverUrl7(cover.getCoverUrl7());
+        dbCover.setCoverUrl8(cover.getCoverUrl8());
+        dbCover.setCreatedAt(LocalDateTime.now());
+
+        return this.articleMapper.updateCover(dbCover) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
     public Result coverWrite(int id, ArticleCoverEntity cover) {
