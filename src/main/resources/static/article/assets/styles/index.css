@@ -18,6 +18,21 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#main > .page-container > .a-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+}
+#main > .page-container > .a-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .a-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
 #main > .page-container > .page {
   align-items: stretch;
   display: flex;

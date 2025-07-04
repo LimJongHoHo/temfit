@@ -29,12 +29,10 @@ public class ArticleController {
 
         ArticleEntity article = this.articleService.getById(id);
         ReviewEntity review = this.articleService.getByReviewId(id);
-        System.out.println(review.getContent());
         model.addAttribute("article", article);
         model.addAttribute("review", review);
         model.addAttribute("user", signedUser);
         model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
-
         if (article != null) {
             this.articleService.incrementView(article);
         }

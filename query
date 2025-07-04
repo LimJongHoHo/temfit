@@ -94,7 +94,7 @@ CREATE TABLE `temfit`.`images`
     CONSTRAINT PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `temfit`.`review`
+CREATE TABLE `temfit`.`reviews`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `article_id`  INT UNSIGNED NOT NULL,

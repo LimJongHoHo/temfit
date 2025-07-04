@@ -104,12 +104,10 @@ public class ArticleService {
         ArticleEntity dbArticle = this.articleMapper.selectById(article.getId());
 
         if (dbArticle == null || dbArticle.isDeleted()) {
-            System.out.println(3);
             return CommonResult.FAILURE_ABSENT;
         }
 
         if (!dbArticle.getUserEmail().equals(user.getEmail()) && !user.isAdmin()) {
-            System.out.println(4);
             return CommonResult.FAILURE_SESSION_EXPIRED;
         }
 
@@ -142,11 +140,9 @@ public class ArticleService {
 
     public Result coverModify(int id, ArticleCoverEntity cover) {
         if (id < 1) {
-            System.out.println(1);
             return CommonResult.FAILURE;
         }
         if (cover == null || cover.getCoverUrl1() == null) {
-            System.out.println(2);
             return CommonResult.FAILURE;
         }
         ArticleCoverEntity dbCover = this.articleMapper.selectByIdCover(id);
@@ -164,7 +160,6 @@ public class ArticleService {
         dbCover.setCoverUrl7(cover.getCoverUrl7());
         dbCover.setCoverUrl8(cover.getCoverUrl8());
         dbCover.setCreatedAt(LocalDateTime.now());
-
         return this.articleMapper.updateCover(dbCover) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 

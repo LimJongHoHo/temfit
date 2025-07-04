@@ -11,6 +11,10 @@
   background-color: #ffffff;
 
   > .page-container {
+    > .a-container {
+      @include flex(row, stretch, flex-start);
+    }
+
     > .page {
       @include flex(column, stretch, center, 1rem);
 
