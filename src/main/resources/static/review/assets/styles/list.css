@@ -1,0 +1,110 @@
+#main {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-start;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.625rem;
+  background-color: #ffffff;
+}
+#main > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review-total {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  justify-content: flex-start;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 2rem 0;
+}
+#main > .page-container > .review-container > .review-total > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review-total > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review-total > .review-count {
+  color: #fc7899;
+}
+#main > .page-container > .review-container > .review-caption {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+#main > .page-container > .review-container > .review-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .review-user {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-start;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .review-user > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .review-user > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .review-user > .nickname {
+  font-weight: 600;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .review-user > .view {
+  font-size: 0.875rem;
+  color: #7a7c7e;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .date-caption {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: flex-start;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .date-caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review-caption > .review-user-container > .date-caption > .date {
+  margin-top: -0.6rem;
+  font-size: 0.75rem;
+  color: #a2a4a6;
+}
+#main > .page-container > .review-container > .content-container > .review-img {
+  padding: 2rem 0;
+}
+#main > .page-container > .review-container > .content-container > .content-caption {
+  padding: 2rem 0;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
+#main > .page-container > .review-container > .content-container > .content-caption > .content {
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=list.css.map */

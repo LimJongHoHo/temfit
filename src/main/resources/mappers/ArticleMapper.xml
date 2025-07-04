@@ -12,8 +12,7 @@
     </insert>
 
     <insert id="insertCover">
-        INSERT INTO `temfit`.`article_covers` (article_id, cover_Url_1, cover_Url_2, cover_Url_3, cover_Url_4,
-                                               cover_Url_5, cover_Url_6, cover_Url_7, cover_Url_8, created_at)
+        INSERT INTO `temfit`.`article_covers` (article_id, cover_Url_1, cover_Url_2, cover_Url_3, cover_Url_4,cover_Url_5, cover_Url_6, cover_Url_7, cover_Url_8, created_at)
         VALUES (#{cover.articleId}, #{cover.coverUrl1}, #{cover.coverUrl2}, #{cover.coverUrl3}, #{cover.coverUrl4},
                 #{cover.coverUrl5}, #{cover.coverUrl6}, #{cover.coverUrl7}, #{cover.coverUrl8}, #{cover.createdAt})
     </insert>
