@@ -342,7 +342,7 @@ ol, ul {
   transition-duration: 175ms;
   transition-property: opacity;
   transition-timing-function: ease;
-  z-index: 8;
+  z-index: 999;
 }
 .--dialog.-visible {
   opacity: 1;
@@ -425,7 +425,7 @@ ol, ul {
   transition-duration: 175ms;
   transition-property: opacity;
   transition-timing-function: ease;
-  z-index: 7;
+  z-index: 998;
 }
 .--loading > * {
   flex-grow: 0;
@@ -503,7 +503,7 @@ body:has(.--dialog.-visible) {
   background-color: #ffffff;
   top: 0;
   position: sticky;
-  z-index: 999;
+  z-index: 997;
 }
 #header > * {
   flex-grow: 0;

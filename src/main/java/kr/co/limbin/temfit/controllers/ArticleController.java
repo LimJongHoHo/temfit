@@ -24,13 +24,25 @@ public class ArticleController {
     private final ArticleService articleService;
     private final ImageService imageService;
 
+    @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id) {
+        Result result = this.articleService.delete(signedUser, id);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+
+        return response.toString();
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndex(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
 
         ArticleEntity article = this.articleService.getById(id);
         ReviewEntity review = this.articleService.getByReviewId(id);
+        ArticleCoverEntity cover = this.articleService.getByIdCover(id);
         model.addAttribute("article", article);
         model.addAttribute("review", review);
+        model.addAttribute("cover", cover);
         model.addAttribute("user", signedUser);
         model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
         if (article != null) {

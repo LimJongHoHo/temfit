@@ -17,68 +17,87 @@
 <div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
-        <div class="page-container">
-            <div class="a-container">
-                <a class="--object-button -color-blue" href="">수정</a>
-                <a class="--object-button -color-red" href="">삭제</a>
+        <div class="product-wrapper">
+            <div class="product">
+                <div class="controller">
+                    <a th:if="${cover.getCoverUrl1() != null}" class="knob" href="#productImage1"></a>
+                    <a th:if="${cover.getCoverUrl2() != null}" class="knob" href="#productImage2"></a>
+                    <a th:if="${cover.getCoverUrl3() != null}" class="knob" href="#productImage3"></a>
+                    <a th:if="${cover.getCoverUrl4() != null}" class="knob" href="#productImage4"></a>
+                    <a th:if="${cover.getCoverUrl5() != null}" class="knob" href="#productImage5"></a>
+                    <a th:if="${cover.getCoverUrl6() != null}" class="knob" href="#productImage6"></a>
+                    <a th:if="${cover.getCoverUrl7() != null}" class="knob" href="#productImage7"></a>
+                    <a th:if="${cover.getCoverUrl8() != null}" class="knob" href="#productImage8"></a>
+                </div>
+                <div class="image-wrapper">
+                    <img th:if="${cover.getCoverUrl1() != null}" alt="상품 이미지" class="image" id="productImage1"
+                         th:src="${cover.getCoverUrl1()}">
+                    <img th:if="${cover.getCoverUrl2() != null}" alt="상품 이미지" class="image" id="productImage2"
+                         th:src="${cover.getCoverUrl2()}">
+                    <img th:if="${cover.getCoverUrl3() != null}" alt="상품 이미지" class="image" id="productImage3"
+                         th:src="${cover.getCoverUrl3()}">
+                    <img th:if="${cover.getCoverUrl4() != null}" alt="상품 이미지" class="image" id="productImage4"
+                         th:src="${cover.getCoverUrl4()}">
+                    <img th:if="${cover.getCoverUrl5() != null}" alt="상품 이미지" class="image" id="productImage5"
+                         th:src="${cover.getCoverUrl5()}">
+                    <img th:if="${cover.getCoverUrl6() != null}" alt="상품 이미지" class="image" id="productImage6"
+                         th:src="${cover.getCoverUrl6()}">
+                    <img th:if="${cover.getCoverUrl7() != null}" alt="상품 이미지" class="image" id="productImage7"
+                         th:src="${cover.getCoverUrl7()}">
+                    <img th:if="${cover.getCoverUrl8() != null}" alt="상품 이미지" class="image" id="productImage8"
+                         th:src="${cover.getCoverUrl8()}">
+                </div>
             </div>
-            <div class="page" id="productImage1">
-                <img class="img"
-                     src="https://img.hwahae.co.kr/commerce/goods/20231107_170514_%ED%95%98%EB%A3%A8%ED%8A%B9%EA%B0%80_%EC%95%84%EC%BF%A0%EC%95%84%20%EC%98%A4%EC%95%84%EC%8B%9C%EC%8A%A4%20%ED%86%A0%EB%84%88%20300ml%20%EB%8D%94%EB%B8%94%20%EA%B8%B0%ED%9A%8D(%ED%86%A0%EB%84%88%2B%ED%86%A0%EB%84%88%2B%ED%99%94%EC%9E%A5%EC%86%9C)%20(1)%20(1).jpg?format=webp&size=600x600&fit=inside"
-                     alt="">
-                <div class="brand">
-                    <img class="img" src="https://img.hwahae.co.kr/brands/3264/3264_20230405140512.png?size=120x120"
-                         alt="torridenImg">
-                    <span class="title">토리든</span>
+            <div class="modify-delete">
+                <a class="--object-button -color-blue" th:href="@{'/article/modify' (id = ${article.getId()})}">수정</a>
+                <button class="--object-button -color-red delete" type="button">삭제</button>
+            </div>
+            <div class="brand">
+                <img class="img" src="https://img.hwahae.co.kr/brands/3264/3264_20230405140512.png?size=120x120"
+                     alt="torridenImg">
+                <span class="title">토리든</span>
+            </div>
+            <ul class="caption">
+                <li class="text cosmetic-sub-title">에스네이처</li>
+                <li class="text cosmetic-title">아쿠아 오아시스 토너 300ml 더블 기획(토너+토너+화장솜)</li>
+            </ul>
+            <div class="star-container">
+                <div class="star-scope">
+                    <img class="starImg" src="/assets/images/star.png" alt="">
+                    <h2 class="score">4.59</h2>
+                    <h3 class="number">(60,970)</h3>
                 </div>
-                <ul class="caption">
-                    <li class="text cosmetic-sub-title">에스네이처</li>
-                    <li class="text cosmetic-title">아쿠아 오아시스 토너 300ml 더블 기획(토너+토너+화장솜)</li>
-                </ul>
-                <div class="star-container">
-                    <div class="star-scope">
-                        <img class="starImg" src="/assets/images/star.png" alt="">
-                        <h2 class="score">4.59</h2>
-                        <h3 class="number">(60,970)</h3>
+            </div>
+            <div class="product-container">
+                <div class="item-box">
+                    <img class="item" th:src="${cover.getCoverUrl1()}" alt="item">
+                    <div class="container">
+                        <a class="option" href="#">판매 중인 상품 옵션보기 </a>
+                        <a class="caption" href="#">아쿠아 오아시스 토너 300ml 더블 기획 (토너+토너)</a>
                     </div>
+                    <button class="button">
+                        <img class="sortDown" src="/assets/images/sortdown.png" alt="">
+                    </button>
                 </div>
-                <div class="product-container">
-                    <div class="item-box">
-                        <img class="item"
-                             src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                             alt="item">
-                        <div class="container">
-                            <div class="option-container">
-                                <a class="option" href="#">판매 중인 상품 옵션보기 </a>
-                            </div>
-                            <div class="caption-container">
-                                <a class="caption" href="#">아쿠아 오아시스 토너 300ml 더블 기획 (토너+토너)</a>
-                            </div>
-                        </div>
-                        <button class="button">
-                            <img class="sortDown" src="/assets/images/sortdown.png" alt="">
-                        </button>
-                    </div>
+            </div>
+            <div class="sell-container">
+                <h2 class="title">템핏쇼핑 판매가</h2>
+                <div class="price-container">
+                    <p class="percent">64%</p>
+                    <p class="price">18,900원</p>
                 </div>
-                <div class="sell-container">
-                    <h2 class="title">템핏쇼핑 판매가</h2>
-                    <div class="price-container">
-                        <p class="percent">64%</p>
-                        <p class="price">18,900원</p>
-                    </div>
-                </div>
-                <div class="point-container">
-                    <div class="max-point">
-                        <p class="point-title">최대 적립 포인트</p>
-                        <div class="-flex-stretch"></div>
-                        <p class="point">+389</p>
-                        <div class="underline"></div>
-                    </div>
+            </div>
+            <div class="point-container">
+                <div class="max-point">
+                    <p class="point-title">최대 적립 포인트</p>
+                    <div class="-flex-stretch"></div>
+                    <p class="point">+389</p>
                     <div class="underline"></div>
-                    <div class="caption">
-                        <p class="watch">자세히 보기</p>
-                        <img class="img" src="/assets/images/sortdown.png" alt="">
-                    </div>
+                </div>
+                <div class="underline"></div>
+                <div class="caption">
+                    <p class="watch">자세히 보기</p>
+                    <img class="img" src="/assets/images/sortdown.png" alt="">
                 </div>
             </div>
             <div class="underline"></div>
@@ -116,8 +135,8 @@
             <div class="underline"></div>
             <div class="information-review">
                 <div class="two-container">
-                        <button class="content information -selected" type="button">상품정보</button>
-                        <button class="content review" type="button">리뷰/성분</button>
+                    <button class="content information -selected" type="button">상품정보</button>
+                    <button class="content review" type="button">리뷰/성분</button>
                 </div>
                 <div class="information-page -selected">
                     <span th:utext="${article.getContent()}"></span>
@@ -125,7 +144,9 @@
                 <div class="underline"></div>
 
                 <div class="review-container" th:if="${review == null}">
-                    리뷰 없음
+                    <div class="button-container">
+                        리뷰없음
+                    </div>
                 </div>
                 <div class="review-container" th:if="${review != null}">
                     <div class="review-total">
@@ -150,7 +171,7 @@
 
                         </div>
                         <div class="content-caption">
-<!--                            <span th:utext="${review.getContent()}"></span>-->
+                            <!--                            <span th:utext="${review.getContent()}"></span>-->
                         </div>
                     </div>
 
