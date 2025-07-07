@@ -203,7 +203,7 @@ public class ArticleService {
         return this.reviewMapper.insert(review) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public Result reviewModify(UserEntity user, ReviewEntity review) {
+    public Result reviewModify(UserEntity user, ReviewVo review) {
         if (user == null || user.isDeleted() || user.isSuspended()) {
             return CommonResult.FAILURE_SESSION_EXPIRED;
         }
@@ -214,7 +214,7 @@ public class ArticleService {
             return CommonResult.FAILURE;
         }
 
-        ReviewEntity dbReview = this.reviewMapper.selectByReviewId(review.getId());
+        ReviewVo dbReview = this.reviewMapper.selectByReviewId(review.getId());
 
         if (dbReview == null || dbReview.isDeleted()) {
             return CommonResult.FAILURE_ABSENT;

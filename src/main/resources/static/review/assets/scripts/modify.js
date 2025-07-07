@@ -35,7 +35,7 @@ $modifyForm.onsubmit = (e) => {
                 dialog.showSimpleOk('리뷰 수정', '세션이 만료되었거나 게시글을 수정할 권한이 없습니다. 관리자에게 문의해 주세요.');
                 break;
             case 'success':
-                location.href = `/review/list?id=${response.id}`;
+                location.href = `/main`;
                 break;
             default:
                 dialog.showSimpleOk('리뷰 수정', '알 수 없는 이유로 게시글을 수정하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
