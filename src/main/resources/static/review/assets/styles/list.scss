@@ -14,16 +14,20 @@
 
     > .review-container {
 
-        > .review-total {
-          @include flex(row, flex-start, flex-start, 0.625rem);
-          font-size: 1.25rem;
-          font-weight: 800;
-          padding: 2rem 0;
+      > .review-total {
+        @include flex(row, flex-start, flex-start, 0.625rem);
+        font-size: 1.25rem;
+        font-weight: 800;
+        padding: 1rem;
 
-          > .review-count {
-            color: #fc7899;
-          }
+        > .review-count {
+          color: #fc7899;
         }
+      }
+
+      > .review {
+        padding: 1rem;
+        border-bottom: 0.0625rem solid #eaecee;
 
         > .review-caption {
           @include flex(row, center, flex-start, 1rem);
@@ -56,22 +60,23 @@
             }
           }
         }
+      }
 
-        > .content-container {
+      > .content-container {
 
-          > .review-img {
-            padding: 2rem 0;
-          }
+        > .review-img {
+          padding: 2rem 0;
+        }
 
-          > .content-caption {
-            padding: 2rem 0;
-            border-bottom: 0.0625rem solid #e0e0e0;
+        > .content-caption {
+          padding: 2rem 0;
+          border-bottom: 0.0625rem solid #e0e0e0;
 
-            > .content {
-              font-weight: 400;
-            }
+          > .content {
+            font-weight: 400;
           }
         }
       }
     }
   }
+}

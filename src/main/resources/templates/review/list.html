@@ -21,22 +21,24 @@
                 <h1 class="title">리뷰</h1>
                 <h2 class="review-count">13,645</h2>
             </div>
-            <div class="review-caption">
-                <div class="review-user-image">
-                    <img class="img" src="/assets/images/userImg.svg" alt="">
-                </div>
-                <div class="review-user-container">
-                    <div class="review-user">
-                        <p class="nickname" th:text="${user.getNickname()}"></p>
+            <div class="review" th:each="review : ${reviews}">
+                <div class="review-caption">
+                    <div class="review-user-image">
+                        <img class="img" src="/assets/images/userImg.svg" alt="">
                     </div>
-                    <div class="date-caption">
-                        <p class="date" th:text="${review.getCreatedAt()}"></p>
+                    <div class="review-user-container">
+                        <div class="review-user">
+                            <p class="nickname" th:text="${review.getNickname()}"></p>
+                        </div>
+                        <div class="date-caption">
+                            <p class="date" th:text="${review.getCreatedAt()}"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-container">
-                <div class="content-caption">
-                    <span th:utext="${review.getContent()}"></span>
+                <div class="content-container">
+                    <div class="content-caption">
+                        <span th:utext="${review.getContent()}"></span>
+                    </div>
                 </div>
             </div>
             <div class="button-container">

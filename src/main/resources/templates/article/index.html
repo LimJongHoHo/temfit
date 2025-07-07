@@ -143,7 +143,7 @@
                 </div>
                 <div class="underline"></div>
 
-                <div class="review-container" th:if="${review == null}">
+                <div class="review-container" th:if="${review == null}">4[]5
                     <div class="button-container">
                         리뷰없음
                     </div>
@@ -162,13 +162,12 @@
                                 <p class="nickname" th:text="${user.getNickname()}"></p>
                             </div>
                             <div class="date-caption">
-                                <p class="date" th:text="${review.getCreatedAt()}"></p>
+<!--                                <p class="date" th:text="${review.getCreatedAt()}"></p>-->
                             </div>
                         </div>
                     </div>
                     <div class="content-container">
                         <div class="review-img">
-
                         </div>
                         <div class="content-caption">
                             <!--                            <span th:utext="${review.getContent()}"></span>-->

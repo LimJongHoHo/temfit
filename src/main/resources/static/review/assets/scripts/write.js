@@ -1,28 +1,18 @@
-const $reviewForm = document.getElementById('reviewForm');
+const $writeForm = document.getElementById('writeForm');
 const contentRegex = new RegExp('^(.{1,100000})$');
-const $itemContainer = $reviewForm.querySelector(':scope > .item-container');
 
-const coverLabelRemove = (e) => {
-    const $itemLabel = e.currentTarget.parentNode;
-    if ($itemLabel.classList.contains('basic')) {
-        $itemLabel.setValid(false, '최소 하나의 이미지는 존재하여야 합니다.');
-        return;
-    }
-    $itemLabel.remove();
-}
-
-$reviewForm.onsubmit = (e) => {
+$writeForm.onsubmit = (e) => {
     e.preventDefault();
 
     if (editor.getData() === '') {
         dialog.showSimpleOk('리뷰 작성', '내용을 입력해 주세요 !', {
-            onOkCallback: () => $reviewForm['content'].focus()
+            onOkCallback: () => $writeForm['content'].focus()
         });
         return;
     }
-    if (!contentRegex.test($reviewForm['content'].value)) {
+    if (!contentRegex.test($writeForm['content'].value)) {
         dialog.showSimpleOk('리뷰 작성', '올바른 내용을 입력해 주세요.', {
-            onOkCallback: () => $reviewForm['content'].focus()
+            onOkCallback: () => $writeForm['content'].focus()
         });
         return;
     }
@@ -50,6 +40,6 @@ $reviewForm.onsubmit = (e) => {
                 dialog.showSimpleOk('리뷰 작성', '알 수 없는 이유로 게시글을 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
         }
     };
-    xhr.open('POST', '/review');
+    xhr.open('POST', '/review/');
     xhr.send(formData);
 }

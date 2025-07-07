@@ -3,12 +3,9 @@ package kr.co.limbin.temfit.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.limbin.temfit.entities.ReviewEntity;
 import kr.co.limbin.temfit.entities.UserEntity;
-import kr.co.limbin.temfit.results.CommonResult;
-import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,15 +61,4 @@ public class MainController {
         return "main/index";
     }
 
-    @RequestMapping(value = "/review", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String postReview(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewEntity review) {
-        Result result = this.articleService.reviewWrite(signedUser, review);
-        JSONObject response = new JSONObject();
-        response.put("result", result.toStringLower());
-        if (result == CommonResult.SUCCESS) {
-            response.put("id", review.getId());
-        }
-        return response.toString();
-    }
 }

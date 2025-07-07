@@ -271,7 +271,6 @@ const editorConfig = {
             'resizeImage'
         ]
     },
-    initialData: '',
     licenseKey: LICENSE_KEY,
     link: {
         addTargetToExternalLinks: true,
@@ -306,7 +305,7 @@ const editorConfig = {
     menuBar: {
         isVisible: true
     },
-    placeholder: '제품을 사용한 날짜와 기간, 좋았던 점과 아쉬운 점을 자세히 남겨주세요',
+    placeholder: 'Type or paste your content here!',
     style: {
         definitions: [
             {
@@ -356,7 +355,7 @@ const editorConfig = {
     }
 };
 
-ClassicEditor.create(document.getElementById('reviewForm')['content'], {
+ClassicEditor.create(document.getElementById('modifyForm')['content'], {
     ...editorConfig,
     simpleUpload: {
         uploadUrl: `${origin}/article/image`

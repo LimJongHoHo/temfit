@@ -10,17 +10,39 @@
         VALUES (#{review.articleId}, #{review.userEmail}, #{review.content},
                 #{review.createdAt}, #{review.modifiedAt}, #{review.isDeleted})
     </insert>
-    <select id="selectById" resultType="kr.co.limbin.temfit.entities.ReviewEntity">
-        SELECT `id`          AS `id`,
-               `article_id`  AS `articleId`,
-               `user_email`  AS `userEmail`,
-               `content`     AS `content`,
-               `created_at`  AS `createdAt`,
-               `modified_at` AS `modifiedAt`,
-               `is_deleted`  AS `isDeleted`
-        FROM `temfit`.`reviews`
-        WHERE `article_id` = #{articleId}
+    <update id="update">
+        UPDATE `temfit`.`reviews`
+        SET `content`     = #{review.content},
+            `modified_at` = #{review.modifiedAt},
+            `is_deleted`  = #{review.isDeleted}
+        WHERE `id` = #{review.id}
+    </update>
+    <select id="selectByReviewId" resultType="kr.co.limbin.temfit.vos.ReviewVo">
+        SELECT `t0`.`id`          AS `id`,
+               `t0`.`article_id`  AS `articleId`,
+               `t0`.`user_email`  AS `userEmail`,
+               `t0`.`content`     AS `content`,
+               `t0`.`created_at`  AS `createdAt`,
+               `t0`.`modified_at` AS `modifiedAt`,
+               `t0`.`is_deleted`  AS `isDeleted`,
+               `t1`.`nickname`    AS `nickname`
+        FROM `temfit`.`reviews` AS `t0`
+                 LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
+        WHERE `id` = #{id}
         LIMIT 1
     </select>
-
+    <select id="selectByAll">
+        SELECT `t0`.`id`          AS `id`,
+               `t0`.`article_id`  AS `articleId`,
+               `t0`.`user_email`  AS `userEmail`,
+               `t0`.`content`     AS `content`,
+               `t0`.`created_at`  AS `createdAt`,
+               `t0`.`modified_at` AS `modifiedAt`,
+               `t0`.`is_deleted`  AS `isDeleted`,
+               `t1`.`nickname`    AS `nickname`
+        FROM `temfit`.`reviews` AS `t0`
+                 LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
+        WHERE `article_id` = #{articleId}
+        ORDER BY `id` DESC
+    </select>
 </mapper>

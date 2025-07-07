@@ -1,7 +1,7 @@
 package kr.co.limbin.temfit.mappers;
 
-import kr.co.limbin.temfit.entities.ArticleEntity;
 import kr.co.limbin.temfit.entities.ReviewEntity;
+import kr.co.limbin.temfit.vos.ReviewVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,9 +9,10 @@ import org.apache.ibatis.annotations.Param;
 public interface ReviewMapper {
     int insert(@Param(value = "review") ReviewEntity review);
 
-    ReviewEntity selectById(@Param(value = "articleId") int articleId);
+    ReviewVo[] selectByAll(@Param(value = "articleId") int articleId);
 
+    ReviewVo selectByReviewId(@Param("id") int id);
 
-
+    int update(@Param(value = "review") ReviewEntity review);
 
 }

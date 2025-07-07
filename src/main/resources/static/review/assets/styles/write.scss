@@ -2,7 +2,7 @@
 
 @import "../../../assets/styles/_def";
 
-#reviewForm {
+#writeForm {
   @include flex(column, stretch, flex-start, 0.75rem);
   max-width: 40rem;
   margin: 0 auto;

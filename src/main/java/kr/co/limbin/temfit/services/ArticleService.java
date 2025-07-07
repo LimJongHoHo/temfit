@@ -10,6 +10,7 @@ import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.vos.ArticleVo;
 import kr.co.limbin.temfit.vos.PageVo;
+import kr.co.limbin.temfit.vos.ReviewVo;
 import kr.co.limbin.temfit.vos.SearchVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.tuple.Pair;
@@ -49,12 +50,20 @@ public class ArticleService {
         return this.articleMapper.selectById(id);
     }
 
-    public ReviewEntity getByReviewId(int id) {
+    public ReviewVo[] getByReviewAll(int articleId) {
+        if (articleId < 1) {
+            return null;
+        }
+        return this.reviewMapper.selectByAll(articleId);
+    }
+
+    public ReviewVo getByReviewId(int id) {
         if (id < 1) {
             return null;
         }
-        return this.reviewMapper.selectById(id);
+        return this.reviewMapper.selectByReviewId(id);
     }
+
 
     public ArticleCoverEntity getByIdCover(int id) {
         if (id < 1) {
@@ -194,5 +203,31 @@ public class ArticleService {
         return this.reviewMapper.insert(review) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
+    public Result reviewModify(UserEntity user, ReviewEntity review) {
+        if (user == null || user.isDeleted() || user.isSuspended()) {
+            return CommonResult.FAILURE_SESSION_EXPIRED;
+        }
+
+        if (review == null
+                || review.getId() < 1
+                || !ArticleService.isContentValid(review.getContent())) {
+            return CommonResult.FAILURE;
+        }
+
+        ReviewEntity dbReview = this.reviewMapper.selectByReviewId(review.getId());
+
+        if (dbReview == null || dbReview.isDeleted()) {
+            return CommonResult.FAILURE_ABSENT;
+        }
+
+        if (!dbReview.getUserEmail().equals(user.getEmail()) && !user.isAdmin()) {
+            return CommonResult.FAILURE_SESSION_EXPIRED;
+        }
+
+        dbReview.setContent(review.getContent());
+        dbReview.setModifiedAt(LocalDateTime.now());
+
+        return this.reviewMapper.update(dbReview) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
 
 }

@@ -1,4 +1,4 @@
-#reviewForm {
+#writeForm {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -9,21 +9,21 @@
   background-color: #ffffff;
   padding: 0 2rem;
 }
-#reviewForm > * {
+#writeForm > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .-flex-stretch {
+#writeForm > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .title {
+#writeForm > .title {
   align-self: center;
   margin: 2rem 0;
   font-size: 1.6rem;
   font-weight: 500;
 }
-#reviewForm > .item-container {
+#writeForm > .item-container {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -33,67 +33,67 @@
   border-radius: 0.875rem;
   padding: 1rem;
 }
-#reviewForm > .item-container > * {
+#writeForm > .item-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .item-container > .-flex-stretch {
+#writeForm > .item-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .item-container > .caption-container {
+#writeForm > .item-container > .caption-container {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
   justify-content: flex-start;
 }
-#reviewForm > .item-container > .caption-container > * {
+#writeForm > .item-container > .caption-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .item-container > .caption-container > .-flex-stretch {
+#writeForm > .item-container > .caption-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .item-container > .caption-container > .caption {
+#writeForm > .item-container > .caption-container > .caption {
   color: #a2a4a6;
   font-weight: 500;
 }
-#reviewForm > .item-container > .caption-container > .title {
+#writeForm > .item-container > .caption-container > .title {
   font-weight: 500;
 }
-#reviewForm > .--object-label > .---caption {
+#writeForm > .--object-label > .---caption {
   align-self: center;
   padding: 2rem 0;
   font-size: 1rem;
   font-weight: 600;
 }
-#reviewForm > .--object-label > .smile-sad-container {
+#writeForm > .--object-label > .smile-sad-container {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: 0.875rem;
   justify-content: center;
 }
-#reviewForm > .--object-label > .smile-sad-container > * {
+#writeForm > .--object-label > .smile-sad-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .--object-label > .smile-sad-container > .-flex-stretch {
+#writeForm > .--object-label > .smile-sad-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .--object-label > .smile-sad-container > .smile {
+#writeForm > .--object-label > .smile-sad-container > .smile {
   width: 1.2rem;
 }
-#reviewForm > .--object-label > .smile-sad-container > .review-caption {
+#writeForm > .--object-label > .smile-sad-container > .review-caption {
   font-weight: 500;
 }
-#reviewForm > .--object-label > .smile-sad-container > .sad {
+#writeForm > .--object-label > .smile-sad-container > .sad {
   width: 1.2rem;
 }
-#reviewForm > .--object-label > .review-sub-caption {
+#writeForm > .--object-label > .review-sub-caption {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -104,38 +104,38 @@
   border-radius: 0.875rem;
   margin: 2rem 0;
 }
-#reviewForm > .--object-label > .review-sub-caption > * {
+#writeForm > .--object-label > .review-sub-caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .--object-label > .review-sub-caption > .-flex-stretch {
+#writeForm > .--object-label > .review-sub-caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .--object-label > .review-sub-caption > .warning {
+#writeForm > .--object-label > .review-sub-caption > .warning {
   width: 1rem;
 }
-#reviewForm > .--object-label > .review-sub-caption > .item {
+#writeForm > .--object-label > .review-sub-caption > .item {
   font-size: 0.75rem;
   font-weight: 500;
   color: #7a7c7e;
 }
-#reviewForm > .button-container {
+#writeForm > .button-container {
   align-items: stretch;
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
   justify-content: flex-end;
 }
-#reviewForm > .button-container > * {
+#writeForm > .button-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#reviewForm > .button-container > .-flex-stretch {
+#writeForm > .button-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#reviewForm > .--object-label:has(textarea) * {
+#writeForm > .--object-label:has(textarea) * {
   font: revert;
   line-height: 1.5;
   list-style-type: revert;
@@ -143,4 +143,4 @@
   margin-inline: revert;
 }
 
-/*# sourceMappingURL=review.css.map */
+/*# sourceMappingURL=write.css.map */

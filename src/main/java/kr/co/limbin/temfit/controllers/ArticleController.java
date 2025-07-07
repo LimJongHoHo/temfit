@@ -140,8 +140,4 @@ public class ArticleController {
         return "article/write";
     }
 
-    @RequestMapping(value = "/review", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getReview() {
-        return "article/review";
-    }
 }
