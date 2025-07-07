@@ -16,6 +16,7 @@
             `modified_at` = #{review.modifiedAt},
             `is_deleted`  = #{review.isDeleted}
         WHERE `id` = #{review.id}
+
     </update>
     <select id="selectByReviewId" resultType="kr.co.limbin.temfit.vos.ReviewVo">
         SELECT `t0`.`id`          AS `id`,

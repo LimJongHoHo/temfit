@@ -57,10 +57,9 @@ public class ReviewController {
         return "review/modify";
     }
 
-    @RequestMapping(value = "/modify", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     public String patchModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewEntity review) {
         Result result = this.articleService.reviewModify(signedUser, review);
-        System.out.println(review.getContent());
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
         return response.toString();

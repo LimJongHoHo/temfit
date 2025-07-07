@@ -33,6 +33,7 @@
 <div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <form id="modifyForm">
+        <input hidden name="id" type="hidden" th:value="${review.getId()}">
         <h1 class="title">리뷰 수정하기</h1>
         <div class="item-container">
             <label class="--object-label basic">

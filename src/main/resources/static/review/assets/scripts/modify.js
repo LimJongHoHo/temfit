@@ -19,6 +19,7 @@ $modifyForm.onsubmit = (e) => {
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
+    formData.append('id', $modifyForm['id'].value);
     formData.append('content', editor.getData());
     xhr.onreadystatechange = () => {
         if (xhr.readyState !== XMLHttpRequest.DONE) {
@@ -40,6 +41,6 @@ $modifyForm.onsubmit = (e) => {
                 dialog.showSimpleOk('리뷰 수정', '알 수 없는 이유로 게시글을 수정하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
         }
     };
-    xhr.open('PATCH', '/review/modify');
+    xhr.open('PATCH', '/review/');
     xhr.send(formData);
 }
