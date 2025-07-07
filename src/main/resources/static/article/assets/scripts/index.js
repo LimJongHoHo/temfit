@@ -22,8 +22,8 @@ $information.addEventListener('click', () => {
 });
 
 $reviewAllSelect.addEventListener('click', () => {
-    const id = new URL(location.href).searchParams.get('id');
-    location.href = `/review/list?id=${id}`;
+    const articleId = new URL(location.href).searchParams.get('id');
+    location.href = `/review/list?articleId=${articleId}`;
 });
 
 $delete.addEventListener('click', () => {

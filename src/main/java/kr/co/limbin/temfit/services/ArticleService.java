@@ -8,6 +8,7 @@ import kr.co.limbin.temfit.mappers.ArticleMapper;
 import kr.co.limbin.temfit.mappers.ReviewMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.results.ResultTuple;
 import kr.co.limbin.temfit.vos.ArticleVo;
 import kr.co.limbin.temfit.vos.PageVo;
 import kr.co.limbin.temfit.vos.ReviewVo;
@@ -203,31 +204,31 @@ public class ArticleService {
         return this.reviewMapper.insert(review) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public Result reviewModify(UserEntity user, ReviewVo review) {
+    public ResultTuple<ReviewVo> reviewModify(UserEntity user, ReviewVo review) {
         if (user == null || user.isDeleted() || user.isSuspended()) {
-            return CommonResult.FAILURE_SESSION_EXPIRED;
+            return ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE_SESSION_EXPIRED).build();
         }
 
         if (review == null
                 || review.getId() < 1
                 || !ArticleService.isContentValid(review.getContent())) {
-            return CommonResult.FAILURE;
+            return ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE).build();
         }
 
         ReviewVo dbReview = this.reviewMapper.selectByReviewId(review.getId());
 
         if (dbReview == null || dbReview.isDeleted()) {
-            return CommonResult.FAILURE_ABSENT;
+            return ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE_ABSENT).build();
         }
 
         if (!dbReview.getUserEmail().equals(user.getEmail()) && !user.isAdmin()) {
-            return CommonResult.FAILURE_SESSION_EXPIRED;
+            return ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE_SESSION_EXPIRED).build();
         }
 
         dbReview.setContent(review.getContent());
         dbReview.setModifiedAt(LocalDateTime.now());
 
-        return this.reviewMapper.update(dbReview) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        return this.reviewMapper.update(dbReview) > 0 ? ResultTuple.<ReviewVo>builder().result(CommonResult.SUCCESS).payload(dbReview).build() : ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE).build();
     }
 
 }

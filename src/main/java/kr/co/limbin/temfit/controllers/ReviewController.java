@@ -4,6 +4,7 @@ import kr.co.limbin.temfit.entities.ReviewEntity;
 import kr.co.limbin.temfit.entities.UserEntity;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.results.ResultTuple;
 import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.vos.ReviewVo;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,18 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewController {
     private final ArticleService articleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String patchModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewVo review) {
-        Result result = this.articleService.reviewModify(signedUser, review);
-        JSONObject response = new JSONObject();
-        response.put("result", result.toStringLower());
-        return response.toString();
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getList(@RequestParam(value = "articleId", required = false) int articleId, Model model) {
+
+        ReviewVo[] reviews = this.articleService.getByReviewAll(articleId);
+        model.addAttribute("reviews", reviews);
+
+        return "review/list";
+    }
+
+    @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getReview() {
+        return "review/write";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,14 +48,6 @@ public class ReviewController {
     }
 
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getList(@RequestParam(value = "id", required = false) int id, Model model) {
-
-        ReviewVo[] reviews = this.articleService.getByReviewAll(id);
-        model.addAttribute("reviews", reviews);
-
-        return "review/list";
-    }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
@@ -60,8 +58,15 @@ public class ReviewController {
         return "review/modify";
     }
 
-    @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getReview() {
-        return "review/write";
+    @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewVo review) {
+        ResultTuple<ReviewVo> result = this.articleService.reviewModify(signedUser, review);
+        JSONObject response = new JSONObject();
+        response.put("result", result.getResult().toStringLower());
+        if (result.getResult() == CommonResult.SUCCESS) {
+            response.put("articleId", result.getPayload().getArticleId());
+        }
+        return response.toString();
     }
 }
