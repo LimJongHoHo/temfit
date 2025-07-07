@@ -48,6 +48,7 @@
           AND `contact_second` = #{contactSecond}
           AND `contact_third` = #{contactThird}
     </select>
+
     <select id="selectByEmail" resultType="kr.co.limbin.temfit.entities.UserEntity">
         SELECT `email`             AS `email`,
                `password`          AS `password`,
@@ -71,6 +72,7 @@
         WHERE `email` = #{email}
         LIMIT 1
     </select>
+
     <select id="selectEmail" resultType="java.lang.String">
         SELECT `email`
         FROM `temfit`.`users`

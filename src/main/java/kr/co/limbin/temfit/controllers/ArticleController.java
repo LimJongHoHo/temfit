@@ -144,5 +144,4 @@ public class ArticleController {
     public String getReview() {
         return "article/review";
     }
-
 }

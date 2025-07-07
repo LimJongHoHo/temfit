@@ -18,6 +18,9 @@ public class DevInterceptor implements HandlerInterceptor {
         Object signedUserObj = request.getSession().getAttribute("signedUser");
         if (!(signedUserObj instanceof UserEntity)) {
             UserEntity signedUser = this.userMapper.selectByEmail("admin@sample.com");
+            if (signedUser == null) {
+                signedUser = this.userMapper.selectByEmail("asdf1234@naver.com");
+            }
             request.getSession().setAttribute("signedUser", signedUser);
         }
         return HandlerInterceptor.super.preHandle(request, response, handler);
