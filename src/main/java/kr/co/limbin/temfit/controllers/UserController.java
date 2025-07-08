@@ -45,7 +45,7 @@ public class UserController {
     @RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.TEXT_HTML_VALUE)
     public String getLogout(HttpSession session) {
         session.setAttribute("signedUser", null);
-        return "redirect:/user/login";
+        return "redirect:/main";
     }
 
     @RequestMapping(value = "/nickname-check", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

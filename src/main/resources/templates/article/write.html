@@ -11,6 +11,10 @@
     <link rel="stylesheet" type="text/css" href="/article/assets/styles/write.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/libraries/ckeditor5/ckeditor5.css">
     <link rel="stylesheet" type="text/css" href="/assets/libraries/ckeditor5/ckeditor5-custom.css">
+    <script th:if="${session.signedUser == null}">
+        alert('로그인 후 이용할 수 있습니다.');
+        location.href = `${origin}/user/login?forward=${encodeURI(location.href)}`;
+    </script>
     <script src="/assets/libraries/ckeditor5/ckeditor5.js" type="module"></script>
     <script src="/assets/scripts/common.js" type="text/javascript"></script>
     <script type="importmap">
@@ -24,7 +28,7 @@
     <script defer src="/article/assets/scripts/write-ckeditor.js" type="module"></script>
     <script defer src="/article/assets/scripts/write.js" type="text/javascript"></script>
 </head>
-<body>
+<body th:if="${session.signedUser != null}">
 <div class="--loading" id="loading">
     <img alt="" class="---icon" src="/assets/images/loading.png">
     <span class="---caption">잠시만 기다려 주세요.</span>

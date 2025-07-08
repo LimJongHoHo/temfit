@@ -9,6 +9,10 @@
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" href="/assets/styles/common.min.css">
     <link rel="stylesheet" href="/main/assets/styles/cart.min.css">
+    <script th:if="${session.signedUser == null}">
+        alert('로그인 후 이용할 수 있습니다.');
+        location.href = `${origin}/user/login?forward=${encodeURI(location.href)}`;
+    </script>
 </head>
 <body>
 <div class="--dialog"></div>

@@ -166,9 +166,9 @@ public class UserService {
         String mailText = this.springTemplateEngine.process("user/recoverPasswordEmail", context);
         MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-        mimeMessageHelper.setFrom("dlawhdgh3040@gmail.com");
+        mimeMessageHelper.setFrom("kkyybb0126@gmail.com");
         mimeMessageHelper.setTo(emailToken.getEmail());
-        mimeMessageHelper.setSubject("[SAUB] 비밀번호 재설정 인증번호");
+        mimeMessageHelper.setSubject("[Temfit] 비밀번호 재설정 인증번호");
         mimeMessageHelper.setText(mailText, true);
         this.javaMailSender.send(mimeMessage);
 
@@ -193,9 +193,9 @@ public class UserService {
         String mailText = this.springTemplateEngine.process("user/registerEmail", context);
         MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-        mimeMessageHelper.setFrom("dlawhdgh3040@gmail.com");
+        mimeMessageHelper.setFrom("kkyybb0126@gmail.com");
         mimeMessageHelper.setTo(emailToken.getEmail());
-        mimeMessageHelper.setSubject("[LIVE GATE] 회원가입 인증번호");
+        mimeMessageHelper.setSubject("[Temfit] 회원가입 인증번호");
         mimeMessageHelper.setText(mailText, true);
         this.javaMailSender.send(mimeMessage);
 
