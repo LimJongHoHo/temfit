@@ -38,7 +38,7 @@ public class ArticleController {
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndex(@RequestParam(value = "id", required = false) int id, Model model) {
         ArticleEntity article = this.articleService.getById(id);
-        ReviewVo[] reviews = this.articleService.getByReviewAll(id);
+        ReviewVo[] reviews = this.articleService.getTwoReview(id);
         ArticleCoverEntity cover = this.articleService.getByIdCover(id);
         model.addAttribute("article", article);
         model.addAttribute("reviews", reviews);

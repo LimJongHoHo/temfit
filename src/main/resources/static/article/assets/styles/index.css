@@ -522,6 +522,11 @@
 #main > .product-wrapper > .information-review > .review-container.-selected > .review-total > .review-count {
   color: #fc7899;
 }
+#main > .product-wrapper > .information-review > .review-container.-selected > .review-total > .--object-button {
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 1rem;
+}
 #main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption {
   align-items: center;
   display: flex;

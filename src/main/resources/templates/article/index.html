@@ -151,6 +151,8 @@
                     <div class="review-total">
                         <h1 class="title">리뷰</h1>
                         <h2 class="review-count">13,645</h2>
+                        <div class="-flex-stretch"></div>
+                        <a class="--object-button -color-pink" th:href="@{/review/write (id = ${article.getId()})}">리뷰 작성하기</a>
                     </div>
                     <div class="review" th:each="review : ${reviews}">
                         <div class="review-caption">

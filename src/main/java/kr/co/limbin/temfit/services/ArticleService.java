@@ -58,6 +58,13 @@ public class ArticleService {
         return this.reviewMapper.selectByAll(articleId);
     }
 
+    public ReviewVo[] getTwoReview(int articleId) {
+        if (articleId < 1) {
+            return null;
+        }
+        return this.reviewMapper.selectTwoReview(articleId);
+    }
+
     public ReviewVo getByReviewId(int id) {
         if (id < 1) {
             return null;
