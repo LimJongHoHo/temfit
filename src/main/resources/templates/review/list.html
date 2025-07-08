@@ -20,7 +20,7 @@
         <div class="review-container">
             <div class="review-total">
                 <h1 class="title">리뷰</h1>
-                <h2 class="review-count">13,645</h2>
+                <h2 class="review-count" th:text="${totalCount}"></h2>
             </div>
             <div class="review" th:each="review : ${reviews}">
                 <input hidden name="id" type="hidden" th:value="${review.getId()}">

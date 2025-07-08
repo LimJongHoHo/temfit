@@ -72,6 +72,10 @@ public class ArticleService {
         return this.reviewMapper.selectByReviewId(id);
     }
 
+    public int getTotalCount(int articleId) {
+        return this.reviewMapper.countReview(articleId);
+    }
+
 
     public ArticleCoverEntity getByIdCover(int id) {
         if (id < 1) {

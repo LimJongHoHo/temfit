@@ -40,9 +40,11 @@ public class ArticleController {
         ArticleEntity article = this.articleService.getById(id);
         ReviewVo[] reviews = this.articleService.getTwoReview(id);
         ArticleCoverEntity cover = this.articleService.getByIdCover(id);
+        int totalCount = this.articleService.getTotalCount(id);
         model.addAttribute("article", article);
         model.addAttribute("reviews", reviews);
         model.addAttribute("cover", cover);
+        model.addAttribute("totalCount", totalCount);
         if (article != null) {
             this.articleService.incrementView(article);
         }

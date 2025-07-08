@@ -23,9 +23,10 @@ public class ReviewController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getList(@RequestParam(value = "articleId", required = false) int articleId, Model model) {
-
+        int totalCount = this.articleService.getTotalCount(articleId);
         ReviewVo[] reviews = this.articleService.getByReviewAll(articleId);
         model.addAttribute("reviews", reviews);
+        model.addAttribute("totalCount", totalCount);
 
         return "review/list";
     }
