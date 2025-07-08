@@ -231,4 +231,23 @@ public class ArticleService {
         return this.reviewMapper.update(dbReview) > 0 ? ResultTuple.<ReviewVo>builder().result(CommonResult.SUCCESS).payload(dbReview).build() : ResultTuple.<ReviewVo>builder().result(CommonResult.FAILURE).build();
     }
 
+    public Result reviewDelete(UserEntity user, int id) {
+        if (user == null || user.isDeleted() || user.isSuspended()) {
+            return CommonResult.FAILURE_SESSION_EXPIRED;
+        }
+
+        ReviewVo dbReview = this.reviewMapper.selectByReviewId(id);
+
+        if (dbReview == null || dbReview.isDeleted()) {
+            return CommonResult.FAILURE_ABSENT;
+        }
+        if (!dbReview.getUserEmail().equals(user.getEmail()) && !user.isAdmin()) {
+            return CommonResult.FAILURE_SESSION_EXPIRED;
+        }
+
+        dbReview.setDeleted(true);
+
+        return this.reviewMapper.update(dbReview) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
 }

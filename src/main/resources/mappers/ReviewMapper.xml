@@ -44,6 +44,7 @@
         FROM `temfit`.`reviews` AS `t0`
                  LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
         WHERE `article_id` = #{articleId}
+          AND `t0`.`is_deleted` = FALSE
         ORDER BY `id` DESC
     </select>
 </mapper>

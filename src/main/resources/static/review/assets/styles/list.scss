@@ -34,30 +34,25 @@
           margin-top: 1rem;
 
           > .review-user-container {
+            @include flex(row, center, flex-end, 0.75rem);
 
             > .review-user {
-              @include flex(row, center, flex-start, 0.75rem);
+              @include flex(column, flex-start, flex-start);
 
               > .nickname {
                 font-weight: 600;
               }
-
-              > .view {
-                font-size: 0.875rem;
-                color: #7a7c7e;
-              }
-            }
-
-            > .date-caption {
-              @include flex(column, flex-start, flex-start);
 
               > .date {
                 margin-top: -0.6rem;
                 font-size: 0.75rem;
                 color: #a2a4a6;
               }
-
             }
+          }
+          > .---button-container {
+            @include flex(row, stretch, flex-end, 0.3rem);
+
           }
         }
       }

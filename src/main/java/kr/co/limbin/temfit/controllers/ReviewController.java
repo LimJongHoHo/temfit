@@ -47,8 +47,6 @@ public class ReviewController {
         return response.toString();
     }
 
-
-
     @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
         ReviewVo review = this.articleService.getByReviewId(id);
@@ -67,6 +65,16 @@ public class ReviewController {
         if (result.getResult() == CommonResult.SUCCESS) {
             response.put("articleId", result.getPayload().getArticleId());
         }
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteList(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id) {
+        Result result = this.articleService.reviewDelete(signedUser, id);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+
         return response.toString();
     }
 }

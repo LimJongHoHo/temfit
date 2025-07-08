@@ -9,12 +9,13 @@
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
     <link rel="stylesheet" type="text/css" href="/review/assets/styles/list.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/libraries/ckeditor5/ckeditor5.css">
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script defer src="/review/assets/scripts/list.js" type="text/javascript"></script>
 </head>
 <body>
 <th:block th:replace="~{/fragments/header :: header}"></th:block>
 <div class="--dialog"></div>
-<main id="main">
+<div id="main">
     <div class="page-container">
         <div class="review-container">
             <div class="review-total">
@@ -22,6 +23,7 @@
                 <h2 class="review-count">13,645</h2>
             </div>
             <div class="review" th:each="review : ${reviews}">
+                <input hidden name="id" type="hidden" th:value="${review.getId()}">
                 <div class="review-caption">
                     <div class="review-user-image">
                         <img class="img" src="/assets/images/userImg.svg" alt="">
@@ -29,10 +31,13 @@
                     <div class="review-user-container">
                         <div class="review-user">
                             <p class="nickname" th:text="${review.getNickname()}"></p>
-                        </div>
-                        <div class="date-caption">
                             <p class="date" th:text="${review.getCreatedAt()}"></p>
                         </div>
+                    </div>
+                    <div class="-flex-stretch"></div>
+                    <div class="---button-container">
+                        <button class="--object-button -color-pink modify" type="button">수정</button>
+                        <button class="--object-button -color-gray delete" type="button">삭제</button>
                     </div>
                 </div>
                 <div class="content-container">
@@ -42,12 +47,12 @@
                 </div>
             </div>
             <div class="button-container">
-                <a class="--object-button -color-gray" type="submit" href="">돌아가기</a>
+                <a class="--object-button -color-gray" th:href="@{/article/ (id = ${reviews[0].getArticleId()})}">돌아가기</a>
             </div>
         </div>
         <div class="underline"></div>
     </div>
-</main>
+</div>
 <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
 </body>
 </html>

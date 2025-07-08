@@ -58,11 +58,26 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user {
+#main > .page-container > .review-container > .review > .review-caption > .review-user-container {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+  justify-content: flex-end;
+}
+#main > .page-container > .review-container > .review > .review-caption > .review-user-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   justify-content: flex-start;
 }
 #main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user > * {
@@ -76,29 +91,25 @@
 #main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user > .nickname {
   font-weight: 600;
 }
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user > .view {
-  font-size: 0.875rem;
-  color: #7a7c7e;
-}
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .date-caption {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  justify-content: flex-start;
-}
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .date-caption > * {
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .date-caption > .date {
+#main > .page-container > .review-container > .review > .review-caption > .review-user-container > .review-user > .date {
   margin-top: -0.6rem;
   font-size: 0.75rem;
   color: #a2a4a6;
+}
+#main > .page-container > .review-container > .review > .review-caption > .---button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  justify-content: flex-end;
+}
+#main > .page-container > .review-container > .review > .review-caption > .---button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .page-container > .review-container > .review > .review-caption > .---button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 #main > .page-container > .review-container > .content-container > .review-img {
   padding: 2rem 0;
