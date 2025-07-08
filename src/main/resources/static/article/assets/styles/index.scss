@@ -340,50 +340,53 @@
             }
           }
 
-          > .review-caption {
-            @include flex(row, center, flex-start, 1rem);
-            margin-top: 1rem;
+          > .review {
 
-            > .review-user-container {
+            > .review-caption {
+              @include flex(row, center, flex-start, 1rem);
+              margin-top: 1rem;
 
-              > .review-user {
-                @include flex(row, center, flex-start, 0.75rem);
+              > .review-user-container {
 
-                > .nickname {
-                  font-weight: 600;
+                > .review-user {
+                  @include flex(row, center, flex-start, 0.75rem);
+
+                  > .nickname {
+                    font-weight: 600;
+                  }
+
+                  > .view {
+                    font-size: 0.875rem;
+                    color: #7a7c7e;
+                  }
                 }
 
-                > .view {
-                  font-size: 0.875rem;
-                  color: #7a7c7e;
+                > .date-caption {
+                  @include flex(column, flex-start, flex-start);
+
+                  > .date {
+                    margin-top: -0.6rem;
+                    font-size: 0.75rem;
+                    color: #a2a4a6;
+                  }
+
                 }
               }
+            }
 
-              > .date-caption {
-                @include flex(column, flex-start, flex-start);
+            > .content-container {
 
-                > .date {
-                  margin-top: -0.6rem;
-                  font-size: 0.75rem;
-                  color: #a2a4a6;
-                }
-
+              > .review-img {
+                padding: 2rem 0;
               }
-            }
-          }
 
-          > .content-container {
+              > .content-caption {
+                padding: 2rem 0;
+                border-bottom: 0.0625rem solid #e0e0e0;
 
-            > .review-img {
-              padding: 2rem 0;
-            }
-
-            > .content-caption {
-              padding: 2rem 0;
-              border-bottom: 0.0625rem solid #e0e0e0;
-
-              > .content {
-                font-weight: 400;
+                > .content {
+                  font-weight: 400;
+                }
               }
             }
           }

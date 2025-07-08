@@ -5,6 +5,7 @@ import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.services.ImageService;
+import kr.co.limbin.temfit.vos.ReviewVo;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -35,16 +36,13 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndex(@SessionAttribute(value = "signedUser") UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
-
+    public String getIndex(@RequestParam(value = "id", required = false) int id, Model model) {
         ArticleEntity article = this.articleService.getById(id);
-        ReviewEntity review = this.articleService.getByReviewId(id);
+        ReviewVo[] reviews = this.articleService.getByReviewAll(id);
         ArticleCoverEntity cover = this.articleService.getByIdCover(id);
         model.addAttribute("article", article);
-        model.addAttribute("review", review);
+        model.addAttribute("reviews", reviews);
         model.addAttribute("cover", cover);
-        model.addAttribute("user", signedUser);
-        model.addAttribute("allowed", article != null && signedUser != null && (article.getUserEmail().equals(signedUser.getEmail()) || signedUser.isAdmin()));
         if (article != null) {
             this.articleService.incrementView(article);
         }

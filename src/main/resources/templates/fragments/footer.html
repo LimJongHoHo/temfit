@@ -44,5 +44,6 @@
     <div class="d-container">
         © temfit Global Inc. All Rights Reserved.
     </div>
-    <a class="login-button" href="/user/login">로그인</a>
+    <a class="login" href="/user/login" th:if="${session.signedUser == null}">로그인</a>
+    <a class="logout" href="/user/logout" th:if="${session.signedUser != null}">로그아웃</a>
 </footer>

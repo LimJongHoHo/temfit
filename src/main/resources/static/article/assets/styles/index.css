@@ -522,7 +522,7 @@
 #main > .product-wrapper > .information-review > .review-container.-selected > .review-total > .review-count {
   color: #fc7899;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -530,64 +530,64 @@
   justify-content: flex-start;
   margin-top: 1rem;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > * {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .-flex-stretch {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .review-user {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
   justify-content: flex-start;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > * {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .review-user > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .-flex-stretch {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .review-user > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .nickname {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .review-user > .nickname {
   font-weight: 600;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .review-user > .view {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .review-user > .view {
   font-size: 0.875rem;
   color: #7a7c7e;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .date-caption {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0;
   justify-content: flex-start;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > * {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .date-caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .date-caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .review-caption > .review-user-container > .date-caption > .date {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .review-caption > .review-user-container > .date-caption > .date {
   margin-top: -0.6rem;
   font-size: 0.75rem;
   color: #a2a4a6;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .content-container > .review-img {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .content-container > .review-img {
   padding: 2rem 0;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .content-container > .content-caption {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .content-container > .content-caption {
   padding: 2rem 0;
   border-bottom: 0.0625rem solid #e0e0e0;
 }
-#main > .product-wrapper > .information-review > .review-container.-selected > .content-container > .content-caption > .content {
+#main > .product-wrapper > .information-review > .review-container.-selected > .review > .content-container > .content-caption > .content {
   font-weight: 400;
 }
 #main > .product-wrapper > .information-review > .review-container.-selected > .button-container {

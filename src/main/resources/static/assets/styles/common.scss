@@ -307,7 +307,8 @@ body:has(.--dialog.-visible) {
     @include flex(row, center, center, 0.45rem);
   }
 
-  > .login-button {
+  > .logout,
+  > .login {
     border: 0.0625rem solid #a2a4a6;
     padding: 0.325rem;
     background-color: #eaecee;

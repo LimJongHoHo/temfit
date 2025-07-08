@@ -664,7 +664,8 @@ body:has(.--dialog.-visible) {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#footer > .login-button {
+#footer > .logout,
+#footer > .login {
   border: 0.0625rem solid #a2a4a6;
   padding: 0.325rem;
   background-color: #eaecee;
@@ -672,7 +673,8 @@ body:has(.--dialog.-visible) {
   margin-bottom: 10rem;
   margin-top: 2rem;
 }
-#footer > .login-button:hover {
+#footer > .logout:hover,
+#footer > .login:hover {
   background-color: #fafcfe;
 }
 
