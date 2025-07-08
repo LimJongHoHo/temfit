@@ -6,7 +6,7 @@
             keyColumn="id"
             keyProperty="id">
         INSERT INTO `temfit`.`reviews` (`article_id`, `user_email`, `content`, `created_at`, `modified_at`,
-                                         `is_deleted`)
+                                        `is_deleted`)
         VALUES (#{review.articleId}, #{review.userEmail}, #{review.content},
                 #{review.createdAt}, #{review.modifiedAt}, #{review.isDeleted})
     </insert>
@@ -32,6 +32,7 @@
         WHERE `id` = #{id}
         LIMIT 1
     </select>
+
     <select id="selectByAll">
         SELECT `t0`.`id`          AS `id`,
                `t0`.`article_id`  AS `articleId`,
@@ -46,5 +47,29 @@
         WHERE `article_id` = #{articleId}
           AND `t0`.`is_deleted` = FALSE
         ORDER BY `id` DESC
+    </select>
+
+    <select id="selectTwoReview">
+        SELECT `t0`.`id`          AS `id`,
+               `t0`.`article_id`  AS `articleId`,
+               `t0`.`user_email`  AS `userEmail`,
+               `t0`.`content`     AS `content`,
+               `t0`.`created_at`  AS `createdAt`,
+               `t0`.`modified_at` AS `modifiedAt`,
+               `t0`.`is_deleted`  AS `isDeleted`,
+               `t1`.`nickname`    AS `nickname`
+        FROM `temfit`.`reviews` AS `t0`
+                 LEFT JOIN `temfit`.`users` AS `t1` ON `t0`.`user_email` = `t1`.`email`
+        WHERE `article_id` = #{articleId}
+          AND `t0`.`is_deleted` = FALSE
+        ORDER BY `id` DESC
+        LIMIT 2
+    </select>
+
+    <select id="countReview" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM `temfit`.`reviews`
+        WHERE `article_id` = #{articleId}
+          AND `is_deleted` = FALSE
     </select>
 </mapper>

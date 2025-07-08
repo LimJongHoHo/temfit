@@ -11,7 +11,11 @@ public interface ReviewMapper {
 
     ReviewVo[] selectByAll(@Param(value = "articleId") int articleId);
 
+    ReviewVo[] selectTwoReview(@Param(value = "articleId") int articleId);
+
     ReviewVo selectByReviewId(@Param(value = "id") int id);
+
+    int countReview(@Param(value = "articleId") int articleId);
 
     int update(@Param(value = "review") ReviewVo review);
 
