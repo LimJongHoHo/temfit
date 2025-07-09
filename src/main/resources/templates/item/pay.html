@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>상품 주문/결제</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" type="text/css" href="/item/assets/styles/pay.min.css">
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script defer src="/item/assets/scripts/pay.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="payCover"></div>
+<div class="container">
+    <th:block th:replace="~{/fragments/header :: header}"></th:block>
+    <div id="pay">
+        <label class="--object-label">
+            <span class="title">배송지 정보 (필수)</span>
+            <button class="--object-button -color-pink" type="button">배송지 등록</button>
+            <span class="title">배송 요청 사항</span>
+            <input class="---caption" type="text" placeholder="요청사항 입력">
+            <span class="---warning">배송지를 입력해 주세요</span>
+        </label>
+        <div class="product-container">
+            <span class="title">주문 상품 정보</span>
+            <div class="caption">
+                <span class="title">화해쇼핑</span>
+                <div class="-flex-stretch"></div>
+                <span class="free">배송비 무료</span>
+            </div>
+            <div class="item-box">
+                <img class="item"
+                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+                     alt="item">
+                <div class="container">
+                    <div class="brand-container">
+                        <a class="title" href="#">토리든</a>
+                        <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                    </div>
+                    <div class="item-container">
+                        <div class="item">
+                            <h2 class="price">27,900원</h2>
+                            <h3 class="count">/ 1개</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="price-container">
+            <span class="title">결제 금액 확인</span>
+            <div class="container">
+                <span class="sub-title">총 상품 금액</span>
+                <div class="-flex-stretch"></div>
+                <span class="product-price">27,900원</span>
+            </div>
+            <div class="container">
+                <span class="sub-title">배송비</span>
+                <div class="-flex-stretch"></div>
+                <span class="product-price">무료</span>
+            </div>
+            <div class="total-pay">
+                <span class="title">총 결제 금액</span>
+                <div class="-flex-stretch"></div>
+                <span class="pay-price">27,900원</span>
+            </div>
+        </div>
+        <div class="pay">
+            <span class="title">결제 수단</span>
+            <div class="control-container">
+                <input type="radio" checked name="favorite" id="html" class="screen-reader">
+                <div class="label-box">
+                    <span class="check-icon" aria-hidden="true"></span>
+                    <label class="sub-title" for="html">간편결제/카카오페이</label>
+                </div>
+            </div>
+        </div>
+        <div class="container term -visible">
+            <label class="--object-check">
+                <input required class="---input" name="agreeServiceTerm" type="checkbox">
+                <span class="---box"></span>
+                <span class="---caption">(필수) 주문내용 확인 및 결제 동의</span>
+            </label>
+            <label class="--object-check">
+                <input required class="---input" name="agreePrivacyTerm" type="checkbox">
+                <span class="---box"></span>
+                <span class="---caption">(필수) 개인정보 제 3자 제공 동의</span>
+            </label>
+        </div>
+        <button class="--object-button -color-pink" type="button">결제하기</button>
+    </div>
+    <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+</div>
+</body>
+</html>

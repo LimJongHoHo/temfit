@@ -2,7 +2,6 @@ package kr.co.limbin.temfit.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.limbin.temfit.entities.UserEntity;
-import kr.co.limbin.temfit.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
