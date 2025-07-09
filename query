@@ -2,7 +2,7 @@ CREATE SCHEMA `temfit`;
 
 CREATE TABLE `temfit`.`email_tokens`
 (
-    `email`      VARCHAR(50)  NOT NULL,
+    `email`      VARCHAR(50)  NOT NULL COMMENT '사용자 이메일',
     `code`       VARCHAR(6)   NOT NULL COMMENT '인증 번호 6자리',
     `salt`       VARCHAR(128) NOT NULL COMMENT '요청자 검증 키',
     `user_agent` VARCHAR(512) NOT NULL COMMENT '요청자 브라우저/운영체제 정보',
@@ -14,17 +14,17 @@ CREATE TABLE `temfit`.`email_tokens`
 
 CREATE TABLE `temfit`.`contact_mvnos`
 (
-    `code`         VARCHAR(3)  NOT NULL,
-    `display_text` VARCHAR(25) NOT NULL,
+    `code`         VARCHAR(3)  NOT NULL COMMENT '통신사 코드',
+    `display_text` VARCHAR(25) NOT NULL COMMENT '통신사 이름',
     CONSTRAINT PRIMARY KEY (`code`)
 ); /* 연락처 통신사를 담기 위한 테이블 */
 
 
 CREATE TABLE `temfit`.`users`
 (
-    `email`             VARCHAR(50)     NOT NULL,
-    `password`          VARCHAR(128)    NOT NULL,
-    `nickname`          VARCHAR(10)     NOT NULL,
+    `email`             VARCHAR(50)     NOT NULL COMMENT '사용자 이메일',
+    `password`          VARCHAR(128)    NOT NULL COMMENT '비밀번호',
+    `nickname`          VARCHAR(10)     NOT NULL COMMENT '닉네임',
     `name`              VARCHAR(5)      NOT NULL COMMENT '실명',
     `birth`             DATE            NOT NULL COMMENT '생년월일',
     `gender`            ENUM ('F', 'M') NOT NULL COMMENT '성별 코드 F|M',
@@ -53,13 +53,13 @@ CREATE TABLE `temfit`.`users`
 CREATE TABLE `temfit`.`articles`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `user_email`  VARCHAR(50)  NOT NULL,
-    `title`       VARCHAR(100) NOT NULL,
-    `content`     LONGTEXT     NOT NULL,
-    `view`        INT UNSIGNED NOT NULL DEFAULT 0,
-    `created_at`  DATETIME     NOT NULL DEFAULT NOW(),
-    `modified_at` DATETIME     NULL     DEFAULT NULL,
-    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE,
+    `user_email`  VARCHAR(50)  NOT NULL COMMENT '사용자 이메일',
+    `title`       VARCHAR(100) NOT NULL COMMENT '제목',
+    `content`     LONGTEXT     NOT NULL COMMENT '내용',
+    `view`        INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '조회수',
+    `created_at`  DATETIME     NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at` DATETIME     NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE COMMENT '삭제여부',
     CONSTRAINT PRIMARY KEY (`id`),
     CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
         ON DELETE CASCADE
@@ -68,7 +68,7 @@ CREATE TABLE `temfit`.`articles`
 
 CREATE TABLE `temfit`.`article_covers`
 (
-    `article_id`  INT UNSIGNED   NOT NULL,
+    `article_id`  INT UNSIGNED  NOT NULL,
     `cover_Url_1` VARCHAR(1000) NOT NULL,
     `cover_Url_2` VARCHAR(1000) NULL,
     `cover_Url_3` VARCHAR(1000) NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `temfit`.`article_covers`
     `cover_Url_6` VARCHAR(1000) NULL,
     `cover_Url_7` VARCHAR(1000) NULL,
     `cover_Url_8` VARCHAR(1000) NULL,
-    `created_at`  DATETIME       NOT NULL DEFAULT NOW(),
+    `created_at`  DATETIME      NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`article_id`),
     CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
         ON DELETE CASCADE
@@ -97,17 +97,109 @@ CREATE TABLE `temfit`.`images`
 CREATE TABLE `temfit`.`reviews`
 (
     `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `article_id`  INT UNSIGNED NOT NULL,
-    `user_email`  VARCHAR(50)  NOT NULL,
-    `content`     LONGTEXT     NOT NULL,
-    `created_at`  DATETIME     NOT NULL DEFAULT NOW(),
-    `modified_at` DATETIME     NULL     DEFAULT NULL,
-    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE,
+    `article_id`  INT UNSIGNED NOT NULL COMMENT '게시글 ID',
+    `user_email`  VARCHAR(50)  NOT NULL COMMENT '사용자 이메일',
+    `content`     LONGTEXT     NOT NULL COMMENT '내용',
+    `created_at`  DATETIME     NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at` DATETIME     NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`  BOOLEAN      NOT NULL DEFAULT FALSE COMMENT '삭제여부',
     CONSTRAINT PRIMARY KEY (`id`),
     CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+# 여기서부터 2025.07.09 상품관련 테이블 추가 (위에 코멘트 수정했음)
+
+CREATE TABLE `temfit`.`skins`
+(
+    `id`                INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`              VARCHAR(20)  NOT NULL COMMENT '피부종류 이름',
+    `creat_user_email`  VARCHAR(50)  NOT NULL COMMENT '생성자',
+    `modify_user_email` VARCHAR(50)  NUll COMMENT '수정자',
+    `created_at`        DATETIME     NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at`       DATETIME     NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`        BOOLEAN      NOT NULL DEFAULT FALSE COMMENT '삭제여부',
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT UNIQUE (`name`),
+    CONSTRAINT FOREIGN KEY (`creat_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`modify_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `temfit`.`giveaways`
+(
+    `id`                INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `image_url`         VARCHAR(1000) NOT NULL COMMENT '이미지',
+    `name`              VARCHAR(30)   NOT NULL COMMENT '이름',
+    `creat_user_email`  VARCHAR(50)   NOT NULL COMMENT '생성자',
+    `modify_user_email` VARCHAR(50)   NUll COMMENT '수정자',
+    `created_at`        DATETIME      NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at`       DATETIME      NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`        BOOLEAN       NOT NULL DEFAULT FALSE COMMENT '삭제여부',
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`creat_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`modify_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `temfit`.`brands`
+(
+    `id`                INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `image_url`         VARCHAR(1000) NOT NULL COMMENT '이미지',
+    `name`              VARCHAR(20)   NOT NULL COMMENT '이름',
+    `creat_user_email`  VARCHAR(50)   NOT NULL COMMENT '생성자',
+    `modify_user_email` VARCHAR(50)   NUll COMMENT '수정자',
+    `created_at`        DATETIME      NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at`       DATETIME      NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`        BOOLEAN       NOT NULL DEFAULT FALSE COMMENT '삭제여부',
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`creat_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`modify_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE `temfit`.`products`
+(
+    `id`                INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `image_url`         VARCHAR(1000) NOT NULL COMMENT '이미지',
+    `name`              VARCHAR(30)   NOT NULL COMMENT '이름',
+    `skin_id`           INT UNSIGNED  NOT NULL COMMENT '피부 ID',
+    `size`              VARCHAR(10)   NOT NULL COMMENT '용량',
+    `price`             INT UNSIGNED  NOT NULL COMMENT '가격',
+    `discount_rate`     INT UNSIGNED  NOT NULL COMMENT '할인율',
+    `giveaway_id`       INT UNSIGNED  NULL COMMENT '증정품 ID',
+    `delivery_fee`      VARCHAR(10)   NOT NULL COMMENT '배송비',
+    `delivery_company`  VARCHAR(10)   NOT NULL COMMENT '배송사',
+    `delivery_fee_add`  VARCHAR(10)   NOT NULL COMMENT '배송관련 추가사항',
+    `creat_user_email`  VARCHAR(50)   NOT NULL COMMENT '생성자',
+    `modify_user_email` VARCHAR(50)   NUll COMMENT '수정자',
+    `created_at`        DATETIME      NOT NULL DEFAULT NOW() COMMENT '생성일시',
+    `modified_at`       DATETIME      NULL     DEFAULT NULL COMMENT '수정일시',
+    `is_deleted`        BOOLEAN       NOT NULL DEFAULT FALSE COMMENT '삭제여부',
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`skin_id`) REFERENCES `temfit`.`skins` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`creat_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`modify_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`giveaway_id`) REFERENCES `temfit`.`giveaways` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
