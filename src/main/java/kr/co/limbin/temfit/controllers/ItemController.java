@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/item")
 @RequiredArgsConstructor
 public class ItemController {
 
@@ -35,4 +35,8 @@ public class ItemController {
 //        return response.toString();
 //    }
 
+    @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getWrite() {
+        return "item/write";
+    }
 }
