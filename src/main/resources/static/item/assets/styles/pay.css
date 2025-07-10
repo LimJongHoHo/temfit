@@ -1,4 +1,4 @@
-#pay {
+#payForm {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -9,15 +9,15 @@
   margin: 0 auto;
   background-color: #ffffff;
 }
-#pay > * {
+#payForm > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .-flex-stretch {
+#payForm > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .--object-label {
+#payForm > .--object-label {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -25,28 +25,28 @@
   justify-content: flex-start;
   padding: 2rem 0;
 }
-#pay > .--object-label > * {
+#payForm > .--object-label > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .--object-label > .-flex-stretch {
+#payForm > .--object-label > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .--object-label > .title {
+#payForm > .--object-label > .title {
   font-size: 1.125rem;
   font-weight: 700;
 }
-#pay > .--object-label > .--object-button {
+#payForm > .--object-label > .--object-button {
   padding: 1.2rem;
 }
-#pay > .--object-label > .---caption {
+#payForm > .--object-label > .---caption {
   border: 0.0625rem solid #eaecee;
   font-weight: 500;
   padding: 1rem;
   border-radius: 0.875rem;
 }
-#pay > .product-container {
+#payForm > .product-container {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -54,19 +54,19 @@
   justify-content: flex-start;
   padding: 2rem 0;
 }
-#pay > .product-container > * {
+#payForm > .product-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .-flex-stretch {
+#payForm > .product-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .title {
+#payForm > .product-container > .title {
   font-size: 1.125rem;
   font-weight: 700;
 }
-#pay > .product-container > .caption {
+#payForm > .product-container > .caption {
   align-items: stretch;
   display: flex;
   flex-direction: row;
@@ -75,22 +75,22 @@
   background-color: #F7F7F7;
   padding: 1rem;
 }
-#pay > .product-container > .caption > * {
+#payForm > .product-container > .caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .caption > .-flex-stretch {
+#payForm > .product-container > .caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .caption > .title {
+#payForm > .product-container > .caption > .title {
   font-size: 0.875rem;
   font-weight: 400;
 }
-#pay > .product-container > .caption > .free {
+#payForm > .product-container > .caption > .free {
   color: #a2a4a6;
 }
-#pay > .product-container > .item-box {
+#payForm > .product-container > .item-box {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -99,82 +99,82 @@
   padding: 0.675rem 0;
   font-weight: 500;
 }
-#pay > .product-container > .item-box > * {
+#payForm > .product-container > .item-box > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .item-box > .-flex-stretch {
+#payForm > .product-container > .item-box > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .item-box > .medal {
+#payForm > .product-container > .item-box > .medal {
   width: 2rem;
 }
-#pay > .product-container > .item-box > .item {
+#payForm > .product-container > .item-box > .item {
   width: 5rem;
 }
-#pay > .product-container > .item-box > .title {
+#payForm > .product-container > .item-box > .title {
   color: #757575;
   margin-right: 0.25rem;
 }
-#pay > .product-container > .item-box > .container {
+#payForm > .product-container > .item-box > .container {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   justify-content: flex-start;
 }
-#pay > .product-container > .item-box > .container > * {
+#payForm > .product-container > .item-box > .container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .item-box > .container > .-flex-stretch {
+#payForm > .product-container > .item-box > .container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .item-box > .container > .brand-container > .title {
+#payForm > .product-container > .item-box > .container > .brand-container > .title {
   color: #757575;
   margin-right: 0.25rem;
 }
-#pay > .product-container > .item-box > .container > .item-container {
+#payForm > .product-container > .item-box > .container > .item-container {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
   gap: 1rem;
   justify-content: flex-start;
 }
-#pay > .product-container > .item-box > .container > .item-container > * {
+#payForm > .product-container > .item-box > .container > .item-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .item-box > .container > .item-container > .-flex-stretch {
+#payForm > .product-container > .item-box > .container > .item-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .item-box > .container > .item-container > .item {
+#payForm > .product-container > .item-box > .container > .item-container > .item {
   align-items: center;
   display: flex;
   flex-direction: row;
   gap: 0.25rem;
   justify-content: flex-start;
 }
-#pay > .product-container > .item-box > .container > .item-container > .item > * {
+#payForm > .product-container > .item-box > .container > .item-container > .item > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .product-container > .item-box > .container > .item-container > .item > .-flex-stretch {
+#payForm > .product-container > .item-box > .container > .item-container > .item > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .product-container > .item-box > .container > .item-container > .item > .price {
+#payForm > .product-container > .item-box > .container > .item-container > .item > .price {
   font-size: 0.95rem;
   font-weight: 600;
 }
-#pay > .product-container > .item-box > .container > .item-container > .item > .count {
+#payForm > .product-container > .item-box > .container > .item-container > .item > .count {
   font-size: 0.8rem;
   color: #a2a4a6;
 }
-#pay > .price-container {
+#payForm > .price-container {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -182,19 +182,19 @@
   justify-content: flex-start;
   padding: 2rem 0;
 }
-#pay > .price-container > * {
+#payForm > .price-container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .price-container > .-flex-stretch {
+#payForm > .price-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .price-container > .title {
+#payForm > .price-container > .title {
   font-size: 1.125rem;
   font-weight: 700;
 }
-#pay > .price-container > .container {
+#payForm > .price-container > .container {
   align-items: stretch;
   display: flex;
   flex-direction: row;
@@ -202,18 +202,18 @@
   justify-content: flex-start;
   font-weight: 500;
 }
-#pay > .price-container > .container > * {
+#payForm > .price-container > .container > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .price-container > .container > .-flex-stretch {
+#payForm > .price-container > .container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .price-container > .container > .sub-title {
+#payForm > .price-container > .container > .sub-title {
   color: #a2a4a6;
 }
-#pay > .price-container > .total-pay {
+#payForm > .price-container > .total-pay {
   align-items: stretch;
   display: flex;
   flex-direction: row;
@@ -224,19 +224,19 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
-#pay > .price-container > .total-pay > * {
+#payForm > .price-container > .total-pay > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .price-container > .total-pay > .-flex-stretch {
+#payForm > .price-container > .total-pay > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .price-container > .total-pay > .title {
+#payForm > .price-container > .total-pay > .title {
   font-size: 0.875rem;
   font-weight: 700;
 }
-#pay > .pay {
+#payForm > .pay {
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -244,34 +244,34 @@
   justify-content: flex-start;
   padding: 2rem 0;
 }
-#pay > .pay > * {
+#payForm > .pay > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#pay > .pay > .-flex-stretch {
+#payForm > .pay > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#pay > .pay > .title {
+#payForm > .pay > .title {
   font-size: 1rem;
   font-weight: 700;
 }
-#pay > .pay > .label {
+#payForm > .pay > .label {
   padding: 1rem 0;
 }
-#pay > .pay > .label > .caption {
+#payForm > .pay > .label > .caption {
   font-size: 1rem;
   font-weight: 400;
   margin-left: 0.625rem;
 }
-#pay > .pay .control-container {
+#payForm > .pay .control-container {
   display: flex;
   position: relative;
 }
-#pay > .pay .control-container + .control-container {
+#payForm > .pay .control-container + .control-container {
   margin-top: 0.7em;
 }
-#pay > .pay .screen-reader {
+#payForm > .pay .screen-reader {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -281,14 +281,14 @@
   margin: -1px;
   clip-path: inset(50%);
 }
-#pay > .pay .label-box {
+#payForm > .pay .label-box {
   position: relative;
 }
-#pay > .pay .sub-title {
+#payForm > .pay .sub-title {
   font-size: 1rem;
   font-weight: 500;
 }
-#pay > .pay .check-icon {
+#payForm > .pay .check-icon {
   width: 1.4em;
   height: 1.4em;
   border-radius: 50%;
@@ -299,7 +299,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
-#pay > .pay .check-icon::before {
+#payForm > .pay .check-icon::before {
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -311,30 +311,30 @@
   border-right: 1.7px solid gray;
   border-bottom: 1.7px solid gray;
 }
-#pay > .pay label {
+#payForm > .pay label {
   padding-left: 2.2em;
   position: relative;
   cursor: pointer;
 }
-#pay > .pay [type=radio]:checked + .label-box .check-icon {
+#payForm > .pay [type=radio]:checked + .label-box .check-icon {
   border-color: #fc7899;
   background-color: #fc7899;
 }
-#pay > .pay [type=radio]:checked + .label-box .check-icon::before {
+#payForm > .pay [type=radio]:checked + .label-box .check-icon::before {
   border-color: #fff;
 }
-#pay > .pay [type=radio]:checked + .label-box label {
+#payForm > .pay [type=radio]:checked + .label-box label {
   color: #fc7899;
 }
-#pay > .container.term {
+#payForm > .container.term {
   padding: 1rem 0;
 }
-#pay > .container.term > .--object-check {
+#payForm > .container.term > .--object-check {
   margin-bottom: 1rem;
   font-size: 0.875rem;
   font-weight: 400;
 }
-#pay > .--object-button {
+#payForm > .--object-button {
   padding: 1.3rem;
   font-size: 0.875rem;
   font-weight: 600;
