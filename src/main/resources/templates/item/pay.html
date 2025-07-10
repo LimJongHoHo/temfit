@@ -29,6 +29,7 @@
     <form novalidate id="payForm">
         <label class="--object-label">
             <span class="title">배송지 정보 (필수)</span>
+            <span class="---caption">주소</span>
             <span class="---row">
                 <input readonly required class="--object-field ---field -flex-stretch" maxlength="5" minlength="5"
                        name="addressPostal" placeholder="우편 번호 (주소 찾기 버튼을 클릭해 주세요.)">
@@ -36,20 +37,21 @@
             </span>
             <input readonly required class="--object-field ---field" maxlength="100" minlength="10"
                    name="addressPrimary" placeholder="기본 주소 (주소 찾기 버튼을 클릭해 주세요.)" type="text">
-            <input class="--object-field ---field" maxlength="100" minlength="0" name="addressSecondary"
+            <input required autocomplete="off" class="--object-field ---field" maxlength="100" minlength="0" name="addressSecondary"
                    placeholder="상세 주소 (건물 이름, 동, 호)" type="text">
+            <span class="---warning"></span>
         </label>
         <label class="--object-label">
             <span class="---caption">배송 요청 사항</span>
             <input class="---caption" type="text" name="content" placeholder="요청사항 입력">
         </label>
         <label class="--object-label">
-            <span class="---caption">이름/생년월일/성별</span>
+            <span class="---caption">이름</span>
             <span class="---row">
                 <input required autocomplete="off" class="--object-field ---field -flex-stretch" maxlength="5"
                        minlength="2" name="name" placeholder="성 + 이름(공백 없음)" type="text">
             </span>
-            <span class="---warning">올바른 이름을 입력해 주세요.</span>
+            <span class="---warning"></span>
         </label>
         <label class="--object-label">
             <span class="---caption">연락처</span>

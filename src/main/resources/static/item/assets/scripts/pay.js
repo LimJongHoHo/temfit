@@ -36,8 +36,10 @@ $pay.onsubmit = (e) => {
     if ($pay['addressPostal'].value === '') {
         dialog.showSimpleOk('결제', '배송지를 입력해 주세요.');
         $addressLabel.setValid(false, '주소를 입력해 주세요.');
+        $pay['addressPostal'].focus();
         return;
     }
+
     if ($pay['name'].value === '') {
         dialog.showSimpleOk('결제', '이름을 입력해 주세요.');
         $nameLabel.setValid(false, '이름을 입력해 주세요.');
