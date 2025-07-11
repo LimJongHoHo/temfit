@@ -9,4 +9,6 @@ public interface PaymentMapper {
     int insert(@Param(value = "payment") PaymentEntity payment);
 
     PaymentEntity selectById(@Param(value = "id") int id);
+
+    PaymentEntity selectByAll(@Param(value = "paymentId") int paymentId);
 }

@@ -104,7 +104,6 @@ $pay.onsubmit = (e) => {
         if (xhr.readyState !== XMLHttpRequest.DONE) {
             return;
         }
-        $loading.hide();
         if (xhr.status < 200 || xhr.status >= 300) {
             dialog.showSimpleOk('결제', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
             return;
@@ -116,6 +115,7 @@ $pay.onsubmit = (e) => {
                 break;
             case 'success':
                 dialog.showSimpleOk('결제', '결제를 성공하였습니다.');
+                location.href = `/item/pay-complete?paymentId=${response.id}`;
                 break;
             default:
                 dialog.showSimpleOk('결제', '알 수 없는 이유로 결제하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
@@ -123,5 +123,4 @@ $pay.onsubmit = (e) => {
     };
     xhr.open('POST', '/pay');
     xhr.send(formData);
-    $loading.show();
 };

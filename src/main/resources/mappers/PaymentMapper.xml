@@ -29,4 +29,7 @@
         WHERE `id` = #{id}
         LIMIT 1
     </select>
+    <select id="selectByAll" resultType="kr.co.limbin.temfit.entities.PaymentEntity">
+
+    </select>
 </mapper>

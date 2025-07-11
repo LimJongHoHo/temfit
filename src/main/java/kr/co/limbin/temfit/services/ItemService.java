@@ -35,11 +35,20 @@ public class ItemService {
 
         payment.setId(1); //하드코딩
         payment.setUserEmail(user.getEmail());
+        payment.setCreatUserEmail(user.getEmail());
+        payment.setModifyUserEmail(user.getEmail());
         payment.setCreatedAt(LocalDateTime.now());
         payment.setModifiedAt(null);
         payment.setDeleted(false);
 
         return this.paymentMapper.insert(payment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public PaymentEntity getByPaymentAll(int paymentId) {
+        if (paymentId < 1) {
+            return null;
+        }
+        return this.paymentMapper.selectByAll(paymentId);
     }
 
     public Result insert(UserEntity signedUser, ProductEntity product) {
@@ -69,4 +78,5 @@ public class ItemService {
     public SkinEntity[] getSkinALl() {
         return this.itemMapper.selectSkinAll();
     }
+
 }
