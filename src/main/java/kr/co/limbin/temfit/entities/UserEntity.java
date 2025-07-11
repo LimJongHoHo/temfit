@@ -25,6 +25,7 @@ public class UserEntity {
     private String addressPrimary;
     private String addressSecondary;
     private boolean isAdmin;
+    private boolean isSeller;
     private boolean isDeleted;
     private boolean isSuspended;
     private LocalDateTime createdAt;

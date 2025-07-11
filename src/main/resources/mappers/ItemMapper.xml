@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.limbin.temfit.mappers.ItemMapper">
+    <insert id="insert"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`products` (`image_url`, `name`, `brand_id`, `skin_id`, `size`, `price`, `discount_rate`, `delivery_fee`, `delivery_company`, `delivery_add`, `creat_user_email`, `modify_user_email`, `created_at`, `modified_at`, `is_deleted`)
+        VALUES (
+                       #{product.imageUrl}, #{product.name}, #{product.brandId}, #{product.skinId}, #{product.size}, #{product.price}, #{product.discountRate}, #{product.deliveryFee}, #{product.deliveryCompany}, #{product.deliveryAdd}, #{product.creatUserEmail}, #{product.modifyUserEmail}, #{product.createdAt}, #{product.modifiedAt}, #{product.isDeleted})
+    </insert>
+
+    <select id="selectBrandAll">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`brands`
+        WHERE `is_deleted` = FALSE
+        ORDER BY `name`
+    </select>
+
+    <select id="selectSkinAll">
+        SELECT `id`                AS `id`,
+               `name`              AS `name`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`skins`
+        WHERE `is_deleted` = FALSE
+        ORDER BY `name`
+    </select>
+</mapper>

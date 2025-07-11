@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,56 +13,65 @@
     <script defer src="/item/assets/scripts/write.js" type="text/javascript"></script>
 </head>
 <body>
+<div class="--loading" id="loading">
+    <img alt="" class="---icon" src="/assets/images/loading.png">
+    <span class="---caption">잠시만 기다려 주세요.</span>
+</div>
+<div class="--dialog"></div>
 <div id="container">
     <form novalidate id="itemWriteForm">
         <label class="--object-label-row">
             <span class="---caption">상품이미지</span>
-            <img alt="이미지" class="image" src="/assets/images/view.png">
-            <input name="productImage" class="--object-field ---field -flex-stretch" placeholder="이미지 주소를 입력해주세요." type="text">
+            <input name="productImage" class="--object-field ---field -flex-stretch" placeholder="이미지 주소를 입력해주세요."
+                   maxlength="1000" type="text">
             <span class="---warning"></span>
+            <img alt="이미지" class="image" src="/assets/images/view.png">
         </label>
         <label class="--object-label-row">
             <span class="---caption">상품이름</span>
-            <input name="productName" class="--object-field ---field -flex-stretch" placeholder="상품이름을 입력해주세요." type="text">
+            <input name="productName" class="--object-field ---field -flex-stretch" placeholder="상품이름을 입력해주세요."
+                   type="text">
         </label>
         <label class="--object-label-row">
             <span class="---caption">브랜드</span>
-            <select class="--object-field ---field -flex-stretch">
+            <select id="brand" class="--object-field ---field -flex-stretch">
                 <option selected value="none">브랜드를 선택해주세요.</option>
+                <option th:each="brand : ${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}"></option>
             </select>
         </label>
         <label class="--object-label-row">
-            <span class="---caption">피부</span>
-            <select class="--object-field ---field -flex-stretch">
-                <option selected value="none">피부를 선택해주세요.</option>
+            <span class="---caption">피부유형</span>
+            <select id="skin" class="--object-field ---field -flex-stretch">
+                <option selected value="none">피부유형을 선택해주세요.</option>
+                <option th:each="skin : ${skins}" th:value="${skin.getId()}" th:text="${skin.getName()}"></option>
             </select>
         </label>
         <label class="--object-label-row">
             <span class="---caption">용량</span>
-            <input class="--object-field ---field -flex-stretch" placeholder="상세히 적어주세요.( 예: 145ml*3 )" type="text">
+            <input name="size" class="--object-field ---field -flex-stretch" placeholder="상세히 적어주세요.( 예: 145ml*3 )" type="text">
         </label>
         <label class="--object-label-row">
             <span class="---caption">가격</span>
-            <input class="--object-field ---field num" placeholder="가격을 입력해 주세요." type="number">
+            <input name="price" class="--object-field ---field num" placeholder="가격을 입력해주세요." type="number">
             <span class="---caption">원</span>
         </label>
         <label class="--object-label-row">
             <span class="---caption">할인율</span>
-            <input class="--object-field ---field num" name="rate" placeholder="할인율을 입력해 주세요." type="number">
+            <input name="rate" class="--object-field ---field num" placeholder="할인율을 입력해주세요." type="number">
             <span class="---caption">%</span>
         </label>
         <label class="--object-label-row">
             <span class="---caption">배송비</span>
-            <input class="--object-field ---field num" placeholder="배송비를 입력해 주세요." type="number">
+            <input name="deliveryFee" class="--object-field ---field num" placeholder="배송비를 입력해주세요." type="number">
             <span class="---caption">원</span>
         </label>
         <label class="--object-label-row">
             <span class="---caption">배송사</span>
-            <input class="--object-field ---field" placeholder="배송사를 입력해 주세요." type="text">
+            <input name="deliveryCompany" class="--object-field ---field" placeholder="배송사를 입력해주세요." type="text">
         </label>
         <label class="--object-label-row">
             <span class="---caption">배송비고란</span>
-            <input class="--object-field ---field -flex-stretch" type="text">
+            <input name="deliveryAdd" class="--object-field ---field -flex-stretch" type="text">
         </label>
         <div class="button-container">
             <a class="--object-button -color-gray" onclick="window.close()">돌아가기</a>
