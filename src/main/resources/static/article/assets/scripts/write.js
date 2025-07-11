@@ -9,7 +9,7 @@ const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basi
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget.parentNode;
     if ($coverLabel.classList.contains('basic')) {
-        $coverLabel.setValid(false, '최소 하나의 제품이 존재하여야 합니다.');
+        $coverLabel.setValid(false, '최소 하나의 이미지가 존재하여야 합니다.');
         return;
     }
     $coverLabel.remove();

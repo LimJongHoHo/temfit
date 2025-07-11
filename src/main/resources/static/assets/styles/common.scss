@@ -38,6 +38,13 @@ html {
   height: 100%;
 }
 
+// input number 속성일 때 생기는 화살표 제거
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 button, input, select, textarea {
   background-color: initial;
   border: initial;
@@ -156,7 +163,7 @@ ol, ul {
   }
 
   > .---icon {
-    @keyframes animaiton {
+    @keyframes animation {
       from {
         transform: rotateZ(0deg);
       }
@@ -168,7 +175,7 @@ ol, ul {
     width: 3.5rem;
     animation-duration: 2000ms;
     animation-iteration-count: infinite;
-    animation-name: animaiton;
+    animation-name: animation;
     opacity: 0;
     position: relative;
     transition-duration: 175ms;
@@ -199,6 +206,7 @@ body:has(.--dialog.-visible) {
   margin: 0 auto;
   background-color: #ffffff;
 }
+
 #addressFindDialog {
   @include flex(column, center, center, 1.25rem);
   top: 0;

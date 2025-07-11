@@ -16,6 +16,12 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#itemWriteForm > .--object-label-row > .num {
+  text-align: end;
+}
+#itemWriteForm > .--object-label-row > .num ~ .---caption {
+  text-align: start;
+}
 #itemWriteForm > .button-container {
   align-items: stretch;
   display: flex;

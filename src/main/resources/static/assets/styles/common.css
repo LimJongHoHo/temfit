@@ -243,6 +243,7 @@ textarea.--object-field.-resizable-vertical {
   flex-direction: row;
   gap: 0.75rem;
   justify-content: flex-start;
+  position: relative;
 }
 .--object-label-row > * {
   flex-grow: 0;
@@ -282,6 +283,14 @@ textarea.--object-field.-resizable-vertical {
   height: 5rem;
   object-fit: cover;
   object-position: center;
+}
+.--object-label-row > .---warning {
+  color: #ee623f;
+  display: none;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 [data-mt-object=dialog] {
@@ -349,6 +358,12 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
   height: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button, input, select, textarea {
@@ -500,14 +515,14 @@ ol, ul {
   width: 3.5rem;
   animation-duration: 2000ms;
   animation-iteration-count: infinite;
-  animation-name: animaiton;
+  animation-name: animation;
   opacity: 0;
   position: relative;
   transition-duration: 175ms;
   transition-property: top, opacity;
   transition-timing-function: ease;
 }
-@keyframes animaiton {
+@keyframes animation {
   from {
     transform: rotateZ(0deg);
   }

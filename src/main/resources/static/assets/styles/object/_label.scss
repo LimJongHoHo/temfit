@@ -52,7 +52,8 @@
 .--object-label-row {
   $caption-text-color: #434345;
   @include flex(row, center, flex-start, 0.75rem);
-
+  position: relative;
+  
   &:hover > .---caption {
     color: color.adjust($caption-text-color, $lightness: -15%);
   }
@@ -91,5 +92,14 @@
     height: 5rem;
     object-fit: cover;
     object-position: center;
+  }
+
+  > .---warning {
+    color: #ee623f;
+    display: none;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }

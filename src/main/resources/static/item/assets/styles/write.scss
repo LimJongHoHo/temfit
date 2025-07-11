@@ -8,6 +8,14 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 
+  > .--object-label-row > .num {
+    text-align: end;
+
+    ~ .---caption {
+      text-align: start;
+    }
+  }
+
   > .button-container {
     @include flex(row, stretch, flex-end, 0.75rem)
   }
