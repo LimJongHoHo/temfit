@@ -197,14 +197,17 @@ CREATE TABLE `temfit`.`delivery_informations`
     `contact_third`     VARCHAR(4)      NOT NULL COMMENT '연락처 뒤',
     `address_postal`    VARCHAR(5)      NOT NULL COMMENT '주소 우편 번호',
     `address_primary`   VARCHAR(100)    NOT NULL COMMENT '주소 기본',
-    `address_secondary` VARCHAR(100)    NOT NULL COMMENT '주소 상세',
+    `address_secondary` VARCHAR(100)    NULL COMMENT '주소 상세',
     `delivery_content`  LONGTEXT     NOT NULL COMMENT '배송 요청 내용',
     `creat_user_email`  VARCHAR(50)   NOT NULL COMMENT '생성자',
     `modify_user_email` VARCHAR(50)   NUll COMMENT '수정자',
-    `is_deleted`        BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '탈퇴 여부',
-    `created_at`        DATETIME        NOT NULL DEFAULT NOW() COMMENT '가입 일시',
-    `modified_at`       DATETIME        NOT NULL DEFAULT NOW() COMMENT '최종 수정 일시',
+    `is_deleted`        BOOLEAN         NOT NULL DEFAULT FALSE COMMENT '삭제 여부',
+    `created_at`        DATETIME        NOT NULL DEFAULT NOW() COMMENT '생성 일시',
+    `modified_at`       DATETIME        NULL COMMENT '수정 일시',
     CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (`contact_mvno_code`) REFERENCES `temfit`.`contact_mvnos` (`code`)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
