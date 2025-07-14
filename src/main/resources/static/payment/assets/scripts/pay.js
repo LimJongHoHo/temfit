@@ -88,6 +88,8 @@ $paymentForm.onsubmit = (e) => {
         return;
     }
 
+    showPay();
+
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('deliveryContent', $paymentForm['content'].value);
@@ -169,7 +171,7 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
     }
     let amount = 0;
 
-    // names.forEach((name) => amount += cartMap[name]['price'] * cartMap[name][`quantity`]);
+    names.forEach((name) => amount += cartMap[name]['price'] * cartMap[name][`quantity`]);
     imp.init('imp54886024');
     imp.request_pay({
         pg: 'kakaopay.TC0ONETIME',
@@ -189,6 +191,6 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
 });
 
 
-$paymentForm.querySelector(':scope > .--object-button').addEventListener('click', () => {
-    showPay();
-});
+// $paymentForm.querySelector(':scope > .--object-button').addEventListener('click', () => {
+//     showPay();
+// });

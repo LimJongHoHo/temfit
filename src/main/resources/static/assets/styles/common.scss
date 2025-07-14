@@ -375,7 +375,7 @@ body:has(.--dialog.-visible) {
   background-color: #212121a0;
   display: none;
   position: fixed;
-  z-index: 2;
+  z-index: 997;
 }
 
 #payCover.visible{
@@ -392,11 +392,11 @@ body:has(.--dialog.-visible) {
   padding: 2rem;
   position: fixed;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 998;
 
   > .title{
     font-size: 1.5rem;
-    text-align: center;
+    font-weight: 500;
   }
 
   > .message {
@@ -404,61 +404,17 @@ body:has(.--dialog.-visible) {
     margin: 1rem 0;
   }
 
-  > .subtitle {
-    font-size: 1.25rem;
-  }
-
-  > .menu {
-    border: 0.0625rem solid #e0e0e0;
-    border-radius: 0.75rem;
-    list-style-type: none;
-    margin-block: 0;
-    margin-inline: 0;
-    padding-inline: 0;
-    padding: 1rem;
-
-    .item {
-      @include flex(row, center, flex-start, 0.5rem);
-
-      &:not(:last-of-type) {
-        border-bottom: 0.0625rem solid #e0e0e0;
-        margin-bottom: 0.5rem;
-        padding-bottom: 0.5rem;
-      }
-
-      > .stretch {
-        flex-grow: 1;
-      }
-    }
-  }
-
   > .total {
-    background-color: #f0f0f0;
-    border: 0.0625rem solid #e0e0e0;
-    border-radius: 0.75rem;
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-top: -0.25rem;
     padding: 0.75rem;
-    text-align: center;
   }
 
   > .method-container {
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(2, 1fr);
-
     > .label {
       @include flex(column, center, center, 0.5rem);
-
-      border: 0.125rem solid #eeeeee;
-      border-radius: 0.75rem;
       cursor: pointer;
       padding: 0.5rem;
-
-      &:has(> .radio:checked) {
-        background-color: #fafafa;
-        border-color: #757575;
-      }
 
       > .radio {
         display: none;
@@ -469,16 +425,15 @@ body:has(.--dialog.-visible) {
       }
 
       > .icon {
-        width: 50%;
+        width: 10rem;
+        height: 4rem;
         filter: opacity(0.375);
       }
     }
   }
 
   > .button-container {
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(2, 1fr);
+    @include flex(row, stretch, stretch, 0.5rem);
   }
 }
 
