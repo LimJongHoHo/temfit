@@ -1,7 +1,6 @@
 package kr.co.limbin.temfit.controllers;
 
 import kr.co.limbin.temfit.entities.*;
-import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,37 +19,12 @@ public class ItemController {
 
     private final ItemService itemService;
 
-//    @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public String postWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
-//        Result result = this.itemService.insert(signedUser, product);
-//        JSONObject response = new JSONObject();
-//        response.put("result", result.toStringLower());
-//        return response.toString();
-//    }
-
-    @RequestMapping(value = "/pay-complete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getPayComplete(@RequestParam(value = "id", required = false) int id, Model model) {
-        PaymentEntity payment = this.itemService.getById(id);
-        model.addAttribute("payment", payment);
-
-        return "item/pay-complete";
-    }
-
-    @RequestMapping(value = "/pay", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getPay() {
-        return "item/pay";
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String postPay(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, PaymentEntity payment) {
-        Result result = this.itemService.paymentWrite(signedUser, payment);
+    public String postWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
+        Result result = this.itemService.insert(signedUser, product);
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
-        if (result == CommonResult.SUCCESS) {
-            response.put("id", payment.getId());
-        }
         return response.toString();
     }
 

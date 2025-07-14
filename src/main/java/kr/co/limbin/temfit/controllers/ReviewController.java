@@ -5,7 +5,7 @@ import kr.co.limbin.temfit.entities.UserEntity;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.results.ResultTuple;
-import kr.co.limbin.temfit.services.ArticleService;
+import kr.co.limbin.temfit.services.ReviewService;
 import kr.co.limbin.temfit.vos.ReviewVo;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/review")
 @RequiredArgsConstructor
 public class ReviewController {
-    private final ArticleService articleService;
+    private final ReviewService reviewService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getList(@RequestParam(value = "articleId", required = false) int articleId, Model model) {
-        int totalCount = this.articleService.getTotalCount(articleId);
-        ReviewVo[] reviews = this.articleService.getByReviewAll(articleId);
+        int totalCount = this.reviewService.getTotalCount(articleId);
+        ReviewVo[] reviews = this.reviewService.getByReviewAll(articleId);
         model.addAttribute("reviews", reviews);
         model.addAttribute("totalCount", totalCount);
 
@@ -39,7 +39,7 @@ public class ReviewController {
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postReview(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewEntity review) {
-        Result result = this.articleService.reviewWrite(signedUser, review);
+        Result result = this.reviewService.reviewWrite(signedUser, review);
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
         if (result == CommonResult.SUCCESS) {
@@ -50,7 +50,7 @@ public class ReviewController {
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
-        ReviewVo review = this.articleService.getByReviewId(id);
+        ReviewVo review = this.reviewService.getByReviewId(id);
 
         model.addAttribute("review", review);
 
@@ -60,7 +60,7 @@ public class ReviewController {
     @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String patchModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ReviewVo review) {
-        ResultTuple<ReviewVo> result = this.articleService.reviewModify(signedUser, review);
+        ResultTuple<ReviewVo> result = this.reviewService.reviewModify(signedUser, review);
         JSONObject response = new JSONObject();
         response.put("result", result.getResult().toStringLower());
         if (result.getResult() == CommonResult.SUCCESS) {
@@ -72,7 +72,7 @@ public class ReviewController {
     @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String deleteList(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id) {
-        Result result = this.articleService.reviewDelete(signedUser, id);
+        Result result = this.reviewService.reviewDelete(signedUser, id);
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
 

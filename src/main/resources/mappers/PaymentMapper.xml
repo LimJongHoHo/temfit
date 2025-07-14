@@ -5,7 +5,7 @@
             useGeneratedKeys="true"
             keyColumn="id"
             keyProperty="id">
-        INSERT INTO `temfit`.`delivery_informations` (`user_email`, `name`, `contact_mvno_code`,`contact_first`, `contact_second`, `contact_third`, `address_postal`,`address_primary`, `address_secondary`, `delivery_content`, `total_price`, `creat_user_email`,  `modify_user_email`, `is_deleted`, `created_at`, `modified_at`)
+        INSERT INTO `temfit`.`payments` (`user_email`, `name`, `contact_mvno_code`,`contact_first`, `contact_second`, `contact_third`, `address_postal`,`address_primary`, `address_secondary`, `delivery_content`, `total_price`, `creat_user_email`,  `modify_user_email`, `is_deleted`, `created_at`, `modified_at`)
         VALUES (#{payment.userEmail},#{payment.name}, #{payment.contactMvnoCode}, #{payment.contactFirst}, #{payment.contactSecond}, #{payment.contactThird}, #{payment.addressPostal}, #{payment.addressPrimary}, #{payment.addressSecondary}, #{payment.deliveryContent}, #{payment.totalPrice}, #{payment.creatUserEmail}, #{payment.modifyUserEmail}, #{payment.isDeleted}, #{payment.createdAt}, #{payment.modifiedAt})
     </insert>
     <select id="selectById" resultType="kr.co.limbin.temfit.entities.PaymentEntity">
@@ -26,7 +26,7 @@
                `is_deleted`        AS `isDeleted`,
                `created_at`        AS `createdAt`,
                `modified_at`       AS `modifiedAt`
-        FROM `temfit`.`delivery_informations`
+        FROM `temfit`.`payments`
         WHERE `id` = #{id}
         LIMIT 1
     </select>
