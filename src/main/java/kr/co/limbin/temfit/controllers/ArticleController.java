@@ -5,6 +5,7 @@ import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.services.ImageService;
+import kr.co.limbin.temfit.services.ItemService;
 import kr.co.limbin.temfit.vos.ReviewVo;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -24,6 +25,7 @@ import java.io.IOException;
 public class ArticleController {
     private final ArticleService articleService;
     private final ImageService imageService;
+    private final ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -47,6 +49,10 @@ public class ArticleController {
         model.addAttribute("totalCount", totalCount);
         if (article != null) {
             this.articleService.incrementView(article);
+            ProductEntity product = this.itemService.getByProductId(article.getProductId());
+            BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
+            model.addAttribute("product", product);
+            model.addAttribute("brand", brand);
         }
         return "article/index";
     }
@@ -136,7 +142,9 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getWrite() {
+    public String getWrite(Model model) {
+        ProductEntity[] products = this.itemService.getProductAll();
+        model.addAttribute("products", products);
         return "article/write";
     }
 

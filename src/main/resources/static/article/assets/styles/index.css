@@ -491,9 +491,16 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .product-wrapper > .information-review > .information-page.-selected > .img {
-  margin-top: -1rem;
-  max-width: 40rem;
+#main > .product-wrapper > .information-review > .information-page.-selected > span {
+  font: revert;
+  line-height: 1.5;
+  list-style-type: revert;
+  margin-block: revert;
+  margin-inline: revert;
+}
+#main > .product-wrapper > .information-review > .information-page.-selected > span > .image > img {
+  max-width: 100%;
+  height: revert;
 }
 #main > .product-wrapper > .information-review > .review-container {
   display: none;

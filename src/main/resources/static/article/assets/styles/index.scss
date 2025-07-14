@@ -316,9 +316,17 @@
           @include flex(column, stretch, center, 1rem);
           margin-top: 2rem;
 
-          > .img {
-            margin-top: -1rem;
-            max-width: 40rem;
+          > span {
+            font: revert;
+            line-height: 1.5;
+            list-style-type: revert;
+            margin-block: revert;
+            margin-inline: revert;
+
+            > .image > img {
+              max-width: 100%;
+              height: revert;
+            }
           }
         }
       }
@@ -339,7 +347,7 @@
               color: #fc7899;
             }
 
-            > .--object-button{
+            > .--object-button {
               font-size: 0.875rem;
               font-weight: 400;
               padding: 1rem;

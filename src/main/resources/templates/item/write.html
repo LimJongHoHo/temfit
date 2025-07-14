@@ -29,7 +29,7 @@
         </label>
         <label class="--object-label-row">
             <span class="---caption">상품이름</span>
-            <input name="productName" class="--object-field ---field -flex-stretch" placeholder="상품이름을 입력해주세요."
+            <input name="productName" maxlength="50" minlength="1" class="--object-field ---field -flex-stretch" placeholder="상품이름을 입력해주세요."
                    type="text">
         </label>
         <label class="--object-label-row">
@@ -48,7 +48,7 @@
         </label>
         <label class="--object-label-row">
             <span class="---caption">용량</span>
-            <input name="size" class="--object-field ---field -flex-stretch" placeholder="상세히 적어주세요.( 예: 145ml*3 )" type="text">
+            <input name="size" maxlength="50" minlength="50" class="--object-field ---field -flex-stretch" placeholder="상세히 적어주세요.( 예: 145ml*3 )" type="text">
         </label>
         <label class="--object-label-row">
             <span class="---caption">가격</span>
@@ -71,7 +71,7 @@
         </label>
         <label class="--object-label-row">
             <span class="---caption">배송비고란</span>
-            <input name="deliveryAdd" class="--object-field ---field -flex-stretch" type="text">
+            <input name="deliveryAdd" maxlength="50" minlength="1" class="--object-field ---field -flex-stretch" type="text">
         </label>
         <div class="button-container">
             <a class="--object-button -color-gray" onclick="window.close()">돌아가기</a>

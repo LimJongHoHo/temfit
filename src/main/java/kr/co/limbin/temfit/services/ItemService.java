@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class ItemService {
-
     private final ItemMapper itemMapper;
 
     public Result insert(UserEntity signedUser, ProductEntity product) {
@@ -33,6 +32,18 @@ public class ItemService {
         product.setCreatedAt(LocalDateTime.now());
         product.setDeleted(false);
         return this.itemMapper.insert(product) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public ProductEntity getByProductId(int id) {
+        return this.itemMapper.getByProductId(id);
+    }
+
+    public BrandEntity getByBrandId(int id) {
+        return this.itemMapper.getByBrandId(id);
+    }
+
+    public ProductEntity[] getProductAll() {
+        return this.itemMapper.getProductAll();
     }
 
     public BrandEntity[] getBrandALl() {

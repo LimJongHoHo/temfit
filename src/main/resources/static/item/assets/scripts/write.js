@@ -107,8 +107,8 @@ $itemWriteForm.onsubmit = (e) => {
                 dialog.showSimpleOk('상품등록', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
                 break;
             case 'success':
-                dialog.showSimpleOk('상품등록', '상품등록을 성공하였습니다.', () => {
-                    $itemWriteForm.querySelector(':scope > .button-container > a').click();
+                dialog.showSimpleOk('상품등록', '상품등록을 성공하였습니다.', {
+                    onOkCallback: () => $itemWriteForm.querySelector(':scope > .button-container > a').click()
                 });
                 break;
             default:

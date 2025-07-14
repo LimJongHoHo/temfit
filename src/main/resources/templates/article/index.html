@@ -53,13 +53,12 @@
                 <button class="--object-button -color-red delete" type="button">삭제</button>
             </div>
             <div class="brand">
-                <img class="img" src="https://img.hwahae.co.kr/brands/3264/3264_20230405140512.png?size=120x120"
-                     alt="torridenImg">
-                <span class="title">토리든</span>
+                <img th:alt="${brand.getName()}" class="img"
+                     th:src="${brand.getImageUrl()}">
+                <span class="title" th:text="${brand.getName()}"></span>
             </div>
             <ul class="caption">
-                <li class="text cosmetic-sub-title">에스네이처</li>
-                <li class="text cosmetic-title">아쿠아 오아시스 토너 300ml 더블 기획(토너+토너+화장솜)</li>
+                <li class="text cosmetic-title" th:text="${article.getTitle()}"></li>
             </ul>
             <div class="star-container">
                 <div class="star-scope">
@@ -70,10 +69,10 @@
             </div>
             <div class="product-container">
                 <div class="item-box">
-                    <img class="item" th:src="${cover.getCoverUrl1()}" alt="item">
+                    <img th:alt="${product.getName()}" class="item" th:src="${product.getImageUrl()}">
                     <div class="container">
                         <a class="option" href="#">판매 중인 상품 옵션보기 </a>
-                        <a class="caption" href="#">아쿠아 오아시스 토너 300ml 더블 기획 (토너+토너)</a>
+                        <a class="caption" href="#" th:text="${product.getName()}"></a>
                     </div>
                     <button class="button">
                         <img class="sortDown" src="/assets/images/sortdown.png" alt="">
@@ -83,8 +82,8 @@
             <div class="sell-container">
                 <h2 class="title">템핏쇼핑 판매가</h2>
                 <div class="price-container">
-                    <p class="percent">64%</p>
-                    <p class="price">18,900원</p>
+                    <p class="percent" th:text="${product.getDiscountRate() + '%'}"></p>
+                    <p class="price" th:text="${product.getPrice() + '원'}"></p>
                 </div>
             </div>
             <div class="point-container">
@@ -104,7 +103,7 @@
             <div class="caption-container">
                 <div class="row">
                     <label class="caption">정가</label>
-                    <span class="content">300ml / 53,000원</span>
+                    <span class="content" th:text="${product.getSize() + ' / '} + ${product.getPrice()}">300ml / 53,000원</span>
                 </div>
                 <div class="row">
                     <label class="caption">랭킹</label>
@@ -118,12 +117,12 @@
                     <label class="caption">배송비</label>
                     <div class="delivery-box">
                         <div class="delivery-container">
-                            <span class="main-content">무료배송</span>
+                            <span class="main-content" th:text="${product.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}">무료배송</span>
                             <span class="link-content">|</span>
-                            <span class="content">CJ대한통운</span>
+                            <span class="content" th:text="${product.getDeliveryCompany()}"></span>
                         </div>
                         <div class="delivery-caption">
-                            <span class="caption">제주 3,000원, 그 외 도서산간지역 5,500원 추가</span>
+                            <span class="caption" th:text="${product.getDeliveryAdd()}"></span>
                         </div>
                     </div>
                 </div>

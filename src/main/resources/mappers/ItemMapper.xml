@@ -36,4 +36,63 @@
         WHERE `is_deleted` = FALSE
         ORDER BY `name`
     </select>
+
+    <select id="getProductAll">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               `skin_id`           AS `skinId`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`products`
+        WHERE `is_deleted` = FALSE
+        ORDER BY `name`
+    </select>
+    <select id="getByProductId" resultType="kr.co.limbin.temfit.entities.ProductEntity">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               `skin_id`           AS `skinId`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`products`
+        WHERE `is_deleted` = FALSE
+        AND `id` = #{id}
+        LIMIT 1
+    </select>
+
+    <select id="getByBrandId" resultType="kr.co.limbin.temfit.entities.BrandEntity">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`brands`
+        WHERE `is_deleted` = FALSE
+        AND `id` = #{id}
+        LIMIT 1
+    </select>
 </mapper>

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = "id")
 public class ArticleEntity {
     private int id;
+    private int productId;
     private String userEmail;
     private String title;
     private String content;

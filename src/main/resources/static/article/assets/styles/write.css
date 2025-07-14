@@ -58,6 +58,29 @@
   position: relative;
   margin-bottom: 0.5rem;
 }
+#writeForm > .--object-label.product {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+#writeForm > .--object-label.product > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#writeForm > .--object-label.product > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#writeForm > .--object-label:has(textarea) * {
+  font: revert;
+  line-height: 1.5;
+  list-style-type: revert;
+  margin-block: revert;
+  margin-inline: revert;
+}
 #writeForm > .button-container {
   align-items: stretch;
   display: flex;
@@ -72,13 +95,6 @@
 #writeForm > .button-container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
-}
-#writeForm > .--object-label:has(textarea) * {
-  font: revert;
-  line-height: 1.5;
-  list-style-type: revert;
-  margin-block: revert;
-  margin-inline: revert;
 }
 
 /*# sourceMappingURL=write.css.map */

@@ -10,6 +10,12 @@ import org.apache.ibatis.annotations.Param;
 public interface ItemMapper {
     int insert(@Param(value = "product") ProductEntity product);
 
+    ProductEntity getByProductId(@Param(value = "id") int id);
+
+    ProductEntity[] getProductAll();
+
+    BrandEntity getByBrandId(@Param(value = "id") int id);
+
     BrandEntity[] selectBrandAll();
 
     SkinEntity[] selectSkinAll();

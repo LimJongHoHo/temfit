@@ -5,9 +5,9 @@
             useGeneratedKeys="true"
             keyColumn="id"
             keyProperty="id">
-        INSERT INTO `temfit`.`articles` (`user_email`, `title`, `content`, `view`, `created_at`, `modified_at`,
+        INSERT INTO `temfit`.`articles` (`product_id`, `user_email`, `title`, `content`, `view`, `created_at`, `modified_at`,
                                             `is_deleted`)
-        VALUES (#{article.userEmail}, #{article.title}, #{article.content}, #{article.view},
+        VALUES (#{article.productId}, #{article.userEmail}, #{article.title}, #{article.content}, #{article.view},
                 #{article.createdAt}, #{article.modifiedAt}, #{article.isDeleted})
     </insert>
 
@@ -19,6 +19,7 @@
 
     <select id="selectBySearch" resultType="kr.co.limbin.temfit.vos.ArticleVo">
         SELECT `t0`.`id`          AS `id`,
+               `t0`.`product_id`  AS `productId`,
                `t0`.`user_email`  AS `userEmail`,
                `t0`.`title`       AS `title`,
                `t0`.`content`     AS `content`,
@@ -39,6 +40,7 @@
 
     <select id="selectById" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
         SELECT `id`          AS `id`,
+               `product_id`          AS `productId`,
                `user_email`  AS `userEmail`,
                `title`       AS `title`,
                `content`     AS `content`,
@@ -78,7 +80,8 @@
 
     <update id="update">
         UPDATE `temfit`.`articles`
-        SET `user_email`  = #{article.userEmail},
+        SET `product_id`  = #{article.productId},
+            `user_email`  = #{article.userEmail},
             `title`       = #{article.title},
             `content`     = #{article.content},
             `view`        = #{article.view},
@@ -86,6 +89,7 @@
             `modified_at` = #{article.modifiedAt},
             `is_deleted`  = #{article.isDeleted}
         WHERE `id` = #{article.id}
+        LIMIT 1
     </update>
 
     <update id="updateCover">
@@ -100,5 +104,6 @@
             `cover_Url_8` = #{cover.coverUrl8},
             `created_at`  = #{cover.createdAt}
         WHERE `article_id` = #{cover.articleId}
+        LIMIT 1
     </update>
 </mapper>

@@ -57,15 +57,22 @@
     }
   }
 
-  > .button-container {
-    @include flex(row, stretch, flex-end, 0.5rem);
+  > .--object-label {
+    &.product {
+      @include flex(row, stretch, flex-start, 1rem);
+      margin-bottom: 1rem;
+    }
+
+    &:has(textarea) * {
+      font: revert;
+      line-height: 1.5;
+      list-style-type: revert;
+      margin-block: revert;
+      margin-inline: revert;
+    }
   }
 
-  > .--object-label:has(textarea) * {
-    font: revert;
-    line-height: 1.5;
-    list-style-type: revert;
-    margin-block: revert;
-    margin-inline: revert;
+  > .button-container {
+    @include flex(row, stretch, flex-end, 0.5rem);
   }
 }
