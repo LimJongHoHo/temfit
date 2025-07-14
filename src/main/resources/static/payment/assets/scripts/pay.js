@@ -137,20 +137,21 @@ const hidePay = () => {
 }
 
 const showPay = () => {
-    const $menu = $pay.querySelector(':scope > .menu');
-    $menu.innerHTML = '';
+    // const $menu = $pay.querySelector(':scope > .menu');
+    // $menu.innerHTML = '';
+    // let total = 0;
+    // for (const name of Object.keys(cartMap)) {
+    //     const cartObj = cartMap[name];
+    //     total += cartObj['price'] * cartObj['quantity'];
+    //     $menu.innerHTML += `
+    //         <li class="item">
+    //             <span class="name">${name}</span>
+    //             <span class="count">(${cartObj['quantity']})</span>
+    //             <span class="stretch"></span>
+    //             <span class="price">${(cartObj['price'] * cartObj['quantity']).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
+    //         </li>`;
+    // }
     let total = 0;
-    for (const name of Object.keys(cartMap)) {
-        const cartObj = cartMap[name];
-        total += cartObj['price'] * cartObj['quantity'];
-        $menu.innerHTML += `
-            <li class="item">
-                <span class="name">${name}</span>
-                <span class="count">(${cartObj['quantity']})</span>
-                <span class="stretch"></span>
-                <span class="price">${(cartObj['price'] * cartObj['quantity']).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
-            </li>`;
-    }
     $pay.querySelector(':scope > .total').innerText = `${total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원`
     $payCover.classList.add('visible');
     $pay.classList.add('visible');
@@ -159,10 +160,6 @@ const showPay = () => {
 $pay.querySelector(':scope > .button-container > .button.cancel').addEventListener('click', hidePay);
 
 $pay.querySelector(':scope > .button-container > .button.confirm').addEventListener('click', () => {
-    if ($pay.querySelector(`:scope > .method-container > .label > .radio[value="card"]`).checked === true) {
-        showDialog('현재 일시적으로 카트 결제가 불가능합니다. 카운터에 문의해 주세요.');
-        return;
-    }
     const date = new Date();
     const imp = window.IMP;
     const names = Object.keys(cartMap);
@@ -170,24 +167,28 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
     if (names.length > 1) {
         name += ` 외 ${names.length - 1}건`;
     }
-    let amonut = 0;
+    let amount = 0;
 
-    names.forEach((name) => amonut += cartMap[name]['price'] * cartMap[name][`quantity`]);
+    // names.forEach((name) => amount += cartMap[name]['price'] * cartMap[name][`quantity`]);
     imp.init('imp54886024');
     imp.request_pay({
         pg: 'kakaopay.TC0ONETIME',
         pay_method: 'card',
         merchant_uid: `IMP-${date.getTime()}`,
         name: name,
-        amount: amonut,
+        amount: amount,
         buyer_email: 'vkdlxj321@naver.com',
         buyer_name: '임종호'
     }, (resp) => {
         if (resp.success === true) {
-            showDialog(`결제가 완료되었습니다. 주문번호: 37`, () => location.reload());
+            dialog.showSimpleOk(`결제가 완료되었습니다. 주문번호: 37`, () => location.reload());
         } else {
-            showDialog(`결제에 실패하였습니다. (${resp['error_msg']})`)
+            dialog.showSimpleOk(`결제에 실패하였습니다. (${resp['error_msg']})`);
         }
     });
 });
 
+
+$paymentForm.querySelector(':scope > .--object-button').addEventListener('click', () => {
+    showPay();
+});

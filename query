@@ -186,7 +186,7 @@ CREATE TABLE `temfit`.`products`
 );
 
 //250711 배송지 정보
-CREATE TABLE `temfit`.`delivery_informations`
+CREATE TABLE `temfit`.`payments`
 (
     `id`                INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `user_email`        VARCHAR(50)  NOT NULL,
