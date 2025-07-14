@@ -28,17 +28,13 @@ public class ItemService {
             return CommonResult.FAILURE_SESSION_EXPIRED;
         }
 
-        if (payment == null
-                || !ArticleService.isContentValid(payment.getDeliveryContent())) {
+        if (payment == null) {
             return CommonResult.FAILURE;
         }
 
-        payment.setId(1); //하드코딩
         payment.setUserEmail(user.getEmail());
         payment.setCreatUserEmail(user.getEmail());
-        payment.setModifyUserEmail(user.getEmail());
         payment.setCreatedAt(LocalDateTime.now());
-        payment.setModifiedAt(null);
         payment.setDeleted(false);
 
         return this.paymentMapper.insert(payment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;

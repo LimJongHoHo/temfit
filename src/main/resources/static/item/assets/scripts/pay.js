@@ -91,7 +91,7 @@ $pay.onsubmit = (e) => {
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
-    formData.append('content', $pay['content'].value);
+    formData.append('deliveryContent', $pay['content'].value);
     formData.append('name', $pay['name'].value);
     formData.append('contactMvnoCode', $pay['contactMvno'].value);
     formData.append('contactFirst', $pay['contactFirst'].value);
@@ -110,8 +110,11 @@ $pay.onsubmit = (e) => {
         }
         const response = JSON.parse(xhr.responseText);
         switch (response.result) {
-            case 'failure':
+            case 'failure_session_expired':
                 dialog.showSimpleOk('결제', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
+                break;
+            case 'failure':
+                dialog.showSimpleOk('결제', '결제에 실패하였습니다.');
                 break;
             case 'success':
                 dialog.showSimpleOk('결제', '결제를 성공하였습니다.');
@@ -121,6 +124,6 @@ $pay.onsubmit = (e) => {
                 dialog.showSimpleOk('결제', '알 수 없는 이유로 결제하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
         }
     };
-    xhr.open('POST', '/pay');
+    xhr.open('POST', '/item/');
     xhr.send(formData);
 };
