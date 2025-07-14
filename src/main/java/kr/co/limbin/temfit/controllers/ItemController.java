@@ -30,10 +30,9 @@ public class ItemController {
 //    }
 
     @RequestMapping(value = "/pay-complete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getPayComplete() {
-//    public String getPayComplete(@RequestParam(value = "paymentId", required = false) int paymentId, Model model) {
-//        PaymentEntity payment = this.itemService.getByPaymentAll(paymentId);
-//        model.addAttribute("payment", payment);
+    public String getPayComplete(@RequestParam(value = "id", required = false) int id, Model model) {
+        PaymentEntity payment = this.itemService.getById(id);
+        model.addAttribute("payment", payment);
 
         return "item/pay-complete";
     }

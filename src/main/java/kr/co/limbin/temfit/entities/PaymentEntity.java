@@ -21,6 +21,7 @@ public class PaymentEntity {
     private String addressPrimary;
     private String addressSecondary;
     private String deliveryContent;
+    private int totalPrice;
     private String creatUserEmail;
     private String modifyUserEmail;
     private boolean isDeleted;

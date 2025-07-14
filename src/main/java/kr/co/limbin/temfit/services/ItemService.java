@@ -16,13 +16,6 @@ public class ItemService {
     private final PaymentMapper paymentMapper;
     private final ItemMapper itemMapper;
 
-    public PaymentEntity getById(int id) {
-        if (id < 1) {
-            return null;
-        }
-        return this.paymentMapper.selectById(id);
-    }
-
     public Result paymentWrite(UserEntity user, PaymentEntity payment) {
         if (user == null || user.isDeleted() || user.isSuspended()) {
             return CommonResult.FAILURE_SESSION_EXPIRED;
@@ -40,11 +33,11 @@ public class ItemService {
         return this.paymentMapper.insert(payment) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public PaymentEntity getByPaymentAll(int paymentId) {
-        if (paymentId < 1) {
+    public PaymentEntity getById(int id) {
+        if (id < 1) {
             return null;
         }
-        return this.paymentMapper.selectByAll(paymentId);
+        return this.paymentMapper.selectById(id);
     }
 
     public Result insert(UserEntity signedUser, ProductEntity product) {

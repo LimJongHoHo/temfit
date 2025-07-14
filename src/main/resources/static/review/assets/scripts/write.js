@@ -19,6 +19,7 @@ $writeForm.onsubmit = (e) => {
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
+    formData.append('articleId', new URL(location.href).searchParams.get('articleId'))
     formData.append('content', editor.getData());
     xhr.onreadystatechange = () => {
         if (xhr.readyState !== XMLHttpRequest.DONE) {

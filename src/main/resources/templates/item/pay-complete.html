@@ -22,19 +22,19 @@
                     <label class="caption">입금처리</label>
                     <div class="item-container">
                         <span class="content">KakaoPay 결제</span>
-                        <span class="price-content">0원</span>
+                        <span class="price-content" th:text="${payment.getTotalPrice() + '원'}"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="caption">주문번호</label>
-                    <span class="content">53154634321</span>
+                    <span class="content" th:text="${payment.getId()}"></span>
                 </div>
                 <div class="row">
                     <label class="caption">배송지</label>
                     <div class="item-container">
-                        <span class="content">홍길동</span>
-                        <span class="content">010-0000-0000</span>
-                        <span class="content">서울시 마포구 2층 1층 3층 4층</span>
+                        <span class="content" th:text="${payment.getName()}"></span>
+                        <span class="content" th:text="${payment.getContactFirst() + '-' + payment.getContactSecond() + '-' + payment.getContactThird()}"></span>
+                        <span class="content" th:text="${payment.getAddressSecondary()}"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row">
                     <label class="caption">배송메모</label>
-                    <span class="content">배송 전에 연락 바랍니다.</span>
+                    <span class="content" th:text="${payment.getDeliveryContent()}"></span>
                 </div>
             </div>
             <button class="--object-button -color-pink" type="button">

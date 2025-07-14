@@ -100,6 +100,7 @@ $pay.onsubmit = (e) => {
     formData.append('addressPostal', $pay['addressPostal'].value);
     formData.append('addressPrimary', $pay['addressPrimary'].value);
     formData.append('addressSecondary', $pay['addressSecondary'].value);
+    formData.append('totalPrice', '27900');
     xhr.onreadystatechange = () => {
         if (xhr.readyState !== XMLHttpRequest.DONE) {
             return;
@@ -118,7 +119,7 @@ $pay.onsubmit = (e) => {
                 break;
             case 'success':
                 dialog.showSimpleOk('결제', '결제를 성공하였습니다.');
-                location.href = `/item/pay-complete?paymentId=${response.id}`;
+                location.href = `/item/pay-complete?id=${response.id}`;
                 break;
             default:
                 dialog.showSimpleOk('결제', '알 수 없는 이유로 결제하지 못하였습니다. 잠시 후 다시 시도해 주세요.');

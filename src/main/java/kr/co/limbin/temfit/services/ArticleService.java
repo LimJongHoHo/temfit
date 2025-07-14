@@ -205,8 +205,7 @@ public class ArticleService {
                 || !ArticleService.isContentValid(review.getContent())) {
             return CommonResult.FAILURE;
         }
-
-        review.setArticleId(1); //하드코딩
+        
         review.setUserEmail(user.getEmail());
         review.setCreatedAt(LocalDateTime.now());
         review.setModifiedAt(null);
