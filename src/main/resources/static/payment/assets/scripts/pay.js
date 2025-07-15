@@ -93,7 +93,7 @@ $paymentForm.onsubmit = (e) => {
 };
 
 const $payCover = document.getElementById('payCover');
-const $pay = document.getElementById('pay')
+const $pay = document.getElementById('pay');
 
 const hidePay = () => {
     $payCover.classList.remove('visible');
@@ -147,7 +147,7 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
                         dialog.showSimpleOk('결제', '결제에 실패하였습니다.');
                         break;
                     case 'success':
-                        dialog.showSimpleOk('결제가 완료되었습니다.', {
+                        dialog.showSimpleOk('결제','결제가 완료되었습니다.', {
                                 onOkCallback: () => location.href = `/payment/pay-complete?id=${response.id}`
                             });
                         break;

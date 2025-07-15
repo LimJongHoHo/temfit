@@ -14,6 +14,18 @@
 </head>
 <body>
 <div class="--dialog"></div>
+<div id="itemCover"></div>
+<div id="item">
+    <div class="title">아누아 피디알엔 캡슐 100 세럼 50ml 대용량 기획 ( + 크림 10ml)</div>
+    <div class="sub-item">
+            <span class="count">
+                <button class="minus"></button>
+                <button class="plus"></button>
+            </span>
+        <span class="sale">55%</span>
+        <span class="price">26,400원</span>
+    </div>
+</div>
 <div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
@@ -210,6 +222,10 @@
         </div>
     </main>
     <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+    <form id="button-container">
+        <button class="--object-button cart" name="cartButton" type="button">장바구니 담기</button>
+        <button class="--object-button -color-pink" name="button" type="button">바로 구매</button>
+    </form>
 </div>
 </body>
 </html>

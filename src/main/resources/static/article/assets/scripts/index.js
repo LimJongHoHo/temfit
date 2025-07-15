@@ -1,3 +1,4 @@
+const $buttonForm = document.getElementById('button-container');
 const $informationReview = document.querySelector('#main > .product-wrapper >.information-review');
 const $information = $informationReview.querySelector(':scope > .two-container > .content.information');
 const $review = $informationReview.querySelector(':scope > .two-container > .content.review');
@@ -77,3 +78,13 @@ $delete.addEventListener('click', () => {
         ]
     });
 });
+
+const $itemCover = document.getElementById('itemCover');
+const $item = document.getElementById('item');
+
+$buttonForm['cartButton'].addEventListener('click', () => {
+    $itemCover.classList.add('visible');
+    $item.classList.add('visible');
+});
+
+
