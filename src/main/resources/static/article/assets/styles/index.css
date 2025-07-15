@@ -966,7 +966,6 @@
   border-radius: 0.75rem;
   display: none;
   padding: 2rem;
-  position: fixed;
   transform: translate(-50%, -50%);
   z-index: 998;
 }
@@ -980,6 +979,7 @@
 }
 #item.visible {
   display: flex;
+  position: fixed;
 }
 #item.visible > .title {
   font-size: 1rem;
