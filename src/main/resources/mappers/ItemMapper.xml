@@ -95,4 +95,29 @@
         AND `id` = #{id}
         LIMIT 1
     </select>
+    <select id="getByCartId">
+        SELECT `t0`.`id`                      AS `id`,
+               `t0`.`cart_id`                 AS `cartId`,
+               `t0`.`product_id`              AS `productId`,
+               `t0`.`article_id`              AS `articleId`,
+               `t0`.`quantity`                AS `quantity`,
+               `t0`.`creat_user_email`        AS `creatUserEmail`,
+               `t0`.`created_at`              AS `createdAt`,
+               `t1`.image_url                 AS `productImage`,
+               `t1`.`name`                    AS `productName`,
+               `t1`.`price`                   AS `productPrice`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `t1`.`brand_id`) AS `brandName`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `t1`.`skin_id`)  AS `skinName`,
+               `t1`.`delivery_fee`            AS `deliveryFee`,
+               `t1`.`delivery_company`        AS `deliveryCompany`
+        FROM `temfit`.`cart_detail` AS `t0`
+                 LEFT JOIN `temfit`.`products` AS `t1` ON `t0`.`product_id` = `t1`.`id`
+        WHERE `t0`.`cart_id` = #{cartId}
+          AND `t1`.`is_deleted` = FALSE
+        ORDER BY `t0`.`id`
+    </select>
 </mapper>

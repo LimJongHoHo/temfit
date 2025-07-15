@@ -3,6 +3,7 @@ package kr.co.limbin.temfit.mappers;
 import kr.co.limbin.temfit.entities.BrandEntity;
 import kr.co.limbin.temfit.entities.ProductEntity;
 import kr.co.limbin.temfit.entities.SkinEntity;
+import kr.co.limbin.temfit.vos.CartDetailVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +20,6 @@ public interface ItemMapper {
     BrandEntity[] selectBrandAll();
 
     SkinEntity[] selectSkinAll();
+
+    CartDetailVo[] getByCartId(@Param(value = "cartId") int cartId);
 }

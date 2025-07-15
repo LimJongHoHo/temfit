@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -19,7 +19,7 @@
 <div class="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
-        <div class="empty-cart-container">
+        <div th:if="${cartDetails == null}" class="empty-cart-container">
             <img src="/assets/images/cart-warning.png" alt="">
             <h1 class="caption">장바구니에 담은 삼품이 없어요</h1>
             <h2 class="sub-caption">마음에 드는 상품을 담아보세요</h2>
@@ -27,15 +27,37 @@
                 <a class="button" href="/main">상품 보러 가기</a>
             </button>
         </div>
-
+        <div th:if="${cartDetails != null}" class="product-container">
+            <span class="title">주문 상품 정보</span>
+            <div class="caption">
+                <span class="title">템핏쇼핑</span>
+                <div class="-flex-stretch"></div>
+                <span class="free">배송비 무료</span>
+            </div>
+            <div class="item-box" th:each="cartDetail : ${cartDetails}">
+                <img th:alt="${cartDetail.getProductName()}"
+                     class="item"
+                     th:src="${cartDetail.getProductImage()}">
+                <div class="container">
+                    <div class="brand-container">
+                        <a class="title" href="#" th:text="${cartDetail.getBrandName()}"></a>
+                        <a class="caption" th:href="@{/article/ (id = ${cartDetail.getArticleId()})}" th:text="${cartDetail.getProductName()}"></a>
+                    </div>
+                    <div class="item-container">
+                        <div class="item">
+                            <h2 class="price" th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></h2>
+                            <h3 class="count" th:text="${'/ ' + cartDetail.getQuantity() + '개'}"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="cart-container">
             <div class="top-container">
                 <img class="img" src="/assets/images/cart-warning.png" alt="">
                 <p class="caption">장바구니에 담은 상품은 최대 30일간 저장돼요</p>
             </div>
         </div>
-
-
     </main>
     <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
 </div>

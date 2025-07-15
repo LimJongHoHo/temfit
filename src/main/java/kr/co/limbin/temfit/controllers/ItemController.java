@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/item")
 @RequiredArgsConstructor
 public class ItemController {
-
     private final ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

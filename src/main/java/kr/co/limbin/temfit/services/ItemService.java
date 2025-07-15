@@ -4,6 +4,7 @@ import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.mappers.ItemMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.vos.CartDetailVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,4 +55,7 @@ public class ItemService {
         return this.itemMapper.selectSkinAll();
     }
 
+    public CartDetailVo[] getByCartId(int cartId) {
+        return this.itemMapper.getByCartId(cartId);
+    }
 }
