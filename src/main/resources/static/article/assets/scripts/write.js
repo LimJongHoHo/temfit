@@ -5,7 +5,6 @@ const $coverContainer = $writeForm.querySelector(':scope > .cover-container');
 const $coverAddButton = $coverContainer.querySelector(':scope > .add');
 const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basic > input');
 
-
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget.parentNode;
     if ($coverLabel.classList.contains('basic')) {
@@ -66,7 +65,6 @@ $writeForm.onsubmit = (e) => {
         });
         return;
     }
-
     if ($writeForm['title'].value === '') {
         dialog.showSimpleOk('게시글 작성', '제목을 입력해 주세요.', {
             onOkCallback: () => $writeForm['title'].focus()

@@ -131,12 +131,13 @@ public class ArticleController {
     public String getModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, Model model) {
         ArticleEntity article = this.articleService.getById(id);
         ArticleCoverEntity cover = this.articleService.getByIdCover(id);
-
+        ProductEntity[] products = this.itemService.getProductAll();
         if (article != null && (signedUser == null || !article.getUserEmail().equals(signedUser.getEmail()) && signedUser.isAdmin())) {
             article = null;
         }
         model.addAttribute("article", article);
         model.addAttribute("cover", cover);
+        model.addAttribute("products", products);
 
         return "article/modify";
     }

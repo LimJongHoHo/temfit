@@ -59,6 +59,12 @@ $coverAddButton.addEventListener('click', () => {
 $modifyForm.onsubmit = (e) => {
     e.preventDefault();
 
+    if ($modifyForm['product'].value === 'none') {
+        dialog.showSimpleOk('게시글 작성', '상품을 선택해주세요.', {
+            onOkCallback: () => $writeForm['product'].focus()
+        });
+        return;
+    }
     if ($modifyForm['title'].value === '') {
         dialog.showSimpleOk('게시글 작성', '제목을 입력해 주세요.', {
             onOkCallback: () => $modifyForm['title'].focus()
@@ -103,6 +109,7 @@ $modifyForm.onsubmit = (e) => {
         i++;
     });
     formData.append('id', $modifyForm['id'].value);
+    formData.append('productId', $modifyForm['product'].value);
     formData.append('title', $modifyForm['title'].value);
     formData.append('content', editor.getData());
     xhr.onreadystatechange = () => {
