@@ -2,6 +2,7 @@ const $paymentForm = document.getElementById('payForm');
 const nameRegex = new RegExp('^([가-힣]{2,5})$')
 const contactSecondRegex = new RegExp('^(\\d{3,4})$');
 const contactThirdRegex = new RegExp('^(\\d{4})$');
+const totalPrice = document.getElementById('totalPrice').innerText;
 
 $paymentForm['addressFindButton'].addEventListener('click', () => {
     const $addressFindDialog = document.getElementById('addressFindDialog');
@@ -78,7 +79,6 @@ $paymentForm.onsubmit = (e) => {
         $paymentForm['contactThird'].focus();
         return;
     }
-
     if (!$paymentForm['agreeServiceTerm'].checked) {
         dialog.showSimpleOk('결제', '주문내용 확인 및 결제에 동의해 주세요.');
         return;
@@ -87,47 +87,9 @@ $paymentForm.onsubmit = (e) => {
         dialog.showSimpleOk('결제', '개인정보 이용약관에 동의해 주세요.');
         return;
     }
-
-    showPay();
-
-    const xhr = new XMLHttpRequest();
-    const formData = new FormData();
-    formData.append('deliveryContent', $paymentForm['content'].value);
-    formData.append('name', $paymentForm['name'].value);
-    formData.append('contactMvnoCode', $paymentForm['contactMvno'].value);
-    formData.append('contactFirst', $paymentForm['contactFirst'].value);
-    formData.append('contactSecond', $paymentForm['contactSecond'].value);
-    formData.append('contactThird', $paymentForm['contactThird'].value);
-    formData.append('addressPostal', $paymentForm['addressPostal'].value);
-    formData.append('addressPrimary', $paymentForm['addressPrimary'].value);
-    formData.append('addressSecondary', $paymentForm['addressSecondary'].value);
-    formData.append('totalPrice', '27900');
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState !== XMLHttpRequest.DONE) {
-            return;
-        }
-        if (xhr.status < 200 || xhr.status >= 300) {
-            dialog.showSimpleOk('결제', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
-            return;
-        }
-        const response = JSON.parse(xhr.responseText);
-        switch (response.result) {
-            case 'failure_session_expired':
-                dialog.showSimpleOk('결제', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
-                break;
-            case 'failure':
-                dialog.showSimpleOk('결제', '결제에 실패하였습니다.');
-                break;
-            case 'success':
-                dialog.showSimpleOk('결제', '결제를 성공하였습니다.');
-                location.href = `/payment/pay-complete?id=${response.id}`;
-                break;
-            default:
-                dialog.showSimpleOk('결제', '알 수 없는 이유로 결제하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
-        }
-    };
-    xhr.open('POST', '/payment/');
-    xhr.send(formData);
+    $pay.querySelector(':scope > .total').innerText = `${totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원`
+    $payCover.classList.add('visible');
+    $pay.classList.add('visible');
 };
 
 const $payCover = document.getElementById('payCover');
@@ -138,59 +100,66 @@ const hidePay = () => {
     $pay.classList.remove('visible');
 }
 
-const showPay = () => {
-    // const $menu = $pay.querySelector(':scope > .menu');
-    // $menu.innerHTML = '';
-    // let total = 0;
-    // for (const name of Object.keys(cartMap)) {
-    //     const cartObj = cartMap[name];
-    //     total += cartObj['price'] * cartObj['quantity'];
-    //     $menu.innerHTML += `
-    //         <li class="item">
-    //             <span class="name">${name}</span>
-    //             <span class="count">(${cartObj['quantity']})</span>
-    //             <span class="stretch"></span>
-    //             <span class="price">${(cartObj['price'] * cartObj['quantity']).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
-    //         </li>`;
-    // }
-    let total = 0;
-    $pay.querySelector(':scope > .total').innerText = `${total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원`
-    $payCover.classList.add('visible');
-    $pay.classList.add('visible');
-};
-
 $pay.querySelector(':scope > .button-container > .button.cancel').addEventListener('click', hidePay);
 
 $pay.querySelector(':scope > .button-container > .button.confirm').addEventListener('click', () => {
+
     const date = new Date();
     const imp = window.IMP;
-    const names = Object.keys(cartMap);
-    let name = names[0];
-    if (names.length > 1) {
-        name += ` 외 ${names.length - 1}건`;
-    }
-    let amount = 0;
 
-    names.forEach((name) => amount += cartMap[name]['price'] * cartMap[name][`quantity`]);
     imp.init('imp54886024');
     imp.request_pay({
         pg: 'kakaopay.TC0ONETIME',
         pay_method: 'card',
         merchant_uid: `IMP-${date.getTime()}`,
-        name: name,
-        amount: amount,
+        name: 'Temfit',
+        amount: totalPrice,
         buyer_email: 'vkdlxj321@naver.com',
         buyer_name: '임종호'
     }, (resp) => {
         if (resp.success === true) {
-            dialog.showSimpleOk(`결제가 완료되었습니다. 주문번호: 37`, () => location.reload());
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append('deliveryContent', $paymentForm['content'].value);
+            formData.append('name', $paymentForm['name'].value);
+            formData.append('contactMvnoCode', $paymentForm['contactMvno'].value);
+            formData.append('contactFirst', $paymentForm['contactFirst'].value);
+            formData.append('contactSecond', $paymentForm['contactSecond'].value);
+            formData.append('contactThird', $paymentForm['contactThird'].value);
+            formData.append('addressPostal', $paymentForm['addressPostal'].value);
+            formData.append('addressPrimary', $paymentForm['addressPrimary'].value);
+            formData.append('addressSecondary', $paymentForm['addressSecondary'].value);
+            formData.append('totalPrice', totalPrice);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState !== XMLHttpRequest.DONE) {
+                    return;
+                }
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    dialog.showSimpleOk('결제', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                    return;
+                }
+                const response = JSON.parse(xhr.responseText);
+                switch (response.result) {
+                    case 'failure_session_expired':
+                        dialog.showSimpleOk('결제', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
+                        break;
+                    case 'failure':
+                        dialog.showSimpleOk('결제', '결제에 실패하였습니다.');
+                        break;
+                    case 'success':
+                        dialog.showSimpleOk('결제가 완료되었습니다.', {
+                                onOkCallback: () => location.href = `/payment/pay-complete?id=${response.id}`
+                            });
+                        break;
+                    default:
+                        dialog.showSimpleOk('결제', '알 수 없는 이유로 결제하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+                }
+            };
+            xhr.open('POST', '/payment/');
+            xhr.send(formData);
         } else {
             dialog.showSimpleOk(`결제에 실패하였습니다. (${resp['error_msg']})`);
         }
     });
 });
 
-
-// $paymentForm.querySelector(':scope > .--object-button').addEventListener('click', () => {
-//     showPay();
-// });
