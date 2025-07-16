@@ -16,14 +16,12 @@
 <div class="--dialog"></div>
 <div id="itemCover"></div>
 <div id="item">
-    <div class="title">아누아 피디알엔 캡슐 100 세럼 50ml 대용량 기획 ( + 크림 10ml)</div>
-    <div class="sub-item">
-            <span class="count">
-                <button class="minus"></button>
-                <button class="plus"></button>
-            </span>
-        <span class="sale">55%</span>
-        <span class="price">26,400원</span>
+    <span class="title"> 장바구니담기 성공 !</span>
+    <span class="item-title" th:text="${product.getName()}"></span>
+    <span class="title">이(가) 장바구니에 정상적으로 담겼습니다.</span>
+    <div class="button-container">
+        <button class="--object-button cart" type="button">계속 쇼핑하기</button>
+        <button class="--object-button -color-pink" type="button">장바구니 보러가기</button>
     </div>
 </div>
 <div id="container">
@@ -115,7 +113,8 @@
             <div class="caption-container">
                 <div class="row">
                     <label class="caption">정가</label>
-                    <span class="content" th:text="${product.getSize() + ' / '} + ${product.getPrice()}">300ml / 53,000원</span>
+                    <span class="content"
+                          th:text="${product.getSize() + ' / '} + ${product.getPrice()}">300ml / 53,000원</span>
                 </div>
                 <div class="row">
                     <label class="caption">랭킹</label>
@@ -129,7 +128,8 @@
                     <label class="caption">배송비</label>
                     <div class="delivery-box">
                         <div class="delivery-container">
-                            <span class="main-content" th:text="${product.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}">무료배송</span>
+                            <span class="main-content"
+                                  th:text="${product.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}">무료배송</span>
                             <span class="link-content">|</span>
                             <span class="content" th:text="${product.getDeliveryCompany()}"></span>
                         </div>
@@ -163,7 +163,8 @@
                         <h1 class="title">리뷰</h1>
                         <h2 class="review-count" th:text="${totalCount}"></h2>
                         <div class="-flex-stretch"></div>
-                        <a class="--object-button -color-pink" th:href="@{/review/write (id = ${article.getId()})}">리뷰 작성하기</a>
+                        <a class="--object-button -color-pink" th:href="@{/review/write (id = ${article.getId()})}">리뷰
+                            작성하기</a>
                     </div>
                     <div class="review" th:each="review : ${reviews}">
                         <div class="review-caption">
@@ -222,10 +223,11 @@
         </div>
     </main>
     <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
-    <form id="button-container">
-        <button class="--object-button cart" name="cartButton" type="button">장바구니 담기</button>
-        <button class="--object-button -color-pink" name="button" type="button">바로 구매</button>
-    </form>
+    <div class="button-container">
+        <button class="--object-button cart -flex-stretch" name="cartButton" type="button">장바구니 담기</button>
+        <a th:href="@{/payment/ (productId = ${product.getId()})}" class="--object-button -color-pink -flex-stretch">바로
+            구매</a>
+    </div>
 </div>
 </body>
 </html>

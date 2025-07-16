@@ -1,9 +1,10 @@
 package kr.co.limbin.temfit.controllers;
 
-import kr.co.limbin.temfit.entities.PaymentEntity;
-import kr.co.limbin.temfit.entities.UserEntity;
+import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.services.ArticleService;
+import kr.co.limbin.temfit.services.ItemService;
 import kr.co.limbin.temfit.services.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     private final PaymentService paymentService;
+    private final ArticleService articleService;
+    private final ItemService itemService;
 
     @RequestMapping(value = "/pay-complete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getPayComplete(@RequestParam(value = "id", required = false) int id, Model model) {
@@ -30,7 +33,12 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getPayment() {
+    public String getPayment(@RequestParam(value = "productId", required = false) int productId, Model model) {
+        ProductEntity product = this.itemService.getByProductId(productId);
+        BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
+        model.addAttribute("product", product);
+        model.addAttribute("brand", brand);
+
         return "payment/pay";
     }
 

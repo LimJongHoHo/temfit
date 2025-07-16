@@ -776,12 +776,10 @@
   flex-shrink: 1;
 }
 
-#button-container {
-  align-items: stretch;
-  display: flex;
-  flex-direction: row;
-  gap: 0.375rem;
-  justify-content: flex-start;
+#container > .button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
   max-width: 40rem;
   padding: 0.625rem 1.625rem;
   margin: 0 auto;
@@ -790,21 +788,13 @@
   position: sticky;
   z-index: 999;
 }
-#button-container > * {
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-#button-container > .-flex-stretch {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-#button-container > .--object-button {
-  width: 18rem;
+#container > .button-container > .--object-button {
+  max-width: 18rem;
   padding: 1.5rem;
   font-size: 1rem;
   font-weight: 600;
 }
-#button-container > .--object-button.cart {
+#container > .button-container .cart {
   border: 0.1rem solid #fc7899;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -955,15 +945,16 @@
 }
 
 #item {
-  align-items: center;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  justify-content: flex-start;
+  justify-content: stretch;
   top: 50%;
   left: 50%;
   background-color: #ffffff;
   border-radius: 0.75rem;
+  width: 25rem;
   display: none;
   padding: 2rem;
   transform: translate(-50%, -50%);
@@ -983,17 +974,65 @@
 }
 #item.visible > .title {
   font-size: 1rem;
+  font-weight: 600;
+}
+#item.visible > .item-title {
+  color: #a2a4a6;
+  font-size: 1rem;
   font-weight: 500;
 }
+#item.visible > .sub-item {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+}
+#item.visible > .sub-item > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#item.visible > .sub-item > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
 #item.visible > .sub-item > .sale {
+  margin-right: 0.875rem;
   font-size: 1.4rem;
   font-weight: 600;
   color: #fc7899;
 }
 #item.visible > .sub-item > .price {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #1d1d1e;
+}
+#item.visible > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1.625rem;
+}
+#item.visible > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#item.visible > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#item.visible > .button-container > .--object-button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1.3rem;
+}
+#item.visible > .button-container > .--object-button.cart {
+  border: 0.1rem solid #7a7c7e;
+  border-radius: 0.5rem;
+  color: #7a7c7e;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,4 @@
-const $buttonForm = document.getElementById('button-container');
+const $buttonForm = document.querySelector('#container > .button-container > .--object-button.cart.-flex-stretch');
 const $informationReview = document.querySelector('#main > .product-wrapper >.information-review');
 const $information = $informationReview.querySelector(':scope > .two-container > .content.information');
 const $review = $informationReview.querySelector(':scope > .two-container > .content.review');
@@ -82,9 +82,23 @@ $delete.addEventListener('click', () => {
 const $itemCover = document.getElementById('itemCover');
 const $item = document.getElementById('item');
 
-$buttonForm['cartButton'].addEventListener('click', () => {
+$buttonForm.addEventListener('click', () => {
     $itemCover.classList.add('visible');
     $item.classList.add('visible');
 });
+
+
+
+
+const hidePay = () => {
+    $itemCover.classList.remove('visible');
+    $item.classList.remove('visible');
+}
+
+$item.querySelector(':scope > .button-container > .--object-button.cart').addEventListener('click', hidePay);
+
+
+
+
 
 

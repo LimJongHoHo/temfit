@@ -100,16 +100,16 @@
             </div>
             <div class="item-box">
                 <img class="item"
-                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                     alt="item">
+                     th:src="${product.getImageUrl()}"
+                     th:alt="${product.getName()}">
                 <div class="container">
                     <div class="brand-container">
-                        <a class="title" href="#">토리든</a>
-                        <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                        <a class="title" href="#" th:text="${brand.getName()}"></a>
+                        <a class="caption" href="#" th:text="${product.getName()}"></a>
                     </div>
                     <div class="item-container">
                         <div class="item">
-                            <h2 class="price">27,900원</h2>
+                            <h2 class="price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></h2>
                             <h3 class="count">/ 1개</h3>
                         </div>
                     </div>
@@ -126,12 +126,12 @@
             <div class="container">
                 <span class="sub-title">배송비</span>
                 <div class="-flex-stretch"></div>
-                <span class="product-price">무료</span>
+                <span class="product-price" th:text="${product.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}"></span>
             </div>
             <div class="total-pay">
                 <span class="title">총 결제 금액</span>
                 <div class="-flex-stretch"></div>
-                <span id="totalPrice" class="pay-price">27900</span>
+                <span id="totalPrice" class="pay-price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>
             </div>
         </div>
         <div class="pay">
