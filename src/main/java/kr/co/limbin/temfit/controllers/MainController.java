@@ -1,6 +1,9 @@
 package kr.co.limbin.temfit.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import kr.co.limbin.temfit.entities.BrandEntity;
+import kr.co.limbin.temfit.entities.ProductEntity;
+import kr.co.limbin.temfit.entities.SkinEntity;
 import kr.co.limbin.temfit.entities.UserEntity;
 import kr.co.limbin.temfit.services.ItemService;
 import kr.co.limbin.temfit.vos.CartDetailVo;
@@ -32,18 +35,21 @@ public class MainController {
     }
 
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getRank() {
+//    public String getRank(){
+    public String getRank(@RequestParam(value = "productId", required = false) int productId,Model model) {
+
+        ProductEntity product = this.itemService.getByProductId(productId);
+        BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
+        SkinEntity skin = this.itemService.getBySkinId(product.getSkinId());
+        model.addAttribute("product", product);
+        model.addAttribute("brand", brand);
+        model.addAttribute("skin", skin);
         return "main/rank";
     }
 
     @RequestMapping(value = "/index_search", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndexSearch() {
         return "main/index_search";
-    }
-
-    @RequestMapping(value = "/brand", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getBrand() {
-        return "main/brand";
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

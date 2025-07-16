@@ -15,8 +15,12 @@
     margin-bottom: 0.625rem;
     border-bottom: 0.0625rem solid #e0e2e4;
 
-    > .ranking {
-      font-weight: 800;
+    > .button {
+
+      > .ranking {
+        cursor: pointer;
+        font-weight: 800;
+      }
     }
 
     > .line {
@@ -55,97 +59,236 @@
     }
   }
 
-  > .c-container {
-    > .title-box {
-      > .label {
-        margin-right: 1rem;
-        font-size: 0.785rem;
-        font-weight: 400;
-        padding: 0.35rem;
-        color: #a2a4a6;
-        border: 0.0625rem solid #e0e2e4;
-        border-radius: 0.465rem;
+  > .skin-container {
+    display: none;
 
-        & :hover {
-          cursor: pointer;
+    &.visible {
+      display: block;
+
+      > .title-box {
+        > .label {
+          margin-right: 1rem;
+          font-size: 0.785rem;
+          font-weight: 400;
+          padding: 0.35rem;
+          color: #a2a4a6;
+          border: 0.0625rem solid #e0e2e4;
+          border-radius: 0.465rem;
+
+          & :hover {
+            cursor: pointer;
+          }
+
+          &:has(.radio:checked) {
+            border-color: #2d2d2d;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            font-weight: 500;
+          }
+
+          > .radio {
+            display: none;
+          }
+
+        }
+      }
+    }
+  }
+
+  > .age-container {
+    display: none;
+
+    &.visible {
+      display: block;
+
+      > .title-box {
+        > .label {
+          margin-right: 1rem;
+          font-size: 0.785rem;
+          font-weight: 400;
+          padding: 0.35rem;
+          color: #a2a4a6;
+          border: 0.0625rem solid #e0e2e4;
+          border-radius: 0.465rem;
+
+          & :hover {
+            cursor: pointer;
+          }
+
+          &:has(.radio:checked) {
+            border-color: #2d2d2d;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            font-weight: 500;
+          }
+
+          > .radio {
+            display: none;
+          }
+
+        }
+      }
+    }
+  }
+
+  > .brand-container {
+    display: none;
+
+    &.visible {
+      display: block;
+
+      > .brand {
+        @include flex(row, center, flex-start, 1rem);
+        font-size: 0.875rem;
+        font-weight: 600;
+
+        > .img {
+          width: 2.45rem;
+          border: 0.0625rem solid #eaecee;
+          border-radius: 999rem;
         }
 
-        &:has(.radio:checked) {
-          border-color: #2d2d2d;
-          background-color: #2d2d2d;
-          color: #f0f0f0;
+        > .sub-title {
+          color: #a2a4a6;
+          margin-left: -0.625rem;
+          font-size: 0.75rem;
           font-weight: 500;
         }
-
-        > .radio {
-          display: none;
-        }
-
       }
-    }
 
-    > .line {
-      margin-top: 1rem;
-
-      > .item-box {
-        @include flex(row, center, flex-start);
-        padding: 0.785rem 0;
-        font-weight: 500;
+      > .line {
         margin-top: 1rem;
-        border-radius: 0.425rem;
-        box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
 
-        > .medal {
-          margin-left: 1rem;
-          width: 2rem;
-        }
+        > .item-box {
+          @include flex(row, center, flex-start);
+          padding: 0.785rem 0;
+          font-weight: 500;
+          margin-top: 1rem;
+          border-radius: 0.425rem;
+          box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
 
-        > .rank {
-          margin-left: 1.7rem;
-          width: 1.3rem;
-        }
-
-        > .item {
-          width: 5rem;
-          margin-right: 1rem;
-        }
-
-        > .container {
-          @include flex(column, flex-start, flex-start, 0.25rem);
-
-          > .brand-container {
-            > .title {
-              color: #757575;
-              margin-right: 0.25rem;
-            }
+          > .medal {
+            margin-left: 1rem;
+            width: 2rem;
           }
 
-          > .star-container {
-            @include flex(column, flex-start, flex-start, 1rem);
+          > .rank {
+            margin-left: 1.7rem;
+            width: 1.3rem;
+          }
 
-            > .star-scope {
-              @include flex(row, center, flex-start, 0.25rem);
+          > .item {
+            width: 5rem;
+            margin-right: 1rem;
+          }
 
-              > .starImg {
-                width: 0.75rem;
+          > .container {
+            @include flex(column, flex-start, flex-start, 0.25rem);
+
+            > .brand-container {
+              > .title {
+                color: #757575;
+                margin-right: 0.25rem;
               }
+            }
 
-              > .score {
-                font-size: 0.7rem;
-                font-weight: 300;
-                color: #2d2d2d;
-              }
+            > .star-container {
+              @include flex(column, flex-start, flex-start, 1rem);
 
-              > .number {
-                font-size: 0.6rem;
-                color: #a2a4a6;
+              > .star-scope {
+                @include flex(row, center, flex-start, 0.25rem);
+
+                > .starImg {
+                  width: 0.75rem;
+                }
+
+                > .score {
+                  font-size: 0.7rem;
+                  font-weight: 300;
+                  color: #2d2d2d;
+                }
+
+                > .number {
+                  font-size: 0.6rem;
+                  color: #a2a4a6;
+                }
               }
+            }
+          }
+        }
+        > .box {
+          > .item-box {
+            font-size: 0.8rem;
+            padding: 1rem;
+
+            > .item {
+              width: 3.875rem;
             }
           }
         }
       }
     }
+  }
+  > .line {
+    margin-top: 1rem;
 
+    > .item-box {
+      @include flex(row, center, flex-start);
+      padding: 0.785rem 0;
+      font-weight: 500;
+      margin-top: 1rem;
+      border-radius: 0.425rem;
+      box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
+
+      > .medal {
+        margin-left: 1rem;
+        width: 2rem;
+      }
+
+      > .rank {
+        margin-left: 1.7rem;
+        width: 1.3rem;
+      }
+
+      > .item {
+        width: 5rem;
+        margin-right: 1rem;
+      }
+
+      > .container {
+        @include flex(column, flex-start, flex-start, 0.25rem);
+
+        > .brand-container {
+          > .title {
+            color: #757575;
+            margin-right: 0.25rem;
+          }
+        }
+
+        > .star-container {
+          @include flex(column, flex-start, flex-start, 1rem);
+
+          > .star-scope {
+            @include flex(row, center, flex-start, 0.25rem);
+
+            > .starImg {
+              width: 0.75rem;
+            }
+
+            > .score {
+              font-size: 0.7rem;
+              font-weight: 300;
+              color: #2d2d2d;
+            }
+
+            > .number {
+              font-size: 0.6rem;
+              color: #a2a4a6;
+            }
+          }
+        }
+      }
+    }
     > .box {
       > .item-box {
         font-size: 0.8rem;
@@ -154,26 +297,6 @@
         > .item {
           width: 3.875rem;
         }
-
-      }
-    }
-
-    > .brand {
-      @include flex(row, center, flex-start, 1rem);
-      font-size: 0.875rem;
-      font-weight: 600;
-
-      > .img {
-        width: 2.45rem;
-        border: 0.0625rem solid #eaecee;
-        border-radius: 999rem;
-      }
-
-      > .sub-title {
-        color: #a2a4a6;
-        margin-left: -0.625rem;
-        font-size: 0.75rem;
-        font-weight: 500;
       }
     }
   }

@@ -17,6 +17,8 @@ public interface ItemMapper {
 
     BrandEntity getByBrandId(@Param(value = "id") int id);
 
+    SkinEntity getBySkinId(@Param(value = "id") int id);
+
     BrandEntity[] selectBrandAll();
 
     SkinEntity[] selectSkinAll();

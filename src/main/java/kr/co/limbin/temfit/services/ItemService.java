@@ -42,6 +42,9 @@ public class ItemService {
     public BrandEntity getByBrandId(int id) {
         return this.itemMapper.getByBrandId(id);
     }
+    public SkinEntity getBySkinId(int id) {
+        return this.itemMapper.getBySkinId(id);
+    }
 
     public ProductEntity[] getProductAll() {
         return this.itemMapper.getProductAll();
@@ -58,4 +61,5 @@ public class ItemService {
     public CartDetailVo[] getByCartId(int cartId) {
         return this.itemMapper.getByCartId(cartId);
     }
+
 }

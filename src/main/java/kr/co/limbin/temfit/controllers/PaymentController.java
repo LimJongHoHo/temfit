@@ -3,9 +3,9 @@ package kr.co.limbin.temfit.controllers;
 import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
-import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.services.ItemService;
 import kr.co.limbin.temfit.services.PaymentService;
+import kr.co.limbin.temfit.vos.CartDetailVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     private final PaymentService paymentService;
-    private final ArticleService articleService;
     private final ItemService itemService;
 
     @RequestMapping(value = "/pay-complete", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -32,13 +31,13 @@ public class PaymentController {
         return "payment/pay-complete";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getPayment(@RequestParam(value = "productId", required = false) int productId, Model model) {
-        ProductEntity product = this.itemService.getByProductId(productId);
-        BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
-        model.addAttribute("product", product);
-        model.addAttribute("brand", brand);
-
+    @RequestMapping(value = "/pay", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getPayment(@RequestParam(value = "cartId", required = false) int cartId, Model model) {
+        CartDetailVo[] cartDetails = this.itemService.getByCartId(cartId);
+        if (cartDetails.length != 0) {
+            System.out.println(1);
+            model.addAttribute("cartDetails", cartDetails);
+        }
         return "payment/pay";
     }
 
@@ -52,5 +51,14 @@ public class PaymentController {
             response.put("id", payment.getId());
         }
         return response.toString();
+    }
+
+    @RequestMapping(value = "/pay-one", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getPayOne(@RequestParam(value = "productId", required = false) int productId, Model model) {
+        ProductEntity product = this.itemService.getByProductId(productId);
+        BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
+        model.addAttribute("product", product);
+        model.addAttribute("brand", brand);
+        return "payment/pay-one";
     }
 }

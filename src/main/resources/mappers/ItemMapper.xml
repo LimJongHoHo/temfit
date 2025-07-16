@@ -120,4 +120,16 @@
           AND `t1`.`is_deleted` = FALSE
         ORDER BY `t0`.`id`
     </select>
+    <select id="getBySkinId" resultType="kr.co.limbin.temfit.entities.SkinEntity">
+        SELECT `id`                AS `id`,
+               `name`              AS `name`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`skins`
+        WHERE `is_deleted` = FALSE
+        AND `id` = #{id}
+    </select>
 </mapper>

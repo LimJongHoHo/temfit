@@ -55,25 +55,17 @@
     }
 
     > .item-box {
-      @include flex(row, center, flex-start);
-      padding: 0.675rem 0;
+      @include flex(row, center, stretch);
       font-weight: 500;
 
-      > .medal {
-        width: 2rem;
-      }
-
       > .item {
-        width: 5rem;
+        max-width: 5rem;
+        margin-left: 1rem;
       }
 
-      > .title {
-        color: #757575;
-        margin-right: 0.25rem;
-      }
-
-      > .container {
-        @include flex(column, flex-start, flex-start, 0.25rem);
+      > .item-container {
+        @include flex(column, stretch, flex-start, 0.5rem);
+        max-width: 20rem;
 
         > .brand-container {
           > .title {
@@ -82,23 +74,25 @@
           }
         }
 
-        > .item-container {
-          @include flex(row, flex-start, flex-start, 1rem);
+        > .price-container {
+          @include flex(row, stretch, center);
+          height: 2rem;
 
-          > .item {
-            @include flex(row, center, flex-start, 0.25rem);
+          > .price {
+            font-size: 0.95rem;
+            font-weight: 600;
+          }
 
-            > .price {
-              font-size: 0.95rem;
-              font-weight: 600;
-            }
-
-            > .count {
-              font-size: 0.8rem;
-              color: #a2a4a6;
-            }
+          > .count {
+            height: 2rem;
+            padding: 0 0.75rem;
           }
         }
+      }
+
+      > .total-price {
+        padding-left: 1.5rem;
+        font-size: 1.25rem;
       }
     }
   }

@@ -88,8 +88,6 @@ $buttonForm.addEventListener('click', () => {
 });
 
 
-
-
 const hidePay = () => {
     $itemCover.classList.remove('visible');
     $item.classList.remove('visible');

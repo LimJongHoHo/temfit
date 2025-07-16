@@ -4,6 +4,8 @@ const $startButton = $checkBoxLabel.querySelector(':scope > .icon.start');
 const $pauseButton = $checkBoxLabel.querySelector(':scope > .icon.pause');
 const $imageTable = document.getElementById('imageTable');
 const $categoryButton = document.querySelector('#main > .A-container > .button');
+
+
 let currentPage = -1;
 
 console.log($categoryButton);
