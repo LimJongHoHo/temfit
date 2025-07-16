@@ -35,4 +35,23 @@ public class ItemController {
         model.addAttribute("skins", skins);
         return "item/write";
     }
+
+    @RequestMapping(value = "/cart-detail", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteCartDetail(@RequestParam(value = "cartDetailId") int cartDetailId) {
+        Result result = this.itemService.deleteCartDetail(cartDetailId);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/cart-detail", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchCartDetail(@RequestParam(value = "cartDetailId") int cartDetailId, @RequestParam(value = "calc") String calc) {
+        Result result = this.itemService.updateCartDetail(cartDetailId, calc);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
 }

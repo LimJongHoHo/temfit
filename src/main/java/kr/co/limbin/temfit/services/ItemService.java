@@ -15,6 +15,36 @@ import java.time.LocalDateTime;
 public class ItemService {
     private final ItemMapper itemMapper;
 
+    public Result deleteCartDetail(int cartDetailId) {
+        if (cartDetailId <1) {
+            return CommonResult.FAILURE;
+        }
+
+        return this.itemMapper.deleteCartDetail(cartDetailId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Result updateCartDetail(int cartDetailId, String calc) {
+        if (cartDetailId <1) {
+            return CommonResult.FAILURE;
+        }
+
+        if (calc == null ||
+                (!calc.equals("plus") && !calc.equals("minus"))) {
+            return CommonResult.FAILURE;
+        }
+
+        CartDetailEntity dbCartDetail = this.itemMapper.getCartDetail(cartDetailId);
+
+        if (calc.equals("plus")) {
+            dbCartDetail.setQuantity(dbCartDetail.getQuantity() + 1);
+        }
+        if (calc.equals("minus")) {
+            dbCartDetail.setQuantity(dbCartDetail.getQuantity() - 1);
+        }
+
+        return this.itemMapper.updateCartDetail(dbCartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
     public Result insert(UserEntity signedUser, ProductEntity product) {
         if (signedUser == null
                 || signedUser.isDeleted()

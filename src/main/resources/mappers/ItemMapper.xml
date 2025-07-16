@@ -10,6 +10,25 @@
                        #{product.imageUrl}, #{product.name}, #{product.brandId}, #{product.skinId}, #{product.size}, #{product.price}, #{product.discountRate}, #{product.deliveryFee}, #{product.deliveryCompany}, #{product.deliveryAdd}, #{product.creatUserEmail}, #{product.modifyUserEmail}, #{product.createdAt}, #{product.modifiedAt}, #{product.isDeleted})
     </insert>
 
+    <update id="updateCartDetail">
+        UPDATE `temfit`.`cart_detail`
+        SET `cart_id`          = #{cartDetail.cartId},
+            `product_id`       = #{cartDetail.productId},
+            `article_id`       = #{cartDetail.articleId},
+            `quantity`         = #{cartDetail.quantity},
+            `creat_user_email` = #{cartDetail.creatUserEmail},
+            `created_at`       = #{cartDetail.createdAt}
+        WHERE `id` = #{cartDetail.id}
+        LIMIT 1
+    </update>
+
+    <delete id="deleteCartDetail">
+        DELETE
+        FROM `temfit`.`cart_detail`
+        WHERE `id` = #{cartDetailId}
+        LIMIT 1
+    </delete>
+
     <select id="selectBrandAll">
         SELECT `id`                AS `id`,
                `image_url`         AS `imageUrl`,
@@ -131,5 +150,18 @@
         FROM `temfit`.`skins`
         WHERE `is_deleted` = FALSE
         AND `id` = #{id}
+    </select>
+
+    <select id="getCartDetail" resultType="kr.co.limbin.temfit.entities.CartDetailEntity">
+        SELECT `id`               AS `id`,
+               `cart_id`          AS `cartId`,
+               `product_id`       AS `productId`,
+               `article_id`       AS `articleId`,
+               `quantity`         AS `quantity`,
+               `creat_user_email` AS `creatUserEmail`,
+               `created_at`       AS `createdAt`
+        FROM `temfit`.`cart_detail`
+        WHERE `id` = #{cartDetailId}
+        LIMIT 1
     </select>
 </mapper>

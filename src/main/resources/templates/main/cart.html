@@ -37,7 +37,9 @@
                 <span class="free">배송비 무료</span>
             </div>
             <div class="item-box" th:each="cartDetail : ${cartDetails}">
-                <input hidden name="cartDetailId" th:value="${cartDetail.getId()}" type="hidden">
+                <input hidden class="cartDetailId" th:value="${cartDetail.getId()}" type="hidden">
+                <input hidden class="price" th:value="${cartDetail.getProductPrice()}" type="hidden">
+                <input hidden class="totalPrice" th:value="${cartDetail.getProductPrice() * cartDetail.getQuantity()}" type="hidden">
                 <button class="--object-button -color-red delete" type="button">X</button>
                 <img th:alt="${cartDetail.getProductName()}"
                      class="item"
@@ -57,8 +59,7 @@
                         <button class="--object-button -color-gray plus" type="button">+</button>
                     </div>
                 </div>
-                <span class="total-price" name="totalPrice"
-                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
+                <span class="total-price"  th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
             </div>
         </div>
         <div class="cart-container">
