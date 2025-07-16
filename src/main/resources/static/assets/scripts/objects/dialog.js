@@ -63,7 +63,7 @@ export class Dialog{
     /**
      * @param {string} title
      * @param {string} content
-     * @param {{delay?: number, onClickCallback?: function(HTMLElement)}?} args */
+     * @param {{delay?: number, isContentHtml?: boolean, onClickCallback?: function(HTMLElement)}?} args */
     showSimpleOk = (title, content, args = {}) => {
         return this.show({
             title : title,
@@ -77,7 +77,6 @@ export class Dialog{
                     onClickCallback: ($modal) => {
                         this.hide($modal);
                         args?.onClickCallback?.($modal); // ~?/() 는 선행하는 피연산자가 있으면 호출하겠다는 의미.
-
                     }
                 }
             ]

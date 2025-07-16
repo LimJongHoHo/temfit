@@ -13,10 +13,12 @@
         alert('로그인 후 이용할 수 있습니다.');
         location.href = `${origin}/user/login?forward=${encodeURI(location.href)}`;
     </script>
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script defer src="/main/assets/scripts/cart.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="--dialog"></div>
-<div class="container">
+<div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
         <div th:if="${cartDetails == null}" class="empty-cart-container">
@@ -35,21 +37,28 @@
                 <span class="free">배송비 무료</span>
             </div>
             <div class="item-box" th:each="cartDetail : ${cartDetails}">
+                <input hidden name="cartDetailId" th:value="${cartDetail.getId()}" type="hidden">
+                <button class="--object-button -color-red delete" type="button">X</button>
                 <img th:alt="${cartDetail.getProductName()}"
                      class="item"
                      th:src="${cartDetail.getProductImage()}">
-                <div class="container">
+                <div class="item-container">
                     <div class="brand-container">
                         <a class="title" href="#" th:text="${cartDetail.getBrandName()}"></a>
-                        <a class="caption" th:href="@{/article/ (id = ${cartDetail.getArticleId()})}" th:text="${cartDetail.getProductName()}"></a>
+                        <a class="caption" th:href="@{/article/ (id = ${cartDetail.getArticleId()})}"
+                           th:text="${cartDetail.getProductName()}"></a>
                     </div>
-                    <div class="item-container">
-                        <div class="item">
-                            <h2 class="price" th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></h2>
-                            <h3 class="count" th:text="${'/ ' + cartDetail.getQuantity() + '개'}"></h3>
-                        </div>
+                    <div class="price-container">
+                        <span class="price"
+                              th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
+                        <span class="-flex-stretch" role="none"></span>
+                        <button class="--object-button -color-gray minus" type="button">-</button>
+                        <span class="--object-button count" th:text="${cartDetail.getQuantity()}"></span>
+                        <button class="--object-button -color-gray plus" type="button">+</button>
                     </div>
                 </div>
+                <span class="total-price" name="totalPrice"
+                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
             </div>
         </div>
         <div class="cart-container">
