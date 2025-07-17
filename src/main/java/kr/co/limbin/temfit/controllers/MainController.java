@@ -35,15 +35,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-//    public String getRank(){
-    public String getRank(@RequestParam(value = "productId", required = false) int productId,Model model) {
+    public String getRank(Model model) {
 
-        ProductEntity product = this.itemService.getByProductId(productId);
-        BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
-        SkinEntity skin = this.itemService.getBySkinId(product.getSkinId());
-        model.addAttribute("product", product);
-        model.addAttribute("brand", brand);
-        model.addAttribute("skin", skin);
+        BrandEntity[] brands = this.itemService.getBrandALl();
+        SkinEntity[] skins = this.itemService.getSkinALl();
+        model.addAttribute("brands", brands);
+        model.addAttribute("skins", skins);
+
         return "main/rank";
     }
 

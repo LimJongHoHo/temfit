@@ -92,4 +92,7 @@ public class ItemService {
         return this.itemMapper.getByCartId(cartId);
     }
 
+    public ProductEntity[] getProductByBrandId(int brandId) {
+        return this.itemMapper.getProductByBrandId(brandId);
+    }
 }

@@ -164,4 +164,26 @@
         WHERE `id` = #{cartDetailId}
         LIMIT 1
     </select>
+    <select id="getProductByBrandId">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               `skin_id`           AS `skinId`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`products`
+        WHERE `is_deleted` = FALSE
+          AND `brand_id` = #{brandId}
+        ORDER BY `name`
+    </select>
 </mapper>

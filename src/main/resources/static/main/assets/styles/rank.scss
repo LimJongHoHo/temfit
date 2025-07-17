@@ -65,67 +65,25 @@
     &.visible {
       display: block;
 
-      > .title-box {
-        > .label {
-          margin-right: 1rem;
-          font-size: 0.785rem;
-          font-weight: 400;
-          padding: 0.35rem;
-          color: #a2a4a6;
-          border: 0.0625rem solid #e0e2e4;
-          border-radius: 0.465rem;
+      > .label {
+        margin-right: 1rem;
+        font-size: 0.785rem;
+        font-weight: 400;
+        padding: 0.35rem;
+        color: #a2a4a6;
+        border: 0.0625rem solid #e0e2e4;
+        border-radius: 0.465rem;
 
-          & :hover {
-            cursor: pointer;
-          }
 
-          &:has(.radio:checked) {
-            border-color: #2d2d2d;
-            background-color: #2d2d2d;
-            color: #f0f0f0;
-            font-weight: 500;
-          }
-
-          > .radio {
-            display: none;
-          }
-
+        &:has(.radio:checked) {
+          border-color: #2d2d2d;
+          background-color: #2d2d2d;
+          color: #f0f0f0;
+          font-weight: 500;
         }
-      }
-    }
-  }
 
-  > .age-container {
-    display: none;
-
-    &.visible {
-      display: block;
-
-      > .title-box {
-        > .label {
-          margin-right: 1rem;
-          font-size: 0.785rem;
-          font-weight: 400;
-          padding: 0.35rem;
-          color: #a2a4a6;
-          border: 0.0625rem solid #e0e2e4;
-          border-radius: 0.465rem;
-
-          & :hover {
-            cursor: pointer;
-          }
-
-          &:has(.radio:checked) {
-            border-color: #2d2d2d;
-            background-color: #2d2d2d;
-            color: #f0f0f0;
-            font-weight: 500;
-          }
-
-          > .radio {
-            display: none;
-          }
-
+        > .radio {
+          display: none;
         }
       }
     }
@@ -216,6 +174,7 @@
             }
           }
         }
+
         > .box {
           > .item-box {
             font-size: 0.8rem;
@@ -229,6 +188,7 @@
       }
     }
   }
+
   > .line {
     margin-top: 1rem;
 
@@ -289,6 +249,7 @@
         }
       }
     }
+
     > .box {
       > .item-box {
         font-size: 0.8rem;

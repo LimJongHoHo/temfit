@@ -30,10 +30,6 @@
                 <span class="caption">피부별</span>
             </label>
             <label class="label">
-                <input class="radio age" type="radio" value="recent" name="age">
-                <span class="caption">연령대별</span>
-            </label>
-            <label class="label">
                 <input class="radio brand" type="radio" value="recent" name="brand">
                 <span class="caption">브랜드</span>
             </label>
@@ -41,62 +37,16 @@
         <div class="line"></div>
     </div>
     <div class="skin-container">
-        <label class="title-box">
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">건성</span>
+            <label class="label" th:each="skin : ${skins}">
+                <input checked class="radio " type="radio"  name="skin">
+                <a class="caption" th:text="${skin.getName()}"></a>
             </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">지성</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">중성</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">복합성</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">민감성</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">여드름</span>
-            </label>
-        </label>
-    </div>
-    <div class="age-container">
-        <label class="title-box">
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">10대</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">20대</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">30대</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">40대</span>
-            </label>
-            <label class="label">
-                <input checked class="radio" type="radio" value="recent" name="keyword">
-                <span class="caption">50대 후반</span>
-            </label>
-        </label>
     </div>
     <div class="brand-container">
-        <div class="brand">
-            <p class="num">1</p>
+        <div class="brand" th:each="brand : ${brands}">
             <img class="img" th:src="${brand.getImageUrl()}" th:alt="${brand.getName()}">
             <span class="title" th:text="${brand.getName()}"></span>
+
         </div>
         <div class="line box">
             <div class="item-box">
@@ -117,71 +67,14 @@
                     </div>
                 </div>
             </div>
-            <div class="item-box">
-                <img class="item"
-                     src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                     alt="item">
-                <div class="container">
-                    <div class="brand-container">
-                        <a class="title" href="#">토리든 </a>
-                        <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                    </div>
-                    <div class="star-container">
-                        <div class="star-scope">
-                            <img class="starImg" src="/assets/images/star.png" alt="">
-                            <h2 class="score">4.59</h2>
-                            <h3 class="number">(60,970)</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-box">
-                <img class="item"
-                     th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                <div class="container">
-                    <div class="brand-container">
-                        <a class="title" href="#" th:text="${brand.getName()}"></a>
-                        <a class="caption" href="#" th:text="${product.getName()}"></a>
-                    </div>
-                    <div class="star-container">
-                        <div class="star-scope">
-                            <img class="starImg" src="/assets/images/star.png" alt="">
-                            <h2 class="score">4.59</h2>
-                            <h3 class="number">(60,970)</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="line">
         <div class="item-box">
             <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-            <img class="item"
-                 th:alt="${product.getName()}" th:src="${product.getImageUrl()}">
-            <a class="title" th:href="@{/rank (productId = ${product.getId()})}" th:text="${brand.getName()}"></a>
-            <a class="caption" th:href="@{/rank (productId = ${product.getId()})}" th:text="${product.getName()}"></a>
-        </div>
-        <div class="item-box">
-            <img class="medal" src="/assets/images/2nd-medal.png" alt="1st-medal">
-            <img class="item"
-                 th:alt="${product.getName()}" th:src="${product.getImageUrl()}">
-            <a class="title" th:href="@{/rank (productId = ${product.getId()})}" th:text="${brand.getName()}"></a>
-            <a class="caption" th:href="@{/rank (productId = ${product.getId()})}" th:text="${product.getName()}"></a>
-        </div>
-        <div class="item-box">
-            <img class="medal" src="/assets/images/3rd-medal.png" alt="1st-medal">
-            <img class="item"
-                 th:alt="${product.getName()}" th:src="${product.getImageUrl()}">
-            <a class="title" th:href="@{/rank (productId = ${product.getId()})}" th:text="${brand.getName()}"></a>
-            <a class="caption" th:href="@{/rank (productId = ${product.getId()})}" th:text="${product.getName()}"></a>
-        </div>
-        <div class="item-box">
-            <div class="rank">4</div>
-            <img class="item"
-                 th:alt="${product.getName()}" th:src="${product.getImageUrl()}">
-            <a class="title" th:href="@{/rank (productId = ${product.getId()})}" th:text="${brand.getName()}"></a>
-            <a class="caption" th:href="@{/rank (productId = ${product.getId()})}" th:text="${product.getName()}"></a>
+            <img class="item" src="" alt="">
+            <a class="title"></a>
+            <a class="caption"></a>
         </div>
     </div>
 </main>

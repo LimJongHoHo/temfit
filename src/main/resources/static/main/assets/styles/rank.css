@@ -71,7 +71,7 @@
 #rank > .skin-container.visible {
   display: block;
 }
-#rank > .skin-container.visible > .title-box > .label {
+#rank > .skin-container.visible > .label {
   margin-right: 1rem;
   font-size: 0.785rem;
   font-weight: 400;
@@ -80,43 +80,13 @@
   border: 0.0625rem solid #e0e2e4;
   border-radius: 0.465rem;
 }
-#rank > .skin-container.visible > .title-box > .label :hover {
-  cursor: pointer;
-}
-#rank > .skin-container.visible > .title-box > .label:has(.radio:checked) {
+#rank > .skin-container.visible > .label:has(.radio:checked) {
   border-color: #2d2d2d;
   background-color: #2d2d2d;
   color: #f0f0f0;
   font-weight: 500;
 }
-#rank > .skin-container.visible > .title-box > .label > .radio {
-  display: none;
-}
-#rank > .age-container {
-  display: none;
-}
-#rank > .age-container.visible {
-  display: block;
-}
-#rank > .age-container.visible > .title-box > .label {
-  margin-right: 1rem;
-  font-size: 0.785rem;
-  font-weight: 400;
-  padding: 0.35rem;
-  color: #a2a4a6;
-  border: 0.0625rem solid #e0e2e4;
-  border-radius: 0.465rem;
-}
-#rank > .age-container.visible > .title-box > .label :hover {
-  cursor: pointer;
-}
-#rank > .age-container.visible > .title-box > .label:has(.radio:checked) {
-  border-color: #2d2d2d;
-  background-color: #2d2d2d;
-  color: #f0f0f0;
-  font-weight: 500;
-}
-#rank > .age-container.visible > .title-box > .label > .radio {
+#rank > .skin-container.visible > .label > .radio {
   display: none;
 }
 #rank > .brand-container {
