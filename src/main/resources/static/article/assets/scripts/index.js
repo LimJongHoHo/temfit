@@ -83,8 +83,33 @@ const $itemCover = document.getElementById('itemCover');
 const $item = document.getElementById('item');
 
 $buttonForm.addEventListener('click', () => {
-    $itemCover.classList.add('visible');
-    $item.classList.add('visible');
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+    formData.append('articleId', document.getElementById('articleId').value);
+    formData.append('productId', document.getElementById('productId').value);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) {
+            return;
+        }
+        if (xhr.status < 200 || xhr.status >= 300) {
+            dialog.showSimpleOk('장바구니 담기', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+            return;
+        }
+        const response = JSON.parse(xhr.responseText);
+        switch (response.result) {
+            case 'failure':
+                dialog.showSimpleOk('장바구니 담기', '장바구니 담기 실패.')
+                break;
+            case 'success':
+                $itemCover.classList.add('visible');
+                $item.classList.add('visible');
+                break;
+            default:
+                dialog.showSimpleOk('장바구니 담기', '알 수 없는 이유로 장바구니로 담지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+        }
+    };
+    xhr.open('POST', '/item/cart-detail');
+    xhr.send(formData);
 });
 
 
@@ -93,10 +118,6 @@ const hidePay = () => {
     $item.classList.remove('visible');
 }
 
-$item.querySelector(':scope > .button-container > .--object-button.cart').addEventListener('click', hidePay);
-
-
-
-
-
-
+$item.querySelector(':scope > .button-container > .--object-button.cancel').addEventListener('click', hidePay);
+$item.querySelector(':scope > .button-container > .--object-button.-color-pink.cart').addEventListener('click',
+    () => location.href = '/cart');

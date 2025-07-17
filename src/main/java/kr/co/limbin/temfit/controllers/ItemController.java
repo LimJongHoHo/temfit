@@ -3,6 +3,7 @@ package kr.co.limbin.temfit.controllers;
 import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ItemService;
+import kr.co.limbin.temfit.vos.CartDetailVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -34,6 +35,25 @@ public class ItemController {
         model.addAttribute("brands", brands);
         model.addAttribute("skins", skins);
         return "item/write";
+    }
+
+    @RequestMapping(value = "/cart-detail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postCart(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, CartDetailEntity cartDetail) {
+        Integer cartId = this.itemService.getCartId(signedUser.getEmail());
+        if (cartId == null) {
+            if (this.itemService.insertCart(signedUser) == null) {
+                // 문제 생겼을때 갈만한 페이지....
+            }
+            cartId = this.itemService.getCartId(signedUser.getEmail());
+        }
+        cartDetail.setCartId(cartId);
+        cartDetail.setCreatUserEmail(signedUser.getEmail());
+        Result result = this.itemService.insertCartDetail(cartDetail);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+
+        return response.toString();
     }
 
     @RequestMapping(value = "/cart-detail", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)

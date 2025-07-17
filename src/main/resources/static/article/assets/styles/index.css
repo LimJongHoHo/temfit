@@ -1029,7 +1029,7 @@
   font-weight: 500;
   padding: 1.3rem;
 }
-#item.visible > .button-container > .--object-button.cart {
+#item.visible > .button-container > .--object-button.cancel {
   border: 0.1rem solid #7a7c7e;
   border-radius: 0.5rem;
   color: #7a7c7e;

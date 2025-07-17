@@ -20,13 +20,15 @@
     <span class="item-title" th:text="${product.getName()}"></span>
     <span class="title">이(가) 장바구니에 정상적으로 담겼습니다.</span>
     <div class="button-container">
-        <button class="--object-button cart" type="button">계속 쇼핑하기</button>
-        <button class="--object-button -color-pink" type="button">장바구니 보러가기</button>
+        <button class="--object-button cancel" type="button">계속 쇼핑하기</button>
+        <button class="--object-button -color-pink cart" type="button">장바구니 보러가기</button>
     </div>
 </div>
 <div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
+        <input hidden id="articleId" th:value="${article.getId()}" type="hidden">
+        <input hidden id="productId" th:value="${product.getId()}" type="hidden">
         <div class="product-wrapper">
             <div class="product">
                 <div class="controller">

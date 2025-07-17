@@ -9,15 +9,29 @@
         VALUES (
                        #{product.imageUrl}, #{product.name}, #{product.brandId}, #{product.skinId}, #{product.size}, #{product.price}, #{product.discountRate}, #{product.deliveryFee}, #{product.deliveryCompany}, #{product.deliveryAdd}, #{product.creatUserEmail}, #{product.modifyUserEmail}, #{product.createdAt}, #{product.modifiedAt}, #{product.isDeleted})
     </insert>
+    <insert id="insertCart"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`carts` (`user_email`, `creat_user_email`, `modify_user_email`, `created_at`,
+                                      `modified_at`, `is_paid`)
+        VALUES (#{cart.userEmail}, #{cart.creatUserEmail}, #{cart.modifyUserEmail}, #{cart.createdAt},
+                #{cart.modifiedAt}, #{cart.isPaid})
+    </insert>
+
+    <insert id="insertCartDetail"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`cart_detail` (`cart_id`, `product_id`, `article_id`, `quantity`, `creat_user_email`,
+                                            `created_at`)
+        VALUES (#{cartDetail.cartId}, #{cartDetail.productId}, #{cartDetail.articleId}, #{cartDetail.quantity},
+                #{cartDetail.creatUserEmail}, #{cartDetail.createdAt})
+    </insert>
 
     <update id="updateCartDetail">
         UPDATE `temfit`.`cart_detail`
-        SET `cart_id`          = #{cartDetail.cartId},
-            `product_id`       = #{cartDetail.productId},
-            `article_id`       = #{cartDetail.articleId},
-            `quantity`         = #{cartDetail.quantity},
-            `creat_user_email` = #{cartDetail.creatUserEmail},
-            `created_at`       = #{cartDetail.createdAt}
+        SET `quantity` = #{cartDetail.quantity}
         WHERE `id` = #{cartDetail.id}
         LIMIT 1
     </update>
@@ -185,5 +199,22 @@
         WHERE `is_deleted` = FALSE
           AND `brand_id` = #{brandId}
         ORDER BY `name`
+    </select>
+
+    <select id="getCartId" resultType="java.lang.Integer">
+        SELECT `id`
+        FROM `temfit`.`carts`
+        WHERE `user_email` = #{userEmail}
+          AND `is_paid` = FALSE
+        LIMIT 1
+    </select>
+    <select id="getQuantity" resultType="kr.co.limbin.temfit.entities.CartDetailEntity">
+        SELECT `id`       as `id`,
+               `quantity` as `quantity`
+        FROM `temfit`.`cart_detail`
+        WHERE `cart_id` = #{cartDetail.cartId}
+          AND `product_id` = #{cartDetail.productId}
+          AND `article_id` = #{cartDetail.articleId}
+        LIMIT 1
     </select>
 </mapper>

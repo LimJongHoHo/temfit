@@ -92,6 +92,44 @@ public class ItemService {
         return this.itemMapper.getByCartId(cartId);
     }
 
+    public Integer getCartId(String userEmail) {
+        return this.itemMapper.getCartId(userEmail);
+    }
+
+    public Integer insertCart(UserEntity signedUser) {
+        if (signedUser == null ||  signedUser.isDeleted() || signedUser.isSuspended()) {
+            return null;
+        }
+
+        CartEntity cart = new CartEntity();
+
+        cart.setUserEmail(signedUser.getEmail());
+        cart.setCreatUserEmail(signedUser.getEmail());
+        cart.setCreatedAt(LocalDateTime.now());
+        cart.setPaid(false);
+
+        return this.itemMapper.insertCart(cart) > 0 ? -1 : null;
+    }
+
+    public Result insertCartDetail(CartDetailEntity cartDetail) {
+        if (cartDetail == null) {
+            return CommonResult.FAILURE;
+        }
+
+        cartDetail.setCreatedAt(LocalDateTime.now());
+
+        CartDetailEntity dbCartDetail = this.itemMapper.getQuantity(cartDetail);
+
+        if (dbCartDetail == null) {
+            cartDetail.setQuantity(1);
+            return this.itemMapper.insertCartDetail(cartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        } else {
+            cartDetail.setId(dbCartDetail.getId());
+            cartDetail.setQuantity(dbCartDetail.getQuantity() + 1);
+            return this.itemMapper.updateCartDetail(cartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        }
+    }
+
     public ProductEntity[] getProductByBrandId(int brandId) {
         return this.itemMapper.getProductByBrandId(brandId);
     }

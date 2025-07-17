@@ -53,8 +53,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getCart(@RequestParam(value = "id", required = false) int id, Model model) {
+    public String getCart(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, Model model) {
+        Integer id = this.itemService.getCartId(signedUser.getEmail());
+
         CartDetailVo[] cartDetails = this.itemService.getByCartId(id);
+
         if (cartDetails.length != 0) {
             model.addAttribute("cartDetails", cartDetails);
         }
