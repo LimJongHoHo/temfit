@@ -19,3 +19,23 @@ $rank.addEventListener('click', () => {
 });
 
 $skinContainer.click();
+
+const productItems = () => {
+    for (const product of targetProducts) {
+        $skinContainer.insertAdjacentHTML('beforeend', `
+                <div class="line">
+                    <div class="item-box">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                        <a class="title">${product['name']}</a>
+                        <a class="caption">${product['name']}</a>
+                    </div>
+                </div>`);
+    }
+};
+
+$skin.querySelectorAll(':scope > .label').forEach(($skinItem) => {
+    $skinItem.querySelector(':scope > .caption').addEventListener('click', () => {
+        alert('!')
+
+    })
+});

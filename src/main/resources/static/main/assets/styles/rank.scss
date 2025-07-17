@@ -63,56 +63,8 @@
     display: none;
 
     &.visible {
+      @include flex(row, stretch, flex-start, 1rem);
       display: block;
-
-      > .label {
-        margin-right: 1rem;
-        font-size: 0.785rem;
-        font-weight: 400;
-        padding: 0.35rem;
-        color: #a2a4a6;
-        border: 0.0625rem solid #e0e2e4;
-        border-radius: 0.465rem;
-
-
-        &:has(.radio:checked) {
-          border-color: #2d2d2d;
-          background-color: #2d2d2d;
-          color: #f0f0f0;
-          font-weight: 500;
-        }
-
-        > .radio {
-          display: none;
-        }
-      }
-    }
-  }
-
-  > .brand-container {
-    display: none;
-
-    &.visible {
-      display: block;
-
-      > .brand {
-        @include flex(row, center, flex-start, 1rem);
-        font-size: 0.875rem;
-        font-weight: 600;
-
-        > .img {
-          width: 2.45rem;
-          border: 0.0625rem solid #eaecee;
-          border-radius: 999rem;
-        }
-
-        > .sub-title {
-          color: #a2a4a6;
-          margin-left: -0.625rem;
-          font-size: 0.75rem;
-          font-weight: 500;
-        }
-      }
 
       > .line {
         margin-top: 1rem;
@@ -139,124 +91,107 @@
             width: 5rem;
             margin-right: 1rem;
           }
+        }
+      }
 
-          > .container {
-            @include flex(column, flex-start, flex-start, 0.25rem);
+      > .label {
+        margin-right: 1rem;
+        cursor: pointer;
+        border: 0.0625rem solid #e0e2e4;
+        border-radius: 0.465rem;
 
-            > .brand-container {
-              > .title {
-                color: #757575;
-                margin-right: 0.25rem;
-              }
-            }
-
-            > .star-container {
-              @include flex(column, flex-start, flex-start, 1rem);
-
-              > .star-scope {
-                @include flex(row, center, flex-start, 0.25rem);
-
-                > .starImg {
-                  width: 0.75rem;
-                }
-
-                > .score {
-                  font-size: 0.7rem;
-                  font-weight: 300;
-                  color: #2d2d2d;
-                }
-
-                > .number {
-                  font-size: 0.6rem;
-                  color: #a2a4a6;
-                }
-              }
-            }
-          }
+        > .caption {
+          padding: 0.35rem;
+          font-size: 0.785rem;
+          font-weight: 400;
+          color: #a2a4a6;
         }
 
-        > .box {
-          > .item-box {
-            font-size: 0.8rem;
-            padding: 1rem;
 
-            > .item {
-              width: 3.875rem;
-            }
-          }
+        &:has(.radio:checked) {
+          border-color: #2d2d2d;
+          background-color: #2d2d2d;
+          color: #f0f0f0;
+          font-weight: 500;
+        }
+
+        > .radio {
+          display: none;
         }
       }
     }
   }
 
-  > .line {
-    margin-top: 1rem;
+  > .brand-container {
+    display: none;
 
-    > .item-box {
-      @include flex(row, center, flex-start);
-      padding: 0.785rem 0;
-      font-weight: 500;
-      margin-top: 1rem;
-      border-radius: 0.425rem;
-      box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
+    &.visible {
+      display: block;
 
-      > .medal {
-        margin-left: 1rem;
-        width: 2rem;
-      }
+      > .brand {
+        @include flex(column, stretch, flex-start, 1rem);
+        font-size: 0.875rem;
+        font-weight: 600;
 
-      > .rank {
-        margin-left: 1.7rem;
-        width: 1.3rem;
-      }
+        > .brand-con {
+          @include flex(row, center, flex-start, 1rem);
+          padding: 1rem;
 
-      > .item {
-        width: 5rem;
-        margin-right: 1rem;
-      }
-
-      > .container {
-        @include flex(column, flex-start, flex-start, 0.25rem);
-
-        > .brand-container {
-          > .title {
-            color: #757575;
-            margin-right: 0.25rem;
+          > .img {
+            width: 2.45rem;
+            border: 0.0625rem solid #eaecee;
+            border-radius: 999rem;
           }
         }
 
-        > .star-container {
-          @include flex(column, flex-start, flex-start, 1rem);
+        > .line {
+          @include flex(column, stretch, flex-start);
 
-          > .star-scope {
-            @include flex(row, center, flex-start, 0.25rem);
+          > .item-box {
+            @include flex(row, center, flex-start);
+            padding: 0.785rem 0;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            border-radius: 0.425rem;
+            box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
 
-            > .starImg {
-              width: 0.75rem;
+            > .medal {
+              margin-left: 1rem;
+              width: 2rem;
             }
 
-            > .score {
-              font-size: 0.7rem;
-              font-weight: 300;
-              color: #2d2d2d;
+            > .rank {
+              margin-left: 1.7rem;
+              width: 1.3rem;
             }
 
-            > .number {
-              font-size: 0.6rem;
-              color: #a2a4a6;
+            > .item {
+              width: 5rem;
+              margin-right: 1rem;
+            }
+
+            > .container {
+              @include flex(column, flex-start, flex-start, 0.25rem);
+
+              > .brand-container {
+                > .title {
+                  color: #757575;
+                  margin-right: 0.25rem;
+                }
+              }
             }
           }
-        }
-      }
-    }
 
-    > .box {
-      > .item-box {
-        font-size: 0.8rem;
-        padding: 1rem;
+          > .box {
+            > .item-box {
+              font-size: 0.8rem;
+              padding: 1rem;
 
-        > .item {
-          width: 3.875rem;
+              > .item {
+                width: 3.875rem;
+              }
+            }
+          }
         }
       }
     }

@@ -39,8 +39,10 @@ public class MainController {
 
         BrandEntity[] brands = this.itemService.getBrandALl();
         SkinEntity[] skins = this.itemService.getSkinALl();
+        ProductEntity[] products = this.itemService.getProductAll();
         model.addAttribute("brands", brands);
         model.addAttribute("skins", skins);
+        model.addAttribute("products", products);
 
         return "main/rank";
     }
