@@ -37,17 +37,19 @@
         <div class="line"></div>
     </div>
     <div class="skin-container">
-        <label class="label" th:each="skin : ${skins}">
-            <input checked class="radio " type="radio" name="skin">
-            <span class="caption" th:text="${skin.getName()}"></span>
-        </label>
+        <div class="skin-label">
+            <label class="label" th:each="skin : ${skins}">
+                <input class="radio" type="radio" name="skin">
+                <span class="caption" th:text="${skin.getName()}"></span>
+            </label>
+        </div>
         <div class="line">
-            <div class="item-box" th:each="product : ${products}">
-                <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                <a class="title"></a>
-                <a class="caption" th:text="${product.getName()}"></a>
-            </div>
+<!--            <div class="item-box" th:each="product : ${products}">-->
+<!--                <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">-->
+<!--                <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}">-->
+<!--                <a class="title"></a>-->
+<!--                <a class="caption" th:text="${product.getName()}"></a>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="brand-container">
@@ -63,8 +65,8 @@
                          alt="item">
                     <div class="container">
                         <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                            <a class="title" href="#" th:text="${brand.getName()}"></a>
+                            <a class="caption" href="#"></a>
                         </div>
                     </div>
                 </div>

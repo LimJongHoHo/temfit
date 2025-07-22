@@ -98,19 +98,6 @@
                     <p class="price" th:text="${product.getPrice() + '원'}"></p>
                 </div>
             </div>
-            <div class="point-container">
-                <div class="max-point">
-                    <p class="point-title">최대 적립 포인트</p>
-                    <div class="-flex-stretch"></div>
-                    <p class="point">+389</p>
-                    <div class="underline"></div>
-                </div>
-                <div class="underline"></div>
-                <div class="caption">
-                    <p class="watch">자세히 보기</p>
-                    <img class="img" src="/assets/images/sortdown.png" alt="">
-                </div>
-            </div>
             <div class="underline"></div>
             <div class="caption-container">
                 <div class="row">
@@ -227,7 +214,7 @@
     <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
     <div class="button-container">
         <button class="--object-button cart -flex-stretch" name="cartButton" type="button">장바구니 담기</button>
-        <a th:href="@{/payment/ (productId = ${product.getId()})}" class="--object-button -color-pink -flex-stretch">바로
+        <a th:href="@{/payment/pay-one (productId = ${product.getId()})}" class="--object-button -color-pink -flex-stretch">바로
             구매</a>
     </div>
 </div>

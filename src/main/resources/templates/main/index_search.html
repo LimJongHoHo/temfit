@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -18,70 +18,27 @@
         </a>
         <input required class="search -flex-stretch" maxlength="20" minlength="1" name="search"
                placeholder="궁금한 제품을 검색해 보세요" type="text">
-        <img class="search-icon" src="/assets/images/search-icon.png" alt="search-icon">
+        <button class="--object-button" type="button">
+            <img class="search-icon" src="/assets/images/search-icon.png" alt="search-icon">
+        </button>
     </label>
 </header>
 <main id="main">
-    <div class="caption-container">
-        <p class="date">6월 27일 금요일 02:00</p>
-        <h2 class="caption">지금 가장 많이 구매하고 있어요</h2>
+    <div class="search-none" th:if="${products == null}">
+        <img src="/assets/images/cart-warning.png" alt="">
+        <h1 class="caption">검색하신 상품이 없어요</h1>
+        <h2 class="sub-caption">마음에 드는 상품을 검색해 보세요</h2>
     </div>
-    <div class="line">
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+    <div class="line" th:if="${products != null}">
+        <div class="caption">
+            <span class="keyword" th:text="${keyword + '(을)를 검색한 결과입니다.'}"></span>
         </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
+        <div class="item-box" th:each="product : ${products}">
+            <a class="medal" href="#" th:text="${product.getNum()}"></a>
+            <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}"
                  alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-        </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-        </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-        </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-        </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-        </div>
-        <div class="item-box">
-            <a class="medal" href="#">1</a>
-            <img class="item"
-                 src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                 alt="item">
-            <a class="title" href="#">토리든 </a>
-            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+            <a class="title" th:text="${product.getBrandName()}" href=""></a>
+            <a class="caption" href="#" th:text="${product.getName()}"></a>
         </div>
     </div>
 </main>

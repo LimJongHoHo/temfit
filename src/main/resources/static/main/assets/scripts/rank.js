@@ -7,6 +7,7 @@ const $brand = document.querySelector('#rank > .brand-container');
 $skinContainer.addEventListener('click', () => {
     $skin.classList.add('visible');
     $brand.classList.remove('visible');
+    // $skin.querySelector(':scope > .skin-label > .label:first-of-type > input').checked(true);
 });
 
 $brandContainer.addEventListener('click', () => {
@@ -26,16 +27,16 @@ const productItems = () => {
                 <div class="line">
                     <div class="item-box">
                         <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                        <a class="title">${product['name']}</a>
+                        <a class="title">${brand['name']}</a>
                         <a class="caption">${product['name']}</a>
                     </div>
                 </div>`);
     }
 };
 
-$skin.querySelectorAll(':scope > .label').forEach(($skinItem) => {
+$skin.querySelectorAll(':scope > .skin-label > .label').forEach(($skinItem) => {
     $skinItem.querySelector(':scope > .caption').addEventListener('click', () => {
-        alert('!')
+
 
     })
 });

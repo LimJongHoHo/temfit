@@ -77,6 +77,30 @@
                                              `t0`.`content` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
           AND IF(#{searchVo.by} = 'writer', `t1`.`nickname` LIKE CONCAT('%', #{searchVo.keyword}, '%'), TRUE)
     </select>
+    <select id="selectProductBySearch">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `brand_id`) AS `brandName`,
+               `skin_id`           AS `skinId`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`,
+               ROW_NUMBER() OVER (ORDER BY `name` DESC) AS `num`
+        FROM `temfit`.`products`
+        WHERE `name` LIKE CONCAT('%', #{keyword}, '%')
+    </select>
 
     <update id="update">
         UPDATE `temfit`.`articles`

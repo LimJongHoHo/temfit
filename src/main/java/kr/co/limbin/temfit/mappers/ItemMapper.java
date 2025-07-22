@@ -2,6 +2,7 @@ package kr.co.limbin.temfit.mappers;
 
 import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.vos.CartDetailVo;
+import kr.co.limbin.temfit.vos.ProductVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,9 +16,7 @@ public interface ItemMapper {
 
     ProductEntity getByProductId(@Param(value = "id") int id);
 
-    ProductEntity[] getProductByBrandId(@Param(value = "brandId") int brandId);
-
-    ProductEntity[] getProductAll();
+    ProductVo[] getProductAll();
 
     BrandEntity getByBrandId(@Param(value = "id") int id);
 
@@ -38,4 +37,8 @@ public interface ItemMapper {
     Integer getCartId(@Param(value = "userEmail")  String userEmail);
 
     CartDetailEntity getQuantity(@Param(value = "cartDetail") CartDetailEntity cartDetail);
+
+    ProductVo[] getProductBySkinId(@Param(value = "skinId") int skinId);
+
+    ProductVo[] getProductByBrandId(@Param(value = "brandId") int brandId);
 }

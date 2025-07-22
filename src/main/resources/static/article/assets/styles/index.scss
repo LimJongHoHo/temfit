@@ -159,9 +159,10 @@
 
     > .sell-container {
 
+
       > .title {
         margin-top: 0.5rem;
-        margin-bottom: -1rem;
+        font-size: 1rem;
         font-weight: 500;
       }
 
@@ -172,47 +173,6 @@
 
         > .percent {
           color: #fc7899;
-        }
-      }
-    }
-
-    > .point-container {
-      border: 0.0875rem solid #1d1d1e;
-      border-radius: 0.625rem;
-      padding: 0 0.875rem;
-
-      > .max-point {
-        @include flex(row, center, flex-start, 1rem);
-
-        > .point-title {
-          font-size: 1rem;
-          font-weight: 600;
-        }
-
-        > .point {
-          font-size: 1rem;
-          font-weight: 900;
-          border-bottom: 0.5rem solid #fdfd77;
-        }
-      }
-
-      > .underline {
-        border-top: 0.0625rem solid #e0e0e0;
-      }
-
-      > .caption {
-        @include flex(row, center, center, 1rem);
-        cursor: pointer;
-
-        > .watch {
-          padding: 0.425rem;
-          font-size: 0.75rem;
-          font-weight: 400;
-        }
-
-        > .img {
-          margin-left: -1rem;
-          width: 1.15rem;
         }
       }
     }

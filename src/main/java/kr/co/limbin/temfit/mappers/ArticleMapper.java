@@ -4,6 +4,7 @@ import kr.co.limbin.temfit.entities.ArticleCoverEntity;
 import kr.co.limbin.temfit.entities.ArticleEntity;
 import kr.co.limbin.temfit.vos.ArticleVo;
 import kr.co.limbin.temfit.vos.PageVo;
+import kr.co.limbin.temfit.vos.ProductVo;
 import kr.co.limbin.temfit.vos.SearchVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,4 +26,6 @@ public interface ArticleMapper {
     int update(@Param(value = "article") ArticleEntity article);
 
     int updateCover(@Param(value = "cover") ArticleCoverEntity cover);
+
+    ProductVo[] selectProductBySearch(@Param(value = "keyword") String keyword);
 }

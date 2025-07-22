@@ -71,10 +71,9 @@
 #rank > .skin-container.visible {
   align-items: stretch;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 1rem;
   justify-content: flex-start;
-  display: block;
 }
 #rank > .skin-container.visible > * {
   flex-grow: 0;
@@ -83,6 +82,56 @@
 #rank > .skin-container.visible > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
+}
+#rank > .skin-container.visible > .skin-label {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+  justify-content: flex-start;
+}
+#rank > .skin-container.visible > .skin-label > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#rank > .skin-container.visible > .skin-label > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#rank > .skin-container.visible > .skin-label > .label {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: center;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border: 0.0625rem solid #e0e0e0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+#rank > .skin-container.visible > .skin-label > .label > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#rank > .skin-container.visible > .skin-label > .label > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#rank > .skin-container.visible > .skin-label > .label > .caption {
+  padding: 0.35rem;
+  font-size: 0.785rem;
+  font-weight: 400;
+  color: #a2a4a6;
+}
+#rank > .skin-container.visible > .skin-label > .label:has(.radio:checked) {
+  border-color: #2d2d2d;
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+  font-weight: 500;
+}
+#rank > .skin-container.visible > .skin-label > .label > .radio {
+  display: none;
 }
 #rank > .skin-container.visible > .line {
   margin-top: 1rem;
@@ -118,27 +167,6 @@
 #rank > .skin-container.visible > .line > .item-box > .item {
   width: 5rem;
   margin-right: 1rem;
-}
-#rank > .skin-container.visible > .label {
-  margin-right: 1rem;
-  cursor: pointer;
-  border: 0.0625rem solid #e0e2e4;
-  border-radius: 0.465rem;
-}
-#rank > .skin-container.visible > .label > .caption {
-  padding: 0.35rem;
-  font-size: 0.785rem;
-  font-weight: 400;
-  color: #a2a4a6;
-}
-#rank > .skin-container.visible > .label:has(.radio:checked) {
-  border-color: #2d2d2d;
-  background-color: #2d2d2d;
-  color: #f0f0f0;
-  font-weight: 500;
-}
-#rank > .skin-container.visible > .label > .radio {
-  display: none;
 }
 #rank > .brand-container {
   display: none;

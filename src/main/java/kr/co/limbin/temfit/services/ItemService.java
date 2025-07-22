@@ -5,6 +5,7 @@ import kr.co.limbin.temfit.mappers.ItemMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.vos.CartDetailVo;
+import kr.co.limbin.temfit.vos.ProductVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +77,7 @@ public class ItemService {
         return this.itemMapper.getBySkinId(id);
     }
 
-    public ProductEntity[] getProductAll() {
+    public ProductVo[] getProductAll() {
         return this.itemMapper.getProductAll();
     }
 
@@ -130,7 +131,12 @@ public class ItemService {
         }
     }
 
-    public ProductEntity[] getProductByBrandId(int brandId) {
+    public ProductVo[] getProductByBrandId(int brandId) {
         return this.itemMapper.getProductByBrandId(brandId);
     }
+
+    public ProductVo[] getProductBySkinId(int skinId) {
+        return this.itemMapper.getProductBySkinId(skinId);
+    }
+
 }

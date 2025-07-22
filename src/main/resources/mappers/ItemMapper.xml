@@ -75,6 +75,9 @@
                `image_url`         AS `imageUrl`,
                `name`              AS `name`,
                `brand_id`          AS `brandId`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `brand_id`) AS `brandName`,
                `skin_id`           AS `skinId`,
                `size`              AS `size`,
                `price`             AS `price`,
@@ -178,29 +181,6 @@
         WHERE `id` = #{cartDetailId}
         LIMIT 1
     </select>
-    <select id="getProductByBrandId">
-        SELECT `id`                AS `id`,
-               `image_url`         AS `imageUrl`,
-               `name`              AS `name`,
-               `brand_id`          AS `brandId`,
-               `skin_id`           AS `skinId`,
-               `size`              AS `size`,
-               `price`             AS `price`,
-               `discount_rate`     AS `discountRate`,
-               `delivery_fee`      AS `deliveryFee`,
-               `delivery_company`  AS `deliveryCompany`,
-               `delivery_add`      AS `deliveryAdd`,
-               `creat_user_email`  AS `creatUserEmail`,
-               `modify_user_email` AS `modifyUserEmail`,
-               `created_at`        AS `createdAt`,
-               `modified_at`       AS `modifiedAt`,
-               `is_deleted`        AS `isDeleted`
-        FROM `temfit`.`products`
-        WHERE `is_deleted` = FALSE
-          AND `brand_id` = #{brandId}
-        ORDER BY `name`
-    </select>
-
     <select id="getCartId" resultType="java.lang.Integer">
         SELECT `id`
         FROM `temfit`.`carts`
@@ -216,5 +196,55 @@
           AND `product_id` = #{cartDetail.productId}
           AND `article_id` = #{cartDetail.articleId}
         LIMIT 1
+    </select>
+    <select id="getProductBySkinId">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               `skin_id`           AS `skinId`,
+               (SELECT `name`
+                FROM `temfit`.`skins`
+                WHERE `id` = `skin_id`) AS `skinName`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+
+        FROM `temfit`.`products`
+        WHERE `is_deleted` = FALSE
+          AND `skin_id` = #{skinId}
+    </select>
+    <select id="getProductByBrandId">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `brand_id`          AS `brandId`,
+               `skin_id`           AS `skinId`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `brand_id`) AS `brandName`,
+               `size`              AS `size`,
+               `price`             AS `price`,
+               `discount_rate`     AS `discountRate`,
+               `delivery_fee`      AS `deliveryFee`,
+               `delivery_company`  AS `deliveryCompany`,
+               `delivery_add`      AS `deliveryAdd`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+
+        FROM `temfit`.`products`
+        WHERE `is_deleted` = FALSE
+          AND `brand_id` = #{brandId}
     </select>
 </mapper>

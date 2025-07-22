@@ -7,10 +7,7 @@ import kr.co.limbin.temfit.mappers.ArticleMapper;
 import kr.co.limbin.temfit.mappers.ReviewMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
-import kr.co.limbin.temfit.vos.ArticleVo;
-import kr.co.limbin.temfit.vos.PageVo;
-import kr.co.limbin.temfit.vos.ReviewVo;
-import kr.co.limbin.temfit.vos.SearchVo;
+import kr.co.limbin.temfit.vos.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
@@ -178,6 +175,10 @@ public class ArticleService {
         cover.setArticleId(id);
         cover.setCreatedAt(LocalDateTime.now());
         return this.articleMapper.insertCover(cover) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public ProductVo[] search(String keyword) {
+        return this.articleMapper.selectProductBySearch(keyword);
     }
 
 }

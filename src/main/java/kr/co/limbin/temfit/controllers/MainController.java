@@ -1,12 +1,10 @@
 package kr.co.limbin.temfit.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
-import kr.co.limbin.temfit.entities.BrandEntity;
-import kr.co.limbin.temfit.entities.ProductEntity;
-import kr.co.limbin.temfit.entities.SkinEntity;
-import kr.co.limbin.temfit.entities.UserEntity;
+import kr.co.limbin.temfit.entities.*;
+import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.services.ItemService;
-import kr.co.limbin.temfit.vos.CartDetailVo;
+import kr.co.limbin.temfit.vos.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -20,9 +18,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MainController {
     private final ItemService itemService;
+    private final ArticleService articleService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, HttpServletRequest request) {
+    public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, HttpServletRequest request, Model model) {
         if (signedUser == null) {
             System.out.println("로그인 안 됨");
         } else {
@@ -31,6 +30,9 @@ public class MainController {
                     request.getRemoteAddr(),
                     request.getRequestURI());
         }
+        ProductVo[] products = this.itemService.getProductAll();
+        model.addAttribute("products", products);
+
         return "main/index";
     }
 
@@ -39,16 +41,24 @@ public class MainController {
 
         BrandEntity[] brands = this.itemService.getBrandALl();
         SkinEntity[] skins = this.itemService.getSkinALl();
-        ProductEntity[] products = this.itemService.getProductAll();
+
         model.addAttribute("brands", brands);
         model.addAttribute("skins", skins);
-        model.addAttribute("products", products);
+
 
         return "main/rank";
     }
 
     @RequestMapping(value = "/index_search", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndexSearch() {
+    public String getIndexSearch(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, Model model) {
+        ProductVo[] products = this.articleService.search(keyword);
+        if (products.length == 0) {
+            model.addAttribute("products", null);
+        } else {
+            model.addAttribute("products", products);
+        }
+        model.addAttribute("keyword", "\"" + keyword + "\"");
+
         return "main/index_search";
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -26,7 +26,7 @@
             <img class="representImg"
                  src="https://img.hwahae.co.kr/commerce/deal_events/exposures/20250623/20250623152156396_ef537898-5558-4aeb-904e-d4016e25b2c6.png" alt="">
         </div>
-        <div class="date">0월 00일 0요일</div>
+        <div class="date" ></div>
         <div class="rank-container">
             <a class="up-title" href="/rank">급상승</a>
             <a class="rank-title" href="/rank">랭킹</a>
@@ -39,10 +39,10 @@
             <div class="box">
                 <div class="controller">
                     <a class="knob -selected" id="product1" href="#productImage1"></a>
-                    <a class="knob" id="product2" href="#productImage2"></a>
-                    <a class="knob" id="product3" href="#productImage3"></a>
-                    <a class="knob" id="product4" href="#productImage4"></a>
-                    <a class="knob" id="product5" href="#productImage5"></a>
+                    <a class="knob" id="product2" th:href="productImage"></a>
+                    <a class="knob" id="product3" href="#productImage"></a>
+                    <a class="knob" id="product4" href="#productImage"></a>
+                    <a class="knob" id="product5" href="#productImage"></a>
                     <span class="-flex-stretch" role="none"></span>
                     <label class="checkbox-container">
                         <input type="checkbox">
@@ -51,59 +51,49 @@
                     </label>
                 </div>
                 <div class="page-container" id="imageTable">
-                    <div class="page" id="productImage1">
+                    <div class="page" th:each="product : ${products}" th:id="productImage1">
                         <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
                         <img class="rankingImg"
-                             src="https://img.hwahae.co.kr/products/2016363/2016363_20230110094309.jpg?format=webp&size=300x300"
-                             alt="representImg">
+                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
-                            <li class="text cosmetic-sub-title">프리비츠</li>
-                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
-                            <li class="text score">4.24(258)</li>
+                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
+                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
                         </ul>
                     </div>
-                    <div class="page" id="productImage2">
-                        <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
+                    <div class="page" th:each="product : ${products}" th:id="productImage2">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
                         <img class="rankingImg"
-                             src="https://img.hwahae.co.kr/products/2024322/2024322_20250219100734.jpg?format=webp&size=300x300"
-                             alt="representImg">
+                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
-                            <li class="text cosmetic-sub-title">프리비츠</li>
-                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
-                            <li class="text score">4.24(258)</li>
+                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
+                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
                         </ul>
                     </div>
-                    <div class="page" id="productImage3">
-                        <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
+                    <div class="page" th:each="product : ${products}" th:id="productImage3">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
                         <img class="rankingImg"
-                             src="https://img.hwahae.co.kr/products/2134730/2134730_20250414162054.jpg?format=webp&size=300x300"
-                             alt="representImg">
+                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
-                            <li class="text cosmetic-sub-title">프리비츠</li>
-                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
-                            <li class="text score">4.24(258)</li>
+                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
+                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
                         </ul>
                     </div>
-                    <div class="page" id="productImage4">
-                        <span class="rank">4</span>
+                    <div class="page" th:each="product : ${products}" th:id="productImage4">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
                         <img class="rankingImg"
-                             src="https://img.hwahae.co.kr/products/2087347/2087347_20240227170323.jpg?format=webp&size=300x300"
-                             alt="representImg">
+                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
-                            <li class="text cosmetic-sub-title">프리비츠</li>
-                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
-                            <li class="text score">4.24(258)</li>
+                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
+                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
                         </ul>
                     </div>
-                    <div class="page" id="productImage5">
-                        <span class="rank">5</span>
+                    <div class="page" th:each="product : ${products}" th:id="productImage5">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
                         <img class="rankingImg"
-                             src="https://img.hwahae.co.kr/products/2032189/2032189_20230404132558.jpg?format=webp&size=300x300"
-                             alt="representImg">
+                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
-                            <li class="text cosmetic-sub-title">프리비츠</li>
-                            <li class="text cosmetic-title">에어핏 선 피니싱 스틱 [SPF50+/PA++++][02 클리어 그린]</li>
-                            <li class="text score">4.24(258)</li>
+                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
+                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
                         </ul>
                     </div>
                 </div>
@@ -384,7 +374,7 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="#">브랜드 전체보기 ></a>
+            <a class="button" href="">브랜드 전체보기 ></a>
         </div>
     </main>
     <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
