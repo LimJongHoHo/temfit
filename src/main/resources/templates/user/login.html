@@ -8,6 +8,10 @@
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" href="/assets/styles/common.min.css">
     <link rel="stylesheet" href="/user/assets/styles/login.min.css">
+    <script th:if="${session.signedUser != null}">
+        alert('이미 로그인 되어있습니다.');
+        location.href = `/main`;
+    </script>
     <script src="/assets/scripts/common.js"></script>
     <script defer src="/user/assets/scripts/login.js"></script>
 </head>
