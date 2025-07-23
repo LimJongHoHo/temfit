@@ -148,16 +148,24 @@
   flex-shrink: 1;
 }
 #main > .product-container > .item-box > .item-container > .price-container > .price {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 #main > .product-container > .item-box > .item-container > .price-container > .count {
   height: 2rem;
   padding: 0 0.75rem;
 }
+#main > .product-container > .item-box > .item-container > .price-container > .--object-button.minus {
+  border-radius: 999rem;
+  border: 0.0625rem solid #eaecee;
+}
+#main > .product-container > .item-box > .item-container > .price-container > .--object-button.plus {
+  border-radius: 999rem;
+  border: 0.0625rem solid #eaecee;
+}
 #main > .product-container > .item-box > .total-price {
   padding-left: 1.5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 #main > .cart-container > .top-container {
   align-items: center;

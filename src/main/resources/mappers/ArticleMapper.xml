@@ -40,7 +40,7 @@
 
     <select id="selectById" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
         SELECT `id`          AS `id`,
-               `product_id`          AS `productId`,
+               `product_id`  AS `productId`,
                `user_email`  AS `userEmail`,
                `title`       AS `title`,
                `content`     AS `content`,

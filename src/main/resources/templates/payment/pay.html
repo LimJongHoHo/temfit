@@ -29,7 +29,7 @@
 <div id="pay">
     <span class="title">결제</span>
     <span class="message">결제하실 금액을 확인하여 주세요.</span>
-    <span class="total">27,900원</span>
+    <span class="total"></span>
     <div class="method-container">
         <label class="label">
             <input class="radio" name="method" type="radio" value="kakaopay">
@@ -135,12 +135,14 @@
             <div class="container">
                 <span class="sub-title">배송비</span>
                 <div class="-flex-stretch"></div>
-                <!--                <span class="product-price" th:text="${cartDetails.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}"></span>-->
+<!--                <span class="product-price"-->
+<!--                      th:text="${cartDetails.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}"></span>-->
             </div>
             <div class="total-pay">
                 <span class="title">총 결제 금액</span>
                 <div class="-flex-stretch"></div>
-                <!--                <span id="totalPrice" class="pay-price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>-->
+<!--                <span id="totalPrice" class="pay-price"-->
+<!--                      th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>-->
             </div>
         </div>
         <div class="pay">

@@ -21,6 +21,12 @@
 <div id="container">
     <th:block th:replace="~{/fragments/header :: header}"></th:block>
     <main id="main">
+        <div class="cart-container">
+            <div class="top-container">
+                <img class="img" src="/assets/images/cart-warning.png" alt="">
+                <p class="caption">장바구니에 담은 상품은 최대 30일간 저장돼요</p>
+            </div>
+        </div>
         <div th:if="${cartDetails == null}" class="empty-cart-container">
             <img src="/assets/images/cart-warning.png" alt="">
             <h1 class="caption">장바구니에 담은 상품이 없어요</h1>
@@ -40,7 +46,7 @@
                 <input hidden class="cartDetailId" th:value="${cartDetail.getId()}" type="hidden">
                 <input hidden class="price" th:value="${cartDetail.getProductPrice()}" type="hidden">
                 <input hidden class="totalPrice" th:value="${cartDetail.getProductPrice() * cartDetail.getQuantity()}" type="hidden">
-                <button class="--object-button -color-red delete" type="button">X</button>
+                <button class="--object-button delete" type="button">X</button>
                 <img th:alt="${cartDetail.getProductName()}"
                      class="item"
                      th:src="${cartDetail.getProductImage()}">
@@ -54,18 +60,15 @@
                         <span class="price"
                               th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
                         <span class="-flex-stretch" role="none"></span>
-                        <button class="--object-button -color-gray minus" type="button">-</button>
+                        <button class="--object-button minus" type="button">-</button>
                         <span class="--object-button count" th:text="${cartDetail.getQuantity()}"></span>
-                        <button class="--object-button -color-gray plus" type="button">+</button>
+                        <button class="--object-button plus" type="button">+</button>
                     </div>
                 </div>
                 <span class="total-price"  th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
             </div>
-        </div>
-        <div class="cart-container">
-            <div class="top-container">
-                <img class="img" src="/assets/images/cart-warning.png" alt="">
-                <p class="caption">장바구니에 담은 상품은 최대 30일간 저장돼요</p>
+            <div class="button-container">
+                <a th:href="@{/payment/pay (cartId = ${cartId})}" class="--object-button -color-pink -flex-stretch">결제 하러 가기</a>
             </div>
         </div>
     </main>

@@ -26,7 +26,7 @@
             <img class="representImg"
                  src="https://img.hwahae.co.kr/commerce/deal_events/exposures/20250623/20250623152156396_ef537898-5558-4aeb-904e-d4016e25b2c6.png" alt="">
         </div>
-        <div class="date" ></div>
+        <div class="date"></div>
         <div class="rank-container">
             <a class="up-title" href="/rank">급상승</a>
             <a class="rank-title" href="/rank">랭킹</a>
@@ -38,8 +38,8 @@
         <div id="layout-content">
             <div class="box">
                 <div class="controller">
-                    <a class="knob -selected" id="product1" href="#productImage1"></a>
-                    <a class="knob" id="product2" th:href="productImage"></a>
+                    <a class="knob -selected" id="product" href="#productImage"></a>
+                    <a class="knob" id="product2" href="#productImage"></a>
                     <a class="knob" id="product3" href="#productImage"></a>
                     <a class="knob" id="product4" href="#productImage"></a>
                     <a class="knob" id="product5" href="#productImage"></a>
@@ -51,44 +51,12 @@
                     </label>
                 </div>
                 <div class="page-container" id="imageTable">
-                    <div class="page" th:each="product : ${products}" th:id="productImage1">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                        <img class="rankingImg"
-                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                        <ul class="caption">
-                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
-                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
-                        </ul>
-                    </div>
-                    <div class="page" th:each="product : ${products}" th:id="productImage2">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                        <img class="rankingImg"
-                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                        <ul class="caption">
-                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
-                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
-                        </ul>
-                    </div>
-                    <div class="page" th:each="product : ${products}" th:id="productImage3">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                        <img class="rankingImg"
-                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                        <ul class="caption">
-                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
-                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
-                        </ul>
-                    </div>
-                    <div class="page" th:each="product : ${products}" th:id="productImage4">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                        <img class="rankingImg"
-                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                        <ul class="caption">
-                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
-                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
-                        </ul>
-                    </div>
-                    <div class="page" th:each="product : ${products}" th:id="productImage5">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                    <div class="page" th:each="product : ${products}" id="productImage">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
+                        <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
+                        <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
+                        <span class="medal" th:if="${product.getNum() == 4}">4</span>
+                        <span class="medal" th:if="${product.getNum() == 5}">5</span>
                         <img class="rankingImg"
                              th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
                         <ul class="caption">
@@ -109,59 +77,21 @@
                 </a>
             </div>
             <div class="item-container">
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                <div class="item-box" th:each="product : ${products}">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
                     <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
+                         th:src="${product.getImageUrl}" alt="">
                     <div class="container">
                         <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                            <a class="title" th:text="${product.brandName}"></a>
+                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
                         </div>
                         <div class="star-container">
                             <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
+                                <span class="score" th:text="${product.getDiscountRate()}"></span>
+                                <span class="number" th:text="${product.getPrice()}"></span>
                             </div>
                         </div>
                     </div>
@@ -169,6 +99,7 @@
             </div>
             <a class="button" href="#">카테고리 전체보기></a>
         </div>
+
         <div class="A-container">
             <div class="title-container">
                 <a href="#">내 피부에 꼭 맞는 제품 랭킹</a>
@@ -178,134 +109,27 @@
                 </a>
             </div>
             <div class="item-container">
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                <div class="item-box" th:each="product : ${products}">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
                     <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
+                         th:src="${product.getImageUrl}" alt="">
                     <div class="container">
                         <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                            <a class="title" th:text="${product.brandName}"></a>
+                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
                         </div>
                         <div class="star-container">
                             <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
+                                <span class="score" th:text="${product.getDiscountRate()}"></span>
+                                <span class="number" th:text="${product.getPrice()}"></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <a class="button" href="#">건성 전체보기 ></a>
-        </div>
-        <div class="A-container">
-            <div class="title-container">
-                <a href="#">나이대별 추천</a>
-                <div class="-flex-stretch"></div>
-                <a class="rightArrow" href="#">
-                    <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
-                </a>
-            </div>
-            <div class="item-container">
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a class="button" href="#">10대 전체보기 ></a>
         </div>
         <div class="A-container">
             <div class="title-container">
@@ -316,59 +140,21 @@
                 </a>
             </div>
             <div class="item-container">
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">
+                <div class="item-box" th:each="product : ${products}">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
                     <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
+                         th:src="${product.getImageUrl}" alt="">
                     <div class="container">
                         <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
+                            <a class="title" th:text="${product.brandName}"></a>
+                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
                         </div>
                         <div class="star-container">
                             <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2nd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3rd-medal">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#">토리든 </a>
-                            <a class="caption" href="#">다이브인 저분자 히알루론산 세럼</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <img class="starImg" src="/assets/images/star.png" alt="">
-                                <h2 class="score">4.59</h2>
-                                <h3 class="number">(60,970)</h3>
+                                <span class="score" th:text="${product.getDiscountRate()}"></span>
+                                <span class="number" th:text="${product.getPrice()}"></span>
                             </div>
                         </div>
                     </div>

@@ -301,9 +301,9 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 0;
+  gap: 1rem;
   justify-content: flex-start;
-  padding: 0.675rem 0;
+  padding: 0.6rem 0;
   font-weight: 500;
 }
 #main > .A-container > .item-container > .item-box > * {
@@ -318,7 +318,7 @@
   width: 2rem;
 }
 #main > .A-container > .item-container > .item-box > .item {
-  width: 5rem;
+  width: 4.5rem;
 }
 #main > .A-container > .item-container > .item-box > .title {
   color: #757575;
@@ -377,12 +377,12 @@
   width: 0.75rem;
 }
 #main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .score {
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 300;
-  color: #2d2d2d;
+  color: #fc7899;
 }
 #main > .A-container > .item-container > .item-box > .container > .star-container > .star-scope > .number {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #a2a4a6;
 }
 #main > .A-container > .button {

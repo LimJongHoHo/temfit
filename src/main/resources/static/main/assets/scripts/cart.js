@@ -1,7 +1,7 @@
 const $main = document.getElementById('main');
 const $itemList = $main.querySelectorAll(':scope > .product-container > .item-box');
 $itemList.forEach(($item) => {
-    $item.querySelector(':scope > .--object-button.-color-red.delete').addEventListener('click', () => {
+    $item.querySelector(':scope > .--object-button.delete').addEventListener('click', () => {
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
         formData.append('cartDetailId', $item.querySelector(':scope > .cartDetailId').value);
@@ -31,7 +31,7 @@ $itemList.forEach(($item) => {
         xhr.open('DELETE', '/item/cart-detail');
         xhr.send(formData);
     });
-    $item.querySelector(':scope > .item-container > .price-container > .--object-button.-color-gray.minus').addEventListener('click', () => {
+    $item.querySelector(':scope > .item-container > .price-container > .--object-button.minus').addEventListener('click', () => {
         const quantity = $item.querySelector(':scope > .item-container > .price-container > .--object-button.count');
         if (quantity.innerText === '1') {
             dialog.showSimpleOk('상품 제거', '1보다 작을 수 없습니다.');
@@ -66,7 +66,7 @@ $itemList.forEach(($item) => {
         xhr.open('PATCH', '/item/cart-detail');
         xhr.send(formData);
     })
-    $item.querySelector(':scope > .item-container > .price-container > .--object-button.-color-gray.plus').addEventListener('click', () => {
+    $item.querySelector(':scope > .item-container > .price-container > .--object-button.plus').addEventListener('click', () => {
         const quantity = $item.querySelector(':scope > .item-container > .price-container > .--object-button.count');
 
         const xhr = new XMLHttpRequest();

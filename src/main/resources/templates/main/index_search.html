@@ -11,23 +11,23 @@
     <link rel="stylesheet" href="/main/assets/styles/index_search.min.css">
 </head>
 <body>
-<header id="toolbar">
+<form id="searchForm">
     <label class="search-container">
         <a class="img" href="/main">
             <img class="temfit-icon" src="/assets/images/temfit_icon.png" alt="icon">
         </a>
-        <input required class="search -flex-stretch" maxlength="20" minlength="1" name="search"
+        <input required class="search -flex-stretch" maxlength="20" minlength="1" name="keyword"
                placeholder="궁금한 제품을 검색해 보세요" type="text">
         <button class="--object-button" type="button">
             <img class="search-icon" src="/assets/images/search-icon.png" alt="search-icon">
         </button>
     </label>
-</header>
+</form>
 <main id="main">
     <div class="search-none" th:if="${products == null}">
         <img src="/assets/images/cart-warning.png" alt="">
         <h1 class="caption">검색하신 상품이 없어요</h1>
-        <h2 class="sub-caption">마음에 드는 상품을 검색해 보세요</h2>
+        <h2 class="sub-caption">궁금하신 상품을 검색해 보세요</h2>
     </div>
     <div class="line" th:if="${products != null}">
         <div class="caption">

@@ -81,6 +81,14 @@ public class ItemService {
         return this.itemMapper.getProductAll();
     }
 
+    public ProductVo[] getProductBySkinAll(){
+        return this.itemMapper.getProductBySkinAll();
+    }
+
+    public ProductVo[] getProductByBrandAll(){
+        return this.itemMapper.getProductByBrandAll();
+    }
+
     public BrandEntity[] getBrandALl() {
         return this.itemMapper.selectBrandAll();
     }

@@ -2,7 +2,7 @@ const $paymentForm = document.getElementById('payForm');
 const nameRegex = new RegExp('^([가-힣]{2,5})$')
 const contactSecondRegex = new RegExp('^(\\d{3,4})$');
 const contactThirdRegex = new RegExp('^(\\d{4})$');
-const totalPrice = document.getElementById('totalPrice').innerText;
+const totalPrice = document.getElementById('totalPrice');
 
 $paymentForm['addressFindButton'].addEventListener('click', () => {
     const $addressFindDialog = document.getElementById('addressFindDialog');

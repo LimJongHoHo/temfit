@@ -81,20 +81,29 @@
           height: 2rem;
 
           > .price {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 500;
           }
 
           > .count {
             height: 2rem;
             padding: 0 0.75rem;
           }
+
+          > .--object-button.minus{
+            border-radius: 999rem;
+            border: 0.0625rem solid #eaecee;
+          }
+          > .--object-button.plus{
+            border-radius: 999rem;
+            border: 0.0625rem solid #eaecee;
+          }
         }
       }
 
       > .total-price {
         padding-left: 1.5rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
       }
     }
   }
