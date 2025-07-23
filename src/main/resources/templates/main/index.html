@@ -38,11 +38,7 @@
         <div id="layout-content">
             <div class="box">
                 <div class="controller">
-                    <a class="knob -selected" id="product" href="#productImage"></a>
-                    <a class="knob" id="product2" href="#productImage"></a>
-                    <a class="knob" id="product3" href="#productImage"></a>
-                    <a class="knob" id="product4" href="#productImage"></a>
-                    <a class="knob" id="product5" href="#productImage"></a>
+                    <a th:each="product : ${products}" th:id="${'product' + product.getNum()}" class="knob" th:href="@{${'#productImage' + product.getNum()}}"></a>
                     <span class="-flex-stretch" role="none"></span>
                     <label class="checkbox-container">
                         <input type="checkbox">
@@ -51,7 +47,7 @@
                     </label>
                 </div>
                 <div class="page-container" id="imageTable">
-                    <div class="page" th:each="product : ${products}" id="productImage">
+                    <div class="page" th:each="product : ${products}" th:id="${'productImage' + product.getNum()}">
                         <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
                         <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
                         <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
@@ -113,8 +109,8 @@
                     <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
                     <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
                     <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
-                    <img class="item"
-                         th:src="${product.getImageUrl}" alt="">
+                    <img th:alt="${product.getName()}"
+                         class="item" th:src="${product.getImageUrl}">
                     <div class="container">
                         <div class="brand-container">
                             <a class="title" th:text="${product.brandName}"></a>

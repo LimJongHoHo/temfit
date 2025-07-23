@@ -8,8 +8,6 @@ const $categoryButton = document.querySelector('#main > .A-container > .button')
 
 let currentPage = -1;
 
-console.log($categoryButton);
-
 $categoryButton.addEventListener('click', () => {
     alert('!!');
 })
@@ -41,8 +39,9 @@ function autoFlip() {
     } else { // 증가
         currentPage++;
     }
-    let product = 'product' + (currentPage % 5 + 1);
-    let productImage = 'productImage' + (currentPage % 5 + 1);
+    let imageCount = document.querySelectorAll('#layout-content > .box > .page-container > .page').length;
+    let product = 'product' + (currentPage % imageCount + 1);
+    let productImage = 'productImage' + (currentPage % imageCount + 1);
     $knobController.forEach(($knob) => $knob.classList.remove('-selected'));
     document.getElementById(product).classList.add('-selected');
     $imageTable.scrollTo({top: 0, left: document.getElementById(productImage).offsetLeft}); // image 스크롤 위치선정
@@ -50,4 +49,3 @@ function autoFlip() {
 
 autoFlip();
 setInterval(autoFlip, 3000); // 3초마다(실행 3000 -> 3초)
-
