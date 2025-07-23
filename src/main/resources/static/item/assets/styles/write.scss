@@ -8,6 +8,50 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 
+  .ingredient-wrapper {
+    position: relative;
+    > .ingredient-information {
+      display: none;
+
+      &.-visible {
+        @include flex(column, flex-start, flex-start, 0.75rem);
+        max-width: 30rem;
+        max-height: 15rem;
+        overflow: auto scroll;
+        top: 2rem;
+        left: 4.75rem;
+        border: 0.0625rem solid #000000;
+        border-radius: 0.25rem;
+        background-color: #Ffffff;
+        position: absolute;
+        z-index: 100;
+
+        > .empty {
+          @include flex(column, center, center);
+          width: 28rem;
+          padding: 3rem 0;
+        }
+
+        > .container,
+        > .item {
+          @include flex(row, center, center, 0.25rem);
+
+          > span {
+            text-align: center;
+            width: 5.45rem;
+            overflow-wrap: break-word;
+          }
+        }
+
+        > .container {
+          padding: 0.25rem 0;
+          font-weight: 600;
+          border-bottom: 0.0625rem solid #eeeeee;
+        }
+      }
+    }
+  }
+
   > .--object-label-row > .num {
     text-align: end;
 

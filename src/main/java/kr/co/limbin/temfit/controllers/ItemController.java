@@ -3,14 +3,20 @@ package kr.co.limbin.temfit.controllers;
 import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.services.ItemService;
-import kr.co.limbin.temfit.vos.CartDetailVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -74,4 +80,32 @@ public class ItemController {
         return response.toString();
     }
 
+    @RequestMapping(value = "/waring-score", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postWaringClass(@RequestParam(value = "engName") String engName) throws IOException {
+        String url = "https://www.ewg.org/skindeep/search/?search=" + engName;
+        Document document = Jsoup.connect(url).get();
+        String score;
+        Element img = document.selectFirst("img.product-score-img.squircle");
+        if (img == null) {
+            score = "X";
+        } else {
+            String queryRaw = img.attr("src");
+            String[] queryArray = queryRaw.split("\\?");
+            Map<String, String> query = new HashMap<>();
+            if (queryArray.length > 1) {
+                queryArray = queryArray[1].split("&");
+                for (String s : queryArray) {
+                    String[] itemArray = s.split("=");
+                    String name = itemArray[0];
+                    String value = itemArray[1];
+                    query.put(name, value);
+                }
+            }
+            score = query.get("score");
+        }
+        JSONObject response = new JSONObject();
+        response.put("score", score);
+        return response.toString();
+    }
 }

@@ -1,8 +1,12 @@
+const apiKey = '8GSZ7c0dLQEYPwbidlWLtFSLRW%2BXAUJbC28YAM0ZLTlpaF57Uru1YfFBjuTlLcq1iBnkP7iSFzeQoqCHTuchLA%3D%3D';
+const $loading = document.getElementById('loading');
 const $itemWriteForm = document.getElementById('itemWriteForm');
 const $brand = document.getElementById('brand');
 const $skin = document.getElementById('skin');
 const $labels = $itemWriteForm.querySelectorAll(':scope > .--object-label-row')
 const $image = $itemWriteForm.querySelector(':scope > .--object-label-row > .image');
+const $ingredient = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .--object-label-row > .--object-field.---field.-flex-stretch.ingredient');
+const $ingredientInfo = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .ingredient-information');
 
 $itemWriteForm['productImage'].addEventListener('focusout', () => {
     $itemWriteForm['productImage'].parentElement.setValid(true)
@@ -118,3 +122,84 @@ $itemWriteForm.onsubmit = (e) => {
     xhr.open('POST', '/item/');
     xhr.send(formData);
 }
+
+$ingredient.addEventListener('keyup', () => {
+    if ($itemWriteForm['ingredient'].value === '') {
+        $ingredientInfo.setVisible(false);
+    } else {
+        $ingredientInfo.setVisible(true);
+    }
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) {
+            return;
+        }
+        if (xhr.status < 200 || xhr.status >= 400) {
+            alert(`요청을 전송하는 도중 오류가 발생하였습니다. (${xhr.status})`);
+            return;
+        }
+        const response = JSON.parse(xhr.responseText);
+        const ingredients = response['body']['items'];
+        const $infoLabel = $ingredientInfo;
+        $infoLabel.innerHTML = '';
+        let infoHtml = ``
+        if (ingredients === undefined) {
+            $infoLabel.innerHTML = `
+                <div class="empty">
+                    <img src="/assets/images/cart-warning.png" alt="">
+                    <span class="caption">검색결과 없습니다.</span>
+                </div>`;
+        } else {
+            infoHtml = `
+            <div class="container">
+                <span class="---caption">표준명</span>
+                <span class="---caption">영문명</span>
+                <span class="---caption">CASno</span>
+                <span class="---caption">기원및정의</span>
+                <span class="---caption">이명</span>
+            </div>`;
+            for (const ingredient of ingredients) {
+                const itemHtml = `
+                <button class="item" type="button">
+                    <span class="korName">${ingredient['INGR_KOR_NAME'] == null ? '-' : ingredient['INGR_KOR_NAME']}</span>
+                    <span class="engName">${ingredient['INGR_ENG_NAME'] == null ? '-' : ingredient['INGR_ENG_NAME']}</span>
+                    <span class="casNo">${ingredient['CAS_NO'] == null ? '-' : ingredient['CAS_NO']}</span>
+                    <span class="originKorName">${ingredient['ORIGIN_MAJOR_KOR_NAME'] == null ? '-' : ingredient['ORIGIN_MAJOR_KOR_NAME']}</span>
+                    <span class="synonym">${ingredient['INGR_SYNONYM'] == null ? '-' : ingredient['INGR_SYNONYM']}</span>
+                </button>`;
+                infoHtml += itemHtml;
+            }
+
+            $infoLabel.innerHTML = infoHtml;
+
+            $ingredientInfo.querySelectorAll(':scope > .item').forEach(($item) => {
+                $item.addEventListener('click', () => {
+                    const xhr = new XMLHttpRequest();
+                    const formData = new FormData();
+                    formData.append('engName', $item.querySelector(':scope > .engName').innerText);
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState !== XMLHttpRequest.DONE) {
+                            return;
+                        }
+                        $loading.hide();
+                        if (xhr.status < 200 || xhr.status >= 300) {
+                            dialog.showSimpleOk('성분추가', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                            return;
+                        }
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.score === 'X') {
+                            alert('없음');
+                        } else {
+                            alert(response.score);
+                        }
+                    };
+                    xhr.open('POST', '/item/waring-score');
+                    xhr.send(formData);
+                    $loading.show();
+                });
+            });
+        }
+    };
+    xhr.open('GET', `https://apis.data.go.kr/1471000/CsmtcsIngdCpntInfoService01/getCsmtcsIngdCpntInfoService01?serviceKey=${apiKey}&pageNo=1&numOfRows=100&type=json&INGR_KOR_NAME=${$ingredient.value}`);
+    xhr.send();
+});
