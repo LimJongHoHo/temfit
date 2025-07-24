@@ -264,3 +264,23 @@ CREATE TABLE `temfit`.`cart_detail`
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE `temfit`.`ingredients`
+(
+    `id`               INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `kor_name`         VARCHAR(3000) NOT NULL COMMENT '성분 한국 이름',
+    `eng_name`         VARCHAR(3000) NULL COMMENT '성분 영어 이름',
+    `cas_no`           VARCHAR(100)  NULL COMMENT 'CAS NO',
+    `origin_name`      VARCHAR(3000) NULL COMMENT '기원 및 정의',
+    `synonym`          VARCHAR(3000) NULL COMMENT '이명',
+    `product_id`       INT UNSIGNED  NOT NULL COMMENT '상품 ID',
+    `creat_user_email` VARCHAR(50)   NOT NULL COMMENT '생성자',
+    `created_at`       DATETIME      NOT NULL DEFAULT NOW() COMMENT '생성 일시',
+    CONSTRAINT PRIMARY KEY (`id`),
+    CONSTRAINT FOREIGN KEY (`product_id`) REFERENCES `temfit`.`products` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (`creat_user_email`) REFERENCES `temfit`.`users` (`email`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

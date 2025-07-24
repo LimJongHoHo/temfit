@@ -22,8 +22,27 @@ $itemWriteForm['productImage'].addEventListener('focusout', () => {
     $itemWriteForm['productImage'].parentElement.setValid(true);
 });
 
+function ingredientAdd(text, score) {
+    document.querySelector('#itemWriteForm > .ingredient-wrapper > .ingredient-container').insertAdjacentHTML('beforeend', `
+        <div class="item">
+            <button class="delete" type="button">X</button>
+            <span>(</span>
+            <span class="score">${score}</span>
+            <span>)</span>
+            <span class="korName">${text}</span>
+        </div>`);
+}
+
+function ingredientRemoveButton() {
+    document.querySelectorAll('#itemWriteForm > .ingredient-wrapper > .ingredient-container > .item').forEach((item) => {
+    item.querySelector(':scope > .delete').addEventListener('click', (button) => button.currentTarget.parentElement.remove());
+    })
+}
+
 $itemWriteForm.onsubmit = (e) => {
     e.preventDefault();
+
+    console.log()
 
     $labels.forEach(($label) => $label.setValid(true));
     if ($itemWriteForm['productImage'].value === '') {
@@ -49,6 +68,11 @@ $itemWriteForm.onsubmit = (e) => {
     if ($skin.value === 'none') {
         dialog.showSimpleOk('상품등록 오류', '피부유형을 선택해주세요');
         $skin.parentElement.setValid(false);
+        return;
+    }
+    if ($itemWriteForm['size'].value === '') {
+        dialog.showSimpleOk('상품등록 오류', '용량을 입력해주세요.');
+        $itemWriteForm['size'].parentElement.setValid(false);
         return;
     }
     if ($itemWriteForm['price'].value === '') {
@@ -186,12 +210,16 @@ $ingredient.addEventListener('keyup', () => {
                             dialog.showSimpleOk('성분추가', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
                             return;
                         }
+                        let score;
                         const response = JSON.parse(xhr.responseText);
                         if (response.score === 'X') {
-                            alert('없음');
+                            score = '미분류';
                         } else {
-                            alert(response.score);
+                            score = response.score;
                         }
+                        ingredientAdd($item.querySelector(':scope > .korName').innerText, score);
+                        ingredientRemoveButton();
+                        $ingredientInfo.setVisible(false);
                     };
                     xhr.open('POST', '/item/waring-score');
                     xhr.send(formData);
