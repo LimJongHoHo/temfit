@@ -80,6 +80,14 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#main > .caption {
+  padding: 1rem 0;
+}
+#main > .caption > .keyword {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #7a7c7e;
+}
 #main > .search-none {
   align-items: center;
   display: flex;
@@ -114,17 +122,6 @@
 #main > .caption-container > .caption {
   font-size: 1.125rem;
   font-weight: 600;
-}
-#main > .line {
-  margin-top: 2rem;
-}
-#main > .line > .caption {
-  padding: 1rem 0;
-}
-#main > .line > .caption > .keyword {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #7a7c7e;
 }
 #main > .line > .item-box {
   align-items: center;

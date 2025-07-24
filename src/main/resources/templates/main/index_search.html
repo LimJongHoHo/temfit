@@ -24,15 +24,15 @@
     </label>
 </form>
 <main id="main">
+    <div class="caption" th:if="${keyword != ''}">
+        <span class="keyword" th:text="${aaa + keyword + aaa + '(을)를 검색한 결과입니다.'}"></span>
+    </div>
     <div class="search-none" th:if="${products == null}">
         <img src="/assets/images/cart-warning.png" alt="">
         <h1 class="caption">검색하신 상품이 없어요</h1>
         <h2 class="sub-caption">궁금하신 상품을 검색해 보세요</h2>
     </div>
     <div class="line" th:if="${products != null}">
-        <div class="caption">
-            <span class="keyword" th:text="${keyword + '(을)를 검색한 결과입니다.'}"></span>
-        </div>
         <div class="item-box" th:each="product : ${products}">
             <a class="medal" href="#" th:text="${product.getNum()}"></a>
             <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}"

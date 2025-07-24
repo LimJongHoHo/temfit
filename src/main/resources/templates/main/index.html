@@ -93,9 +93,8 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="#">카테고리 전체보기></a>
+            <a class="button" href="/rank">랭크 전체보기 ></a>
         </div>
-
         <div class="A-container">
             <div class="title-container">
                 <a href="#">내 피부에 꼭 맞는 제품 랭킹</a>
@@ -105,27 +104,34 @@
                 </a>
             </div>
             <div class="item-container">
-                <div class="item-box" th:each="product : ${products}">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
-                    <img th:alt="${product.getName()}"
-                         class="item" th:src="${product.getImageUrl}">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" th:text="${product.brandName}"></a>
-                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <span class="score" th:text="${product.getDiscountRate()}"></span>
-                                <span class="number" th:text="${product.getPrice()}"></span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="skin-label">
+                    <label class="label" th:each="skin : ${skins}">
+                        <input class="radio" type="radio" name="skin">
+                        <input hidden class="skinId" th:value="${skin.getId()}" type="hidden">
+                        <span class="caption" th:text="${skin.getName()}"></span>
+                    </label>
                 </div>
+<!--                <div class="item-box" th:each="product : ${products}">-->
+<!--                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal">-->
+<!--                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${brand.getNum() == 2}">-->
+<!--                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${brand.getNum() == 3}">-->
+<!--                    <img th:alt="${product.getName()}"-->
+<!--                         class="item" th:src="${product.getImageUrl}">-->
+<!--                    <div class="container">-->
+<!--                        <div class="brand-container">-->
+<!--                            <a class="title" th:text="${brand.getName()}"></a>-->
+<!--                            <a class="caption" th:text="${brand.getName()}"></a>-->
+<!--                        </div>-->
+<!--                        <div class="star-container">-->
+<!--                            <div class="star-scope">-->
+<!--                                <span class="score" th:text="${brand.getDiscountRate()}"></span>-->
+<!--                                <span class="number" th:text="${product.getPrice()}"></span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
-            <a class="button" href="#">건성 전체보기 ></a>
+            <a class="button" href="/rank">피부별 전체보기 ></a>
         </div>
         <div class="A-container">
             <div class="title-container">
@@ -136,22 +142,15 @@
                 </a>
             </div>
             <div class="item-container">
-                <div class="item-box" th:each="product : ${products}">
-                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
-                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
-                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
-                    <img class="item"
-                         th:src="${product.getImageUrl}" alt="">
+                <div class="item-box brand" th:each="brand : ${brands}">
+                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${brand.getNum() == 1}">
+                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${brand.getNum() == 2}">
+                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${brand.getNum() == 3}">
+                    <img class="item image"
+                         th:src="${brand.getImageUrl()}" th:alt="${brand.getName()}">
                     <div class="container">
                         <div class="brand-container">
-                            <a class="title" th:text="${product.brandName}"></a>
-                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
-                        </div>
-                        <div class="star-container">
-                            <div class="star-scope">
-                                <span class="score" th:text="${product.getDiscountRate()}"></span>
-                                <span class="number" th:text="${product.getPrice()}"></span>
-                            </div>
+                            <a href="/rank" class="title" th:text="${brand.getName()}"></a>
                         </div>
                     </div>
                 </div>

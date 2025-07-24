@@ -51,7 +51,8 @@
                `modify_user_email` AS `modifyUserEmail`,
                `created_at`        AS `createdAt`,
                `modified_at`       AS `modifiedAt`,
-               `is_deleted`        AS `isDeleted`
+               `is_deleted`        AS `isDeleted`,
+               ROW_NUMBER() OVER (ORDER BY `name`) AS `num`
         FROM `temfit`.`brands`
         WHERE `is_deleted` = FALSE
         ORDER BY `name`
@@ -64,7 +65,8 @@
                `modify_user_email` AS `modifyUserEmail`,
                `created_at`        AS `createdAt`,
                `modified_at`       AS `modifiedAt`,
-               `is_deleted`        AS `isDeleted`
+               `is_deleted`        AS `isDeleted`,
+               ROW_NUMBER() OVER (ORDER BY `name`) AS `num`
         FROM `temfit`.`skins`
         WHERE `is_deleted` = FALSE
         ORDER BY `name`
@@ -276,25 +278,24 @@
         ORDER BY `name`
     </select>
     <select id="getProductByBrandAll">
-        SELECT `t0`.`id`                AS `id`,
-               `t0`.`image_url`         AS `imageUrl`,
-               `t0`.`name`              AS `name`,
-               `t0`.`brand_id`          AS `brandId`,
-               (SELECT `name`
-                FROM `temfit`.`brands`
-                WHERE `id` = `brand_id`) AS `brandName`,
-               `t0`.`skin_id`           AS `skinId`,
-               `t0`.`size`              AS `size`,
-               `t0`.`price`             AS `price`,
-               `t0`.`discount_rate`     AS `discountRate`,
-               `t0`.`delivery_fee`      AS `deliveryFee`,
-               `t0`.`delivery_company`  AS `deliveryCompany`,
-               `t0`.`delivery_add`      AS `deliveryAdd`,
-               `t0`.`creat_user_email`  AS `creatUserEmail`,
-               `t0`.`modify_user_email` AS `modifyUserEmail`,
-               `t0`.`created_at`        AS `createdAt`,
-               `t0`.`modified_at`       AS `modifiedAt`,
-               `t0`.`is_deleted`        AS `isDeleted`,
+        SELECT `t0`.`id`                                AS `id`,
+               `t0`.`image_url`                         AS `imageUrl`,
+               `t0`.`name`                              AS `name`,
+               `t0`.`brand_id`                          AS `brandId`,
+               `t0`.`skin_id`                           AS `skinId`,
+               `t0`.`size`                              AS `size`,
+               `t0`.`price`                             AS `price`,
+               `t0`.`discount_rate`                     AS `discountRate`,
+               `t0`.`delivery_fee`                      AS `deliveryFee`,
+               `t0`.`delivery_company`                  AS `deliveryCompany`,
+               `t0`.`delivery_add`                      AS `deliveryAdd`,
+               `t0`.`creat_user_email`                  AS `creatUserEmail`,
+               `t0`.`modify_user_email`                 AS `modifyUserEmail`,
+               `t0`.`created_at`                        AS `createdAt`,
+               `t0`.`modified_at`                       AS `modifiedAt`,
+               `t0`.`is_deleted`                        AS `isDeleted`,
+               `t1`.`image_url`                         AS `brandImageUrl`,
+               `t1`.`name`                         AS `brandName`,
                ROW_NUMBER() OVER (ORDER BY `t0`.`name`) AS `num`
         FROM `temfit`.`products` AS `t0`
                  LEFT JOIN `temfit`.`brands` AS `t1` ON `t0`.`brand_id` = `t1`.`id`
@@ -302,4 +303,5 @@
           AND `brand_id` = #{brandId}
         ORDER BY `name`
     </select>
+
 </mapper>

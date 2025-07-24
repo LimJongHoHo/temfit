@@ -56,46 +56,45 @@
   margin: 0 auto;
   background-color: #ffffff;
 
+  > .caption{
+    padding: 1rem 0;
+    > .keyword{
+      font-size: 1rem;
+      font-weight: 500;
+      color: #7a7c7e;
+    }
+  }
+
   > .search-none {
     @include flex(column, center, center, 1rem);
     color: #a2a4a6;
     padding: 10rem 0;
 
-      > .caption {
-        font-size: 1.5rem;
-      }
+    > .caption {
+      font-size: 1.5rem;
+    }
 
-      > .sub-caption {
-        font-size: 1rem;
-      }
+    > .sub-caption {
+      font-size: 1rem;
+    }
   }
 
-  > .caption-container{
+  > .caption-container {
     margin-bottom: -1.875rem;
 
-    > .date{
+    > .date {
       font-size: 0.675rem;
       font-weight: 400;
       color: #7a7c7e;
     }
 
-    > .caption{
+    > .caption {
       font-size: 1.125rem;
       font-weight: 600;
     }
   }
 
   > .line {
-    margin-top: 2rem;
-
-    > .caption{
-      padding: 1rem 0;
-      > .keyword{
-        font-size: 1rem;
-        font-weight: 500;
-        color: #7a7c7e;
-      }
-    }
 
     > .item-box {
       @include flex(row, center, flex-start);

@@ -4,6 +4,27 @@ const $startButton = $checkBoxLabel.querySelector(':scope > .icon.start');
 const $pauseButton = $checkBoxLabel.querySelector(':scope > .icon.pause');
 const $imageTable = document.getElementById('imageTable');
 const $categoryButton = document.querySelector('#main > .A-container > .button');
+const $skinLabels = document.querySelectorAll('#main > .A-container > .item-container > .skin-label > .label');
+
+$skinLabels.forEach(($label) => {$label.addEventListener('click', () => {
+    $label.querySelector(':scope > .skinId').value;
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) {
+            return;
+        }
+        if (xhr.status < 200 || xhr.status >= 300) {
+
+            return;
+        }
+
+    };
+    xhr.open('POST', '/skinId');
+    xhr.send(formData);
+
+})});
 
 
 let currentPage = -1;

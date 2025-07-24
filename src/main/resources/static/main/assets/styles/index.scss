@@ -180,6 +180,40 @@
       @include flex(column, flex-start, flex-start);
       padding: 3rem 0;
 
+      > .skin-label {
+        @include flex(row, stretch, stretch, 0.375rem);
+        margin-top: -2rem;
+        margin-bottom: 1rem;
+
+        > .label {
+          @include flex(row, center, center);
+          height: 2rem;
+          padding: 0 0.5rem;
+          border: 0.0625rem solid #e0e0e0;
+          border-radius: 0.5rem;
+          cursor: pointer;
+
+          > .caption {
+            padding: 0.35rem;
+            font-size: 0.785rem;
+            font-weight: 400;
+            color: #a2a4a6;
+          }
+
+
+          &:has(.radio:checked) {
+            border-color: #2d2d2d;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            font-weight: 500;
+          }
+
+          > .radio {
+            display: none;
+          }
+        }
+      }
+
       > .item-box {
         @include flex(row, center, flex-start, 1rem);
         padding: 0.6rem 0;
@@ -191,6 +225,12 @@
 
         > .item {
           width: 4.5rem;
+        }
+
+        > .item.image {
+          width: 3.5em;
+          border: 0.0625rem solid #eaecee;
+          border-radius: 999rem;
         }
 
         > .title {

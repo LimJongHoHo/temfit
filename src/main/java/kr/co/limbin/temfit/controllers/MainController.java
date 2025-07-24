@@ -33,8 +33,9 @@ public class MainController {
                     request.getRequestURI());
         }
         ProductVo[] products = this.itemService.getProductAll();
-        ProductVo[] skins = this.itemService.getProductBySkinAll();
-        ProductVo[] brands = this.itemService.getProductByBrandAll();
+        SkinVo[] skins = this.itemService.getSkinALl();
+        BrandVo[] brands = this.itemService.getBrandALl();
+
         model.addAttribute("products", products);
         model.addAttribute("skins", skins);
         model.addAttribute("brands", brands);
@@ -57,19 +58,29 @@ public class MainController {
     @RequestMapping(value = "/index_search", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndexSearch(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, Model model) {
         ProductVo[] products = this.articleService.search(keyword);
+        String aaa = "\"";
         if (products.length == 0) {
             model.addAttribute("products", null);
         } else {
             model.addAttribute("products", products);
         }
-        model.addAttribute("keyword", "\"" + keyword + "\"");
+        model.addAttribute("aaa", aaa);
+        model.addAttribute("keyword", keyword);
+        System.out.println(keyword);
 
         return "main/index_search";
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getCart(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, Model model) {
-        Integer id = this.itemService.getCartId("asdf1234@naver.com");
+        Integer id = this.itemService.getCartId(signedUser.getEmail());
+
+        if (id == null) {
+            if (this.itemService.insertCart(signedUser) == null) {
+                // 문제 생겼을때 갈만한 페이지....
+            }
+            id = this.itemService.getCartId(signedUser.getEmail());
+        }
 
         CartDetailVo[] cartDetails = this.itemService.getByCartId(id);
         model.addAttribute("cartId", id);
