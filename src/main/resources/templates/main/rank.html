@@ -13,7 +13,7 @@
     <script defer src="/main/assets/scripts/rank.js"></script>
 </head>
 <body>
-<th:block th:replace="~{/fragments/header :: header}"></th:block>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 <div class="--dialog"></div>
 <main id="rank">
     <div class="a-container">
@@ -58,22 +58,23 @@
                 <img class="img" th:src="${brand.getImageUrl()}" th:alt="${brand.getName()}">
                 <span class="title" th:text="${brand.getName()}"></span>
             </div>
-            <div class="line box">
-                <div class="item-box">
-                    <img class="item"
-                         src="https://img.hwahae.co.kr/products/1984011/1984011_20231114110247.jpg?format=webp&size=80x80"
-                         alt="item">
-                    <div class="container">
-                        <div class="brand-container">
-                            <a class="title" href="#" th:text="${brand.getName()}"></a>
-                            <a class="caption" href="#"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+<!--    <div class="brand-page">-->
+<!--        <div class="line box">-->
+<!--            <div class="item-box" th:each="product : ${products}">-->
+<!--                <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}">-->
+<!--                     alt="item">-->
+<!--                <div class="container">-->
+<!--                    <div class="brand-container">-->
+<!--                        <a class="title" href="#" th:text="${brand.getName()}"></a>-->
+<!--                        <a class="caption" href="#"></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </main>
-<th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>

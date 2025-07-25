@@ -31,7 +31,7 @@
 </div>
 <div class="--dialog"></div>
 <div id="container">
-    <th:block th:replace="~{/fragments/header :: header}"></th:block>
+    <th:block th:replace="~{fragments/header :: header}"></th:block>
     <form id="modifyForm">
         <input hidden name="id" type="hidden" th:value="${review.getId()}">
         <h1 class="title">리뷰 수정하기</h1>
@@ -65,7 +65,7 @@
             <button class="--object-button -color-signature" type="submit">리뷰 수정하기</button>
         </div>
     </form>
-    <th:block th:replace="~{/fragments/footer :: footer}"></th:block>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </div>
 </body>
 </html>

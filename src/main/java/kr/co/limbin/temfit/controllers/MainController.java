@@ -43,6 +43,12 @@ public class MainController {
         return "main/index";
     }
 
+    @RequestMapping(value = "skinId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String postSkinId(){
+         
+        return null;
+    }
+
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getRank(Model model) {
 

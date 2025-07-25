@@ -16,9 +16,15 @@ $skinLabels.forEach(($label) => {$label.addEventListener('click', () => {
             return;
         }
         if (xhr.status < 200 || xhr.status >= 300) {
-
+            alert('요청을 처리하는 도 중 오류가 발생하였습니다.');
             return;
         }
+        const response = JSON.parse(xhr.responseText);
+        switch (response.result) {
+            case 'failure_session_expired':
+                dialog.showSimpleOk('상품 보기', '세')
+        }
+
 
     };
     xhr.open('POST', '/skinId');
