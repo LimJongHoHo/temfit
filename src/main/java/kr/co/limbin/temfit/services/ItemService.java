@@ -4,6 +4,7 @@ import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.mappers.ItemMapper;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.results.ResultTuple;
 import kr.co.limbin.temfit.vos.BrandVo;
 import kr.co.limbin.temfit.vos.CartDetailVo;
 import kr.co.limbin.temfit.vos.ProductVo;
@@ -48,24 +49,24 @@ public class ItemService {
         return this.itemMapper.updateCartDetail(dbCartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public Result insert(UserEntity signedUser, ProductEntity product) {
+    public ResultTuple<ProductEntity> insert(UserEntity signedUser, ProductEntity product) {
         if (signedUser == null
                 || signedUser.isDeleted()
                 || signedUser.isSuspended()) {
-            return CommonResult.FAILURE;
+            return ResultTuple.<ProductEntity>builder().result(CommonResult.FAILURE).build();
         }
 
         if (product == null
                 || product.getImageUrl() == null
                 || product.getName() == null
                 || product.getSize() == null) {
-            return CommonResult.FAILURE;
+            return ResultTuple.<ProductEntity>builder().result(CommonResult.FAILURE).build();
         }
 
         product.setCreatUserEmail(signedUser.getEmail());
         product.setCreatedAt(LocalDateTime.now());
         product.setDeleted(false);
-        return this.itemMapper.insert(product) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        return this.itemMapper.insert(product) > 0 ? ResultTuple.<ProductEntity>builder().result(CommonResult.SUCCESS).payload(product).build() : ResultTuple.<ProductEntity>builder().result(CommonResult.FAILURE).build();
     }
 
     public ProductEntity getByProductId(int id) {
@@ -139,6 +140,19 @@ public class ItemService {
             cartDetail.setQuantity(dbCartDetail.getQuantity() + 1);
             return this.itemMapper.updateCartDetail(cartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
         }
+    }
+
+    public Result insertIngredient(UserEntity signedUser, IngredientEntity ingredient) {
+        ingredient.setCreatUserEmail(signedUser.getEmail());
+        ingredient.setCreatedAt(LocalDateTime.now());
+        return this.itemMapper.insertIngredient(ingredient) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Result deleteIngredient(int ingredientId) {
+        if (ingredientId < 1) {
+            return CommonResult.FAILURE;
+        }
+        return this.itemMapper.deleteIngredient(ingredientId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
     public ProductVo[] getProductByBrandId(int brandId) {

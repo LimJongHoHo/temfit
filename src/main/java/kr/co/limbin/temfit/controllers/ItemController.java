@@ -1,7 +1,9 @@
 package kr.co.limbin.temfit.controllers;
 
 import kr.co.limbin.temfit.entities.*;
+import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
+import kr.co.limbin.temfit.results.ResultTuple;
 import kr.co.limbin.temfit.services.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +30,12 @@ public class ItemController {
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
-        Result result = this.itemService.insert(signedUser, product);
+        ResultTuple<ProductEntity> result = this.itemService.insert(signedUser, product);
         JSONObject response = new JSONObject();
-        response.put("result", result.toStringLower());
+        if (result.getResult() == CommonResult.SUCCESS) {
+            response.put("productId", result.getPayload().getId());
+        }
+        response.put("result", result.getResult().toStringLower());
         return response.toString();
     }
 
@@ -106,6 +111,25 @@ public class ItemController {
         }
         JSONObject response = new JSONObject();
         response.put("score", score);
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/ingredient", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postIngredient(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, IngredientEntity ingredient) {
+        System.out.println(ingredient.getKorName());
+        Result result = this.itemService.insertIngredient(signedUser, ingredient);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/ingredient", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteIngredient(@RequestParam(value = "ingredientId") int ingredientId) {
+        Result result = this.itemService.deleteIngredient(ingredientId);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
         return response.toString();
     }
 }

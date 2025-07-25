@@ -28,6 +28,16 @@
         VALUES (#{cartDetail.cartId}, #{cartDetail.productId}, #{cartDetail.articleId}, #{cartDetail.quantity},
                 #{cartDetail.creatUserEmail}, #{cartDetail.createdAt})
     </insert>
+    
+    <insert id="insertIngredient"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`ingredients` (`kor_name`, `score`, `product_id`,
+                                            `creat_user_email`, `created_at`)
+        VALUES (#{ingredient.korName}, #{ingredient.score}, #{ingredient.productId}, #{ingredient.creatUserEmail},
+                #{ingredient.createdAt})
+    </insert>
 
     <update id="updateCartDetail">
         UPDATE `temfit`.`cart_detail`
@@ -40,6 +50,13 @@
         DELETE
         FROM `temfit`.`cart_detail`
         WHERE `id` = #{cartDetailId}
+        LIMIT 1
+    </delete>
+
+    <delete id="deleteIngredient">
+        DELETE
+        FROM `temfit`.`ingredients`
+        WHERE `id` = #{ingredientId}
         LIMIT 1
     </delete>
 

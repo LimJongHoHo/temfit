@@ -12,9 +12,13 @@ import org.apache.ibatis.annotations.Param;
 public interface ItemMapper {
     int deleteCartDetail(@Param(value = "cartDetailId") int cartDetailId);
 
+    int deleteIngredient(@Param(value = "ingredientId") int ingredientId);
+
     int updateCartDetail(@Param(value = "cartDetail") CartDetailEntity cartDetail);
 
     int insert(@Param(value = "product") ProductEntity product);
+
+    int insertIngredient(@Param(value = "ingredient") IngredientEntity ingredient);
 
     ProductEntity getByProductId(@Param(value = "id") int id);
 
