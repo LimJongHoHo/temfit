@@ -8,6 +8,7 @@ import kr.co.limbin.temfit.services.PaymentService;
 import kr.co.limbin.temfit.vos.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser,  HttpServletRequest request, Model model) {
+    public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, HttpServletRequest request, Model model) {
         if (signedUser == null) {
             System.out.println("로그인 안 됨");
         } else {
@@ -48,10 +49,12 @@ public class MainController {
         return "main/index";
     }
 
-    @RequestMapping(value = "skinId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String postSkinId(){
-         
-        return null;
+    @RequestMapping(value = "/skinId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postSkinId(@RequestParam(value = "skinId") int skinId) {
+        JSONObject response = new JSONObject();
+        response.put("products", this.itemService.getProductBySkinId(skinId));
+        return response.toString();
     }
 
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -64,6 +67,16 @@ public class MainController {
         model.addAttribute("skins", skins);
 
         return "main/rank";
+    }
+
+    @RequestMapping(value = "/brandId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBrandId(@RequestParam(value = "brandId") int brandId) {
+
+        JSONObject response = new JSONObject();
+        response.put("products", this.itemService.getProductByBrandId(brandId));
+
+        return response.toString();
     }
 
     @RequestMapping(value = "/index_search", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

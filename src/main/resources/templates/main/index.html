@@ -82,7 +82,7 @@
                     <div class="container">
                         <div class="brand-container">
                             <a class="title" th:text="${product.brandName}"></a>
-                            <a class="caption" th:text="${product.getName()}">ㅇㅇㅇㅇㅇ</a>
+                            <a class="caption" th:text="${product.getName()}"></a>
                         </div>
                         <div class="star-container">
                             <div class="star-scope">
@@ -111,25 +111,9 @@
                         <span class="caption" th:text="${skin.getName()}"></span>
                     </label>
                 </div>
-<!--                <div class="item-box" th:each="product : ${products}">-->
-<!--                    <img class="medal" src="/assets/images/1st-medal.png" alt="1medal">-->
-<!--                    <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${brand.getNum() == 2}">-->
-<!--                    <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${brand.getNum() == 3}">-->
-<!--                    <img th:alt="${product.getName()}"-->
-<!--                         class="item" th:src="${product.getImageUrl}">-->
-<!--                    <div class="container">-->
-<!--                        <div class="brand-container">-->
-<!--                            <a class="title" th:text="${brand.getName()}"></a>-->
-<!--                            <a class="caption" th:text="${brand.getName()}"></a>-->
-<!--                        </div>-->
-<!--                        <div class="star-container">-->
-<!--                            <div class="star-scope">-->
-<!--                                <span class="score" th:text="${brand.getDiscountRate()}"></span>-->
-<!--                                <span class="number" th:text="${product.getPrice()}"></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="skin-container">
+
+                </div>
             </div>
             <a class="button" href="/rank">피부별 전체보기 ></a>
         </div>

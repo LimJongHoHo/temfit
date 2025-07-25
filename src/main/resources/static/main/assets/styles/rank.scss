@@ -133,14 +133,27 @@
     &.visible {
       display: block;
 
-      > .brand {
+      > .brand-label {
         @include flex(column, stretch, flex-start, 1rem);
         font-size: 0.875rem;
-        font-weight: 600;
+        font-weight: 500;
+        color: #4f4f4f;
 
         > .brand-con {
           @include flex(row, center, flex-start, 1rem);
           padding: 1rem;
+          cursor: pointer;
+
+          &:has(.radio:checked) {
+            border: 0.1rem solid #fb5f86;
+            border-radius: 0.5rem;
+            color: #000000;
+            font-weight: 700;
+          }
+
+          > .radio {
+            display: none;
+          }
 
           > .img {
             width: 2.45rem;

@@ -24,10 +24,6 @@ public interface ItemMapper {
 
     ProductVo[] getProductAll();
 
-    ProductVo[] getProductBySkinAll();
-
-    ProductVo[] getProductByBrandAll();
-
     BrandEntity getByBrandId(@Param(value = "id") int id);
 
     SkinEntity getBySkinId(@Param(value = "id") int id);

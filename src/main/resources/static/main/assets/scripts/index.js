@@ -4,33 +4,73 @@ const $startButton = $checkBoxLabel.querySelector(':scope > .icon.start');
 const $pauseButton = $checkBoxLabel.querySelector(':scope > .icon.pause');
 const $imageTable = document.getElementById('imageTable');
 const $categoryButton = document.querySelector('#main > .A-container > .button');
+const $skin = document.querySelector('#main > .A-container > .item-container > .skin-container');
 const $skinLabels = document.querySelectorAll('#main > .A-container > .item-container > .skin-label > .label');
 
-$skinLabels.forEach(($label) => {$label.addEventListener('click', () => {
-    $label.querySelector(':scope > .skinId').value;
-    const xhr = new XMLHttpRequest();
-    const formData = new FormData();
 
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState !== XMLHttpRequest.DONE) {
-            return;
-        }
-        if (xhr.status < 200 || xhr.status >= 300) {
-            alert('요청을 처리하는 도 중 오류가 발생하였습니다.');
-            return;
-        }
-        const response = JSON.parse(xhr.responseText);
-        switch (response.result) {
-            case 'failure_session_expired':
-                dialog.showSimpleOk('상품 보기', '세')
-        }
+$skinLabels.forEach(($label) => {
+    $label.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        formData.append('skinId', $label.querySelector(':scope > .skinId').value);
 
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== XMLHttpRequest.DONE) {
+                return;
+            }
+            if (xhr.status < 200 || xhr.status >= 300) {
+                alert('요청을 처리하는 도 중 오류가 발생하였습니다.');
+                return;
+            }
+            const response = JSON.parse(xhr.responseText);
 
-    };
-    xhr.open('POST', '/skinId');
-    xhr.send(formData);
+            const products = response.products;
+            $skin.innerHTML = '';
+            let skinHtml = ``;
 
-})});
+            for (const product of products) {
+                let medal = '';
+                if (product.num === 1) {
+                    medal = `
+                        <div class="item-box">
+                            <img class="medal" src="/assets/images/1st-medal.png" alt="1medal"/>`;
+                } else if(product.num === 2) {
+                    medal = `
+                        <div class="item-box">
+                            <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal"/>`;
+                } else if(product.num === 3) {
+                    medal = `
+                        <div class="item-box">
+                            <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal"/>`;
+                } else {
+                    medal = `<span>${product.num}</span>`;
+                }
+                skinHtml += `
+                        <img class="item" alt=""/> 
+                        <div class="container">
+                            <div class="brand-container">
+                                <a class="title">${product.name}</a>
+                                <a class="caption">${product.brandName}</a>
+                            </div>
+                            <div class="star-container">
+                                <div class="star-scope">
+                                    <span class="score">${product.discountRate}</span>
+                                    <span class="number">${product.price}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                skinHtml = medal + skinHtml;
+            }
+
+            $skin.innerHTML = skinHtml;
+
+        };
+        xhr.open('POST', '/skinId');
+        xhr.send(formData)
+
+    })
+});
 
 
 let currentPage = -1;

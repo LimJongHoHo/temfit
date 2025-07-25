@@ -69,6 +69,14 @@ public class ItemService {
         return this.itemMapper.insert(product) > 0 ? ResultTuple.<ProductEntity>builder().result(CommonResult.SUCCESS).payload(product).build() : ResultTuple.<ProductEntity>builder().result(CommonResult.FAILURE).build();
     }
 
+    public ProductVo[] getProductBySkinId(int skinId) {
+        return this.itemMapper.getProductBySkinId(skinId);
+    }
+
+    public ProductVo[] getProductByBrandId(int brandId) {
+        return this.itemMapper.getProductByBrandId(brandId);
+    }
+
     public ProductEntity getByProductId(int id) {
         return this.itemMapper.getByProductId(id);
     }
@@ -82,14 +90,6 @@ public class ItemService {
 
     public ProductVo[] getProductAll() {
         return this.itemMapper.getProductAll();
-    }
-
-    public ProductVo[] getProductBySkinAll(){
-        return this.itemMapper.getProductBySkinAll();
-    }
-
-    public ProductVo[] getProductByBrandAll(){
-        return this.itemMapper.getProductByBrandAll();
     }
 
     public BrandVo[] getBrandALl() {
@@ -155,12 +155,6 @@ public class ItemService {
         return this.itemMapper.deleteIngredient(ingredientId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public ProductVo[] getProductByBrandId(int brandId) {
-        return this.itemMapper.getProductByBrandId(brandId);
-    }
 
-    public ProductVo[] getProductBySkinId(int skinId) {
-        return this.itemMapper.getProductBySkinId(skinId);
-    }
 
 }
