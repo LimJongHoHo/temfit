@@ -22,6 +22,11 @@ public class MainController {
     private final ArticleService articleService;
     private final PaymentService paymentService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getMain() {
+        return "redirect:/main";
+    }
+
     @RequestMapping(value = "/main", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser,  HttpServletRequest request, Model model) {
         if (signedUser == null) {
