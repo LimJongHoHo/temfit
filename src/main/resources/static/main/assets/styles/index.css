@@ -349,6 +349,99 @@
 #main > .A-container > .item-container > .skin-label > .label > .radio {
   display: none;
 }
+#main > .A-container > .item-container > .skin-container > .item-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 0.6rem 0;
+  font-weight: 500;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .medal {
+  width: 2rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .item {
+  width: 4.5rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .item.image {
+  width: 3.5em;
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .brand-container > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-start;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope > .starImg {
+  width: 0.75rem;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope > .score {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fc7899;
+}
+#main > .A-container > .item-container > .skin-container > .item-box > .container > .star-container > .star-scope > .number {
+  font-size: 0.875rem;
+  color: #434345;
+}
 #main > .A-container > .item-container > .item-box {
   align-items: center;
   display: flex;

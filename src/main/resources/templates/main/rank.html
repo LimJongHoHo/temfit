@@ -40,21 +40,17 @@
         <div class="skin-label">
             <label class="label" th:each="skin : ${skins}">
                 <input class="radio" type="radio" name="skin">
+                <input hidden class="skinId" th:value="${skin.getId()}" type="hidden">
                 <span class="caption" th:text="${skin.getName()}"></span>
             </label>
         </div>
-        <div class="line">
-<!--            <div class="item-box" th:each="product : ${products}">-->
-<!--                <img class="medal" src="/assets/images/1st-medal.png" alt="1st-medal">-->
-<!--                <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}">-->
-<!--                <a class="title"></a>-->
-<!--                <a class="caption" th:text="${product.getName()}"></a>-->
-<!--            </div>-->
+        <div class="skin-box">
+
         </div>
     </div>
     <div class="brand-container">
         <div class="brand-label">
-            <label class="brand-con" th:each="brand : ${brands}">
+            <label class="label" th:each="brand : ${brands}">
                 <span class="number" th:if="${brand.getNum() == 1}">1</span>
                 <span class="number" th:if="${brand.getNum() == 2}">2</span>
                 <span class="number" th:if="${brand.getNum() == 3}">3</span>
@@ -62,10 +58,10 @@
                 <input hidden class="brandId" th:value="${brand.getId()}" type="hidden">
                 <img class="img" th:src="${brand.getImageUrl()}" th:alt="${brand.getName()}">
                 <span class="title" th:text="${brand.getName()}"></span>
-            </label>
-        </div>
-        <div class="brand-box">
+                <label class="brand-box">
 
+                </label>
+            </label>
         </div>
     </div>
 </main>

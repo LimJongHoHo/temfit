@@ -11,5 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SkinVo extends SkinEntity {
+    private String brandName;
     private int num;
 }

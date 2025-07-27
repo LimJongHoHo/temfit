@@ -6,6 +6,7 @@ const $imageTable = document.getElementById('imageTable');
 const $categoryButton = document.querySelector('#main > .A-container > .button');
 const $skin = document.querySelector('#main > .A-container > .item-container > .skin-container');
 const $skinLabels = document.querySelectorAll('#main > .A-container > .item-container > .skin-label > .label');
+const $skinContainer  = document.querySelector('#main > .A-container > .item-container > .skin-label > .label:first-child');
 
 
 $skinLabels.forEach(($label) => {
@@ -46,16 +47,16 @@ $skinLabels.forEach(($label) => {
                     medal = `<span>${product.num}</span>`;
                 }
                 skinHtml += `
-                        <img class="item" alt=""/> 
+                        <img class="item" src="${product.imageUrl}" alt="${product.name}"> 
                         <div class="container">
                             <div class="brand-container">
-                                <a class="title">${product.name}</a>
-                                <a class="caption">${product.brandName}</a>
+                                <a class="title">${product.brandName}</a>
+                                <a class="caption">${product.name}</a>
                             </div>
                             <div class="star-container">
                                 <div class="star-scope">
-                                    <span class="score">${product.discountRate}</span>
-                                    <span class="number">${product.price}</span>
+                                    <span class="score">${product.discountRate}%</span>
+                                    <span class="number">${product.price}원</span>
                                 </div>
                             </div>
                         </div>
@@ -66,12 +67,13 @@ $skinLabels.forEach(($label) => {
             $skin.innerHTML = skinHtml;
 
         };
-        xhr.open('POST', '/skinId');
+        xhr.open('POST', '/skinMainId');
         xhr.send(formData)
 
     })
 });
 
+$skinContainer.click();
 
 let currentPage = -1;
 

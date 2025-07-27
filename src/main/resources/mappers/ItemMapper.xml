@@ -226,6 +226,9 @@
                (SELECT `name`
                 FROM `temfit`.`skins`
                 WHERE `id` = `skin_id`) AS `skinName`,
+               (SELECT `name`
+                FROM `temfit`.`brands`
+                WHERE `id` = `brand_id`) AS `brandName`,
                `size`              AS `size`,
                `price`             AS `price`,
                `discount_rate`     AS `discountRate`,
@@ -271,5 +274,19 @@
           AND `brand_id` = #{brandId}
         ORDER BY `name`
         LIMIT 10
+    </select>
+    <select id="getArticleId" resultType="kr.co.limbin.temfit.entities.ArticleEntity">
+        SELECT `id`          AS `id`,
+               `created_at`  AS `createdAt`,
+               `title`       AS `title`,
+               `product_id`  AS `productId`,
+               `modified_at` AS `modifiedAt`,
+               `view`        AS `view`,
+               `is_deleted`  AS `isDeleted`,
+               `content`     AS `content`,
+               `user_email`  AS `userEmail`
+        FROM `temfit`.`articles`
+        WHERE `is_deleted` = FALSE
+          AND `product_id` = #{productId}
     </select>
 </mapper>

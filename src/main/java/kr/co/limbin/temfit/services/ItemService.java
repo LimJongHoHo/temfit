@@ -88,6 +88,11 @@ public class ItemService {
         return this.itemMapper.getBySkinId(id);
     }
 
+    public ArticleEntity getArticleIdByProductId (int productId)
+    {
+        return this.itemMapper.getArticleId(productId);
+    }
+
     public ProductVo[] getProductAll() {
         return this.itemMapper.getProductAll();
     }

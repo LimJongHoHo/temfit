@@ -49,13 +49,25 @@ public class MainController {
         return "main/index";
     }
 
-    @RequestMapping(value = "/skinId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/skinMainId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String postSkinId(@RequestParam(value = "skinId") int skinId) {
+    public String postSkinMainId(@RequestParam(value = "skinId") int skinId, @RequestParam(value = "productId") int productId) {
+
         JSONObject response = new JSONObject();
         response.put("products", this.itemService.getProductBySkinId(skinId));
+        response.put("articles", this.itemService.getArticleIdByProductId(productId));
         return response.toString();
     }
+
+    @RequestMapping(value = "/productId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postProductId(@RequestParam(value = "productId") int productId) {
+        ArticleEntity article = this.itemService.getArticleIdByProductId(productId);
+        JSONObject response = new JSONObject();
+        response.put("articleId",article.getId());
+        return response.toString();
+    }
+
 
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getRank(Model model) {
@@ -75,6 +87,16 @@ public class MainController {
 
         JSONObject response = new JSONObject();
         response.put("products", this.itemService.getProductByBrandId(brandId));
+
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/skinId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postSkinId(@RequestParam(value = "skinId") int skinId) {
+
+        JSONObject response = new JSONObject();
+        response.put("products", this.itemService.getProductBySkinId(skinId));
 
         return response.toString();
     }

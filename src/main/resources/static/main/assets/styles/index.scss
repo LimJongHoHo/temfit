@@ -214,6 +214,67 @@
         }
       }
 
+      > .skin-container {
+        > .item-box {
+          @include flex(row, center, flex-start, 1rem);
+          padding: 0.6rem 0;
+          font-weight: 500;
+
+          > .medal {
+            width: 2rem;
+          }
+
+          > .item {
+            width: 4.5rem;
+          }
+
+          > .item.image {
+            width: 3.5em;
+            border: 0.0625rem solid #eaecee;
+            border-radius: 999rem;
+          }
+
+          > .title {
+            color: #757575;
+            margin-right: 0.25rem;
+          }
+
+          > .container {
+            @include flex(column, flex-start, flex-start, 0.6rem);
+
+            > .brand-container {
+              > .title {
+                color: #757575;
+                margin-right: 0.25rem;
+              }
+            }
+
+            > .star-container {
+              @include flex(row, flex-start, flex-start, 1rem);
+
+              > .star-scope {
+                @include flex(row, center, flex-start, 0.25rem);
+
+                > .starImg {
+                  width: 0.75rem;
+                }
+
+                > .score {
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  color: #fc7899;
+                }
+
+                > .number {
+                  font-size: 0.875rem;
+                  color: #434345;
+                }
+              }
+            }
+          }
+        }
+      }
+
       > .item-box {
         @include flex(row, center, flex-start, 1rem);
         padding: 0.6rem 0;

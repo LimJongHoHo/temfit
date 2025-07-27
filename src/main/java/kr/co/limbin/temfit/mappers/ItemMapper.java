@@ -48,4 +48,6 @@ public interface ItemMapper {
 
     ProductVo[] getProductByBrandId(@Param(value = "brandId") int brandId);
 
+    ArticleEntity getArticleId(@Param(value = "productId") int productId);
+
 }
