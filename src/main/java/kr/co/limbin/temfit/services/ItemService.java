@@ -49,6 +49,28 @@ public class ItemService {
         return this.itemMapper.updateCartDetail(dbCartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
+    public Result update(UserEntity signedUser, ProductEntity product) {
+        if (signedUser == null
+                || signedUser.isDeleted()
+                || signedUser.isSuspended()) {
+            return CommonResult.FAILURE;
+        }
+
+        if (product == null
+                || product.getImageUrl() == null
+                || product.getName() == null
+                || product.getSize() == null) {
+            return CommonResult.FAILURE;
+        }
+
+        ProductEntity dbProduct = this.itemMapper.getByProductId(product.getId());
+
+        dbProduct.setModifyUserEmail(signedUser.getEmail());
+        dbProduct.setModifiedAt(LocalDateTime.now());
+        dbProduct.setDeleted(false);
+        return this.itemMapper.update(product) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
     public ResultTuple<ProductEntity> insert(UserEntity signedUser, ProductEntity product) {
         if (signedUser == null
                 || signedUser.isDeleted()
@@ -160,6 +182,8 @@ public class ItemService {
         return this.itemMapper.deleteIngredient(ingredientId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-
+    public IngredientEntity[] getIngredientByProductId(int productId) {
+        return this.itemMapper.getIngredientByProductId(productId);
+    }
 
 }

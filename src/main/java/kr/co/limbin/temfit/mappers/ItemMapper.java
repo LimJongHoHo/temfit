@@ -16,6 +16,8 @@ public interface ItemMapper {
 
     int updateCartDetail(@Param(value = "cartDetail") CartDetailEntity cartDetail);
 
+    int update(@Param(value = "product") ProductEntity product);
+
     int insert(@Param(value = "product") ProductEntity product);
 
     int insertIngredient(@Param(value = "ingredient") IngredientEntity ingredient);
@@ -50,4 +52,5 @@ public interface ItemMapper {
 
     ArticleEntity getArticleId(@Param(value = "productId") int productId);
 
+    IngredientEntity[] getIngredientByProductId(@Param(value = "productId") int productId);
 }

@@ -1,0 +1,161 @@
+#itemModifyForm {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+#itemModifyForm > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm .ingredient-wrapper {
+  position: relative;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information {
+  display: none;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  max-width: 30rem;
+  max-height: 15rem;
+  overflow: auto scroll;
+  top: 2rem;
+  left: 4.75rem;
+  border: 0.0625rem solid #000000;
+  border-radius: 0.25rem;
+  background-color: #Ffffff;
+  position: absolute;
+  z-index: 100;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .empty {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  width: 28rem;
+  padding: 3rem 0;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .empty > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .empty > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .container,
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: center;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .container > *,
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .container > .-flex-stretch,
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .container > span,
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item > span {
+  text-align: center;
+  width: 5.45rem;
+  overflow-wrap: break-word;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .container {
+  padding: 0.25rem 0;
+  font-weight: 600;
+  border-bottom: 0.0625rem solid #eeeeee;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item {
+  cursor: pointer;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-information.-visible > .item:hover {
+  background-color: #eeeeee;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container {
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  margin-left: 4.75rem;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container > .item {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+  border: 0.0625rem solid #e0e0e0;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 300;
+  overflow: auto hidden;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container > .item > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container > .item > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container > .item > span {
+  white-space: wrap;
+}
+#itemModifyForm .ingredient-wrapper > .ingredient-container > .item > button {
+  margin-right: 0.25rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  padding: 0.1rem 0.25rem;
+  color: #ffffff;
+  background-color: red;
+}
+#itemModifyForm > .--object-label-row > .num {
+  text-align: end;
+}
+#itemModifyForm > .--object-label-row > .num ~ .---caption {
+  text-align: start;
+}
+#itemModifyForm > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+#itemModifyForm > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+/*# sourceMappingURL=modify.css.map */

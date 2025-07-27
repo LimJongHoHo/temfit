@@ -46,6 +46,24 @@
         LIMIT 1
     </update>
 
+    <update id="update">
+        UPDATE `temfit`.`products`
+        SET `image_url`         = #{product.imageUrl},
+            `name`              = #{product.name},
+            `brand_id`          = #{product.brandId},
+            `skin_id`           = #{product.skinId},
+            `size`              = #{product.size},
+            `price`             = #{product.price},
+            `discount_rate`     = #{product.discountRate},
+            `delivery_fee`      = #{product.deliveryFee},
+            `delivery_company`  = #{product.deliveryCompany},
+            `delivery_add`      = #{product.deliveryAdd},
+            `modify_user_email` = #{product.modifyUserEmail},
+            `modified_at`       = #{product.modifiedAt},
+            `is_deleted`        = #{product.isDeleted}
+        WHERE `id` = #{product.id}
+    </update>
+
     <delete id="deleteCartDetail">
         DELETE
         FROM `temfit`.`cart_detail`
@@ -288,5 +306,17 @@
         FROM `temfit`.`articles`
         WHERE `is_deleted` = FALSE
           AND `product_id` = #{productId}
+    </select>
+
+    <select id="getIngredientByProductId">
+        SELECT `id`               AS `id`,
+               `kor_name`         AS `korName`,
+               `score`            AS `score`,
+               `product_id`       AS `productId`,
+               `creat_user_email` AS `creatUserEmail`,
+               `created_at`       AS `createdAt`
+        FROM `temfit`.`ingredients`
+        WHERE `product_id` = #{productId}
+        ORDER BY `kor_name`
     </select>
 </mapper>

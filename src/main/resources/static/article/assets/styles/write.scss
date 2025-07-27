@@ -60,7 +60,6 @@
   > .--object-label {
     &.product {
       @include flex(row, stretch, flex-start, 1rem);
-      margin-bottom: 1rem;
     }
 
     &:has(textarea) * {

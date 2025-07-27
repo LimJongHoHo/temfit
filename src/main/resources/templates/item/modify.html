@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>상품수정</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" type="text/css" href="/item/assets/styles/modify.min.css">
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script defer src="/item/assets/scripts/modify.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="--loading" id="loading">
+    <img alt="" class="---icon" src="/assets/images/loading.png">
+    <span class="---caption">잠시만 기다려 주세요.</span>
+</div>
+<div class="--dialog"></div>
+<div id="container">
+    <form novalidate id="itemModifyForm">
+        <label class="--object-label-row">
+            <span class="---caption">상품이미지</span>
+            <input name="productImage" class="--object-field ---field -flex-stretch" placeholder="이미지 주소를 입력해주세요."
+                   maxlength="1000" type="text" th:value="${product.getImageUrl()}">
+            <span class="---warning"></span>
+            <img th:alt="${product.getName()}" class="image" th:src="${product.getImageUrl()}">
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">상품이름</span>
+            <input name="productName" maxlength="50" minlength="1" class="--object-field ---field -flex-stretch"
+                   placeholder="상품이름을 입력해주세요."
+                   type="text" th:value="${product.getName()}">
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">브랜드</span>
+            <select id="brand" class="--object-field ---field -flex-stretch">
+                <option selected value="none">브랜드를 선택해주세요.</option>
+                <option th:each="brand : ${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}"
+                        th:selected="${brand.getId() == product.getBrandId()}"></option>
+            </select>
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">피부유형</span>
+            <select id="skin" class="--object-field ---field -flex-stretch">
+                <option selected value="none">피부유형을 선택해주세요.</option>
+                <option th:each="skin : ${skins}" th:value="${skin.getId()}" th:text="${skin.getName()}"
+                        th:selected="${skin.getId() == product.getSkinId()}"></option>
+            </select>
+        </label>
+        <div class="ingredient-wrapper">
+            <label class="--object-label-row">
+                <span class="---caption">성분</span>
+                <input name="ingredient" maxlength="100" minlength="1"
+                       class="--object-field ---field -flex-stretch ingredient" placeholder="성분 한글명으로 검색해주세요."
+                       type="text">
+            </label>
+            <div class="ingredient-information">
+
+            </div>
+            <div class="ingredient-container">
+                <div class="item" th:each="ingredient : ${ingredients}">
+                    <button class="delete" type="button">X</button>
+                    <span>(</span>
+                    <span class="score" th:text="${ingredient.getScore()}"></span>
+                    <span>)</span>
+                    <span class="korName" th:text="${ingredient.getKorName()}"></span>
+                </div>
+            </div>
+        </div>
+        <label class="--object-label-row">
+            <span class="---caption">용량</span>
+            <input name="size" maxlength="50" minlength="1" class="--object-field ---field -flex-stretch"
+                   placeholder="상세히 적어주세요.( 예: 145ml*3 )" type="text" th:value="${product.getSize()}">
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">가격</span>
+            <input name="price" class="--object-field ---field num" placeholder="가격을 입력해주세요." type="number"
+                   th:value="${product.getPrice()}">
+            <span class="---caption">원</span>
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">할인율</span>
+            <input name="rate" class="--object-field ---field num" placeholder="할인율을 입력해주세요." type="number"
+                   th:value="${product.getDiscountRate()}">
+            <span class="---caption">%</span>
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">배송비</span>
+            <input name="deliveryFee" class="--object-field ---field num" placeholder="배송비를 입력해주세요." type="number"
+                   th:value="${product.getDeliveryFee()}">
+            <span class="---caption">원</span>
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">배송사</span>
+            <input name="deliveryCompany" class="--object-field ---field" placeholder="배송사를 입력해주세요." type="text"
+                   th:value="${product.getDeliveryCompany()}">
+        </label>
+        <label class="--object-label-row">
+            <span class="---caption">배송비고란</span>
+            <input name="deliveryAdd" maxlength="50" minlength="1" class="--object-field ---field -flex-stretch"
+                   type="text" th:value="${product.getDeliveryAdd()}">
+        </label>
+        <div class="button-container">
+            <a class="--object-button -color-gray" onclick="window.close()">돌아가기</a>
+            <button class="--object-button -color-signature" type="submit">상품수정</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

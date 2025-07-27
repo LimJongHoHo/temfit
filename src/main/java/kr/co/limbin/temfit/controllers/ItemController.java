@@ -39,6 +39,15 @@ public class ItemController {
         return response.toString();
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
+        Result result = this.itemService.update(signedUser, product);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
     @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getWrite(Model model) {
         BrandEntity[] brands = this.itemService.getBrandALl();
@@ -131,5 +140,18 @@ public class ItemController {
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
         return response.toString();
+    }
+
+    @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getModify(@RequestParam(value = "productId", required = false) int productId, Model model) {
+        ProductEntity product = this.itemService.getByProductId(productId);
+        IngredientEntity[] ingredients = this.itemService.getIngredientByProductId(productId);
+        BrandEntity[] brands = this.itemService.getBrandALl();
+        SkinEntity[] skins = this.itemService.getSkinALl();
+        model.addAttribute("product", product);
+        model.addAttribute("ingredients", ingredients);
+        model.addAttribute("brands", brands);
+        model.addAttribute("skins", skins);
+        return "item/modify";
     }
 }

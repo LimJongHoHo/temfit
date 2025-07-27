@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+@import "../../../assets/styles/_def";
+
+#itemModifyForm {
+  @include flex(column, stretch, flex-start, 1.5rem);
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  .ingredient-wrapper {
+    position: relative;
+
+    > .ingredient-information {
+      display: none;
+
+      &.-visible {
+        @include flex(column, flex-start, flex-start, 0.75rem);
+        max-width: 30rem;
+        max-height: 15rem;
+        overflow: auto scroll;
+        top: 2rem;
+        left: 4.75rem;
+        border: 0.0625rem solid #000000;
+        border-radius: 0.25rem;
+        background-color: #Ffffff;
+        position: absolute;
+        z-index: 100;
+
+        > .empty {
+          @include flex(column, center, center);
+          width: 28rem;
+          padding: 3rem 0;
+        }
+
+        > .container,
+        > .item {
+          @include flex(row, center, center, 0.25rem);
+
+          > span {
+            text-align: center;
+            width: 5.45rem;
+            overflow-wrap: break-word;
+          }
+        }
+
+        > .container {
+          padding: 0.25rem 0;
+          font-weight: 600;
+          border-bottom: 0.0625rem solid #eeeeee;
+        }
+
+        > .item {
+          cursor: pointer;
+
+          &:hover {
+            background-color: #eeeeee;
+          }
+        }
+      }
+    }
+
+    > .ingredient-container {
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+      margin-left: 4.75rem;
+
+      > .item {
+        @include flex(row, flex-start, flex-start);
+        border: 0.0625rem solid #e0e0e0;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 300;
+        overflow: auto hidden;
+
+        > span {
+          white-space: wrap;
+        }
+
+        > button {
+          margin-right: 0.25rem;
+          border-radius: 0.35rem;
+          cursor: pointer;
+          padding: 0.1rem 0.25rem;
+          color: #ffffff;
+          background-color: red;
+        }
+      }
+    }
+  }
+
+  > .--object-label-row > .num {
+    text-align: end;
+
+    ~ .---caption {
+      text-align: start;
+    }
+  }
+
+  > .button-container {
+    @include flex(row, stretch, flex-end, 0.75rem)
+  }
+}

@@ -64,7 +64,6 @@
   flex-direction: row;
   gap: 1rem;
   justify-content: flex-start;
-  margin-bottom: 1rem;
 }
 #writeForm > .--object-label.product > * {
   flex-grow: 0;

@@ -54,8 +54,11 @@
                 <option selected value="none">상품을 선택해주세요.</option>
                 <option th:each="product : ${products}" th:value="${product.getId()}" th:text="${product.getName()}"></option>
             </select>
-            <a class="--object-button -color-blue" href="/item/write" onclick="window.open(this.href, '_blank', 'width=640, height=780, top=50, left=50, scrollbars=yes'); return false;">아이템 등록하기</a>
         </label>
+        <div class="button-container">
+            <a class="--object-button -color-gray modify" href="/item/modify?productId=" onclick="window.open(this.href, '_blank', 'width=640, height=780, top=50, left=50, scrollbars=yes'); return false;">상품 수정하기</a>
+            <a class="--object-button -color-blue" href="/item/write" onclick="window.open(this.href, '_blank', 'width=640, height=780, top=50, left=50, scrollbars=yes'); return false;">상품 등록하기</a>
+        </div>
         <label class="--object-label">
             <span class="---caption">제목</span>
             <input autocomplete="off" class="--object-field ---field" maxlength="100" minlength="1"

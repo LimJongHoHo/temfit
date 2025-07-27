@@ -4,6 +4,7 @@ const contentRegex = new RegExp('^(.{1,100000})$');
 const $coverContainer = $writeForm.querySelector(':scope > .cover-container');
 const $coverAddButton = $coverContainer.querySelector(':scope > .add');
 const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basic > input');
+const $itemModifyButton = $writeForm.querySelector(':scope > .button-container > .--object-button.-color-gray.modify');
 
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget.parentNode;
@@ -134,3 +135,7 @@ $writeForm.onsubmit = (e) => {
     xhr.open('POST', '/article/');
     xhr.send(formData);
 }
+
+$itemModifyButton.setAttribute('href', `/item/modify?productId=${$writeForm['product'].value}`);
+
+$writeForm['product'].addEventListener('click', () => $itemModifyButton.setAttribute('href', `/item/modify?productId=${$writeForm['product'].value}`));
