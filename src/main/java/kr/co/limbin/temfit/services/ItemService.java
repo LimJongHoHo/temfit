@@ -65,10 +65,20 @@ public class ItemService {
 
         ProductEntity dbProduct = this.itemMapper.getByProductId(product.getId());
 
+        dbProduct.setImageUrl(product.getImageUrl());
+        dbProduct.setName(product.getName());
+        dbProduct.setBrandId(product.getBrandId());
+        dbProduct.setSkinId(product.getSkinId());
+        dbProduct.setSize(product.getSize());
+        dbProduct.setPrice(product.getPrice());
+        dbProduct.setDiscountRate(product.getDiscountRate());
+        dbProduct.setDeliveryFee(product.getDeliveryFee());
+        dbProduct.setDeliveryCompany(product.getDeliveryCompany());
+        dbProduct.setDeliveryAdd(product.getDeliveryAdd());
         dbProduct.setModifyUserEmail(signedUser.getEmail());
         dbProduct.setModifiedAt(LocalDateTime.now());
         dbProduct.setDeleted(false);
-        return this.itemMapper.update(product) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+        return this.itemMapper.update(dbProduct) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
     public ResultTuple<ProductEntity> insert(UserEntity signedUser, ProductEntity product) {
@@ -175,11 +185,16 @@ public class ItemService {
         return this.itemMapper.insertIngredient(ingredient) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
-    public Result deleteIngredient(int ingredientId) {
-        if (ingredientId < 1) {
+    public Result deleteIngredient(int productId) {
+        if (productId < 1) {
             return CommonResult.FAILURE;
         }
-        return this.itemMapper.deleteIngredient(ingredientId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+
+        if (this.itemMapper.deleteIngredient(productId) == 0) {
+            return CommonResult.SUCCESS;
+        }
+
+        return this.itemMapper.deleteIngredient(productId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
     public IngredientEntity[] getIngredientByProductId(int productId) {

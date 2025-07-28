@@ -46,73 +46,74 @@ $itemModifyForm.onsubmit = (e) => {
 
     $labels.forEach(($label) => $label.setValid(true));
     if ($itemModifyForm['productImage'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '커버 이미지 주소를 입력해주세요.');
+        dialog.showSimpleOk('상품수정 오류', '커버 이미지 주소를 입력해주세요.');
         $itemModifyForm['productImage'].parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
         return;
     }
     if (!$itemModifyForm['productImage'].value.startsWith('http://') && !$itemModifyForm['productImage'].value.startsWith('https://')) {
-        dialog.showSimpleOk('상품등록 오류', '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
+        dialog.showSimpleOk('상품수정 오류', '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
         $itemModifyForm['productImage'].parentElement.setValid(false, '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
         return;
     }
     if ($itemModifyForm['productName'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '상품이름을 입력해주세요.');
+        dialog.showSimpleOk('상품수정 오류', '상품이름을 입력해주세요.');
         $itemModifyForm['productName'].parentElement.setValid(false);
         return;
     }
     if ($brand.value === 'none') {
-        dialog.showSimpleOk('상품등록 오류', '브랜드를 선택해주세요');
+        dialog.showSimpleOk('상품수정 오류', '브랜드를 선택해주세요');
         $brand.parentElement.setValid(false);
         return;
     }
     if ($ingredientContainer.childElementCount === 0) {
-        dialog.showSimpleOk('상품등록 오류', '성분을 등록해주세요');
+        dialog.showSimpleOk('상품수정 오류', '성분을 등록해주세요');
         $ingredientLabel.setValid(false);
         return;
     }
     if ($itemModifyForm['size'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '용량을 입력해주세요.');
+        dialog.showSimpleOk('상품수정 오류', '용량을 입력해주세요.');
         $itemModifyForm['size'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['price'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '가격을 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '가격을 입력해주세요');
         $itemModifyForm['price'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['price'].value < 0) {
-        dialog.showSimpleOk('상품등록 오류', '올바른 가격을 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '올바른 가격을 입력해주세요');
         $itemModifyForm['price'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['rate'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '할인율을 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '할인율을 입력해주세요');
         $itemModifyForm['rate'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['rate'].value < 0 || $itemModifyForm['rate'].value > 100) {
-        dialog.showSimpleOk('상품등록 오류', '올바른 할인율을 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '올바른 할인율을 입력해주세요');
         $itemModifyForm['rate'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['deliveryFee'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '배송비를 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '배송비를 입력해주세요');
         $itemModifyForm['deliveryFee'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['deliveryFee'].value < 0) {
-        dialog.showSimpleOk('상품등록 오류', '올바른 배송비를 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '올바른 배송비를 입력해주세요');
         $itemModifyForm['deliveryFee'].parentElement.setValid(false);
         return;
     }
     if ($itemModifyForm['deliveryCompany'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '배송사를 입력해주세요');
+        dialog.showSimpleOk('상품수정 오류', '배송사를 입력해주세요');
         $itemModifyForm['deliveryCompany'].parentElement.setValid(false);
         return;
     }
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
+    formData.append('id', new URL(location.href).searchParams.get('productId'));
     formData.append('imageUrl', $itemModifyForm['productImage'].value);
     formData.append('name', $itemModifyForm['productName'].value);
     formData.append('brandId', $brand.value);
@@ -127,22 +128,75 @@ $itemModifyForm.onsubmit = (e) => {
             return;
         }
         if (xhr.status < 200 || xhr.status >= 300) {
-            dialog.showSimpleOk('상품등록', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+            dialog.showSimpleOk('상품수정', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
             return;
         }
         const response = JSON.parse(xhr.responseText);
+        console.log(response.result)
         switch (response.result) {
             case 'failure':
-                dialog.showSimpleOk('상품등록', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
+                dialog.showSimpleOk('상품수정', '설마');
                 break;
             case 'success':
+                const xhr3 = new XMLHttpRequest();
+                const formData3 = new FormData();
+                formData3.append('productId', new URL(location.href).searchParams.get('productId'));
+                xhr3.onreadystatechange = () => {
+                    if (xhr3.readyState !== XMLHttpRequest.DONE) {
+                        return;
+                    }
+                    if (xhr3.status < 200 || xhr3.status >= 300) {
+                        dialog.showSimpleOk('성분추가', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                        return;
+                    }
+                    const response3 = JSON.parse(xhr3.responseText);
+                    switch (response3.result) {
+                        case 'failure':
+                            dialog.showSimpleOk('상품수정', '삭제실패');
+                            break;
+                        case 'success':
+                            $ingredientContainer.querySelectorAll(':scope > .item').forEach((ingredient) => {
+                                const xhr2 = new XMLHttpRequest();
+                                const formData2 = new FormData();
+                                formData2.append('korName', ingredient.querySelector(':scope > .korName').innerText);
+                                formData2.append('score', ingredient.querySelector(':scope > .score').innerText);
+                                formData2.append('productId', new URL(location.href).searchParams.get('productId'));
+                                xhr2.onreadystatechange = () => {
+                                    if (xhr2.readyState !== XMLHttpRequest.DONE) {
+                                        return;
+                                    }
+                                    if (xhr2.status < 200 || xhr2.status >= 300) {
+                                        dialog.showSimpleOk('성분추가', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                                        return;
+                                    }
+                                    const response2 = JSON.parse(xhr.responseText);
+                                    switch (response2.result) {
+                                        case 'failure':
+                                            dialog.showSimpleOk('상품수정', '성분추가실패');
+                                            break;
+                                        case 'success':
+                                            break;
+                                        default:
+                                            dialog.showSimpleOk('상품수정', '알 수 없는 이유로 성분을 등록 하지 못하였습니다.');
+                                    }
+                                };
+                                xhr2.open('POST', '/item/ingredient');
+                                xhr2.send(formData2);
+                            });
+                            break;
+                        default:
+                            dialog.showSimpleOk('상품수정', '알 수 없는 이유로 성분을 등록 하지 못하였습니다.');
+                    }
+                };
+                xhr3.open('DELETE', '/item/ingredient');
+                xhr3.send(formData3);
 
-                dialog.showSimpleOk('상품등록', '상품등록을 성공하였습니다.', {
+                dialog.showSimpleOk('상품수정', '상품수정을 성공하였습니다.', {
                     onOkCallback: () => $itemModifyForm.querySelector(':scope > .button-container > a').click()
                 });
                 break;
             default:
-                dialog.showSimpleOk('상품등록', '알 수 없는 이유로 상품등록을 하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+                dialog.showSimpleOk('상품수정', '알 수 없는 이유로 상품수정을 하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
         }
     };
     xhr.open('PATCH', '/item/');
@@ -200,6 +254,18 @@ $ingredient.addEventListener('keyup', () => {
 
             $ingredientInfo.querySelectorAll(':scope > .item').forEach(($item) => {
                 $item.addEventListener('click', () => {
+                    let cnt = 0;
+                    if ($ingredientContainer.childElementCount !== 0) {
+                        $ingredientContainer.querySelectorAll(':scope > .item').forEach(($ingredientChk) => {
+                            if ($item.querySelector(':scope > .korName').innerText === $ingredientChk.querySelector(':scope > .korName').innerText) {
+                                cnt++;
+                            }
+                        });
+                    }
+                    if (cnt > 0) {
+                        dialog.showSimpleOk('성분추가', '이미 추가한 성분입니다.');
+                        return;
+                    }
                     const xhr = new XMLHttpRequest();
                     const formData = new FormData();
                     formData.append('engName', $item.querySelector(':scope > .engName').innerText);
@@ -220,39 +286,13 @@ $ingredient.addEventListener('keyup', () => {
                             score = response.score;
                         }
 
-                        const xhr2 = new XMLHttpRequest();
-                        const formData2 = new FormData();
-                        formData2.append('korName', $item.querySelector(':scope > .korName').innerText);
-                        formData2.append('score', $item.querySelector(':scope > .score').innerText);
-                        formData2.append('productId', new URL(location.href).searchParams.get('productId'));
-                        xhr2.onreadystatechange = () => {
-                            if (xhr2.readyState !== XMLHttpRequest.DONE) {
-                                return;
-                            }
-                            if (xhr2.status < 200 || xhr2.status >= 300) {
-                                dialog.showSimpleOk('성분추가', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
-                                return;
-                            }
-                            const response2 = JSON.parse(xhr.responseText);
-                            switch (response2.result) {
-                                case 'failure':
-                                    dialog.showSimpleOk('상품등록', '세션이 만료되었습니다. 관리자에게 문의해 주세요.');
-                                    break;
-                                case 'success':
-                                    break;
-                                default:
-                                    dialog.showSimpleOk('상품등록', '알 수 없는 이유로 성분을 등록 하지 못하였습니다.');
-                            }
-                        };
-                        xhr2.open('POST', '/item/ingredient');
-                        xhr2.send(formData2);
+                        ingredientAdd($item.querySelector(':scope > .korName').innerText, score);
+                        ingredientRemoveButton();
+                        $ingredientInfo.setVisible(false);
                     };
                     xhr.open('POST', '/item/waring-score');
                     xhr.send(formData);
                     $loading.show();
-                    ingredientAdd($item.querySelector(':scope > .korName').innerText, score);
-                    ingredientRemoveButton();
-                    $ingredientInfo.setVisible(false);
                 });
             });
         }
@@ -260,3 +300,5 @@ $ingredient.addEventListener('keyup', () => {
     xhr.open('GET', `https://apis.data.go.kr/1471000/CsmtcsIngdCpntInfoService01/getCsmtcsIngdCpntInfoService01?serviceKey=${apiKey}&pageNo=1&numOfRows=100&type=json&INGR_KOR_NAME=${$ingredient.value}`);
     xhr.send();
 });
+
+ingredientRemoveButton();

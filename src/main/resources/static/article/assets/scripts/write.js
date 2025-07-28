@@ -60,7 +60,7 @@ $coverAddButton.addEventListener('click', () => {
 $writeForm.onsubmit = (e) => {
     e.preventDefault();
 
-    if ($writeForm['product'].value === 'none') {
+    if ($writeForm['product'].value === '0') {
         dialog.showSimpleOk('게시글 작성', '상품을 선택해주세요.', {
             onOkCallback: () => $writeForm['product'].focus()
         });

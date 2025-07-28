@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 public interface ItemMapper {
     int deleteCartDetail(@Param(value = "cartDetailId") int cartDetailId);
 
-    int deleteIngredient(@Param(value = "ingredientId") int ingredientId);
+    int deleteIngredient(@Param(value = "productId") int productId);
 
     int updateCartDetail(@Param(value = "cartDetail") CartDetailEntity cartDetail);
 
@@ -53,4 +53,6 @@ public interface ItemMapper {
     ArticleEntity getArticleId(@Param(value = "productId") int productId);
 
     IngredientEntity[] getIngredientByProductId(@Param(value = "productId") int productId);
+
+    int getCountIngredient(@Param(value = "productId") int productId);
 }

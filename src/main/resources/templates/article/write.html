@@ -51,7 +51,7 @@
         </div>
         <label class="--object-label product">
             <select class="--object-field -flex-stretch" name="product">
-                <option selected value="none">상품을 선택해주세요.</option>
+                <option selected value="0">상품을 선택해주세요.</option>
                 <option th:each="product : ${products}" th:value="${product.getId()}" th:text="${product.getName()}"></option>
             </select>
         </label>

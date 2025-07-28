@@ -74,7 +74,7 @@
     <delete id="deleteIngredient">
         DELETE
         FROM `temfit`.`ingredients`
-        WHERE `id` = #{ingredientId}
+        WHERE `product_id` = #{productId}
         LIMIT 1
     </delete>
 
@@ -318,5 +318,11 @@
         FROM `temfit`.`ingredients`
         WHERE `product_id` = #{productId}
         ORDER BY `kor_name`
+    </select>
+
+    <select id="getCountIngredient" resultType="java.lang.Integer">
+        SELECT COUNT(0)
+        FROM `temfit`.`ingredients`
+        WHERE `product_id` = #{productId}
     </select>
 </mapper>

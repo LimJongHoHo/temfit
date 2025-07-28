@@ -44,6 +44,7 @@ public class ItemController {
     public String patchWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
         Result result = this.itemService.update(signedUser, product);
         JSONObject response = new JSONObject();
+        System.out.println(result);
         response.put("result", result.toStringLower());
         return response.toString();
     }
@@ -126,7 +127,6 @@ public class ItemController {
     @RequestMapping(value = "/ingredient", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String postIngredient(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, IngredientEntity ingredient) {
-        System.out.println(ingredient.getKorName());
         Result result = this.itemService.insertIngredient(signedUser, ingredient);
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
@@ -135,8 +135,10 @@ public class ItemController {
 
     @RequestMapping(value = "/ingredient", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteIngredient(@RequestParam(value = "ingredientId") int ingredientId) {
-        Result result = this.itemService.deleteIngredient(ingredientId);
+    public String deleteIngredient(@RequestParam(value = "productId") int productId) {
+        Result result = this.itemService.deleteIngredient(productId);
+        System.out.println(productId);
+        System.out.println(result.toStringLower());
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
         return response.toString();
@@ -144,14 +146,19 @@ public class ItemController {
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getModify(@RequestParam(value = "productId", required = false) int productId, Model model) {
-        ProductEntity product = this.itemService.getByProductId(productId);
-        IngredientEntity[] ingredients = this.itemService.getIngredientByProductId(productId);
-        BrandEntity[] brands = this.itemService.getBrandALl();
-        SkinEntity[] skins = this.itemService.getSkinALl();
-        model.addAttribute("product", product);
-        model.addAttribute("ingredients", ingredients);
-        model.addAttribute("brands", brands);
-        model.addAttribute("skins", skins);
+        if (productId == 0) {
+            model.addAttribute("productId", productId);
+        } else {
+            ProductEntity product = this.itemService.getByProductId(productId);
+            IngredientEntity[] ingredients = this.itemService.getIngredientByProductId(productId);
+            BrandEntity[] brands = this.itemService.getBrandALl();
+            SkinEntity[] skins = this.itemService.getSkinALl();
+            model.addAttribute("product", product);
+            model.addAttribute("ingredients", ingredients);
+            model.addAttribute("brands", brands);
+            model.addAttribute("skins", skins);
+        }
+        System.out.println(productId);
         return "item/modify";
     }
 }
