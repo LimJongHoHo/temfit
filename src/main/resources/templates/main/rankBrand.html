@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>급상숭 중인 제품의 추천 랭킹</title>
+    <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/styles/common.min.css">
+    <link rel="stylesheet" href="/main/assets/styles/rank.min.css">
+    <script src="/assets/scripts/common.js" type="text/javascript"></script>
+    <script defer src="/main/assets/scripts/rankBrand.js"></script>
+</head>
+<body>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+<div class="--dialog"></div>
+<main id="rank">
+    <div class="a-container">
+        <a href="/main">홈</a>
+        <div class="button">
+            <button class="ranking" name="rank" type="button">랭킹</button>
+        </div>
+        <span class="line"></span>
+    </div>
+    <div class="b-container">
+        <div class="label-container">
+            <label class="label">
+                <input checked class="radio skin" type="radio" name="category">
+                <span class="caption">피부별</span>
+            </label>
+            <label class="label brand">
+                <input class="radio brand" type="radio" name="category">
+                <span class="caption">브랜드</span>
+            </label>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="skin-container">
+        <div class="skin-label">
+            <label class="label" th:each="skin : ${skins}">
+                <input class="radio" type="radio" name="skin">
+                <input hidden class="skinId" th:value="${skin.getId()}" type="hidden">
+                <span class="caption" th:text="${skin.getName()}"></span>
+            </label>
+        </div>
+        <div class="skin-box">
+
+        </div>
+    </div>
+    <div class="brand-container">
+        <div class="brand-label">
+            <label class="label" th:each="brand : ${brands}">
+                <span class="number" th:if="${brand.getNum() == 1}">1</span>
+                <span class="number" th:if="${brand.getNum() == 2}">2</span>
+                <span class="number" th:if="${brand.getNum() == 3}">3</span>
+                <input type="radio" class="radio" name="brand">
+                <input hidden class="brandId" th:value="${brand.getId()}" type="hidden">
+                <img class="img" th:src="${brand.getImageUrl()}" th:alt="${brand.getName()}">
+                <span class="title" th:text="${brand.getName()}"></span>
+                <label class="brand-box">
+
+                </label>
+            </label>
+        </div>
+    </div>
+</main>
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

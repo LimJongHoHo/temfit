@@ -101,6 +101,9 @@
 #main > .rank-container > .rightArrow > .rightArrowImg {
   width: 1.45rem;
 }
+#main #layout-content {
+  margin-bottom: 3rem;
+}
 #main #layout-content > .box {
   align-items: stretch;
   display: flex;
@@ -357,6 +360,7 @@
   justify-content: flex-start;
   padding: 0.6rem 0;
   font-weight: 500;
+  cursor: pointer;
 }
 #main > .A-container > .item-container > .skin-container > .item-box > * {
   flex-grow: 0;
@@ -450,6 +454,7 @@
   justify-content: flex-start;
   padding: 0.6rem 0;
   font-weight: 500;
+  cursor: pointer;
 }
 #main > .A-container > .item-container > .item-box > * {
   flex-grow: 0;
@@ -480,6 +485,7 @@
   flex-direction: column;
   gap: 0.25rem;
   justify-content: flex-start;
+  cursor: pointer;
 }
 #main > .A-container > .item-container > .item-box > .container > * {
   flex-grow: 0;
@@ -488,6 +494,9 @@
 #main > .A-container > .item-container > .item-box > .container > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
+}
+#main > .A-container > .item-container > .item-box > .container > .brand-container {
+  cursor: pointer;
 }
 #main > .A-container > .item-container > .item-box > .container > .brand-container > .title {
   color: #757575;

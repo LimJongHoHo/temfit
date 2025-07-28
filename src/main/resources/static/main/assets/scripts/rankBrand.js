@@ -8,10 +8,10 @@ const $skinLabels = document.querySelectorAll('#rank > .skin-container > .skin-l
 const $skinBox = document.querySelector('#rank > .skin-container > .skin-box');
 const $skinLabel = document.querySelector('#rank > .skin-container > .skin-label > .label:first-child');
 
+
 $skinContainer.addEventListener('click', () => {
     $skin.classList.add('visible');
     $brand.classList.remove('visible');
-    // $skin.querySelector(':scope > .skin-label > .label:first-of-type > input').checked(true);
 });
 
 $brandContainer.addEventListener('click', () => {
@@ -23,7 +23,7 @@ $rank.addEventListener('click', () => {
     location.reload();
 });
 
-$skinContainer.click();
+$brandContainer.click();
 
 $skin.querySelectorAll(':scope > .skin-label > .label').forEach(($skinItem) => {
     $skinItem.querySelector(':scope > .caption').addEventListener('click', () => {
@@ -119,23 +119,22 @@ $skinLabels.forEach(($label) => {
                 let medal = '';
                 if (product.num === 1) {
                     medal = `
-                        <button class="item-box" type="button">
+                        <div class="item-box">
                             <img class="medal" src="/assets/images/1st-medal.png" alt="1medal"/>`;
                 } else if(product.num === 2) {
                     medal = `
-                        <button class="item-box" type="button">
+                        <div class="item-box">
                             <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal"/>`;
                 } else if(product.num === 3) {
                     medal = `
-                        <button class="item-box" type="button">
+                        <div class="item-box">
                             <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal"/>`;
                 } else {
                     medal = `<span>${product.num}</span>`;
                 }
                 skinHtml += `
-                        <img class="item" src="${product.imageUrl}" alt="${product.name}">
+                        <img class="item" src="${product.imageUrl}" alt="${product.name}"> 
                         <div class="container">
-                            <input hidden type="hidden" class="skinProductId" value="${product.id}">
                             <div class="brand-container">
                                 <a class="title">${product.brandName}</a>
                                 <a class="caption">${product.name}</a>
@@ -147,20 +146,19 @@ $skinLabels.forEach(($label) => {
                                 </div>
                             </div>
                         </div>
-                    </button> `;
+                    </div> `;
                 skinHtml = medal + skinHtml;
             }
             $skinBox.innerHTML = skinHtml;
 
-            $label.querySelector(':scope > .skin-box').innerHTML = skinHtml;
+            $label.querySelector(':scope > .brand-box').innerHTML = brandHtml;
 
 
-            $label.querySelectorAll(':scope > .skin-box > .item-box').forEach(($itemBox) => {
-                $itemBox.addEventListener('click', () => {
+            $label.querySelectorAll(':scope > .brand-box > .line').forEach(($line) => {
+                $line.addEventListener('click', () => {
                     const xhr = new XMLHttpRequest();
                     const formData = new FormData();
-                    console.log($itemBox.querySelector(':scope > .container  > .skinProductId').value)
-                    formData.append('productId', $itemBox.querySelector(':scope > .container  > .skinProductId').value);
+                    formData.append('productId', $line.querySelector(':scope > .productId').value);
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState !== XMLHttpRequest.DONE) {
                             return;
@@ -177,6 +175,8 @@ $skinLabels.forEach(($label) => {
                     xhr.send(formData);
                 })
             })
+
+
         };
         xhr.open('POST', '/skinId');
         xhr.send(formData)
@@ -184,4 +184,5 @@ $skinLabels.forEach(($label) => {
 });
 
 $skinLabel.click();
+
 

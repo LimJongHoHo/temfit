@@ -7,7 +7,29 @@ const $categoryButton = document.querySelector('#main > .A-container > .button')
 const $skin = document.querySelector('#main > .A-container > .item-container > .skin-container');
 const $skinLabels = document.querySelectorAll('#main > .A-container > .item-container > .skin-label > .label');
 const $skinContainer  = document.querySelector('#main > .A-container > .item-container > .skin-label > .label:first-child');
+const $itemController = document.querySelectorAll('#main > .A-container > .item-container > .item-box');
 
+$itemController.forEach(($itemBox) =>{
+    $itemBox.querySelector(':scope > .container > .brand-container').addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        formData.append('productId', $itemBox.querySelector(':scope > .container > .brand-container> .productId').value);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== XMLHttpRequest.DONE) {
+                return;
+            }
+            if (xhr.status < 200 || xhr.status >= 300) {
+                alert('요청중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                return;
+            }
+            const response = JSON.parse(xhr.responseText);
+
+            location.href = `/article/?id=${response.articleId}`
+        };
+        xhr.open('POST', '/productId');
+        xhr.send(formData);
+    });
+});
 
 $skinLabels.forEach(($label) => {
     $label.addEventListener('click', () => {
@@ -33,15 +55,15 @@ $skinLabels.forEach(($label) => {
                 let medal = '';
                 if (product.num === 1) {
                     medal = `
-                        <div class="item-box">
+                        <button class="item-box" type="button">
                             <img class="medal" src="/assets/images/1st-medal.png" alt="1medal"/>`;
                 } else if(product.num === 2) {
                     medal = `
-                        <div class="item-box">
+                        <button class="item-box" type="button">
                             <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal"/>`;
                 } else if(product.num === 3) {
                     medal = `
-                        <div class="item-box">
+                        <button class="item-box" type="button">
                             <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal"/>`;
                 } else {
                     medal = `<span>${product.num}</span>`;
@@ -49,6 +71,7 @@ $skinLabels.forEach(($label) => {
                 skinHtml += `
                         <img class="item" src="${product.imageUrl}" alt="${product.name}"> 
                         <div class="container">
+                            <input hidden type="hidden" class="skinProductId" value="${product.id}">
                             <div class="brand-container">
                                 <a class="title">${product.brandName}</a>
                                 <a class="caption">${product.name}</a>
@@ -60,11 +83,33 @@ $skinLabels.forEach(($label) => {
                                 </div>
                             </div>
                         </div>
-                    </div>`;
+                    </button>`;
                 skinHtml = medal + skinHtml;
             }
 
-            $skin.innerHTML = skinHtml;
+            $label.parentElement.parentElement.querySelector(':scope > .skin-container').innerHTML = skinHtml;
+
+            $label.parentElement.parentElement.querySelectorAll(':scope > .skin-container > .item-box').forEach(($item) => {
+                $item.addEventListener('click', () => {
+                    const xhr = new XMLHttpRequest();
+                    const formData = new FormData();
+                    formData.append('productId', $item.querySelector(':scope > .container  > .skinProductId').value);
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState !== XMLHttpRequest.DONE) {
+                            return;
+                        }
+                        if (xhr.status < 200 || xhr.status >= 300) {
+                            alert('요청중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                            return;
+                        }
+                        const response = JSON.parse(xhr.responseText);
+
+                        location.href = `/article/?id=${response.articleId}`
+                    };
+                    xhr.open('POST', '/productId');
+                    xhr.send(formData);
+                })
+            })
 
         };
         xhr.open('POST', '/skinMainId');
@@ -77,9 +122,6 @@ $skinContainer.click();
 
 let currentPage = -1;
 
-$categoryButton.addEventListener('click', () => {
-    alert('!!');
-})
 
 $startButton.addEventListener('click', () => { // startButton 클릭 이벤트
     $pauseButton.classList.add('-selected');

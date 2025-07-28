@@ -68,7 +68,7 @@
                 <a href="#">템핏 고객들이 직접</a>
                 <a class="rank-title" href="#">선택한 랭킹</a>
                 <div class="-flex-stretch"></div>
-                <a class="rightArrow" href="#">
+                <a class="rightArrow" href="/rank">
                     <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
                 </a>
             </div>
@@ -80,10 +80,11 @@
                     <img class="item"
                          th:src="${product.getImageUrl}" alt="">
                     <div class="container">
-                        <div class="brand-container">
+                        <button class="brand-container" type="button">
+                            <input hidden type="hidden" class="productId" th:value="${product.getId()}">
                             <a class="title" th:text="${product.brandName}"></a>
                             <a class="caption" th:text="${product.getName()}"></a>
-                        </div>
+                        </button>
                         <div class="star-container">
                             <div class="star-scope">
                                 <span class="score" th:text="${product.getDiscountRate()}"></span>
@@ -93,13 +94,13 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="/rank">랭크 전체보기 ></a>
+            <a class="button" href="/rank">랭킹 전체보기 ></a>
         </div>
         <div class="A-container">
             <div class="title-container">
                 <a href="#">내 피부에 꼭 맞는 제품 랭킹</a>
                 <div class="-flex-stretch"></div>
-                <a class="rightArrow" href="#">
+                <a class="rightArrow" href="/rank">
                     <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
                 </a>
             </div>
@@ -121,7 +122,7 @@
             <div class="title-container">
                 <a href="#">요즘 뜨는 브랜드</a>
                 <div class="-flex-stretch"></div>
-                <a class="rightArrow" href="#">
+                <a class="rightArrow" href="/rankBrand">
                     <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
                 </a>
             </div>
@@ -139,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="/rank">브랜드 전체보기 ></a>
+            <a class="button" href="/rankBrand">브랜드 전체보기 ></a>
         </div>
     </main>
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
