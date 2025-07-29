@@ -17,6 +17,32 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#writeForm > .test {
+  width: 4rem;
+  height: 4rem;
+}
+#writeForm > .real-upload {
+  display: none;
+}
+#writeForm > .upload {
+  width: 200px;
+  height: 200px;
+  background-color: antiquewhite;
+}
+#writeForm > .image-preview {
+  width: 1300px;
+  height: 200px;
+  background-color: aquamarine;
+  display: flex;
+  gap: 20px;
+}
+#writeForm > .image-preview > li {
+  list-style: none;
+}
+#writeForm > .image-preview > li > img {
+  width: 200px;
+  height: 200px;
+}
 #writeForm > .title {
   align-self: center;
   margin: 1rem 0;

@@ -9,6 +9,38 @@
   background-color: #ffffff;
   padding: 0 2rem;
 
+  > .test {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  > .real-upload {
+    display: none;
+  }
+
+  > .upload {
+    width: 200px;
+    height: 200px;
+    background-color: antiquewhite;
+  }
+
+  > .image-preview {
+    width: 1300px;
+    height: 200px;
+    background-color: aquamarine;
+    display: flex;
+    gap: 20px;
+
+    > li {
+      list-style: none;
+
+      > img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+
   > .title {
     align-self: center;
     margin: 1rem 0;

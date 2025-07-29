@@ -37,14 +37,14 @@
 <div id="container">
     <form id="writeForm">
         <h1 class="title">게시글 작성</h1>
+        <input type="file" class="real-upload" accept="image/*" required multiple>
+        <div class="upload"></div>
+        <ul class="image-preview"></ul>
         <div class="cover-container">
             <label class="--object-label basic">
                 <img alt="" class="image" src="/assets/images/view.png">
                 <span class="---caption">커버 이미지</span>
-                <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
-                       name="coverUrl"
-                       placeholder="커버 주소입력" spellcheck="false" type="text">
-                <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
+                <span class="---warning"></span>
                 <button class="--object-button -color-red delete" type="button">삭제</button>
             </label>
             <button class="--object-button -color-blue add" type="button">추가</button>

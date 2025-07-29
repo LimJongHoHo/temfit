@@ -73,3 +73,27 @@ asdf1234@naver.com,7df18b45d1d19b6194aef483b0c6d376f9a3cc925f2a919aac149e32d11a1
 //            System.out.printf("%s : %s\n",  s, query.get(s));
 //        }
         System.out.println(query.get("score_min"));
+
+        //이미지관련쓸꺼임
+        -----------------------------------------
+        // const xhr = new XMLHttpRequest();
+        // const formData = new FormData();
+        // formData.append('_file', $input.files[0]);
+        // for (const file of $input.files) {
+        //     formData.append('_files', file);
+        // }
+        // xhr.onreadystatechange = () => {
+        //     if (xhr.readyState !== XMLHttpRequest.DONE) {
+        //         return;
+        //     }
+        //     if (xhr.status < 200 || xhr.status >= 300) {
+        //
+        //         return;
+        //     }
+        //
+        // };
+        // xhr.open('POST', '/?');
+        // xhr.send(formData);
+        //
+        // @RP("_file") MultipartFile file
+        // @RP("_file") MultipartFile[] files
