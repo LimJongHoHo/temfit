@@ -4,6 +4,7 @@ import kr.co.limbin.temfit.entities.*;
 import kr.co.limbin.temfit.results.CommonResult;
 import kr.co.limbin.temfit.results.Result;
 import kr.co.limbin.temfit.results.ResultTuple;
+import kr.co.limbin.temfit.services.ArticleService;
 import kr.co.limbin.temfit.services.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +26,12 @@ import java.util.Map;
 @RequestMapping(value = "/item")
 @RequiredArgsConstructor
 public class ItemController {
+    private final ArticleService articleService;
     private final ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String postWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
+    public String postItem(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
         ResultTuple<ProductEntity> result = this.itemService.insert(signedUser, product);
         JSONObject response = new JSONObject();
         if (result.getResult() == CommonResult.SUCCESS) {
@@ -41,11 +43,22 @@ public class ItemController {
 
     @RequestMapping(value = "/", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String patchWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
+    public String patchItem(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, ProductEntity product) {
         Result result = this.itemService.update(signedUser, product);
         JSONObject response = new JSONObject();
-        System.out.println(result);
         response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deleteItem(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id") int id) {
+        ArticleEntity article = this.itemService.getArticleIdByProductId(id);
+        Result result = this.itemService.delete(signedUser, id);
+        Result result2 = this.articleService.delete(signedUser, article.getId());
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        response.put("result2", result2.toStringLower());
         return response.toString();
     }
 
@@ -137,8 +150,6 @@ public class ItemController {
     @ResponseBody
     public String deleteIngredient(@RequestParam(value = "productId") int productId) {
         Result result = this.itemService.deleteIngredient(productId);
-        System.out.println(productId);
-        System.out.println(result.toStringLower());
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
         return response.toString();
@@ -158,7 +169,6 @@ public class ItemController {
             model.addAttribute("brands", brands);
             model.addAttribute("skins", skins);
         }
-        System.out.println(productId);
         return "item/modify";
     }
 }

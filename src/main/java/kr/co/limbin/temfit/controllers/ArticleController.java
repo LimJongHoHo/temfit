@@ -29,10 +29,12 @@ public class ArticleController {
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String deleteIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id) {
+    public String deleteIndex(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id", required = false) int id, @RequestParam(value = "productId", required = false) int productId) {
         Result result = this.articleService.delete(signedUser, id);
+        Result result2 = this.itemService.delete(signedUser, productId);
         JSONObject response = new JSONObject();
         response.put("result", result.toStringLower());
+        response.put("result2", result2.toStringLower());
 
         return response.toString();
     }
@@ -149,4 +151,17 @@ public class ArticleController {
         return "article/write";
     }
 
+    @RequestMapping(value = "/check", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postCheck(@RequestParam(value = "productId") int productId) {
+        ArticleEntity article = this.itemService.getArticleIdByProductId(productId);
+        JSONObject response = new JSONObject();
+        if (article == null) {
+            response.put("articleId", 0);
+        } else {
+            response.put("articleId", article.getId());
+        }
+
+        return response.toString();
+    }
 }

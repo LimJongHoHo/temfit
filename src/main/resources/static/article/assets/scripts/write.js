@@ -66,6 +66,12 @@ $writeForm.onsubmit = (e) => {
         });
         return;
     }
+    if ($writeForm['articleId'].value != null) {
+        dialog.showSimpleOk('게시글 작성', '올바른 상품을 선택해주세요.', {
+            onOkCallback: () => $writeForm['product'].focus()
+        });
+        return;
+    }
     if ($writeForm['title'].value === '') {
         dialog.showSimpleOk('게시글 작성', '제목을 입력해 주세요.', {
             onOkCallback: () => $writeForm['title'].focus()
@@ -136,6 +142,40 @@ $writeForm.onsubmit = (e) => {
     xhr.send(formData);
 }
 
-$itemModifyButton.setAttribute('href', `/item/modify?productId=${$writeForm['product'].value}`);
+$writeForm['product'].addEventListener('focusout', () => {
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+    formData.append('productId', $writeForm['product'].value);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) {
+            return;
+        }
+        if (xhr.status < 200 || xhr.status >= 300) {
 
-$writeForm['product'].addEventListener('click', () => $itemModifyButton.setAttribute('href', `/item/modify?productId=${$writeForm['product'].value}`));
+            return;
+        }
+        const response = JSON.parse(xhr.responseText);
+        if (response.articleId !== 0) {
+            $writeForm['articleId'].value = response.articleId;
+            dialog.show({
+                title: '상품등록',
+                content: '해당 상품은 이미 게시된 상품입니다. 해당 게시글로 이동하시겠습니까?',
+                buttons: [
+                    {caption: '아니요', onclick: ($modal) => dialog.hide($modal)},
+                    {
+                        caption: '네',
+                        color: 'signature',
+                        onclick: ($modal) => {
+                            dialog.hide($modal);
+                            location.href = `/article/?id=${response.articleId}`;
+                        }
+                    }
+                ]
+            });
+        } else {
+            $itemModifyButton.setAttribute('href', `/item/modify?productId=${$writeForm['product'].value}`)
+        }
+    };
+    xhr.open('POST', '/article/check');
+    xhr.send(formData);
+});

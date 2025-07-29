@@ -4,6 +4,7 @@ const contentRegex = new RegExp('^(.{1,100000})$');
 const $coverContainer = $modifyForm.querySelector(':scope > .cover-container');
 const $coverAddButton = $coverContainer.querySelector(':scope > .add');
 const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basic > input');
+const $itemModifyButton = $modifyForm.querySelector(':scope > .button-container > .--object-button.-color-gray.modify');
 
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget.parentNode;
@@ -61,10 +62,15 @@ $modifyForm.onsubmit = (e) => {
 
     if ($modifyForm['product'].value === 'none') {
         dialog.showSimpleOk('게시글 작성', '상품을 선택해주세요.', {
-            onOkCallback: () => $writeForm['product'].focus()
+            onOkCallback: () => $modifyForm['product'].focus()
         });
         return;
+    }if ($modifyForm['articleId'].value != null) {
+        dialog.showSimpleOk('게시글 작성', '올바른 상품을 선택해주세요.', {
+            onOkCallback: () => $modifyForm['product'].focus()
+        });
     }
+
     if ($modifyForm['title'].value === '') {
         dialog.showSimpleOk('게시글 작성', '제목을 입력해 주세요.', {
             onOkCallback: () => $modifyForm['title'].focus()
@@ -135,3 +141,5 @@ $modifyForm.onsubmit = (e) => {
     xhr.open('PATCH', '/article/');
     xhr.send(formData);
 }
+
+$itemModifyButton.setAttribute('href', `/item/modify?productId=${$modifyForm['product'].value}`);

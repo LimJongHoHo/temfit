@@ -9,6 +9,55 @@ const $image = $itemModifyForm.querySelector(':scope > .--object-label-row > .im
 const $ingredient = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .--object-label-row > .--object-field.---field.-flex-stretch.ingredient');
 const $ingredientInfo = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .ingredient-information');
 const $ingredientContainer = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .ingredient-container');
+const $deleteButton = $itemModifyForm.querySelector(':scope > .button-container > .--object-button.-color-red.delete');
+
+$deleteButton.addEventListener('click', () => {
+    dialog.show({
+        title: '상품삭제',
+        content: `상품을 삭제하시면 등록하신 게시글도 함께 삭제됩니다. 현재 상품을 삭제할까요?`,
+        buttons: [
+            {
+                caption: '아니요', onclick: ($modal) => {
+                    dialog.hide($modal)
+                }
+            },
+            {
+                caption: '네',
+                color: 'signature',
+                onclick: ($modal) => {
+                    dialog.hide($modal);
+                    const xhr = new XMLHttpRequest();
+                    const formData = new FormData();
+                    formData.append('id', new URL(location.href).searchParams.get('productId'));
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState !== XMLHttpRequest.DONE) {
+                            return;
+                        }
+                        if (xhr.status < 200 || xhr.status >= 300) {
+                            dialog.showSimpleOk('상품삭제', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                            return;
+                        }
+                        const response = JSON.parse(xhr.responseText);
+                        switch (response.result) {
+                            case 'failure':
+                                dialog.showSimpleOk('상품삭제', '세션이 만료되었거나 게시글을 작성할 권한이 없습니다. 관리자에게 문의해 주세요.');
+                                break;
+                            case 'success':
+                                dialog.showSimpleOk('상품삭제', '상품을 삭제하였습니다.', {
+                                    onOkCallback: () => $itemModifyForm.querySelector(':scope > .button-container > a').click()
+                                });
+                                break;
+                            default:
+                                dialog.showSimpleOk('상품 삭제', '알 수 없는 이유로 게시글을 작성하지 못하였습니다. 잠시 후 다시 시도해 주세요.');
+                        }
+                    };
+                    xhr.open('DELETE', '/item/');
+                    xhr.send(formData);
+                }
+            }
+        ]
+    });
+})
 
 $itemModifyForm['productImage'].addEventListener('focusout', () => {
     $itemModifyForm['productImage'].parentElement.setValid(true)

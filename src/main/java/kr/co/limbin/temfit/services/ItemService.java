@@ -20,7 +20,7 @@ public class ItemService {
     private final ItemMapper itemMapper;
 
     public Result deleteCartDetail(int cartDetailId) {
-        if (cartDetailId <1) {
+        if (cartDetailId < 1) {
             return CommonResult.FAILURE;
         }
 
@@ -28,7 +28,7 @@ public class ItemService {
     }
 
     public Result updateCartDetail(int cartDetailId, String calc) {
-        if (cartDetailId <1) {
+        if (cartDetailId < 1) {
             return CommonResult.FAILURE;
         }
 
@@ -47,6 +47,24 @@ public class ItemService {
         }
 
         return this.itemMapper.updateCartDetail(dbCartDetail) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Result delete(UserEntity signedUser, int productId) {
+        if (signedUser == null
+                || signedUser.isDeleted()
+                || signedUser.isSuspended()
+                || productId < 1) {
+            return CommonResult.FAILURE;
+        }
+        ProductEntity dbProduct = this.itemMapper.getByProductId(productId);
+
+        if (dbProduct == null) {
+            return CommonResult.FAILURE;
+        }
+        dbProduct.setDeleted(true);
+        dbProduct.setModifyUserEmail(signedUser.getEmail());
+        dbProduct.setModifiedAt(LocalDateTime.now());
+        return this.itemMapper.update(dbProduct) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
     }
 
     public Result update(UserEntity signedUser, ProductEntity product) {
@@ -116,12 +134,12 @@ public class ItemService {
     public BrandEntity getByBrandId(int id) {
         return this.itemMapper.getByBrandId(id);
     }
+
     public SkinEntity getBySkinId(int id) {
         return this.itemMapper.getBySkinId(id);
     }
 
-    public ArticleEntity getArticleIdByProductId (int productId)
-    {
+    public ArticleEntity getArticleIdByProductId(int productId) {
         return this.itemMapper.getArticleId(productId);
     }
 
@@ -146,7 +164,7 @@ public class ItemService {
     }
 
     public Integer insertCart(UserEntity signedUser) {
-        if (signedUser == null ||  signedUser.isDeleted() || signedUser.isSuspended()) {
+        if (signedUser == null || signedUser.isDeleted() || signedUser.isSuspended()) {
             return null;
         }
 

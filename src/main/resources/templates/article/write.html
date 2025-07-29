@@ -50,6 +50,7 @@
             <button class="--object-button -color-blue add" type="button">추가</button>
         </div>
         <label class="--object-label product">
+            <input hidden name="articleId" type="hidden">
             <select class="--object-field -flex-stretch" name="product">
                 <option selected value="0">상품을 선택해주세요.</option>
                 <option th:each="product : ${products}" th:value="${product.getId()}" th:text="${product.getName()}"></option>

@@ -30,7 +30,7 @@ $reviewAllSelect.addEventListener('click', () => {
 $delete.addEventListener('click', () => {
     dialog.show({
         title: '게시글 삭제',
-        content: `현재 게시글을 삭제할까요?`,
+        content: `게시글을 삭제하시면 등록하신 상품도 함께 삭제됩니다. 현재 게시글을 삭제할까요?`,
         buttons: [
             {
                 caption: '아니요', onclick: ($modal) => {
@@ -42,12 +42,11 @@ $delete.addEventListener('click', () => {
                 color: 'signature',
                 onclick: ($modal) => {
                     dialog.hide($modal);
-                    const url = new URL(location.href);
-                    const id = url.searchParams.get('id');
 
                     const xhr = new XMLHttpRequest();
                     const formData = new FormData();
-                    formData.append('id', id);
+                    formData.append('id', new URL(location.href).searchParams.get('id'));
+                    formData.append('productId', document.getElementById('productId').value);
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState !== XMLHttpRequest.DONE) {
                             return;
