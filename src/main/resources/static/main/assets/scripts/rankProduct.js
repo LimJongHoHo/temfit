@@ -7,9 +7,9 @@ const $brand = document.querySelector('#rank > .brand-container');
 const $product = document.querySelector('#rank > .product-container');
 const $brandLabels = document.querySelectorAll('#rank > .brand-container > .brand-label > .label');
 const $skinLabels = document.querySelectorAll('#rank > .skin-container > .skin-label > .label');
+const $productLabels = document.querySelectorAll('#rank > .product-container > .line > .item-box');
 const $skinBox = document.querySelector('#rank > .skin-container > .skin-box');
 const $skinLabel = document.querySelector('#rank > .skin-container > .skin-label > .label:first-child');
-const $productLabels = document.querySelectorAll('#rank > .product-container > .line > .item-box');
 
 $productContainer.addEventListener('click', () => {
     $product.classList.add('visible');
@@ -21,6 +21,7 @@ $skinContainer.addEventListener('click', () => {
     $skin.classList.add('visible');
     $brand.classList.remove('visible');
     $product.classList.remove('visible');
+    // $skin.querySelector(':scope > .skin-label > .label:first-of-type > input').checked(true);
 });
 
 $brandContainer.addEventListener('click', () => {
@@ -33,7 +34,7 @@ $rank.addEventListener('click', () => {
     location.reload();
 });
 
-$skinContainer.click();
+$productContainer.click();
 
 $productLabels.forEach(($lines) => {
     $lines.querySelector(':scope > .---button-container').addEventListener('click', () => {
@@ -60,6 +61,7 @@ $productLabels.forEach(($lines) => {
         xhr.send(formData);
     });
 });
+
 
 $brandLabels.forEach(($label) => {
     $label.addEventListener('click', () => {

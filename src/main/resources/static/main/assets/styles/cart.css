@@ -194,4 +194,33 @@
   color: #fc7899;
 }
 
+#container > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: stretch;
+  max-width: 40rem;
+  padding: 0.625rem 1.625rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+  bottom: 0;
+  position: sticky;
+  z-index: 999;
+}
+#container > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#container > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#container > .button-container > .--object-button {
+  margin-bottom: 0.325rem;
+  padding: 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=cart.css.map */

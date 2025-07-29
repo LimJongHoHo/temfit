@@ -105,25 +105,30 @@
       border-radius: 0.425rem;
       box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
 
-      > .medal {
-        margin: 0 1.25rem;
-        font-size: 0.875rem;
-        font-weight: 700;
-      }
+      > .---button-container {
+        @include flex(row, center, center);
+        cursor: pointer;
 
-      > .rank {
-        margin-left: 1.7rem;
-        width: 1.3rem;
-      }
+        > .medal {
+          margin: 0 1.25rem;
+          font-size: 0.875rem;
+          font-weight: 700;
+        }
 
-      > .item {
-        margin-right: 1rem;
-        width: 3.875rem;
-      }
+        > .rank {
+          margin-left: 1.7rem;
+          width: 1.3rem;
+        }
 
-      > .title {
-        color: #757575;
-        margin-right: 0.25rem;
+        > .item {
+          margin-right: 1rem;
+          width: 3.875rem;
+        }
+
+        > .title {
+          color: #757575;
+          margin-right: 0.25rem;
+        }
       }
     }
   }

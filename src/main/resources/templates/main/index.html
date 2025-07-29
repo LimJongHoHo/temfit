@@ -20,55 +20,62 @@
     <main id="main">
         <div class="a-container">
             <a class="home" href="/main">홈</a>
-            <a class="rank" href="/rank">랭킹</a>
+            <a class="rank" href="/rankProduct">랭킹</a>
         </div>
         <div class="b-container">
             <img class="representImg"
-                 src="https://img.hwahae.co.kr/commerce/deal_events/exposures/20250623/20250623152156396_ef537898-5558-4aeb-904e-d4016e25b2c6.png" alt="">
+                 src="https://img.hwahae.co.kr/commerce/deal_events/exposures/20250725/20250725144915862_1c606304-5089-4de4-bc7b-92b390fff6de.jpg"
+                 alt="">
         </div>
-        <div class="date"></div>
         <div class="rank-container">
-            <a class="up-title" href="/rank">급상승</a>
-            <a class="rank-title" href="/rank">랭킹</a>
+            <a class="up-title" href="/rankProduct">템핏의</a>
+            <a class="rank-title" href="/rankProduct">랭킹</a>
             <div class="-flex-stretch"></div>
-            <a class="rightArrow" href="/rank">
+            <a class="rightArrow" href="/rankProduct">
                 <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
             </a>
         </div>
         <div id="layout-content">
             <div class="box">
                 <div class="controller">
-                    <a th:each="product : ${products}" th:id="${'product' + product.getNum()}" class="knob" th:href="@{${'#productImage' + product.getNum()}}"></a>
+                    <a th:each="product : ${products}" th:id="${'product' + product.getNum()}" class="knob"
+                       th:href="@{${'#productImage' + product.getNum()}}"></a>
                     <span class="-flex-stretch" role="none"></span>
                     <label class="checkbox-container">
-                        <input type="checkbox">
+                        <input hidden type="checkbox">
                         <img alt="start" class="icon start" src="/assets/images/start.png">
                         <img alt="pause" class="icon pause -selected" src="/assets/images/stop.png">
                     </label>
                 </div>
                 <div class="page-container" id="imageTable">
                     <div class="page" th:each="product : ${products}" th:id="${'productImage' + product.getNum()}">
-                        <img class="medal" src="/assets/images/1st-medal.png" alt="1medal" th:if="${product.getNum() == 1}">
-                        <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal" th:if="${product.getNum() == 2}">
-                        <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal" th:if="${product.getNum() == 3}">
+                        <img class="medal" src="/assets/images/1st-medal.png" alt="1medal"
+                             th:if="${product.getNum() == 1}">
+                        <img class="medal" src="/assets/images/2nd-medal.png" alt="2medal"
+                             th:if="${product.getNum() == 2}">
+                        <img class="medal" src="/assets/images/3rd-medal.png" alt="3medal"
+                             th:if="${product.getNum() == 3}">
                         <span class="medal" th:if="${product.getNum() == 4}">4</span>
                         <span class="medal" th:if="${product.getNum() == 5}">5</span>
-                        <img class="rankingImg"
-                             th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
-                        <ul class="caption">
-                            <li class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></li>
-                            <li class="text cosmetic-title" th:text="${product.getName()}"></li>
-                        </ul>
+                        <button class="button-container">
+                            <input hidden type="hidden" class="productId" th:value="${product.getId()}">
+                            <img class="rankingImg"
+                                 th:src="${product.getImageUrl()}" th:alt="${product.getName()}">
+                            <span class="caption">
+                                <a class="text cosmetic-sub-title" th:text="${product.getBrandName()}"></a>
+                                <a class="text cosmetic-title" th:text="${product.getName()}"></a>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="A-container">
             <div class="title-container">
-                <a href="#">템핏 고객들이 직접</a>
-                <a class="rank-title" href="#">선택한 랭킹</a>
+                <a href="/rankProduct">템핏 고객들이 직접</a>
+                <a class="rank-title" href="/rankProduct">선택한 랭킹</a>
                 <div class="-flex-stretch"></div>
-                <a class="rightArrow" href="/rank">
+                <a class="rightArrow" href="/rankProduct">
                     <img class="rightArrowImg" src="/assets/images/right-arrow.png" alt="rightArrowImg">
                 </a>
             </div>
@@ -94,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="/rank">랭킹 전체보기 ></a>
+            <a class="button" href="/rankProduct">랭킹 전체보기 ></a>
         </div>
         <div class="A-container">
             <div class="title-container">

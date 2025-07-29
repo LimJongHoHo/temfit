@@ -144,20 +144,36 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main > .line > .item-box > .medal {
+#main > .line > .item-box > .---button-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: center;
+  cursor: pointer;
+}
+#main > .line > .item-box > .---button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#main > .line > .item-box > .---button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#main > .line > .item-box > .---button-container > .medal {
   margin: 0 1.25rem;
   font-size: 0.875rem;
   font-weight: 700;
 }
-#main > .line > .item-box > .rank {
+#main > .line > .item-box > .---button-container > .rank {
   margin-left: 1.7rem;
   width: 1.3rem;
 }
-#main > .line > .item-box > .item {
+#main > .line > .item-box > .---button-container > .item {
   margin-right: 1rem;
   width: 3.875rem;
 }
-#main > .line > .item-box > .title {
+#main > .line > .item-box > .---button-container > .title {
   color: #757575;
   margin-right: 0.25rem;
 }

@@ -9,6 +9,8 @@
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" href="/assets/styles/common.min.css">
     <link rel="stylesheet" href="/main/assets/styles/index_search.min.css">
+    <script src="/assets/scripts/common.js" type="module"></script>
+    <script defer src="/main/assets/scripts/index_search.js" type="module"></script>
 </head>
 <body>
 <form id="searchForm">
@@ -34,11 +36,14 @@
     </div>
     <div class="line" th:if="${products != null}">
         <div class="item-box" th:each="product : ${products}">
-            <a class="medal" href="#" th:text="${product.getNum()}"></a>
-            <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}"
-                 alt="item">
-            <a class="title" th:text="${product.getBrandName()}" href=""></a>
-            <a class="caption" href="#" th:text="${product.getName()}"></a>
+            <button class="---button-container" type="button">
+                <input hidden type="hidden" class="productId" th:value="${product.getId()}">
+                <a class="medal" th:text="${product.getNum()}"></a>
+                <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}"
+                     alt="item">
+                <a class="title" th:text="${product.getBrandName()}"></a>
+                <a class="caption" th:text="${product.getName()}"></a>
+            </button>
         </div>
     </div>
 </main>

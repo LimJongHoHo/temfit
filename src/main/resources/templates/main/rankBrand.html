@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>급상숭 중인 제품의 추천 랭킹</title>
+    <title>템핏의 추천 랭킹</title>
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" href="/assets/styles/common.min.css">
     <link rel="stylesheet" href="/main/assets/styles/rank.min.css">
@@ -26,15 +26,33 @@
     <div class="b-container">
         <div class="label-container">
             <label class="label">
-                <input checked class="radio skin" type="radio" name="category">
+                <input checked class="radio product" type="radio" name="category">
+                <span class="caption">전체</span>
+            </label>
+            <label class="label">
+                <input class="radio skin" type="radio" name="category">
                 <span class="caption">피부별</span>
             </label>
-            <label class="label brand">
+            <label class="label">
                 <input class="radio brand" type="radio" name="category">
                 <span class="caption">브랜드</span>
             </label>
         </div>
         <div class="line"></div>
+    </div>
+    <div class="product-container">
+        <div class="line" th:if="${products != null}">
+            <div class="item-box" th:each="product : ${products}">
+                <button class="---button-container" type="button">
+                    <input hidden type="hidden" class="productId" th:value="${product.getId()}">
+                    <a class="medal" th:text="${product.getNum()}"></a>
+                    <img class="item" th:src="${product.getImageUrl()}" th:alt="${product.getName()}"
+                         alt="item">
+                    <a class="title" th:text="${product.getBrandName()}"></a>
+                    <a class="caption" th:text="${product.getName()}"></a>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="skin-container">
         <div class="skin-label">

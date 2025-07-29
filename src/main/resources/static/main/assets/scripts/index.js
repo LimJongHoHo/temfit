@@ -8,6 +8,30 @@ const $skin = document.querySelector('#main > .A-container > .item-container > .
 const $skinLabels = document.querySelectorAll('#main > .A-container > .item-container > .skin-label > .label');
 const $skinContainer  = document.querySelector('#main > .A-container > .item-container > .skin-label > .label:first-child');
 const $itemController = document.querySelectorAll('#main > .A-container > .item-container > .item-box');
+const $ranking = document.querySelectorAll('#layout-content > .box > .page-container > .page');
+
+$ranking.forEach(($ranking) => {
+    $ranking.querySelector(':scope > .button-container').addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        formData.append('productId', $ranking.querySelector(':scope > .button-container > .productId').value);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== XMLHttpRequest.DONE) {
+                return;
+            }
+            if (xhr.status < 200 || xhr.status >= 300) {
+                alert('요청중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+                return;
+            }
+            const response = JSON.parse(xhr.responseText);
+
+            location.href = `/article/?id=${response.articleId}`
+
+        };
+        xhr.open('POST', 'productId');
+        xhr.send(formData);
+    });
+});
 
 $itemController.forEach(($itemBox) =>{
     $itemBox.querySelector(':scope > .container > .brand-container').addEventListener('click', () => {
@@ -150,7 +174,7 @@ function autoFlip() {
     } else { // 증가
         currentPage++;
     }
-    let imageCount = document.querySelectorAll('#layout-content > .box > .page-container > .page').length;
+    let imageCount = document.querySelectorAll('#layout-content > .box > .page-container > .page > .button-container').length;
     let product = 'product' + (currentPage % imageCount + 1);
     let productImage = 'productImage' + (currentPage % imageCount + 1);
     $knobController.forEach(($knob) => $knob.classList.remove('-selected'));

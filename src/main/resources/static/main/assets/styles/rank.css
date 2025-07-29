@@ -65,10 +65,71 @@
 #rank > .b-container > .line {
   margin-bottom: 1rem;
 }
+#rank > .product-container {
+  display: none;
+}
+#rank > .product-container.visible {
+  display: block;
+}
+#rank > .product-container.visible > .line > .item-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: flex-start;
+  padding: 0.785rem 0;
+  font-weight: 500;
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 0.425rem;
+  box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
+}
+#rank > .product-container.visible > .line > .item-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#rank > .product-container.visible > .line > .item-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: center;
+  cursor: pointer;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > .medal {
+  margin: 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > .rank {
+  margin-left: 1.7rem;
+  width: 1.3rem;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > .item {
+  margin-right: 1rem;
+  width: 3.875rem;
+}
+#rank > .product-container.visible > .line > .item-box > .---button-container > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
 #rank > .skin-container {
   display: none;
 }
 #rank > .skin-container.visible {
+  display: block;
   align-items: stretch;
   display: flex;
   flex-direction: column;
@@ -144,6 +205,7 @@
   margin-bottom: 1rem;
   border-radius: 0.425rem;
   box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
+  cursor: pointer;
 }
 #rank > .skin-container.visible > .skin-box > .item-box > * {
   flex-grow: 0;
@@ -255,7 +317,7 @@
   flex-shrink: 1;
 }
 #rank > .brand-container.visible > .brand-label > .label {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1rem;

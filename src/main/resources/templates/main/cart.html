@@ -67,12 +67,12 @@
                 </div>
                 <span class="total-price"  th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
             </div>
-            <div class="button-container">
-                <a th:href="@{/payment/pay (cartId = ${cartId})}" class="--object-button -color-pink -flex-stretch">결제 하러 가기</a>
-            </div>
         </div>
     </main>
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    <div class="button-container">
+        <a th:href="@{/payment/pay (cartId = ${cartId})}" class="--object-button -color-pink -flex-stretch">결제 하러 가기</a>
+    </div>
 </div>
 </body>
 </html>

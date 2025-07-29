@@ -90,11 +90,12 @@
             padding: 0 0.75rem;
           }
 
-          > .--object-button.minus{
+          > .--object-button.minus {
             border-radius: 999rem;
             border: 0.0625rem solid #eaecee;
           }
-          > .--object-button.plus{
+
+          > .--object-button.plus {
             border-radius: 999rem;
             border: 0.0625rem solid #eaecee;
           }
@@ -127,5 +128,22 @@
       }
     }
   }
+}
 
+#container > .button-container {
+  @include flex(row, stretch, stretch);
+  max-width: 40rem;
+  padding: 0.625rem 1.625rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+  bottom: 0;
+  position: sticky;
+  z-index: 999;
+
+  > .--object-button {
+    margin-bottom: 0.325rem;
+    padding: 1.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
 }

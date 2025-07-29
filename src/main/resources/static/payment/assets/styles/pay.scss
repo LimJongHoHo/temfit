@@ -87,6 +87,16 @@
             height: 2rem;
             padding: 0 0.75rem;
           }
+
+          > .--object-button.minus{
+            border: 0.0625rem solid #eaecee;
+            border-radius: 999rem;
+          }
+
+          > .--object-button.plus{
+            border: 0.0625rem solid #eaecee;
+            border-radius: 999rem;
+          }
         }
       }
 

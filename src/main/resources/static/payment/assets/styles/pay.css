@@ -154,6 +154,14 @@
   height: 2rem;
   padding: 0 0.75rem;
 }
+#payForm > .product-container > .item-box > .item-container > .price-container > .--object-button.minus {
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
+#payForm > .product-container > .item-box > .item-container > .price-container > .--object-button.plus {
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
 #payForm > .product-container > .item-box > .total-price {
   padding-left: 1.5rem;
   font-size: 1.25rem;

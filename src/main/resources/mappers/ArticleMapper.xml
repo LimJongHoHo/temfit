@@ -99,7 +99,8 @@
                `is_deleted`        AS `isDeleted`,
                ROW_NUMBER() OVER (ORDER BY `name` DESC) AS `num`
         FROM `temfit`.`products`
-        WHERE `name` LIKE CONCAT('%', #{keyword}, '%')
+        WHERE `is_deleted` = FALSE
+        AND`name` LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
     <update id="update">

@@ -55,13 +55,8 @@
   flex-shrink: 1;
 }
 #main > .b-container > .representImg {
-  max-width: 40rem;
+  max-width: 50rem;
   border-radius: 1rem;
-}
-#main > .date {
-  margin-top: 4rem;
-  font-size: 0.875rem;
-  color: #757575;
 }
 #main > .rank-container {
   align-items: flex-start;
@@ -212,38 +207,36 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
-#main #layout-content > .box > .page-container > .page > .rankingImg {
+#main #layout-content > .box > .page-container > .page > .button-container {
+  cursor: pointer;
+}
+#main #layout-content > .box > .page-container > .page > .button-container > .rankingImg {
   align-self: center;
   width: 50%;
 }
-#main #layout-content > .box > .page-container > .page > .caption {
+#main #layout-content > .box > .page-container > .page > .button-container > .caption {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
   justify-content: flex-start;
 }
-#main #layout-content > .box > .page-container > .page > .caption > * {
+#main #layout-content > .box > .page-container > .page > .button-container > .caption > * {
   flex-grow: 0;
   flex-shrink: 0;
 }
-#main #layout-content > .box > .page-container > .page > .caption > .-flex-stretch {
+#main #layout-content > .box > .page-container > .page > .button-container > .caption > .-flex-stretch {
   flex-grow: 1;
   flex-shrink: 1;
 }
-#main #layout-content > .box > .page-container > .page > .caption > .cosmetic-sub-title {
+#main #layout-content > .box > .page-container > .page > .button-container > .caption > .text.cosmetic-sub-title {
   font-size: 0.875rem;
   font-weight: 500;
   color: #757575;
 }
-#main #layout-content > .box > .page-container > .page > .caption > .cosmetic-title {
+#main #layout-content > .box > .page-container > .page > .button-container > .caption > .text.cosmetic-title {
   font-size: 1.25rem;
   font-weight: 700;
-}
-#main #layout-content > .box > .page-container > .page > .caption > .score {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #6c6e70;
 }
 #main > .A-container > .title-container {
   align-items: flex-start;

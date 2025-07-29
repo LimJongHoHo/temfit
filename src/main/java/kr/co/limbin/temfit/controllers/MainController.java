@@ -70,8 +70,10 @@ public class MainController {
     @RequestMapping(value = "/rank", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getRank(Model model) {
 
+        ProductVo[] products = this.itemService.getProductAll();
         SkinEntity[] skins = this.itemService.getSkinALl();
         BrandEntity[] brands = this.itemService.getBrandALl();
+        model.addAttribute("products", products);
         model.addAttribute("skins", skins);
         model.addAttribute("brands", brands);
 
@@ -81,12 +83,27 @@ public class MainController {
     @RequestMapping(value = "/rankBrand", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getRankBrand(Model model) {
 
+        ProductVo[] products = this.itemService.getProductAll();
         SkinEntity[] skins = this.itemService.getSkinALl();
         BrandEntity[] brands = this.itemService.getBrandALl();
+        model.addAttribute("products", products);
         model.addAttribute("brands", brands);
         model.addAttribute("skins", skins);
 
         return "main/rankBrand";
+    }
+
+    @RequestMapping(value = "/rankProduct", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getRankProduct(Model model) {
+
+        ProductVo[] products = this.itemService.getProductAll();
+        SkinEntity[] skins = this.itemService.getSkinALl();
+        BrandEntity[] brands = this.itemService.getBrandALl();
+        model.addAttribute("products", products);
+        model.addAttribute("brands", brands);
+        model.addAttribute("skins", skins);
+
+        return "main/rankProduct";
     }
 
     @RequestMapping(value = "/brandId", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -120,7 +137,6 @@ public class MainController {
         }
         model.addAttribute("aaa", aaa);
         model.addAttribute("keyword", keyword);
-        System.out.println(keyword);
 
         return "main/index_search";
     }

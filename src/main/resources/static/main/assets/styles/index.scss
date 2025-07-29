@@ -25,16 +25,9 @@
     padding: 1.425rem;
 
     > .representImg {
-      max-width: 40rem;
+      max-width: 50rem;
       border-radius: 1rem;
     }
-  }
-
-
-  > .date {
-    margin-top: 4rem;
-    font-size: 0.875rem;
-    color: #757575;
   }
 
   > .rank-container {
@@ -128,29 +121,27 @@
             font-weight: 600;
           }
 
-          > .rankingImg {
-            align-self: center;
-            width: 50%;
-          }
+          > .button-container {
+            cursor: pointer;
 
-          > .caption {
-            @include flex(column, flex-start, flex-start, 0.875rem);
-
-            > .cosmetic-sub-title {
-              font-size: 0.875rem;
-              font-weight: 500;
-              color: #757575;
+            > .rankingImg {
+              align-self: center;
+              width: 50%;
             }
 
-            > .cosmetic-title {
-              font-size: 1.25rem;
-              font-weight: 700;
-            }
+            > .caption {
+              @include flex(column, flex-start, flex-start, 0.875rem);
 
-            > .score {
-              font-size: 0.8rem;
-              font-weight: 600;
-              color: #6c6e70;
+              > .text.cosmetic-sub-title {
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #757575;
+              }
+
+              > .text.cosmetic-title {
+                font-size: 1.25rem;
+                font-weight: 700;
+              }
             }
           }
         }
@@ -309,6 +300,7 @@
 
           > .brand-container {
             cursor: pointer;
+
             > .title {
               color: #757575;
               margin-right: 0.25rem;
@@ -354,4 +346,5 @@
       }
     }
   }
+
 }

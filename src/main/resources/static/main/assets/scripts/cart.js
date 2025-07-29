@@ -4,6 +4,7 @@ $itemList.forEach(($item) => {
     $item.querySelector(':scope > .--object-button.delete').addEventListener('click', () => {
         const xhr = new XMLHttpRequest();
         const formData = new FormData();
+        alert($item.querySelector(':scope > .cartDetailId').value)
         formData.append('cartDetailId', $item.querySelector(':scope > .cartDetailId').value);
         xhr.onreadystatechange = () => {
             if (xhr.readyState !== XMLHttpRequest.DONE) {

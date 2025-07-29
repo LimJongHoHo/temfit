@@ -102,7 +102,7 @@
             </div>
             <div class="item-box" th:each="cartDetail : ${cartDetails}">
                 <input hidden name="cartDetailId" th:value="${cartDetail.getId()}" type="hidden">
-                <button class="--object-button -color-red delete" type="button">X</button>
+                <button class="--object-button delete" type="button">X</button>
                 <img th:alt="${cartDetail.getProductName()}"
                      class="item"
                      th:src="${cartDetail.getProductImage()}">
@@ -116,9 +116,9 @@
                         <span class="price"
                               th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
                         <span class="-flex-stretch" role="none"></span>
-                        <button class="--object-button -color-gray minus" type="button">-</button>
+                        <button class="--object-button minus" type="button">-</button>
                         <span class="--object-button count" th:text="${cartDetail.getQuantity()}"></span>
-                        <button class="--object-button -color-gray plus" type="button">+</button>
+                        <button class="--object-button plus" type="button">+</button>
                     </div>
                 </div>
                 <span class="total-price" name="totalPrice"
