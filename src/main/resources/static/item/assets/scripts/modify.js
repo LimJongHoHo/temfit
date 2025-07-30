@@ -34,11 +34,15 @@ function getImageFiles(e) {
                         return;
                     }
                     if (xhr.status < 200 || xhr.status >= 300) {
-
+                        dialog.showSimpleOk('이미지 등록', '요청을 처리하는 도중 오류가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
                         return;
                     }
                     const response = JSON.parse(xhr.responseText);
-                    createElement(response.url);
+                    if (response.error === '') {
+                        createElement(response.url);
+                    } else {
+                        dialog.showSimpleOk('이미지 등록', response.error);
+                    }
                 };
                 xhr.open('POST', '/article/image');
                 xhr.send(formData);
