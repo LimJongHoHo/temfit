@@ -1,0 +1,350 @@
+#payForm {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-start;
+  max-width: 40rem;
+  padding: 0 1.625rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+#payForm > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .--object-label {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 2rem 0;
+}
+#payForm > .--object-label > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .--object-label > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .--object-label > .title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+#payForm > .--object-label > .--object-button {
+  padding: 1.2rem;
+}
+#payForm > .--object-label > .---caption {
+  border: 0.0625rem solid #eaecee;
+  font-weight: 500;
+  padding: 1rem;
+  border-radius: 0.875rem;
+}
+#payForm > .product-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 2rem 0;
+}
+#payForm > .product-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+#payForm > .product-container > .caption {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  background-color: #F7F7F7;
+  padding: 1rem;
+}
+#payForm > .product-container > .caption > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .caption > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .caption > .title {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+#payForm > .product-container > .caption > .free {
+  color: #a2a4a6;
+}
+#payForm > .product-container > .item-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: stretch;
+  font-weight: 500;
+}
+#payForm > .product-container > .item-box > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .item-box > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .item-box > .item {
+  max-width: 5rem;
+}
+#payForm > .product-container > .item-box > .container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  max-width: 20rem;
+}
+#payForm > .product-container > .item-box > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .item-box > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .item-box > .container > .brand-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: stretch;
+  margin-top: 1.5rem;
+}
+#payForm > .product-container > .item-box > .container > .brand-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .item-box > .container > .brand-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .item-box > .container > .brand-container > .title {
+  color: #757575;
+  margin-right: 0.25rem;
+}
+#payForm > .product-container > .item-box > .container > .item-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  justify-content: center;
+  height: 2rem;
+}
+#payForm > .product-container > .item-box > .container > .item-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .product-container > .item-box > .container > .item-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .product-container > .item-box > .container > .item-container > .item > .discount {
+  color: #fb5f86;
+  font-weight: 700;
+}
+#payForm > .product-container > .item-box > .container > .item-container > .item > .price {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+#payForm > .product-container > .item-box > .container > .item-container > .item > .--object-button.minus {
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
+#payForm > .product-container > .item-box > .container > .item-container > .item > .--object-button.plus {
+  border: 0.0625rem solid #eaecee;
+  border-radius: 999rem;
+}
+#payForm > .product-container > .item-box > .total-price {
+  padding-left: 1.5rem;
+  font-size: 1.25rem;
+}
+#payForm > .price-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 2rem 0;
+}
+#payForm > .price-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .price-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .price-container > .title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+#payForm > .price-container > .container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  font-weight: 500;
+}
+#payForm > .price-container > .container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .price-container > .container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .price-container > .container > .sub-title {
+  color: #a2a4a6;
+}
+#payForm > .price-container > .total-pay {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  background-color: #f7f7f7;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+#payForm > .price-container > .total-pay > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .price-container > .total-pay > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .price-container > .total-pay > .title {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+#payForm > .pay {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 2rem 0;
+}
+#payForm > .pay > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#payForm > .pay > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#payForm > .pay > .title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+#payForm > .pay > .label {
+  padding: 1rem 0;
+}
+#payForm > .pay > .label > .caption {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.625rem;
+}
+#payForm > .pay .control-container {
+  display: flex;
+  position: relative;
+}
+#payForm > .pay .control-container + .control-container {
+  margin-top: 0.7em;
+}
+#payForm > .pay .screen-reader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: inset(50%);
+}
+#payForm > .pay .label-box {
+  position: relative;
+}
+#payForm > .pay .sub-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+#payForm > .pay .check-icon {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid gray;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#payForm > .pay .check-icon::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  width: 30%;
+  height: 55%;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-70%) rotateZ(40deg);
+  border-right: 1.7px solid gray;
+  border-bottom: 1.7px solid gray;
+}
+#payForm > .pay label {
+  padding-left: 2.2em;
+  position: relative;
+  cursor: pointer;
+}
+#payForm > .pay [type=radio]:checked + .label-box .check-icon {
+  border-color: #fc7899;
+  background-color: #fc7899;
+}
+#payForm > .pay [type=radio]:checked + .label-box .check-icon::before {
+  border-color: #fff;
+}
+#payForm > .pay [type=radio]:checked + .label-box label {
+  color: #fc7899;
+}
+#payForm > .container.term {
+  padding: 1rem 0;
+}
+#payForm > .container.term > .--object-check {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+#payForm > .--object-button {
+  padding: 1.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=pay-one.css.map */
