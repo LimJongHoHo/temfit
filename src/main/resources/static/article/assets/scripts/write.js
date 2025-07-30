@@ -32,7 +32,7 @@ function getImageFiles(e) {
                         return;
                     }
                     const response = JSON.parse(xhr.responseText);
-                    if (response.error === '') {
+                    if (response.error === undefined) {
                         createElement(response.url);
                     } else {
                         dialog.showSimpleOk('이미지 등록', response.error);

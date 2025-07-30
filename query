@@ -90,7 +90,7 @@ CREATE TABLE `temfit`.`brands`
 CREATE TABLE `temfit`.`products`
 (
     `id`                INT UNSIGNED  NOT NULL AUTO_INCREMENT,
-    `image_url`         VARCHAR(1000) NOT NULL COMMENT '이미지',
+    `image_url`         VARCHAR(100)  NOT NULL COMMENT '이미지',
     `name`              VARCHAR(50)   NOT NULL COMMENT '이름',
     `brand_id`          INT UNSIGNED  NOT NULL COMMENT '브랜드',
     `skin_id`           INT UNSIGNED  NOT NULL COMMENT '피부 ID',
@@ -143,14 +143,14 @@ CREATE TABLE `temfit`.`articles`
 CREATE TABLE `temfit`.`article_covers`
 (
     `article_id`  INT UNSIGNED  NOT NULL,
-    `cover_Url_1` VARCHAR(1000) NOT NULL,
-    `cover_Url_2` VARCHAR(1000) NULL,
-    `cover_Url_3` VARCHAR(1000) NULL,
-    `cover_Url_4` VARCHAR(1000) NULL,
-    `cover_Url_5` VARCHAR(1000) NULL,
-    `cover_Url_6` VARCHAR(1000) NULL,
-    `cover_Url_7` VARCHAR(1000) NULL,
-    `cover_Url_8` VARCHAR(1000) NULL,
+    `cover_Url_1` VARCHAR(100) NOT NULL,
+    `cover_Url_2` VARCHAR(100) NULL,
+    `cover_Url_3` VARCHAR(100) NULL,
+    `cover_Url_4` VARCHAR(100) NULL,
+    `cover_Url_5` VARCHAR(100) NULL,
+    `cover_Url_6` VARCHAR(100) NULL,
+    `cover_Url_7` VARCHAR(100) NULL,
+    `cover_Url_8` VARCHAR(100) NULL,
     `created_at`  DATETIME      NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`article_id`),
     CONSTRAINT FOREIGN KEY (`article_id`) REFERENCES `temfit`.`articles` (`id`)
