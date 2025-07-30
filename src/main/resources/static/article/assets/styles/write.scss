@@ -9,43 +9,20 @@
   background-color: #ffffff;
   padding: 0 2rem;
 
-  > .test {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  > .real-upload {
-    display: none;
-  }
-
-  > .upload {
-    width: 200px;
-    height: 200px;
-    background-color: antiquewhite;
-  }
-
-  > .image-preview {
-    width: 1300px;
-    height: 200px;
-    background-color: aquamarine;
-    display: flex;
-    gap: 20px;
-
-    > li {
-      list-style: none;
-
-      > img {
-        width: 200px;
-        height: 200px;
-      }
-    }
-  }
-
   > .title {
     align-self: center;
     margin: 1rem 0;
     font-size: 2rem;
     font-weight: 500;
+  }
+
+  > input {
+    display: none;
+  }
+
+  > .add {
+    width: 7rem;
+    align-self: flex-start;
   }
 
   > .cover-container {
@@ -54,10 +31,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
-
-    > .add {
-      align-self: center;
-    }
   }
 
   @media screen and (max-width: 40rem) {
@@ -77,6 +50,7 @@
   }
 
   > .cover-container > .--object-label {
+    position: relative;
     max-width: 7rem;
 
     > .image {
@@ -86,6 +60,14 @@
       overflow: hidden;
       position: relative;
       margin-bottom: 0.5rem;
+    }
+
+    > button {
+      top: -0.25rem;
+      right: -0.25rem;
+      font-weight: 900;
+      border-radius: 999rem;
+      position: absolute;
     }
   }
 

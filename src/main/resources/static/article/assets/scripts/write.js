@@ -2,21 +2,12 @@ const $writeForm = document.getElementById('writeForm');
 const titleRegex = new RegExp('^(.{1,100})$');
 const contentRegex = new RegExp('^(.{1,100000})$');
 const $coverContainer = $writeForm.querySelector(':scope > .cover-container');
-const $coverAddButton = $coverContainer.querySelector(':scope > .add');
-const $basicLabel = $coverContainer.querySelector(':scope > .--object-label.basic > input');
+const $realUpload = $writeForm.querySelector(':scope > .real-upload')
+const $coverAddButton = $writeForm.querySelector(':scope > .--object-button.-color-blue.add');
 const $itemModifyButton = $writeForm.querySelector(':scope > .button-container > .--object-button.-color-gray.modify');
 
 function getImageFiles(e) {
-    const uploadFiles = [];
     const files = e.currentTarget.files;
-    const image = document.querySelector('#writeForm > .cover-container > .--object-label.basic > img');
-    const imagePreview = document.querySelector('#writeForm > .image-preview');
-    const docFrag = new DocumentFragment();
-
-    if ([...files].length >= 7) {
-        alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
-        return;
-    }
 
     // 파일 타입 검사
     [...files].forEach(file => {
@@ -27,34 +18,39 @@ function getImageFiles(e) {
 
         // 파일 갯수 검사
         if ([...files].length < 7) {
-            uploadFiles.push(file);
             const reader = new FileReader();
-            reader.onload = (e) => {
-                const preview = createElement(e, file);
-                imagePreview.appendChild(preview);
-                image.setAttribute('src', e.result);
+            reader.onload = () => {
+                const xhr = new XMLHttpRequest();
+                const formData = new FormData();
+                formData.append('upload', $realUpload.files[0]);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState !== XMLHttpRequest.DONE) {
+                        return;
+                    }
+                    if (xhr.status < 200 || xhr.status >= 300) {
+
+                        return;
+                    }
+                    const response = JSON.parse(xhr.responseText);
+                    createElement(response.url);
+                };
+                xhr.open('POST', '/article/image');
+                xhr.send(formData);
             };
             reader.readAsDataURL(file);
         }
     });
 }
 
-function createElement(e, file) {
-    const li = document.createElement('li');
-    const img = document.createElement('img');
-    img.setAttribute('src', e.target.result);
-    img.setAttribute('data-file', file.name);
-    li.appendChild(img);
-
-    return li;
+function createElement(url) {
+    $writeForm.querySelector(':scope > .cover-container').insertAdjacentHTML('beforeend', `
+        <label class="--object-label">
+            <img alt="" class="image" src=${url}>
+            <span class="---warning"></span>
+            <button class="--object-button -color-red delete" type="button">X</button>
+        </label>`);
+    $coverContainer.querySelector('.--object-label:last-of-type > .delete').addEventListener('click', coverLabelRemove);
 }
-
-const realUpload = document.querySelector('#writeForm > .real-upload');
-const upload = document.querySelector('#writeForm > .upload');
-
-upload.addEventListener('click', () => realUpload.click());
-
-realUpload.addEventListener('change', getImageFiles);
 
 const coverLabelRemove = (e) => {
     const $coverLabel = e.currentTarget.parentNode;
@@ -65,41 +61,13 @@ const coverLabelRemove = (e) => {
     $coverLabel.remove();
 }
 
-const coverLabelOnFocusout = (e) => {
-    const $coverLabel = e.currentTarget;
-    const $coverImage = $coverLabel.querySelector(':scope > .image');
-    const $coverUrl = $coverLabel.querySelector(':scope > input');
-    $coverImage.setAttribute('src', "/assets/images/view.png");
-    $coverLabel.setValid(true);
-    if ($coverUrl.value === '') {
-        $coverLabel.setValid(false, '커버 이미지를 선택해 주세요.');
-        return;
-    }
-    $coverImage.setAttribute('src', $coverUrl.value);
-    $coverImage.setVisible(true);
-}
-
-$coverContainer.querySelectorAll(':scope > .--object-label').forEach(($coverLabel) => {
-    $coverLabel.querySelector(':scope > .delete').addEventListener('click', coverLabelRemove);
-    $coverLabel.addEventListener('focusout', coverLabelOnFocusout);
-});
-
 $coverAddButton.addEventListener('click', () => {
     if ($coverContainer.querySelectorAll(':scope > .--object-label').length === 8) {
         dialog.showSimpleOk('커버 이미지 추가', '최대 8개까지만 추가가 가능합니다.');
     } else {
-        $coverAddButton.insertAdjacentHTML('beforebegin', `
-        <label class="--object-label">
-            <img alt="" class="image" src="/assets/images/view.png">
-            <span class="---caption">커버 이미지</span>
-            <input autocomplete="off" class="--object-field ---field" maxlength="1000" minlength="1"
-                   name="coverUrl"
-                   placeholder="커버 이미지 주소" spellcheck="false" type="text">
-            <span class="---warning">커버 이미지 주소를 입력해 주세요.</span>
-            <button class="--object-button -color-red delete" type="button">삭제</button>
-        </label>`);
-        $coverContainer.querySelector('.--object-label:last-of-type').addEventListener('focusout', coverLabelOnFocusout);
-        $coverContainer.querySelector('.--object-label:last-of-type > .delete').addEventListener('click', coverLabelRemove);
+        $realUpload.value = '';
+        $realUpload.click();
+        $realUpload.addEventListener('change', getImageFiles);
     }
 });
 
@@ -112,8 +80,8 @@ $writeForm.onsubmit = (e) => {
         });
         return;
     }
-    if ($writeForm['articleId'].value != null) {
-        dialog.showSimpleOk('게시글 작성', '올바른 상품을 선택해주세요.', {
+    if ($writeForm['articleId'].value !== '') {
+        dialog.showSimpleOk('게시글 작성', '이미 게시된 상품입니다.', {
             onOkCallback: () => $writeForm['product'].focus()
         });
         return;
@@ -142,19 +110,15 @@ $writeForm.onsubmit = (e) => {
         });
         return;
     }
-    if ($basicLabel.value === '') {
-        dialog.showSimpleOk('게시글 작성', '커버 이미지를 선택해주세요.');
+    if ($coverContainer.childElementCount === 0) {
+        dialog.showSimpleOk('게시글 작성', '커버 이미지를 최소하나는 추가해주세요.');
         return;
     }
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     let i = 1;
-    $coverContainer.querySelectorAll(':scope > .--object-label > input').forEach(($coverUrl) => {
-        if ($coverUrl.value === '' || $coverUrl.value === null) {
-            formData.append('coverUrl' + i, null);
-        } else {
-            formData.append('coverUrl' + i, $coverUrl.value);
-        }
+    $coverContainer.querySelectorAll(':scope > .--object-label').forEach(($label) => {
+        formData.append('coverUrl' + i, $label.querySelector(':scope > .image').getAttribute('src'));
         i++;
     });
     formData.append('productId', $writeForm['product'].value);

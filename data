@@ -97,3 +97,7 @@ asdf1234@naver.com,7df18b45d1d19b6194aef483b0c6d376f9a3cc925f2a919aac149e32d11a1
         //
         // @RP("_file") MultipartFile file
         // @RP("_file") MultipartFile[] files
+
+
+String encode = Base64.getEncoder().encodeToString(src.getBytes());
+String decode = new String(Base64.getDecoder().decode(this.articleService.getByIdCover(1).getCoverUrl1()));

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
 
 @Controller
 @RequestMapping(value = "/article")
@@ -27,14 +26,6 @@ public class ArticleController {
     private final ArticleService articleService;
     private final ImageService imageService;
     private final ItemService itemService;
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String postTest(@RequestParam(value = "src") String src) {
-        String encode = Base64.getEncoder().encodeToString(src.getBytes());
-        String decode =  new String(Base64.getDecoder().decode(encode));
-        return null;
-    }
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -76,6 +67,7 @@ public class ArticleController {
         response.put("result", result.toStringLower());
         if (result == CommonResult.SUCCESS) {
             Result coverResult = this.articleService.coverModify(article.getId(), cover);
+            System.out.println(cover.getCoverUrl1());
             if (coverResult == CommonResult.FAILURE) {
                 response.put("coverResult", coverResult.toStringLower());
             }

@@ -24,10 +24,9 @@
 <div class="--dialog"></div>
 <div id="container">
     <form novalidate id="itemModifyForm">
+        <input type="file" class="real-upload" accept="image/*" required>
         <label class="--object-label-row">
             <span class="---caption">상품이미지</span>
-            <input name="productImage" class="--object-field ---field -flex-stretch" placeholder="이미지 주소를 입력해주세요."
-                   maxlength="1000" type="text" th:value="${product.getImageUrl()}">
             <span class="---warning"></span>
             <img th:alt="${product.getName()}" class="image" th:src="${product.getImageUrl()}">
         </label>

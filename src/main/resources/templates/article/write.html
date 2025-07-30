@@ -37,17 +37,10 @@
 <div id="container">
     <form id="writeForm">
         <h1 class="title">게시글 작성</h1>
-        <input type="file" class="real-upload" accept="image/*" required multiple>
-        <div class="upload"></div>
-        <ul class="image-preview"></ul>
+        <input type="file" class="real-upload" accept="image/*" required>
+        <button class="--object-button -color-blue add" type="button">추가</button>
         <div class="cover-container">
-            <label class="--object-label basic">
-                <img alt="" class="image" src="/assets/images/view.png">
-                <span class="---caption">커버 이미지</span>
-                <span class="---warning"></span>
-                <button class="--object-button -color-red delete" type="button">삭제</button>
-            </label>
-            <button class="--object-button -color-blue add" type="button">추가</button>
+
         </div>
         <label class="--object-label product">
             <input hidden name="articleId" type="hidden">

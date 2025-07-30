@@ -16,16 +16,21 @@
     font-weight: 500;
   }
 
+  > input {
+    display: none;
+  }
+
+  > .add {
+    width: 7rem;
+    align-self: flex-start;
+  }
+
   > .cover-container {
     align-self: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
-
-    > .add {
-      align-self: center;
-    }
   }
 
   @media screen and (max-width: 40rem) {
@@ -45,6 +50,7 @@
   }
 
   > .cover-container > .--object-label {
+    position: relative;
     max-width: 7rem;
 
     > .image {
@@ -55,17 +61,31 @@
       position: relative;
       margin-bottom: 0.5rem;
     }
+
+    > button {
+      top: -0.25rem;
+      right: -0.25rem;
+      font-weight: 900;
+      border-radius: 999rem;
+      position: absolute;
+    }
+  }
+
+  > .--object-label {
+    &.product {
+      @include flex(row, stretch, flex-start, 1rem);
+    }
+
+    &:has(textarea) * {
+      font: revert;
+      line-height: 1.5;
+      list-style-type: revert;
+      margin-block: revert;
+      margin-inline: revert;
+    }
   }
 
   > .button-container {
     @include flex(row, stretch, flex-end, 0.5rem);
-  }
-
-  > .--object-label:has(textarea) * {
-    font: revert;
-    line-height: 1.5;
-    list-style-type: revert;
-    margin-block: revert;
-    margin-inline: revert;
   }
 }

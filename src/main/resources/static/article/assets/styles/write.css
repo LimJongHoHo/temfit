@@ -17,37 +17,18 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
-#writeForm > .test {
-  width: 4rem;
-  height: 4rem;
-}
-#writeForm > .real-upload {
-  display: none;
-}
-#writeForm > .upload {
-  width: 200px;
-  height: 200px;
-  background-color: antiquewhite;
-}
-#writeForm > .image-preview {
-  width: 1300px;
-  height: 200px;
-  background-color: aquamarine;
-  display: flex;
-  gap: 20px;
-}
-#writeForm > .image-preview > li {
-  list-style: none;
-}
-#writeForm > .image-preview > li > img {
-  width: 200px;
-  height: 200px;
-}
 #writeForm > .title {
   align-self: center;
   margin: 1rem 0;
   font-size: 2rem;
   font-weight: 500;
+}
+#writeForm > input {
+  display: none;
+}
+#writeForm > .add {
+  width: 7rem;
+  align-self: flex-start;
 }
 #writeForm > .cover-container {
   align-self: center;
@@ -55,9 +36,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
-}
-#writeForm > .cover-container > .add {
-  align-self: center;
 }
 @media screen and (max-width: 40rem) {
   #writeForm > .cover-container {
@@ -74,6 +52,7 @@
   }
 }
 #writeForm > .cover-container > .--object-label {
+  position: relative;
   max-width: 7rem;
 }
 #writeForm > .cover-container > .--object-label > .image {
@@ -83,6 +62,13 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 0.5rem;
+}
+#writeForm > .cover-container > .--object-label > button {
+  top: -0.25rem;
+  right: -0.25rem;
+  font-weight: 900;
+  border-radius: 999rem;
+  position: absolute;
 }
 #writeForm > .--object-label.product {
   align-items: stretch;

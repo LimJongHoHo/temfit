@@ -8,6 +8,10 @@
   margin: 0 auto;
   padding: 2rem 1rem;
 
+  > .real-upload {
+    display: none;
+  }
+
   .ingredient-wrapper {
     position: relative;
 

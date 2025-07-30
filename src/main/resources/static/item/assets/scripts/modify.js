@@ -10,6 +10,51 @@ const $ingredient = $itemModifyForm.querySelector(':scope > .ingredient-wrapper 
 const $ingredientInfo = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .ingredient-information');
 const $ingredientContainer = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .ingredient-container');
 const $deleteButton = $itemModifyForm.querySelector(':scope > .button-container > .--object-button.-color-red.delete');
+const $realUpload = $itemModifyForm.querySelector(':scope > .real-upload');
+
+function getImageFiles(e) {
+    const files = e.currentTarget.files;
+
+    // 파일 타입 검사
+    [...files].forEach(file => {
+        if (!file.type.match("image/.*")) {
+            alert('이미지 파일만 업로드가 가능합니다.');
+            return
+        }
+
+        // 파일 갯수 검사
+        if ([...files].length < 7) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const xhr = new XMLHttpRequest();
+                const formData = new FormData();
+                formData.append('upload', $realUpload.files[0]);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState !== XMLHttpRequest.DONE) {
+                        return;
+                    }
+                    if (xhr.status < 200 || xhr.status >= 300) {
+
+                        return;
+                    }
+                    const response = JSON.parse(xhr.responseText);
+                    createElement(response.url);
+                };
+                xhr.open('POST', '/article/image');
+                xhr.send(formData);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+function createElement(url) {
+    $image.setAttribute('src', url);
+}
+
+$image.addEventListener('click',() => $realUpload.click());
+$realUpload.addEventListener('change', getImageFiles);
+
 
 $deleteButton.addEventListener('click', () => {
     dialog.show({
@@ -59,20 +104,6 @@ $deleteButton.addEventListener('click', () => {
     });
 })
 
-$itemModifyForm['productImage'].addEventListener('focusout', () => {
-    $itemModifyForm['productImage'].parentElement.setValid(true)
-    if ($itemModifyForm['productImage'].value === '') {
-        $itemModifyForm['productImage'].parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
-        return;
-    }
-    if (!$itemModifyForm['productImage'].value.startsWith('http://') && !$itemModifyForm['productImage'].value.startsWith('https://')) {
-        $itemModifyForm['productImage'].parentElement.setValid(false, '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
-        return;
-    }
-    $image.setAttribute('src', $itemModifyForm['productImage'].value);
-    $itemModifyForm['productImage'].parentElement.setValid(true);
-});
-
 function ingredientAdd(text, score) {
     document.querySelector('#itemModifyForm > .ingredient-wrapper > .ingredient-container').insertAdjacentHTML('beforeend', `
         <div class="item">
@@ -94,14 +125,9 @@ $itemModifyForm.onsubmit = (e) => {
     e.preventDefault();
 
     $labels.forEach(($label) => $label.setValid(true));
-    if ($itemModifyForm['productImage'].value === '') {
-        dialog.showSimpleOk('상품수정 오류', '커버 이미지 주소를 입력해주세요.');
-        $itemModifyForm['productImage'].parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
-        return;
-    }
-    if (!$itemModifyForm['productImage'].value.startsWith('http://') && !$itemModifyForm['productImage'].value.startsWith('https://')) {
-        dialog.showSimpleOk('상품수정 오류', '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
-        $itemModifyForm['productImage'].parentElement.setValid(false, '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
+    if ($realUpload.value === '') {
+        dialog.showSimpleOk('상품등록 오류', '커버 이미지를 선택해주세요.');
+        $image.parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
         return;
     }
     if ($itemModifyForm['productName'].value === '') {
@@ -163,7 +189,7 @@ $itemModifyForm.onsubmit = (e) => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
     formData.append('id', new URL(location.href).searchParams.get('productId'));
-    formData.append('imageUrl', $itemModifyForm['productImage'].value);
+    formData.append('imageUrl', $image.getAttribute('src'));
     formData.append('name', $itemModifyForm['productName'].value);
     formData.append('brandId', $brand.value);
     formData.append('skinId', $skin.value);

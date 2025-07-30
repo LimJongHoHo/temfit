@@ -9,20 +9,51 @@ const $image = $itemWriteForm.querySelector(':scope > .--object-label-row > .ima
 const $ingredient = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .--object-label-row > .--object-field.---field.-flex-stretch.ingredient');
 const $ingredientInfo = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .ingredient-information');
 const $ingredientContainer = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .ingredient-container');
+const $realUpload = $itemWriteForm.querySelector(':scope > .real-upload');
 
-$itemWriteForm['productImage'].addEventListener('focusout', () => {
-    $itemWriteForm['productImage'].parentElement.setValid(true)
-    if ($itemWriteForm['productImage'].value === '') {
-        $itemWriteForm['productImage'].parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
-        return;
-    }
-    if (!$itemWriteForm['productImage'].value.startsWith('http://') && !$itemWriteForm['productImage'].value.startsWith('https://')) {
-        $itemWriteForm['productImage'].parentElement.setValid(false, '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
-        return;
-    }
-    $image.setAttribute('src', $itemWriteForm['productImage'].value);
-    $itemWriteForm['productImage'].parentElement.setValid(true);
-});
+function getImageFiles(e) {
+    const files = e.currentTarget.files;
+
+    // 파일 타입 검사
+    [...files].forEach(file => {
+        if (!file.type.match("image/.*")) {
+            alert('이미지 파일만 업로드가 가능합니다.');
+            return
+        }
+
+        // 파일 갯수 검사
+        if ([...files].length < 7) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const xhr = new XMLHttpRequest();
+                const formData = new FormData();
+                formData.append('upload', $realUpload.files[0]);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState !== XMLHttpRequest.DONE) {
+                        return;
+                    }
+                    if (xhr.status < 200 || xhr.status >= 300) {
+
+                        return;
+                    }
+                    const response = JSON.parse(xhr.responseText);
+                    createElement(response.url);
+                };
+                xhr.open('POST', '/article/image');
+                xhr.send(formData);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+function createElement(url) {
+    $image.setAttribute('src', url);
+}
+
+$image.addEventListener('click',() => $realUpload.click());
+$realUpload.addEventListener('change', getImageFiles);
+
 
 function ingredientAdd(text, score) {
     document.querySelector('#itemWriteForm > .ingredient-wrapper > .ingredient-container').insertAdjacentHTML('beforeend', `
@@ -45,14 +76,9 @@ $itemWriteForm.onsubmit = (e) => {
     e.preventDefault();
 
     $labels.forEach(($label) => $label.setValid(true));
-    if ($itemWriteForm['productImage'].value === '') {
-        dialog.showSimpleOk('상품등록 오류', '커버 이미지 주소를 입력해주세요.');
-        $itemWriteForm['productImage'].parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
-        return;
-    }
-    if (!$itemWriteForm['productImage'].value.startsWith('http://') && !$itemWriteForm['productImage'].value.startsWith('https://')) {
-        dialog.showSimpleOk('상품등록 오류', '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
-        $itemWriteForm['productImage'].parentElement.setValid(false, '이미지 주소는 "http://" 혹은 "https://"로 시작하여야 합니다.');
+    if ($realUpload.value === '') {
+        dialog.showSimpleOk('상품등록 오류', '커버 이미지를 선택해주세요.');
+        $image.parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
         return;
     }
     if ($itemWriteForm['productName'].value === '') {
@@ -113,7 +139,7 @@ $itemWriteForm.onsubmit = (e) => {
 
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
-    formData.append('imageUrl', $itemWriteForm['productImage'].value);
+    formData.append('imageUrl', $image.getAttribute('src'));
     formData.append('name', $itemWriteForm['productName'].value);
     formData.append('brandId', $brand.value);
     formData.append('skinId', $skin.value);
