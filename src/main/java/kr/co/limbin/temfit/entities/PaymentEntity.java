@@ -27,4 +27,6 @@ public class PaymentEntity {
     private boolean isDeleted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private int quantity;
+
 }

@@ -40,5 +40,12 @@ public class PaymentService {
         return this.paymentMapper.selectById(id);
     }
 
+    public Result deleteProductById(int productId) {
+        if (productId < 1) {
+            return CommonResult.FAILURE;
+        }
+        return this.paymentMapper.deleteProduct(productId) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
 
 }

@@ -8,7 +8,7 @@
     <title>상품 주문/결제</title>
     <link rel="icon" href="/assets/images/temfit_icon.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="/assets/styles/common.min.css">
-    <link rel="stylesheet" type="text/css" href="/payment/assets/styles/pay.min.css">
+    <link rel="stylesheet" type="text/css" href="/payment/assets/styles/pay-one.min.css">
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" type="text/javascript"></script>
     <script src="/assets/scripts/common.js" type="text/javascript"></script>
@@ -99,18 +99,25 @@
                 <span class="free">배송비 무료</span>
             </div>
             <div class="item-box">
+                <input hidden class="productId" th:value="${product.getId()}" type="hidden">
                 <img class="item"
                      th:src="${product.getImageUrl()}"
                      th:alt="${product.getName()}">
                 <div class="container">
-                    <div class="brand-container">
-                        <a class="title" href="#" th:text="${brand.getName()}"></a>
-                        <a class="caption" href="#" th:text="${product.getName()}"></a>
+                    <div class="brand-container -flex-stretch">
+                        <span class="title" th:text="${brand.getName()}"></span>
+                        <span class="caption" th:text="${product.getName()}"></span>
                     </div>
                     <div class="item-container">
                         <div class="item">
-                            <h2 class="price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></h2>
-                            <h3 class="count">/ 1개</h3>
+                            <span class="discount" th:text="${product.getDiscountRate() + '%'}"></span>
+                            <span class="price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>
+                        </div>
+                        <div class="price-container">
+                            <span class="-flex-stretch" role="none"></span>
+                            <button class="--object-button minus" type="button">-</button>
+<!--                            <span class="&#45;&#45;object-button count" th:text="${cartDetail.getQuantity()}"></span>-->
+                            <button class="--object-button plus" type="button">+</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +128,7 @@
             <div class="container">
                 <span class="sub-title">총 상품 금액</span>
                 <div class="-flex-stretch"></div>
-                <span class="product-price">27,900원</span>
+                <span class="product-price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>
             </div>
             <div class="container">
                 <span class="sub-title">배송비</span>

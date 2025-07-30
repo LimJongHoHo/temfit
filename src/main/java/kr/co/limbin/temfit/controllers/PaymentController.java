@@ -35,7 +35,6 @@ public class PaymentController {
     public String getPayment(@RequestParam(value = "cartId", required = false) int cartId, Model model) {
         CartDetailVo[] cartDetails = this.itemService.getByCartId(cartId);
         if (cartDetails.length != 0) {
-            System.out.println(1);
             model.addAttribute("cartDetails", cartDetails);
         }
         return "payment/pay";
@@ -57,8 +56,21 @@ public class PaymentController {
     public String getPayOne(@RequestParam(value = "productId", required = false) int productId, Model model) {
         ProductEntity product = this.itemService.getByProductId(productId);
         BrandEntity brand = this.itemService.getByBrandId(product.getBrandId());
+        CartDetailVo[] cartDetails = this.itemService.getByCartId(productId);
+
         model.addAttribute("product", product);
         model.addAttribute("brand", brand);
+        model.addAttribute("cartDetail", cartDetails);
+
         return "payment/pay-one";
+    }
+
+    @RequestMapping(value = "/pay-one", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String deletePayOne(@RequestParam(value = "productId") int productId) {
+        Result result = this.paymentService.deleteProductById(productId);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
     }
 }

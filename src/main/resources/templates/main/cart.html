@@ -57,8 +57,6 @@
                            th:text="${cartDetail.getProductName()}"></a>
                     </div>
                     <div class="price-container">
-                        <span class="price"
-                              th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
                         <span class="-flex-stretch" role="none"></span>
                         <button class="--object-button minus" type="button">-</button>
                         <span class="--object-button count" th:text="${cartDetail.getQuantity()}"></span>
@@ -66,6 +64,24 @@
                     </div>
                 </div>
                 <span class="total-price"  th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
+            </div>
+            <div class="price-container">
+                <span class="title">결제 금액 확인</span>
+                <div class="container">
+                    <span class="sub-title">총 상품 금액</span>
+                    <div class="-flex-stretch"></div>
+                    <span class="product-price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>
+                </div>
+                <div class="container">
+                    <span class="sub-title">배송비</span>
+                    <div class="-flex-stretch"></div>
+                    <span class="product-price" th:text="${product.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}"></span>
+                </div>
+                <div class="total-pay">
+                    <span class="title">총 결제 금액</span>
+                    <div class="-flex-stretch"></div>
+                    <span id="totalPrice" class="pay-price" th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>
+                </div>
             </div>
         </div>
     </main>
