@@ -859,13 +859,9 @@ body:has(.--dialog.-visible) {
 #pay > .method-container > .label > .radio {
   display: none;
 }
-#pay > .method-container > .label > .radio:checked ~ .icon {
-  filter: opacity(1);
-}
 #pay > .method-container > .label > .icon {
   width: 10rem;
   height: 4rem;
-  filter: opacity(0.375);
 }
 #pay > .button-container {
   align-items: stretch;

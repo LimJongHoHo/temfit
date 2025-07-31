@@ -4,6 +4,33 @@ const contactSecondRegex = new RegExp('^(\\d{3,4})$');
 const contactThirdRegex = new RegExp('^(\\d{4})$');
 const totalPrice = document.getElementById('totalPrice');
 
+const $payForm = document.getElementById('payForm');
+const $priceContainer = $payForm.querySelector(':scope > .product-container > .item-box > .price-container');
+const $totalPrice = $payForm.querySelector(':scope > .price-container');
+
+$priceContainer.querySelector(':scope > .--object-button.minus').addEventListener('click', () => {
+    const count = $priceContainer.querySelector(':scope > .--object-button.count');
+    if (count.innerText === '1') {
+        dialog.showSimpleOk('상품 제거', '1보다 작을 수 없습니다.');
+        return;
+    }
+    count.innerText = parseInt(count.innerText) - 1;
+    const quantity = parseInt($priceContainer.querySelector(':scope > .--object-button.count').innerText);
+    $totalPrice.querySelector(':scope > .container > .product-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
+    $totalPrice.querySelector(':scope > .total-pay > .pay-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
+});
+
+$priceContainer.querySelector(':scope > .--object-button.plus').addEventListener('click', () => {
+    const count = $priceContainer.querySelector(':scope > .--object-button.count');
+
+    count.innerText = parseInt(count.innerText) + 1;
+    const quantity = parseInt($priceContainer.querySelector(':scope > .--object-button.count').innerText);
+    $totalPrice.querySelector(':scope > .container > .product-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
+    $totalPrice.querySelector(':scope > .total-pay > .pay-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
+
+});
+
+
 $paymentForm['addressFindButton'].addEventListener('click', () => {
     const $addressFindDialog = document.getElementById('addressFindDialog');
     const $modal = $addressFindDialog.querySelector(':scope > .modal');

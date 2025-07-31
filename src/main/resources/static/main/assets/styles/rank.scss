@@ -145,35 +145,22 @@
       }
 
       > .skin-box {
-
         > .item-box {
-          @include flex(row, center, flex-start, 1rem);
+          @include flex(row, center, flex-start);
           padding: 0.785rem 0;
           font-weight: 500;
-          margin-bottom: 1rem;
+          font-size: 0.75rem;
+          margin-top: 1rem;
           border-radius: 0.425rem;
           box-shadow: 0.05rem 0.05rem 0.5rem 0.1rem #f0f0f0;
-          cursor: pointer;
 
           > .medal {
             width: 2rem;
             margin-left: 1rem;
-
           }
 
           > .item {
-            width: 4.5rem;
-          }
-
-          > .item.image {
-            width: 3.5em;
-            border: 0.0625rem solid #eaecee;
-            border-radius: 999rem;
-          }
-
-          > .title {
-            color: #757575;
-            margin-right: 0.25rem;
+            width: 4.25rem;
           }
 
           > .container {

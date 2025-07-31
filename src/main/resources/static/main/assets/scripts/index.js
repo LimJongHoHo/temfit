@@ -103,7 +103,7 @@ $skinLabels.forEach(($label) => {
                             <div class="star-container">
                                 <div class="star-scope">
                                     <span class="score">${product.discountRate}%</span>
-                                    <span class="number">${product.price}원</span>
+                                    <span class="number"></span>
                                 </div>
                             </div>
                         </div>

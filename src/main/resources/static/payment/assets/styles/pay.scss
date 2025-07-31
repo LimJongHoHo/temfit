@@ -60,12 +60,12 @@
 
       > .item {
         max-width: 5rem;
-        margin-left: 1rem;
+        margin-left: 0.875rem;
       }
 
       > .item-container {
-        @include flex(column, stretch, flex-start, 0.5rem);
-        max-width: 20rem;
+        @include flex(column, flex-start , flex-start, 0.5rem);
+        padding: 0 1rem;
 
         > .brand-container {
           > .title {
@@ -87,22 +87,12 @@
             height: 2rem;
             padding: 0 0.75rem;
           }
-
-          > .--object-button.minus{
-            border: 0.0625rem solid #eaecee;
-            border-radius: 999rem;
-          }
-
-          > .--object-button.plus{
-            border: 0.0625rem solid #eaecee;
-            border-radius: 999rem;
-          }
         }
       }
 
       > .total-price {
-        padding-left: 1.5rem;
-        font-size: 1.25rem;
+        margin-right: 1rem;
+        font-size: 1.2rem;
       }
     }
   }

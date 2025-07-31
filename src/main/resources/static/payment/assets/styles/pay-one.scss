@@ -55,8 +55,12 @@
     }
 
     > .item-box {
-      @include flex(row, center, stretch);
+      @include flex(row, center, stretch, 1rem);
       font-weight: 500;
+      max-width: 40rem;
+      padding: 0 1.625rem;
+      margin: 0 auto;
+      margin-left: -1rem;
 
       > .item {
         max-width: 5rem;
@@ -76,7 +80,7 @@
         }
 
         > .item-container {
-          @include flex(row, stretch, center);
+          @include flex(row, stretch, center, 8re);
           height: 2rem;
 
           > .item {
@@ -90,16 +94,6 @@
               font-size: 0.95rem;
               font-weight: 600;
             }
-
-            > .--object-button.minus {
-              border: 0.0625rem solid #eaecee;
-              border-radius: 999rem;
-            }
-
-            > .--object-button.plus {
-              border: 0.0625rem solid #eaecee;
-              border-radius: 999rem;
-            }
           }
         }
       }
@@ -107,6 +101,20 @@
       > .total-price {
         padding-left: 1.5rem;
         font-size: 1.25rem;
+      }
+
+      > .price-container{
+        @include flex(row, flex-end, flex-end);
+
+        > .--object-button.minus {
+          border: 0.0625rem solid #eaecee;
+          border-radius: 999rem;
+        }
+
+        > .--object-button.plus {
+          border: 0.0625rem solid #eaecee;
+          border-radius: 999rem;
+        }
       }
     }
   }

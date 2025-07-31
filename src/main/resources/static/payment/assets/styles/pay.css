@@ -108,15 +108,15 @@
 }
 #payForm > .product-container > .item-box > .item {
   max-width: 5rem;
-  margin-left: 1rem;
+  margin-left: 0.875rem;
 }
 #payForm > .product-container > .item-box > .item-container {
-  align-items: stretch;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   justify-content: flex-start;
-  max-width: 20rem;
+  padding: 0 1rem;
 }
 #payForm > .product-container > .item-box > .item-container > * {
   flex-grow: 0;
@@ -154,17 +154,9 @@
   height: 2rem;
   padding: 0 0.75rem;
 }
-#payForm > .product-container > .item-box > .item-container > .price-container > .--object-button.minus {
-  border: 0.0625rem solid #eaecee;
-  border-radius: 999rem;
-}
-#payForm > .product-container > .item-box > .item-container > .price-container > .--object-button.plus {
-  border: 0.0625rem solid #eaecee;
-  border-radius: 999rem;
-}
 #payForm > .product-container > .item-box > .total-price {
-  padding-left: 1.5rem;
-  font-size: 1.25rem;
+  margin-right: 1rem;
+  font-size: 1.2rem;
 }
 #payForm > .price-container {
   align-items: stretch;

@@ -419,15 +419,11 @@ body:has(.--dialog.-visible) {
       > .radio {
         display: none;
 
-        &:checked ~ .icon {
-          filter: opacity(1);
-        }
       }
 
       > .icon {
         width: 10rem;
         height: 4rem;
-        filter: opacity(0.375);
       }
     }
   }

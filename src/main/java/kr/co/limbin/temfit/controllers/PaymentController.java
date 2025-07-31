@@ -73,4 +73,13 @@ public class PaymentController {
         response.put("result", result.toStringLower());
         return response.toString();
     }
+
+    @RequestMapping(value = "/pay-one", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String patchPayOne(@RequestParam(value = "cartDetailId") int cartDetailId, @RequestParam(value = "calc") String calc) {
+        Result result = this.itemService.updateCartDetail(cartDetailId, calc);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
 }

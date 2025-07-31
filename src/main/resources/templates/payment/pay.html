@@ -113,16 +113,16 @@
                            th:text="${cartDetail.getProductName()}"></a>
                     </div>
                     <div class="price-container">
+<!--                        <span class="discount" th:text="${cartDetail.getDiscountRate() + '%'}"></span>-->
                         <span class="price"
                               th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
                         <span class="-flex-stretch" role="none"></span>
-                        <button class="--object-button minus" type="button">-</button>
-                        <span class="--object-button count" th:text="${cartDetail.getQuantity()}"></span>
-                        <button class="--object-button plus" type="button">+</button>
                     </div>
                 </div>
+                <span class="-flex-stretch" role="none"></span>
                 <span class="total-price" name="totalPrice"
-                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
+                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}">
+                </span>
             </div>
         </div>
         <div class="price-container">
