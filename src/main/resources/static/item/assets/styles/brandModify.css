@@ -1,0 +1,38 @@
+#brandModifyForm {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+#brandModifyForm > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#brandModifyForm > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#brandModifyForm > .real-upload {
+  display: none;
+}
+#brandModifyForm > .button-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+#brandModifyForm > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#brandModifyForm > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+/*# sourceMappingURL=brandModify.css.map */
