@@ -71,7 +71,7 @@ CREATE TABLE `temfit`.`skins`
 CREATE TABLE `temfit`.`brands`
 (
     `id`                INT UNSIGNED  NOT NULL AUTO_INCREMENT,
-    `image_url`         VARCHAR(1000) NOT NULL COMMENT '이미지',
+    `image_url`         VARCHAR(100) NOT NULL COMMENT '이미지',
     `name`              VARCHAR(20)   NOT NULL COMMENT '이름',
     `creat_user_email`  VARCHAR(50)   NOT NULL COMMENT '생성자',
     `modify_user_email` VARCHAR(50)   NUll COMMENT '수정자',

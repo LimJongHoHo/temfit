@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+@import "../../../assets/styles/_def";
+
+#brandWriteForm {
+  @include flex(column, stretch, flex-start, 1.5rem);
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  > .real-upload {
+    display: none;
+  }
+
+  > .button-container {
+    @include flex(row, stretch, flex-end, 0.75rem)
+  }
+}

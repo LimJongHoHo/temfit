@@ -22,6 +22,12 @@ public interface ItemMapper {
 
     int insertIngredient(@Param(value = "ingredient") IngredientEntity ingredient);
 
+    int insertBrand(@Param(value = "brand") BrandEntity brand);
+
+    int updateBrand(@Param(value = "brand") BrandEntity brand);
+
+    BrandEntity getBrand(@Param(value = "id") int id);
+
     ProductEntity getByProductId(@Param(value = "id") int id);
 
     ProductVo[] getProductAll();

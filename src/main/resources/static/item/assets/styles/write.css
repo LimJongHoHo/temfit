@@ -139,6 +139,21 @@
   color: #ffffff;
   background-color: red;
 }
+#itemWriteForm > .--object-label-row > .button-container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+#itemWriteForm > .--object-label-row > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemWriteForm > .--object-label-row > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
 #itemWriteForm > .--object-label-row > .num {
   text-align: end;
 }

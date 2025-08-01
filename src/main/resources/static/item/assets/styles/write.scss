@@ -94,14 +94,19 @@
     }
   }
 
-  > .--object-label-row > .num {
+  > .--object-label-row {
+    > .button-container {
+      @include flex(row, flex-end, flex-end, 0.25rem);
+    }
+
+    > .num {
     text-align: end;
 
     ~ .---caption {
       text-align: start;
     }
   }
-
+}
   > .button-container {
     @include flex(row, stretch, flex-end, 0.75rem)
   }

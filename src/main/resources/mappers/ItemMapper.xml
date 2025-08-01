@@ -38,6 +38,15 @@
         VALUES (#{ingredient.korName}, #{ingredient.score}, #{ingredient.productId}, #{ingredient.creatUserEmail},
                 #{ingredient.createdAt})
     </insert>
+    <insert id="insertBrand"
+            useGeneratedKeys="true"
+            keyColumn="id"
+            keyProperty="id">
+        INSERT INTO `temfit`.`brands` (`image_url`, `name`, `creat_user_email`, `modify_user_email`, `created_at`,
+                                       `modified_at`, `is_deleted`)
+        VALUES (#{brand.imageUrl}, #{brand.name}, #{brand.creatUserEmail}, #{brand.modifyUserEmail}, #{brand.createdAt},
+                #{brand.modifiedAt}, #{brand.isDeleted})
+    </insert>
 
     <update id="updateCartDetail">
         UPDATE `temfit`.`cart_detail`
@@ -62,6 +71,16 @@
             `modified_at`       = #{product.modifiedAt},
             `is_deleted`        = #{product.isDeleted}
         WHERE `id` = #{product.id}
+    </update>
+
+    <update id="updateBrand">
+        UPDATE `temfit`.`brands`
+        SET `image_url`         = #{brand.imageUrl},
+            `name`              = #{brand.name},
+            `modify_user_email` = #{brand.modifyUserEmail},
+            `modified_at`       = #{brand.modifiedAt},
+            `is_deleted`        = #{brand.isDeleted}
+        WHERE `id` = #{brand.id}
     </update>
 
     <delete id="deleteCartDetail">
@@ -351,5 +370,19 @@
         WHERE `t0`.`cart_id` = #{cartId}
           AND `t1`.`is_deleted` = FALSE
         ORDER BY `t0`.`id`
+    </select>
+
+    <select id="getBrand" resultType="kr.co.limbin.temfit.entities.BrandEntity">
+        SELECT `id`                AS `id`,
+               `image_url`         AS `imageUrl`,
+               `name`              AS `name`,
+               `creat_user_email`  AS `creatUserEmail`,
+               `modify_user_email` AS `modifyUserEmail`,
+               `created_at`        AS `createdAt`,
+               `modified_at`       AS `modifiedAt`,
+               `is_deleted`        AS `isDeleted`
+        FROM `temfit`.`brands`
+        WHERE `is_deleted` = FALSE
+          AND `id` = #{id}
     </select>
 </mapper>

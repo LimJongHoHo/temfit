@@ -54,6 +54,9 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#main > .b-container > .article-write-button {
+  align-self: flex-end;
+}
 #main > .b-container > .representImg {
   max-width: 50rem;
   border-radius: 1rem;

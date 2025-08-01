@@ -271,7 +271,7 @@ textarea.--object-field.-resizable-vertical {
 }
 .--object-label-row > .---caption {
   text-align: end;
-  width: 4rem;
+  width: 5rem;
   font-weight: 400;
   color: #434345;
   transition-duration: 175ms;
@@ -548,7 +548,6 @@ body:has(.--dialog.-visible) {
 #container {
   max-width: 40rem;
   width: 100%;
-  height: 100%;
   margin: 0 auto;
   background-color: #ffffff;
 }

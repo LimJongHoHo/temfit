@@ -38,6 +38,10 @@
                 <option selected value="none">브랜드를 선택해주세요.</option>
                 <option th:each="brand : ${brands}" th:value="${brand.getId()}" th:text="${brand.getName()}"></option>
             </select>
+            <label class="button-container">
+                <a class="--object-button -color-blue" href="/item/brand-write" onclick="window.open(this.href, '_blank', 'width=400, height=250, top=50, left=50, scrollbars=yes'); return false;">등록</a>
+                <a class="--object-button -color-gray modify" href="/item/brand-modify?id=" onclick="window.open(this.href, '_blank', 'width=640, height=780, top=50, left=50, scrollbars=yes'); return false;">수정</a>
+            </label>
         </label>
         <label class="--object-label-row">
             <span class="---caption">피부유형</span>

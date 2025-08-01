@@ -223,4 +223,41 @@ public class ItemService {
         return this.itemMapper.getIngredientByProductId(productId);
     }
 
+    public Result brandWrite(UserEntity signedUser, BrandEntity brand) {
+        if (signedUser == null
+                || brand == null
+                || signedUser.isDeleted()
+                || signedUser.isSuspended()) {
+            return CommonResult.FAILURE;
+        }
+        brand.setCreatUserEmail(signedUser.getEmail());
+        brand.setCreatedAt(LocalDateTime.now());
+        brand.setDeleted(false);
+        return this.itemMapper.insertBrand(brand) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public Result brandModify(UserEntity signedUser, BrandEntity brand) {
+        if (signedUser == null
+                || brand == null
+                || signedUser.isDeleted()
+                || signedUser.isSuspended()) {
+            return CommonResult.FAILURE;
+        }
+        BrandEntity dbBrand = this.itemMapper.getBrand(brand.getId());
+        if (dbBrand == null) {
+            return CommonResult.FAILURE;
+        }
+        dbBrand.setImageUrl(brand.getImageUrl());
+        dbBrand.setName(brand.getName());
+        dbBrand.setModifyUserEmail(signedUser.getEmail());
+        dbBrand.setModifiedAt(LocalDateTime.now());
+        return this.itemMapper.updateBrand(dbBrand) > 0 ? CommonResult.SUCCESS : CommonResult.FAILURE;
+    }
+
+    public BrandEntity getBrandById(int id) {
+        if (id < 1) {
+            return null;
+        }
+        return this.itemMapper.getBrand(id);
+    }
 }

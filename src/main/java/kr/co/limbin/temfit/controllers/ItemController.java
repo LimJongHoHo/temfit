@@ -156,9 +156,9 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getModify(@RequestParam(value = "productId", required = false) int productId, Model model) {
-        if (productId == 0) {
-            model.addAttribute("productId", productId);
+    public String getModify(@RequestParam(value = "productId", required = false) Integer productId, Model model) {
+        if (productId == null || productId == 0) {
+            model.addAttribute("productId", 0);
         } else {
             ProductEntity product = this.itemService.getByProductId(productId);
             IngredientEntity[] ingredients = this.itemService.getIngredientByProductId(productId);
@@ -170,5 +170,34 @@ public class ItemController {
             model.addAttribute("skins", skins);
         }
         return "item/modify";
+    }
+    @RequestMapping(value = "/brand-write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getBrandWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser) {
+        return  "item/brandWrite";
+    }
+
+    @RequestMapping(value = "/brand-write", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBrandWrite(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, BrandEntity brand) {
+        Result result = this.itemService.brandWrite(signedUser, brand);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
+    }
+
+    @RequestMapping(value = "/brand-modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getBrandModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, @RequestParam(value = "id") int id, Model model) {
+        BrandEntity brand = this.itemService.getBrandById(id);
+        model.addAttribute("brand", brand);
+        return  "item/brandModify";
+    }
+
+    @RequestMapping(value = "/brand-modify", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String postBrandModify(@SessionAttribute(value = "signedUser", required = false) UserEntity signedUser, BrandEntity brand) {
+        Result result = this.itemService.brandModify(signedUser, brand);
+        JSONObject response = new JSONObject();
+        response.put("result", result.toStringLower());
+        return response.toString();
     }
 }

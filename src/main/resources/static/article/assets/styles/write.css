@@ -98,6 +98,7 @@
   flex-direction: row;
   gap: 0.5rem;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 #writeForm > .button-container > * {
   flex-grow: 0;

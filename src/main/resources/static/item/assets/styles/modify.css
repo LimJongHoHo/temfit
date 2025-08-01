@@ -139,10 +139,25 @@
   color: #ffffff;
   background-color: red;
 }
-#itemModifyForm > .--object-label-row > .num {
+#itemModifyForm > .--object-label-row {
   text-align: end;
 }
-#itemModifyForm > .--object-label-row > .num ~ .---caption {
+#itemModifyForm > .--object-label-row > .button-container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+#itemModifyForm > .--object-label-row > .button-container > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+#itemModifyForm > .--object-label-row > .button-container > .-flex-stretch {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+#itemModifyForm > .--object-label-row ~ .---caption {
   text-align: start;
 }
 #itemModifyForm > .button-container {

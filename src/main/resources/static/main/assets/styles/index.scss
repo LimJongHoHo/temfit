@@ -24,6 +24,10 @@
     border-top: 0.0625rem solid #e0e0e0;
     padding: 1.425rem;
 
+    > .article-write-button {
+      align-self: flex-end;
+    }
+
     > .representImg {
       max-width: 50rem;
       border-radius: 1rem;

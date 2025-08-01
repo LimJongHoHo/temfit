@@ -10,6 +10,7 @@ const $ingredient = $itemWriteForm.querySelector(':scope > .ingredient-wrapper >
 const $ingredientInfo = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .ingredient-information');
 const $ingredientContainer = $itemWriteForm.querySelector(':scope > .ingredient-wrapper > .ingredient-container');
 const $realUpload = $itemWriteForm.querySelector(':scope > .real-upload');
+const $brandModifyButton = $itemWriteForm.querySelector(':scope > .--object-label-row > .button-container > .--object-button.-color-gray.modify');
 
 function getImageFiles(e) {
     const files = e.currentTarget.files;
@@ -55,7 +56,7 @@ function createElement(url) {
     $image.setAttribute('src', url);
 }
 
-$image.addEventListener('click',() => $realUpload.click());
+$image.addEventListener('click', () => $realUpload.click());
 $realUpload.addEventListener('change', getImageFiles);
 
 
@@ -82,7 +83,7 @@ $itemWriteForm.onsubmit = (e) => {
     $labels.forEach(($label) => $label.setValid(true));
     if ($realUpload.value === '') {
         dialog.showSimpleOk('상품등록 오류', '커버 이미지를 선택해주세요.');
-        $image.parentElement.setValid(false, '커버 이미지 주소를 입력해 주세요.');
+        $image.parentElement.setValid(false);
         return;
     }
     if ($itemWriteForm['productName'].value === '') {
@@ -93,6 +94,11 @@ $itemWriteForm.onsubmit = (e) => {
     if ($brand.value === 'none') {
         dialog.showSimpleOk('상품등록 오류', '브랜드를 선택해주세요');
         $brand.parentElement.setValid(false);
+        return;
+    }
+    if ($skin.value === 'none') {
+        dialog.showSimpleOk('상품등록 오류', '브랜드를 선택해주세요');
+        $skin.parentElement.setValid(false);
         return;
     }
     if ($ingredientContainer.childElementCount === 0) {
@@ -291,4 +297,8 @@ $ingredient.addEventListener('keyup', () => {
     };
     xhr.open('GET', `https://apis.data.go.kr/1471000/CsmtcsIngdCpntInfoService01/getCsmtcsIngdCpntInfoService01?serviceKey=${apiKey}&pageNo=1&numOfRows=100&type=json&INGR_KOR_NAME=${$ingredient.value}`);
     xhr.send();
+});
+
+$brand.addEventListener('focusout', () => {
+    $brandModifyButton.setAttribute('href', `/item/brand-modify?id=${$brand.value}`)
 });

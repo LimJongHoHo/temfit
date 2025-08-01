@@ -11,6 +11,7 @@ const $ingredientInfo = $itemModifyForm.querySelector(':scope > .ingredient-wrap
 const $ingredientContainer = $itemModifyForm.querySelector(':scope > .ingredient-wrapper > .ingredient-container');
 const $deleteButton = $itemModifyForm.querySelector(':scope > .button-container > .--object-button.-color-red.delete');
 const $realUpload = $itemModifyForm.querySelector(':scope > .real-upload');
+const $brandModifyButton = $itemModifyForm.querySelector(':scope > .--object-label-row > .button-container > .--object-button.-color-gray.modify');
 
 function getImageFiles(e) {
     const files = e.currentTarget.files;
@@ -142,6 +143,11 @@ $itemModifyForm.onsubmit = (e) => {
     if ($brand.value === 'none') {
         dialog.showSimpleOk('상품수정 오류', '브랜드를 선택해주세요');
         $brand.parentElement.setValid(false);
+        return;
+    }
+    if ($skin.value === 'none') {
+        dialog.showSimpleOk('상품등록 오류', '브랜드를 선택해주세요');
+        $skin.parentElement.setValid(false);
         return;
     }
     if ($ingredientContainer.childElementCount === 0) {
@@ -380,4 +386,9 @@ $ingredient.addEventListener('keyup', () => {
     xhr.send();
 });
 
+$brand.addEventListener('focusout', () => {
+    $brandModifyButton.setAttribute('href', `/item/brand-modify?id=${$brand.value}`)
+});
+
 ingredientRemoveButton();
+$brandModifyButton.setAttribute('href', `/item/brand-modify?id=${$brand.value}`)

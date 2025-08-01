@@ -27,7 +27,6 @@ $paymentForm['addressFindButton'].addEventListener('click', () => {
 });
 
 $paymentForm.querySelector(':scope > .--object-button.-color-pink').addEventListener('click', () => {
-
     const $nameLabel = $paymentForm.querySelector('.--object-label:has(input[name="name"])');
     const $contactLabel = $paymentForm.querySelector('.--object-label:has(input[name="contactSecond"])');
     const $addressLabel = $paymentForm.querySelector('.--object-label:has(input[name="addressPostal"])');
@@ -101,7 +100,6 @@ const hidePay = () => {
 $pay.querySelector(':scope > .button-container > .button.cancel.--object-button.-color-gray').addEventListener('click', hidePay);
 
 $pay.querySelector(':scope > .button-container > .button.confirm.--object-button.-color-pink').addEventListener('click', () => {
-
     const date = new Date();
     const imp = window.IMP;
 
@@ -111,7 +109,7 @@ $pay.querySelector(':scope > .button-container > .button.confirm.--object-button
         pay_method: 'card',
         merchant_uid: `IMP-${date.getTime()}`,
         name: 'Temfit',
-        amount: totalPrice,
+        amount: totalPrice.innerText,
         buyer_email: 'vkdlxj321@naver.com',
         buyer_name: '임종호'
     }, (resp) => {
