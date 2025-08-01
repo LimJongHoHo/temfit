@@ -13,6 +13,7 @@ import lombok.Setter;
 public class CartDetailVo extends CartDetailEntity {
     private String productImage;
     private String productName;
+    private int productDiscountRate;
     private int productPrice;
     private String brandName;
     private String skinName;

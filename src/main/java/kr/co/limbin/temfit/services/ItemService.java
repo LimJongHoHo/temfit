@@ -159,6 +159,10 @@ public class ItemService {
         return this.itemMapper.getByCartId(cartId);
     }
 
+    public CartDetailVo getPriceByCartId(int cartId) {
+        return this.itemMapper.getPriceByCartId(cartId);
+    }
+
     public Integer getCartId(String userEmail) {
         return this.itemMapper.getCartId(userEmail);
     }

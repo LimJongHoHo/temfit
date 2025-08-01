@@ -1,35 +1,10 @@
 const $paymentForm = document.getElementById('payForm');
-const nameRegex = new RegExp('^([가-힣]{2,5})$')
+const nameRegex = new RegExp('^([가-힣]{2,5})$');
 const contactSecondRegex = new RegExp('^(\\d{3,4})$');
 const contactThirdRegex = new RegExp('^(\\d{4})$');
 const totalPrice = document.getElementById('totalPrice');
-
-const $payForm = document.getElementById('payForm');
-const $priceContainer = $payForm.querySelector(':scope > .product-container > .item-box > .price-container');
-const $totalPrice = $payForm.querySelector(':scope > .price-container');
-
-$priceContainer.querySelector(':scope > .--object-button.minus').addEventListener('click', () => {
-    const count = $priceContainer.querySelector(':scope > .--object-button.count');
-    if (count.innerText === '1') {
-        dialog.showSimpleOk('상품 제거', '1보다 작을 수 없습니다.');
-        return;
-    }
-    count.innerText = parseInt(count.innerText) - 1;
-    const quantity = parseInt($priceContainer.querySelector(':scope > .--object-button.count').innerText);
-    $totalPrice.querySelector(':scope > .container > .product-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
-    $totalPrice.querySelector(':scope > .total-pay > .pay-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
-});
-
-$priceContainer.querySelector(':scope > .--object-button.plus').addEventListener('click', () => {
-    const count = $priceContainer.querySelector(':scope > .--object-button.count');
-
-    count.innerText = parseInt(count.innerText) + 1;
-    const quantity = parseInt($priceContainer.querySelector(':scope > .--object-button.count').innerText);
-    $totalPrice.querySelector(':scope > .container > .product-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
-    $totalPrice.querySelector(':scope > .total-pay > .pay-price').innerText = new Intl.NumberFormat('ko-KR').format($totalPrice.querySelector(':scope > .container > .price').value * quantity) + '원';
-
-});
-
+const $payCover = document.getElementById('payCover');
+const $pay = document.getElementById('pay');
 
 $paymentForm['addressFindButton'].addEventListener('click', () => {
     const $addressFindDialog = document.getElementById('addressFindDialog');
@@ -51,8 +26,7 @@ $paymentForm['addressFindButton'].addEventListener('click', () => {
     $addressFindDialog.show();
 });
 
-$paymentForm.onsubmit = (e) => {
-    e.preventDefault();
+$paymentForm.querySelector(':scope > .--object-button.-color-pink').addEventListener('click', () => {
 
     const $nameLabel = $paymentForm.querySelector('.--object-label:has(input[name="name"])');
     const $contactLabel = $paymentForm.querySelector('.--object-label:has(input[name="contactSecond"])');
@@ -114,22 +88,19 @@ $paymentForm.onsubmit = (e) => {
         dialog.showSimpleOk('결제', '개인정보 이용약관에 동의해 주세요.');
         return;
     }
-    $pay.querySelector(':scope > .total').innerText = `${totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원`
+
     $payCover.classList.add('visible');
     $pay.classList.add('visible');
-};
-
-const $payCover = document.getElementById('payCover');
-const $pay = document.getElementById('pay');
+});
 
 const hidePay = () => {
     $payCover.classList.remove('visible');
     $pay.classList.remove('visible');
 }
 
-$pay.querySelector(':scope > .button-container > .button.cancel').addEventListener('click', hidePay);
+$pay.querySelector(':scope > .button-container > .button.cancel.--object-button.-color-gray').addEventListener('click', hidePay);
 
-$pay.querySelector(':scope > .button-container > .button.confirm').addEventListener('click', () => {
+$pay.querySelector(':scope > .button-container > .button.confirm.--object-button.-color-pink').addEventListener('click', () => {
 
     const date = new Date();
     const imp = window.IMP;
@@ -156,7 +127,7 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
             formData.append('addressPostal', $paymentForm['addressPostal'].value);
             formData.append('addressPrimary', $paymentForm['addressPrimary'].value);
             formData.append('addressSecondary', $paymentForm['addressSecondary'].value);
-            formData.append('totalPrice', totalPrice);
+            formData.append('totalPrice', $paymentForm['addressSecondary'].value);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== XMLHttpRequest.DONE) {
                     return;
@@ -184,8 +155,6 @@ $pay.querySelector(':scope > .button-container > .button.confirm').addEventListe
             };
             xhr.open('POST', '/payment/');
             xhr.send(formData);
-        } else {
-            dialog.showSimpleOk(`결제에 실패하였습니다. (${resp['error_msg']})`);
         }
     });
 });

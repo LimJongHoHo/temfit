@@ -173,7 +173,7 @@ $skinLabels.forEach(($label) => {
                             <div class="star-container">
                                 <div class="star-scope">
                                     <span class="score">${product.discountRate}%</span>
-                                    <span class="number">${product.price}원</span>
+                                    <span class="number">${new Intl.NumberFormat('ko-KR').format(product.price)}원</span>
                                 </div>
                             </div>
                         </div>

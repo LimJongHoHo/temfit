@@ -134,7 +134,7 @@
   align-items: stretch;
   display: flex;
   flex-direction: row;
-  gap: 0;
+  gap: 0.5rem;
   justify-content: center;
   height: 2rem;
 }
@@ -146,13 +146,17 @@
   flex-grow: 1;
   flex-shrink: 1;
 }
+#payForm > .product-container > .item-box > .item-container > .price-container > .discount {
+  color: #fb5f86;
+  font-weight: 600;
+}
 #payForm > .product-container > .item-box > .item-container > .price-container > .price {
   font-size: 0.95rem;
   font-weight: 600;
 }
 #payForm > .product-container > .item-box > .item-container > .price-container > .count {
   height: 2rem;
-  padding: 0 0.75rem;
+  color: #6c6e70;
 }
 #payForm > .product-container > .item-box > .total-price {
   margin-right: 1rem;

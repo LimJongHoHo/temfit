@@ -75,8 +75,13 @@
         }
 
         > .price-container {
-          @include flex(row, stretch, center);
+          @include flex(row, stretch, center, 0.5rem);
           height: 2rem;
+
+          > .discount{
+            color: #fb5f86;
+            font-weight: 600;
+          }
 
           > .price {
             font-size: 0.95rem;
@@ -85,7 +90,7 @@
 
           > .count {
             height: 2rem;
-            padding: 0 0.75rem;
+            color: #6c6e70;
           }
         }
       }

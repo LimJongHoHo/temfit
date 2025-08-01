@@ -29,7 +29,7 @@
 <div id="pay">
     <span class="title">결제</span>
     <span class="message">결제하실 금액을 확인하여 주세요.</span>
-    <span class="total"></span>
+    <span class="total" th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity(), 0, 'COMMA') + '원'}"></span>
     <div class="method-container">
         <label class="label">
             <input class="radio" name="method" type="radio" value="kakaopay">
@@ -113,16 +113,12 @@
                            th:text="${cartDetail.getProductName()}"></a>
                     </div>
                     <div class="price-container">
-<!--                        <span class="discount" th:text="${cartDetail.getDiscountRate() + '%'}"></span>-->
+                        <span class="discount" th:text="${cartDetail.getProductDiscountRate() + '%'}"></span>
                         <span class="price"
                               th:text="${#numbers.formatInteger(cartDetail.getProductPrice(), 0, 'COMMA') + '원'}"></span>
-                        <span class="-flex-stretch" role="none"></span>
+                        <span class="count" th:text="${'/' + cartDetail.getQuantity() + '개'}"></span>
                     </div>
                 </div>
-                <span class="-flex-stretch" role="none"></span>
-                <span class="total-price" name="totalPrice"
-                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}">
-                </span>
             </div>
         </div>
         <div class="price-container">
@@ -130,19 +126,19 @@
             <div class="container">
                 <span class="sub-title">총 상품 금액</span>
                 <div class="-flex-stretch"></div>
-                <span class="product-price">27,900원</span>
+                <span class="product-price" th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity() , 0, 'COMMA') + '원'}"></span>
             </div>
             <div class="container">
                 <span class="sub-title">배송비</span>
                 <div class="-flex-stretch"></div>
-<!--                <span class="product-price"-->
-<!--                      th:text="${cartDetails.getDeliveryFee() == 0 ? '무료배송' : product.getDeliveryFee() + '원'}"></span>-->
+                <span class="product-price"
+                      th:text="${cartDetail.getDeliveryFee() == 0 ? '무료배송' : cartDetail.getDeliveryFee() + '원'}"></span>
             </div>
             <div class="total-pay">
                 <span class="title">총 결제 금액</span>
                 <div class="-flex-stretch"></div>
-<!--                <span id="totalPrice" class="pay-price"-->
-<!--                      th:text="${#numbers.formatInteger(product.getPrice(), 0, 'COMMA') + '원'}"></span>-->
+                <span id="totalPrice" class="pay-price"
+                      th:text="${#numbers.formatInteger(cartDetail.getProductPrice() * cartDetail.getQuantity(), 0, 'COMMA') + '원'}"></span>
             </div>
         </div>
         <div class="pay">
@@ -168,7 +164,7 @@
             </label>
         </div>
 
-        <button class="--object-button -color-pink" name="payButton" type="submit">결제하기</button>
+        <button class="--object-button -color-pink" name="payButton" type="button">결제하기</button>
     </form>
     <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </div>

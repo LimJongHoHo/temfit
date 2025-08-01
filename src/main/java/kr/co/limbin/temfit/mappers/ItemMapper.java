@@ -38,6 +38,8 @@ public interface ItemMapper {
 
     CartDetailVo[] getByCartId(@Param(value = "cartId") int cartId);
 
+    CartDetailVo getPriceByCartId(@Param(value = "cartId") int cartId);
+
     int insertCart(@Param(value = "cart") CartEntity cart);
 
     int insertCartDetail(@Param(value = "cartDetail") CartDetailEntity cartDetail);

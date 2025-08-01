@@ -34,9 +34,11 @@ public class PaymentController {
     @RequestMapping(value = "/pay", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getPayment(@RequestParam(value = "cartId", required = false) int cartId, Model model) {
         CartDetailVo[] cartDetails = this.itemService.getByCartId(cartId);
+        CartDetailVo cartDetail = this.itemService.getPriceByCartId(cartId);
         if (cartDetails.length != 0) {
             model.addAttribute("cartDetails", cartDetails);
         }
+        model.addAttribute("cartDetail", cartDetail);
         return "payment/pay";
     }
 
